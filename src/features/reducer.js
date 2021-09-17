@@ -8,6 +8,9 @@ import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
 
 const reducer = (state, action) => {
+  if (state.win || state.loss) {
+    return state;
+  }
   const piece = action?.payload?.piece;
   const row = piece?.row;
   const col = piece?.col;
