@@ -2,7 +2,7 @@ import React from 'react';
 
 const Piece = (props) => (
   <button>
-    {props.piece}
+    {props.piece.val}
   </button>
 );
 

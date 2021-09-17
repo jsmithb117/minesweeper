@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import Piece from './components/Piece';
+import Rows from './components/Rows';
 import initialState from './features/initialState';
 
 class App extends React.Component {
@@ -9,11 +9,12 @@ class App extends React.Component {
     this.state = initialState;
   }
 
+
   render() {
     console.log(this.state.board[0][0])
     return (
       <div className="App">
-        <Piece piece={this.state.board[0][0].val} />
+        <Rows board={this.state.board} />
       </div>
     );
   }
