@@ -4,7 +4,7 @@ import Row from './Row';
 const Rows = (props) => {
   const rowsMap = props.board.map((row, index) => {
     return (
-      <Row row={row} key={`row${index}`} />
+      <Row row={row} key={`row${index}`} handleClick={props.handleClick} />
     )
   });
 
