@@ -1,10 +1,12 @@
 import React from 'react';
 import Row from './Row';
+import { useSelector } from 'react-redux';
 
 const Rows = (props) => {
-  const rowsMap = props.board.map((row, index) => {
+  const board = useSelector((state) => state.board);
+  const rowsMap = board.map((row, index) => {
     return (
-      <Row row={row} key={`row${index}`} handleClick={props.handleClick} />
+      <Row row={row} key={`row${index}`} />
     )
   });
 

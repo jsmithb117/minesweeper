@@ -4,7 +4,7 @@ import Piece from './Piece';
 const Row = (props) => {
   const rowMap = props.row.map((piece) => {
     return (
-      <Piece piece={piece} key={`piece${piece.row}${piece.col}`} handleClick={props.handleClick} />
+      <Piece piece={piece} key={`piece${piece.row}${piece.col}`} />
     );
   });
 

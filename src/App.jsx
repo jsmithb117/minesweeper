@@ -1,73 +1,27 @@
+import { useSelector } from 'react-redux';
 import './App.css';
-import React from 'react';
 import Rows from './components/Rows';
-import initialState from './features/initialState';
-import zeroFinder from './features/zeroFinder';
-import checkWin from './features/checkWin';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = initialState;
-    this.handleClick = this.handleClick.bind(this);
-    document.addEventListener('contextmenu', event => event.preventDefault());
-  }
+function App() {
+  document.addEventListener('contextmenu', event => event.preventDefault());
+  const win = useSelector((state) => state.win);
+  const loss = useSelector((state) => state.loss);
 
-  handleClick (event, row, col) {
-    console.log('event: ', event)
-    console.log('row: ', row)
-    console.log('col: ', col)
+  const boardColor = win ? 'green'
+    : loss ? 'red'
+    : 'white';
 
-    event.preventDefault();
-    let leftClick = event.type === "click";
-    let rightClick = event.type === "contextmenu";
+  const className = 'minesweeper'.concat(boardColor);
 
-    if (this.state.loss || this.state.win) {
-      return;
-    }
-
-    if (rightClick && !this.state.board[row][col].uncovered) {
-      debugger;
-      event.target.style.color = !event.target.style.color ? 'black' : null
-      event.target.innerHTML = event.target.innerHTML !== '?' ? 'M' : '?';
-      this.setState((state) => {
-        state.board[row][col].markedAsMine = event.target.innerHTML === 'M';
-        return state;
-      })
-    }
-
-    if (leftClick) {
-      this.setState((state) => {
-        let pieceIsX = state.board[row][col].val === 'X';
-        let pieceIsMarkedAsMine = state.board[row][col].markedAsMine
-
-        if (pieceIsX && !pieceIsMarkedAsMine) {
-          state.loss = true;
-          return state;
-        }
-
-        state = zeroFinder(parseInt(row), parseInt(col), state.board);
-        return state;
-      }, () => {
-        if (checkWin(this.state.board)) {
-          document.body.style = 'background: green;';
-          console.log('You win!');
-        }
-        if (this.state.loss && !this.state.win) {
-          document.body.style = 'background: red;';
-          console.log('Sorry, try again.');
-        }
-      })
-    }
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <Rows board={this.state.board} handleClick={this.handleClick} />
-      </div>
-    );
-  }
+  return (
+    <div className={className}>
+      <HelmetProvider>
+        <Rows />
+        <Helmet bodyAttributes={{style: `background-color : ${boardColor}`}} />
+      </HelmetProvider>
+    </div>
+  );
 }
 
 export default App;
