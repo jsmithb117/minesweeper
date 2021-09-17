@@ -1,13 +1,9 @@
-module.exports = {
-  board: [
-    [{
-      val: 0,
-      uncovered: false,
-      markedAsMine: false,
-      row: 0,
-      col: 0
-    }]
-  ],
+import boardCreator from './boardCreator';
+
+const initialState = {
+  board: boardCreator(),
   win: false,
   loss: false
-}
+};
+
+export default initialState;
