@@ -8,9 +8,9 @@ import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
 
 const reducer = (state, action) => {
-  const piece = action.payload.piece;
-  const row = piece.row;
-  const col = piece.col;
+  const piece = action?.payload?.piece;
+  const row = piece?.row;
+  const col = piece?.col;
 
   if (action.type === LEFTCLICK) {
     const nextState = produce(state, (draftState) => {

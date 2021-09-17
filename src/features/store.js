@@ -1,6 +1,6 @@
 import reducer from './reducer';
 import { createStore } from 'redux';
-import boardCreator from '../components/boardCreator';
+import boardCreator from './boardCreator';
 
 const initialState = {
   board: boardCreator(),
