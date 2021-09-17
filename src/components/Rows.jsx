@@ -6,7 +6,7 @@ const Rows = (props) => {
   const board = useSelector((state) => state.board);
   const rowsMap = board.map((row, index) => {
     return (
-      <Row row={row} key={`row${index}`} handleLeftClick={props.handleLeftClick} handleRightClick={props.handleRightClick} />
+      <Row row={row} key={`row${index}`} />
     )
   });
 

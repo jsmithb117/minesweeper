@@ -1,6 +1,10 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { leftClick, rightClick } from '../features/actionCreators';
 
 const Piece = (props) => {
+  const dispatch = useDispatch();
+
   const buttonColor = props.piece.val === 0 ? null :
     props.piece.val === 1 ? 'blue' :
     props.piece.val === 2 ? 'green' :
@@ -17,7 +21,7 @@ const Piece = (props) => {
   const className = props.piece.uncovered ? uncoveredClassName : coveredClassName;
 
   return (
-  <button className={className} onClick={(event) => props.handleLeftClick(props.piece)} onContextMenu={(event) => props.handleRightClick(props.piece)}>
+  <button className={className} onClick={(event) => dispatch(leftClick(props.piece))} onContextMenu={(event) => dispatch(leftClick(props.piece))}>
     {props.piece.val}
   </button>
   )
