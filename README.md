@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# Minesweeper
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Inspiration
 
-In the project directory, you can run:
+I've always enjoyed puzzle games like Sudoku and Minesweeper.  I've tried to keep the styling and gameplay as close as possible to the original.
 
-### `yarn start`
+## Future Plans
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+I intend to use this repo as a platform for learning/reinforcing other technologies (Typescript, GraphQL...)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Next steps:
 
-### `yarn test`
+* Typescript
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Ability to reset and create a new board.
 
-### `yarn build`
+* Multiple board sizes, maybe X*Y board with a form, maybe easy/medium/hard
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Track 'score' (time to complete)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* Build menu around board in app with stats and forms
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Express/Mongo (REST API) server and username (no auth) for data persistence between sessions
 
-### `yarn eject`
+* Add auth for users (plaintext)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* Add salt/hash for passwords
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Add High score board
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* GraphQL for queries
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* Server Side Rendering
 
-## Learn More
+## History
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+I initally created a minesweeper app as part of my HackReactor coursework.  That repo can be found at: https://github.com/jsmithb117/mini-apps/tree/master/minesweeper  It was a bare minimum implementation and some of the code was a little suspect.  For instance, the line:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    let row = event.target.className.split(' ')[2].split('w')[1];  //There is probably a better way to store/retrieve the rows and cols
 
-### Code Splitting
+I knew it wasn't the right way to get it done, but it worked until I figured out a better way.  If you're curious, the better way was to pass the piece prop to the click handlers when calling them so they can access the row and col properties.  When refactoring the app to use Redux, I moved the logic to the reducer and dispatched actions directly from the Piece component instead of using click handlers.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
