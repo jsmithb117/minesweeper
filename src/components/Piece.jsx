@@ -14,8 +14,10 @@ const Piece = (props) => {
 
   const uncoveredClassName = `uncovered piece row${props.piece.row} col${props.piece.col} ${buttonColor}`;
   const coveredClassName = `covered piece row${props.piece.row} col${props.piece.col}`;
+  const className = props.piece.uncovered ? uncoveredClassName : coveredClassName;
+
   return (
-  <button className={uncoveredClassName}>
+  <button className={className}>
     {props.piece.val}
   </button>
   )
