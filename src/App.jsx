@@ -10,9 +10,14 @@ class App extends React.Component {
     super(props);
     this.state = initialState;
     this.handleClick = this.handleClick.bind(this);
+    document.addEventListener('contextmenu', event => event.preventDefault());
   }
 
   handleClick (event, row, col) {
+    console.log('event: ', event)
+    console.log('row: ', row)
+    console.log('col: ', col)
+
     event.preventDefault();
     let leftClick = event.type === "click";
     let rightClick = event.type === "contextmenu";
@@ -22,8 +27,9 @@ class App extends React.Component {
     }
 
     if (rightClick && !this.state.board[row][col].uncovered) {
+      debugger;
       event.target.style.color = !event.target.style.color ? 'black' : null
-      event.target.innerHTML = event.target.innerHTML === '?' ? 'M' : '?';
+      event.target.innerHTML = event.target.innerHTML !== '?' ? 'M' : '?';
       this.setState((state) => {
         state.board[row][col].markedAsMine = event.target.innerHTML === 'M';
         return state;
@@ -56,7 +62,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.board[0][0])
     return (
       <div className="App">
         <Rows board={this.state.board} handleClick={this.handleClick} />

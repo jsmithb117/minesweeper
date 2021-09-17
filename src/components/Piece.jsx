@@ -17,7 +17,7 @@ const Piece = (props) => {
   const className = props.piece.uncovered ? uncoveredClassName : coveredClassName;
 
   return (
-  <button className={className} onClick={(event) => props.handleClick(event, props.piece.row, props.piece.col)}>
+  <button className={className} onClick={(event) => props.handleClick(event, props.piece.row, props.piece.col)} onContextMenu={(event) => props.handleClick(event, props.piece.row, props.piece.col)}>
     {props.piece.val}
   </button>
   )
