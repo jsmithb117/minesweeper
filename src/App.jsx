@@ -14,11 +14,10 @@ class App extends React.Component {
   }
 
   handleClick (event, row, col) {
-    console.log('event: ', event)
-    console.log('row: ', row)
-    console.log('col: ', col)
-
     event.preventDefault();
+    if (this.state.win || this.state.loss) {
+      return;
+    }
     let leftClick = event.type === "click";
     let rightClick = event.type === "contextmenu";
 
@@ -27,7 +26,6 @@ class App extends React.Component {
     }
 
     if (rightClick && !this.state.board[row][col].uncovered) {
-      debugger;
       event.target.style.color = !event.target.style.color ? 'black' : null
       event.target.innerHTML = event.target.innerHTML !== '?' ? 'M' : '?';
       this.setState((state) => {
@@ -37,6 +35,7 @@ class App extends React.Component {
     }
 
     if (leftClick) {
+
       this.setState((state) => {
         let pieceIsX = state.board[row][col].val === 'X';
         let pieceIsMarkedAsMine = state.board[row][col].markedAsMine
