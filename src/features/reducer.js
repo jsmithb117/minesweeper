@@ -1,5 +1,4 @@
 import produce from 'immer';
-import clone from 'rfdc/default';
 import {
   LEFTCLICK,
   RIGHTCLICK,
@@ -18,8 +17,7 @@ const reducer = (state, action) => {
   if (action.type === LEFTCLICK) {
     const nextState = produce(state, (draftState) => {
       if (!piece.uncovered && !piece.markedAsMine) {
-        const clonedBoard = clone(state.board);
-        draftState.board = zeroFinder(row, col, clonedBoard);
+        draftState.board = zeroFinder(row, col, draftState.board);
       }
       if (piece.val === 'X' && !piece.markedasMine) {
         draftState.loss = true;
