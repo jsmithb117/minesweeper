@@ -17,3 +17,47 @@ body {
 button {
   font-weight: 900;
 }
+
+.covered {
+  background-color: #c0c0c0;
+  border-style: solid;
+  color: #c0c0c0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 36px;
+}
+
+.uncovered {
+  background-color: lightgray;
+  border-style: solid;
+  color: lightgray;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 36px;
+}
+.blue {
+  color: blue;
+}
+.green {
+  color: green;
+}
+.red {
+  color: red;
+}
+.purple {
+  color: purple;
+}
+.black {
+  color: black;
+}
+.gray {
+  color: gray;
+}
+.maroon {
+  color: maroon;
+}
+.turquoise {
+  color: turquoise;
+}
