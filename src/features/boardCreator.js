@@ -81,6 +81,13 @@ export const testBoardCreator = () => {
           col: cols,
         };
       }
+
+      for (let row = 0; row < board.length; row++) {
+        for (let col = 0; col < board[row].length; col++) {
+          board[row][col].val = board[row][col].val !== 'X' ? countMines(row, col, board) : 'X';
+        }
+      }
+
       row.push(piece);
     }
     board.push(row);
