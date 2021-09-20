@@ -48,5 +48,52 @@ let countMines = (row, col, board) => {
   return count;
 };
 
+export const testBoardCreator = () => {
+  let board = [];
+
+  // populates board with pieces
+  for (let rows = 0; rows < 10; rows++) {
+    let row = [];
+    for (let cols = 0; cols < 10; cols++) {
+      let piece;
+      if (rows === 0) {
+        piece = {
+          val: 'X',
+          uncovered: true,
+          markedAsMine: true,
+          row: rows,
+          col: cols,
+        };
+      } else if (rows === 1) {
+        piece = {
+          val: 0,
+          uncovered: true,
+          markedAsMine: false,
+          row: rows,
+          col: cols,
+        };
+      } else {
+        piece = {
+          val: 0,
+          uncovered: false,
+          markedAsMine: false,
+          row: rows,
+          col: cols,
+        };
+      }
+      row.push(piece);
+    }
+    board.push(row);
+  }
+
+  return {
+    board,
+    win: false,
+    loss: false,
+  };
+};
+
+
+
 
 export default boardCreator;
