@@ -10,8 +10,8 @@ body {
 
 .piece {
   border-color: white;
-  height: 70px;
-  width: 70px;
+  height: 100%;
+  width: 10%;
 }
 
 button {
