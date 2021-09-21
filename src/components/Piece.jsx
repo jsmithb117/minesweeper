@@ -8,7 +8,8 @@ const Piece = (props) => {
   const dispatch = useDispatch();
 
   return (
-  <button className={pieceClass(props.piece)} onClick={(event) => dispatch(leftClick(props.piece))} onContextMenu={(event) => dispatch(rightClick(props.piece))}>
+  <button className={pieceClass(props.piece)} onClick={() => dispatch(leftClick(props.piece))}
+    onContextMenu={(event) => dispatch(rightClick(props.piece))}>
     {displayValue(props.piece)}
   </button>
   )
