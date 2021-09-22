@@ -10,11 +10,22 @@ I initally created a bare minimum implementation of [Minesweeper](https://github
 
 This repo is closely based on that app and I will use this repo as a platform for learning/reinforcing other technologies (Typescript, GraphQL...).
 
+I intend to make all major changes in Branches and integrated into the Main branch with Pull Requests.  Main branch changes should be sporadic and minor, ex: Removed rfdc dependency, Adjusted css to responsively render buttons...
+
+## Branches
+
+bareMinimumMinesweeper - A fully functional 10x10 Minesweeper board.  No bells, no whistles, state is held in the App component.
+
+redux - Same board, different state management.  Uses Redux Hooks and immer.
+
+testing -
 ### Next steps:
 
-* Testing
+* More Testing
 
 * Make app responsive
+
+* PropType validation
 
 * Typescript
 

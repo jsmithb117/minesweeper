@@ -4,8 +4,6 @@ body {
 
 .rows {
   display: grid;
-  grid-template-columns: repeat(auto);
-  grid-template-rows: repeat(auto);
 }
 
 .piece {
