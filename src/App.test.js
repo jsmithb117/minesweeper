@@ -36,10 +36,18 @@ describe('App', () => {
   it('should render 20 Piece components with the \'uncovered\' property set on testBoard', () => {
     expect(wrapper.findWhere(node => node?.props()?.piece?.uncovered).length).toEqual(20);
   });
-  it('should set \'uncovered\' property to true after piece is clicked', () => {
+  it('should toggle \'markedAsMine\' property when piece is right clicked', () => {
+    const button = wrapper.findWhere(node => node?.props()?.piece?.row === 9 && node?.props()?.piece?.col === 9);
+    expect(button.props().piece.markedAsMine).toBe(false);
+    button.simulate('contextmenu', { ...button.props() });
+    expect(wrapper.findWhere(node => node?.props()?.piece?.row === 9 && node?.props()?.piece?.col === 9).props().piece.markedAsMine).toBe(true);
+    button.simulate('contextmenu', { ...button.props() });
+    expect(wrapper.findWhere(node => node?.props()?.piece?.row === 9 && node?.props()?.piece?.col === 9).props().piece.markedAsMine).toBe(false);
+  });
+  it('should set \'uncovered\' property to true when piece is left clicked', () => {
     const button = wrapper.findWhere(node => node?.props()?.piece?.row === 9 && node?.props()?.piece?.col === 9);
     expect(button.props().piece.uncovered).toBe(false);
     button.simulate('click', { ...button.props() });
     expect(wrapper.findWhere(node => node?.props()?.piece?.row === 9 && node?.props()?.piece?.col === 9).props().piece.uncovered).toBe(true);
-  })
+  });
 });
