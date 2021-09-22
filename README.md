@@ -18,20 +18,21 @@ bareMinimumMinesweeper - A fully functional 10x10 Minesweeper board.  No bells, 
 
 redux - Same board, different state management.  Uses Redux Hooks and immer.
 
-testing -
+testing - PR's includes coverage report.
+
 ### Next steps:
 
-* More Testing
+* ~~More Testing~~ Always more testing.
 
-* Make app responsive
+* ~~Make app responsive~~ Responsive-ish
 
-* PropType validation
+* ~~PropType validation~~ Complete
 
 * Typescript
 
 * Ability to reset and create a new board.
 
-* Multiple board sizes, maybe X*Y board with a form, maybe easy/medium/hard
+* Form for reset board and Multiple board sizes, maybe X*Y board or easy/medium/hard.  Use separate reducer and actionCreators for form actions and use combineReducers
 
 * Track 'score' (time to complete)
 
