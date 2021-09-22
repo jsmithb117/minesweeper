@@ -59,12 +59,20 @@ export const testBoardCreator = () => {
       if (rows === 0) {
         piece = {
           val: 'X',
-          uncovered: true,
+          uncovered: false,
           markedAsMine: true,
           row: rows,
           col: cols,
         };
       } else if (rows === 1) {
+        piece = {
+          val: 0,
+          uncovered: false,
+          markedAsMine: false,
+          row: rows,
+          col: cols,
+        };
+      } else if (rows === 2) {
         piece = {
           val: 0,
           uncovered: true,
