@@ -22,7 +22,7 @@ let boardCreator = (length = 10, width = 10, mines = 10) => {
   while (mineCount < mines) {
     let rowIndex = Math.floor(Math.random() * length);
     let colIndex = Math.floor(Math.random() * width);
-    if (!board[rowIndex][colIndex].val) {
+    if (board[rowIndex][colIndex].val === 0) {
       board[rowIndex][colIndex].val = 'X';
       mineCount++;
     }

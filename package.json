@@ -19,7 +19,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "coverage": "npm test -- --coverage --watchAll=false"
   },
   "eslintConfig": {
     "extends": [
@@ -44,7 +45,15 @@
     "chromedriver": "^93.0.1",
     "enzyme": "^3.11.0",
     "geckodriver": "^2.0.4",
+    "jest-extended": "^0.11.5",
     "redux-mock-store": "^1.5.4",
     "selenium-webdriver": "^4.0.0-rc-1"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/index.js",
+      "!src/features/store.js"
+    ]
   }
 }

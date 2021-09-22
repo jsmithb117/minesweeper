@@ -8,7 +8,7 @@ const buttonColorFunc = (val) => (
   val === 6 ? 'turquoise' :
   val === 7 ? 'black' :
   val === 8 ? 'gray' :
-  undefined
+  null
 );
 
 export default buttonColorFunc;
