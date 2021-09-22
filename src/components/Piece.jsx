@@ -6,10 +6,13 @@ import pieceClass from '../features/pieceClass';
 
 const Piece = (props) => {
   const dispatch = useDispatch();
-
+  const leftClickHandler = (event) => {
+    const piece = props.piece || event.props.piece;
+    dispatch(leftClick(piece));
+  }
   return (
-  <button className={pieceClass(props.piece)} onClick={() => dispatch(leftClick(props.piece))}
-    onContextMenu={(event) => dispatch(rightClick(props.piece))}>
+  <button className={pieceClass(props.piece)} onClick={event => leftClickHandler(event)}
+    onContextMenu={event => dispatch(rightClick(props.piece))}>
     {displayValue(props.piece)}
   </button>
   )
