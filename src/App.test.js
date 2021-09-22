@@ -2,7 +2,10 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import Enzyme, { mount } from 'enzyme';
 import configureMockStore from 'redux-mock-store';
+import { createStore } from 'redux';
+
 import thunk from 'redux-thunk';
+import reducer from './features/reducer';
 import App from './App';
 import { testBoardCreator } from './features/boardCreator';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
@@ -13,7 +16,7 @@ const initialTestState = testBoardCreator();
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('App', () => {
-  const store = mockStore(initialTestState);
+  const store = createStore(reducer, initialTestState);
   const wrapper = mount(
     <Provider store={store}>
       <React.StrictMode>
@@ -33,4 +36,10 @@ describe('App', () => {
   it('should render 20 Piece components with the \'uncovered\' property set on testBoard', () => {
     expect(wrapper.findWhere(node => node?.props()?.piece?.uncovered).length).toEqual(20);
   });
+  it('should set \'uncovered\' property to true after piece is clicked', () => {
+    const button = wrapper.findWhere(node => node?.props()?.piece?.row === 9 && node?.props()?.piece?.col === 9);
+    expect(button.props().piece.uncovered).toBe(false);
+    button.simulate('click', { ...button.props() });
+    expect(wrapper.findWhere(node => node?.props()?.piece?.row === 9 && node?.props()?.piece?.col === 9).props().piece.uncovered).toBe(true);
+  })
 });
