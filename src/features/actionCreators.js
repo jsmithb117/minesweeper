@@ -9,7 +9,7 @@ export const leftClick = (piece) => {
   const col = piece.hasOwnProperty('col');
 
   if (!val || !uncovered || !markedAsMine || !row || !col) {
-    return new Error('leftClick action creator called with improper props')
+    return new Error('leftClick action creator called with improper props');
   }
   return {
     type: LEFTCLICK,

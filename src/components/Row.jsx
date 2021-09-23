@@ -1,5 +1,6 @@
 import React from 'react';
 import Piece from './Piece';
+import PropTypes from 'prop-types';
 
 const Row = (props) => {
   const rowMap = props.row.map((piece) => {
@@ -12,7 +13,24 @@ const Row = (props) => {
     <div className="row">
       {rowMap}
     </div>
-  )
+  );
+};
+
+Row.propTypes = {
+  row: PropTypes.arrayOf(
+    PropTypes.shape({
+      val: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
+      uncovered: PropTypes.bool,
+      markedAsMine: PropTypes.bool,
+      row: PropTypes.number,
+      col: PropTypes.number,
+    }),
+  ),
+  win: PropTypes.bool,
+  loss: PropTypes.bool,
 };
 
 export default Row;

@@ -1,6 +1,7 @@
 import initialState from './initialState';
-
-const initialTestState = initialState;
+const test = true;
+const initialTestState = initialState(test);
+const initialProductionState = initialState();
 
 describe('initialState', () => {
 
@@ -10,27 +11,58 @@ describe('initialState', () => {
   it('should have a loss property', () => {
     expect(initialTestState).toHaveProperty('loss')
   });
-  it('should have a board property in the proper shape', () => {
+  it('should have a board property in the proper shape for a test board', () => {
     expect(initialTestState).toHaveProperty('board');
     expect(Array.isArray(initialTestState.board)).toBe(true);
     expect(initialTestState.board.length).toBe(10);
-    initialTestState.board.forEach((row) => {
+    initialTestState.board.forEach((row, rowIndex) => {
       expect(Array.isArray(row)).toBe(true);
       expect(row.length).toBe(10);
-      row.forEach((piece) => {
+      row.forEach((piece, colIndex) => {
+        let shouldBeUncovered = false;
+        let shouldBeMarkedAsMine = false;
+        if (rowIndex === 2) {
+          shouldBeUncovered = true;
+        }
+        if (rowIndex === 0) {
+          shouldBeMarkedAsMine = true;
+        }
         const acceptableVals = [ 'X', 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
         expect(piece).toHaveProperty('val');
         expect(piece.val).toBeOneOf(acceptableVals);
         expect(piece).toHaveProperty('uncovered');
-        expect(piece.uncovered).toBe(false);
+        expect(piece.uncovered).toBe(shouldBeUncovered);
         expect(piece).toHaveProperty('markedAsMine');
-        expect(piece.markedAsMine).toBeFalse();
+        expect(piece.markedAsMine).toBe(shouldBeMarkedAsMine);
         expect(piece).toHaveProperty('row');
         expect(piece.row).toBeNumber();
         expect(piece).toHaveProperty('col');
         expect(piece.col).toBeNumber();
       })
     })
+  });
+  it('should have a board property in the proper shape for a \'real\' board', () => {
+    let acceptableVals = [ 'X', 0, 1, 2, 3, 4, 5, 6, 7, 8 ];
+
+    expect(initialProductionState).toHaveProperty('board');
+    expect(Array.isArray(initialProductionState.board)).toBe(true);
+    expect(initialProductionState.board.length).toBe(10);
+    initialProductionState.board.forEach((row, rowIndex) => {
+      expect(Array.isArray(row)).toBe(true);
+      expect(row.length).toBe(10);
+      row.forEach((piece, colIndex) => {
+        expect(piece).toHaveProperty('val');
+        expect(piece.val).toBeOneOf(acceptableVals);
+        expect(piece).toHaveProperty('uncovered');
+        expect(piece.uncovered).toBe(false);
+        expect(piece).toHaveProperty('markedAsMine');
+        expect(piece.markedAsMine).toBe(false);
+        expect(piece).toHaveProperty('row');
+        expect(piece.row).toBeNumber();
+        expect(piece).toHaveProperty('col');
+        expect(piece.col).toBeNumber();
+      });
+    });
   });
 
   // it('each Piece should have a \'val\' property, set as \'X\' or 0', () => {
