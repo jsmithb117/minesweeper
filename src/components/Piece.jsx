@@ -10,13 +10,13 @@ const Piece = (props) => {
   const leftClickHandler = (event) => {
     const piece = props.piece || event.props.piece;
     dispatch(leftClick(piece));
-  }
+  };
   return (
   <button className={pieceClass(props.piece)} onClick={event => leftClickHandler(event)}
     onContextMenu={event => dispatch(rightClick(props.piece))}>
     {displayValue(props.piece)}
   </button>
-  )
+  );
 };
 
 Piece.propTypes = {

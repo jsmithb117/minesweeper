@@ -9,7 +9,7 @@ const Rows = () => {
   const rowsMap = board.map((row, index) => {
     return (
       <Row row={row} key={`row${index}`} win={win} loss={loss} />
-    )
+    );
   });
 
   return (

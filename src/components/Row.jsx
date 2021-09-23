@@ -13,7 +13,7 @@ const Row = (props) => {
     <div className="row">
       {rowMap}
     </div>
-  )
+  );
 };
 
 Row.propTypes = {
