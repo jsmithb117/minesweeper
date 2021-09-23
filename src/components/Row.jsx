@@ -2,10 +2,30 @@ import React from 'react';
 import Piece from './Piece';
 import PropTypes from 'prop-types';
 
-const Row = (props) => {
-  const rowMap = props.row.map((piece) => {
+type Props = {
+  row: Array<{
+    val: number,
+    isMine: boolean,
+    uncovered: boolean,
+    markedAsMine: boolean,
+    row: number,
+    col: number,
+  }>,
+  win: boolean,
+  loss: boolean,
+};
+
+const Row = ({ row, win, loss }) => {
+  const rowMap: Array<{
+    val: number,
+    isMine: boolean,
+    uncovered: boolean,
+    markedAsMine: boolean,
+    row: number,
+    col: number,
+  }> = row.map((piece) => {
     return (
-      <Piece piece={piece} key={`piece${piece.row}${piece.col}`} win={props.win} loss={props.loss} />
+      <Piece piece={piece} key={`piece${piece.row}${piece.col}`} win={win} loss={loss} />
     );
   });
 
@@ -14,23 +34,6 @@ const Row = (props) => {
       {rowMap}
     </div>
   );
-};
-
-Row.propTypes = {
-  row: PropTypes.arrayOf(
-    PropTypes.shape({
-      val: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]),
-      uncovered: PropTypes.bool,
-      markedAsMine: PropTypes.bool,
-      row: PropTypes.number,
-      col: PropTypes.number,
-    }),
-  ),
-  win: PropTypes.bool,
-  loss: PropTypes.bool,
 };
 
 export default Row;
