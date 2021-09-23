@@ -1,6 +1,5 @@
 import React from 'react';
 import Piece from './Piece';
-import PropTypes from 'prop-types';
 
 type Props = {
   row: Array<{
@@ -15,7 +14,7 @@ type Props = {
   loss: boolean,
 };
 
-const Row = ({ row, win, loss }) => {
+const Row = ({ row, win, loss }: Props) => {
   const rowMap: Array<{
     val: number,
     isMine: boolean,
