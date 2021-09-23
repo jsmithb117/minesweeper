@@ -6,7 +6,7 @@ const displayValue = (piece) => {
     return piece.val;
   }
   if (piece.isMine) {
-    return 'Oops';
+    return 'X';
   }
   return 'O';
 };
