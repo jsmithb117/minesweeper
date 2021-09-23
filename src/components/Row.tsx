@@ -1,4 +1,3 @@
-import React from 'react';
 import Piece from './Piece';
 
 type Props = {
@@ -15,14 +14,7 @@ type Props = {
 };
 
 const Row = ({ row, win, loss }: Props) => {
-  const rowMap: Array<{
-    val: number,
-    isMine: boolean,
-    uncovered: boolean,
-    markedAsMine: boolean,
-    row: number,
-    col: number,
-  }> = row.map((piece) => {
+  const rowMap = row.map((piece) => {
     return (
       <Piece piece={piece} key={`piece${piece.row}${piece.col}`} win={win} loss={loss} />
     );
