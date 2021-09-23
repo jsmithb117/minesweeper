@@ -2,8 +2,11 @@ const displayValue = (piece) => {
   if (piece.markedAsMine) {
     return 'X';
   }
-  if (piece.uncovered) {
+  if (piece.uncovered && !piece.isMine) {
     return piece.val;
+  }
+  if (piece.isMine) {
+    return 'Oops';
   }
   return 'O';
 };

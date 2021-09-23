@@ -21,28 +21,28 @@ const zeroFinder = (row, col, board) => {
     const DR = board[row + 1] && board[row + 1][col + 1] ? board[row + 1][col + 1] : undefined;
 
     // recurses as required
-    if (UL && UL.val !== 'X' && !UL.uncovered) {
+    if (UL && !UL.isMine && !UL.uncovered) {
       board = zeroFinder(row - 1, col - 1, board);
     }
-    if (U && U.val !== 'X' && !U.uncovered) {
+    if (U && !U.isMine && !U.uncovered) {
       board = zeroFinder(row - 1, col, board);
     }
-    if (UR && UR.val !== 'X' && !UR.uncovered) {
+    if (UR && !UR.isMine && !UR.uncovered) {
       board = zeroFinder(row - 1, col + 1, board);
     }
-    if (LL && LL.val !== 'X' && !LL.uncovered) {
+    if (LL && !LL.isMine && !LL.uncovered) {
       board = zeroFinder(row, col - 1, board);
     }
-    if (RR && RR.val !== 'X' && !RR.uncovered) {
+    if (RR && !RR.isMine && !RR.uncovered) {
       board = zeroFinder(row, col + 1, board);
     }
-    if (DR && DR.val !== 'X' && !DR.uncovered) {
+    if (DR && !DR.isMine && !DR.uncovered) {
       board = zeroFinder(row + 1, col + 1, board);
     }
-    if (D && D.val !== 'X' && !D.uncovered) {
+    if (D && !D.isMine && !D.uncovered) {
       board = zeroFinder(row + 1, col, board);
     }
-    if (DL && DL.val !== 'X' && !DL.uncovered) {
+    if (DL && !DL.isMine && !DL.uncovered) {
       board = zeroFinder(row + 1, col - 1, board);
     }
   }

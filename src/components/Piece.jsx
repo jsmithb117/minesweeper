@@ -21,10 +21,8 @@ const Piece = (props) => {
 
 Piece.propTypes = {
   piece: PropTypes.shape({
-    val: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
+    val: PropTypes.number,
+    isMine: PropTypes.bool,
     uncovered: PropTypes.bool,
     markedAsMine: PropTypes.bool,
     row: PropTypes.number,

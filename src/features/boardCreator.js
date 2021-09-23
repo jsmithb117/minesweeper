@@ -1,6 +1,7 @@
 const boardCreator = (length = 10, width = 10, mines = 10, testBoard = false) => {
   const piece = {
     val: 0,
+    isMine: false,
     uncovered: false,
     markedAsMine: false,
     row: 0,
@@ -12,7 +13,7 @@ const boardCreator = (length = 10, width = 10, mines = 10, testBoard = false) =>
     board = blankBoard.map((rowArray, row) => {
       return rowArray.map((newPiece, col) => {
         if (row === 0) {
-          return { ...newPiece, val: 'X', markedAsMine: true, row, col };
+          return { ...newPiece, isMine: true, markedAsMine: true, row, col };
         }
         if (row === 2) {
           return { ...newPiece, uncovered: true, row, col };
@@ -31,8 +32,8 @@ const boardCreator = (length = 10, width = 10, mines = 10, testBoard = false) =>
     while (mineCount < mines) {
       const rowIndex = Math.floor(Math.random() * length);
       const colIndex = Math.floor(Math.random() * width);
-      if (board[rowIndex][colIndex].val === 0) {
-        board[rowIndex][colIndex].val = 'X';
+      if (!board[rowIndex][colIndex].isMine) {
+        board[rowIndex][colIndex].isMine = true;
         mineCount++;
       }
     }
@@ -40,9 +41,7 @@ const boardCreator = (length = 10, width = 10, mines = 10, testBoard = false) =>
 
   board.forEach((rowArray, row) => {
     rowArray.forEach((piece, col) => {
-      if (piece.val !== 'X') {
-        piece.val = countAdjacentMines(row, col, board);
-      }
+      piece.val = countAdjacentMines(row, col, board);
     });
   });
   return board;
@@ -52,8 +51,12 @@ const countAdjacentMines = (row, col, board) => {
   let count = 0;
   for (let r = row - 1; r <= row + 1; r++) {
     for (let c = col - 1; c <= col + 1; c++) {
-      count = board[r] && board[r][c]?.val === 'X' ? count + 1 : count;
-    };
+      if (board[r] && board[r][c]) {
+        const piece = board[r][c];
+        if (piece.isMine)
+          count += 1;
+      };
+    }
   };
   return count;
 };

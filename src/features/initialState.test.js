@@ -27,9 +27,8 @@ describe('initialState', () => {
         if (rowIndex === 0) {
           shouldBeMarkedAsMine = true;
         }
-        const acceptableVals = [ 'X', 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
         expect(piece).toHaveProperty('val');
-        expect(piece.val).toBeOneOf(acceptableVals);
+        expect(piece.val).toBeNumber();
         expect(piece).toHaveProperty('uncovered');
         expect(piece.uncovered).toBe(shouldBeUncovered);
         expect(piece).toHaveProperty('markedAsMine');
@@ -42,7 +41,6 @@ describe('initialState', () => {
     })
   });
   it('should have a board property in the proper shape for a \'real\' board', () => {
-    let acceptableVals = [ 'X', 0, 1, 2, 3, 4, 5, 6, 7, 8 ];
 
     expect(initialProductionState).toHaveProperty('board');
     expect(Array.isArray(initialProductionState.board)).toBe(true);
@@ -52,7 +50,7 @@ describe('initialState', () => {
       expect(row.length).toBe(10);
       row.forEach((piece, colIndex) => {
         expect(piece).toHaveProperty('val');
-        expect(piece.val).toBeOneOf(acceptableVals);
+        expect(piece.val).toBeNumber();
         expect(piece).toHaveProperty('uncovered');
         expect(piece.uncovered).toBe(false);
         expect(piece).toHaveProperty('markedAsMine');

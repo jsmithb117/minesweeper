@@ -32,7 +32,7 @@ describe('App', () => {
     expect(wrapper.find(Piece).length).toEqual(100)
   });
   it('should render 10 Piece components whose val is set as \'X\' on testBoard', () => {
-    expect(wrapper.findWhere(node => node?.props()?.piece?.val === 'X').length).toEqual(10);
+    expect(wrapper.findWhere(node => node?.props()?.piece?.isMine).length).toEqual(10);
   });
   it('should render 10 Piece components whose \'markedAsMine\' property is set to true on testBoard', () => {
     expect(wrapper.findWhere(node => node?.props()?.piece?.markedAsMine === true).length).toEqual(10);

@@ -19,7 +19,7 @@ const reducer = (state, action) => {
       if (!piece.uncovered && !piece.markedAsMine) {
         draftState.board = zeroFinder(row, col, draftState.board);
       }
-      if (piece.val === 'X' && !piece.markedasMine) {
+      if (piece.isMine && !piece.markedasMine) {
         draftState.loss = true;
       } else if (checkWin(draftState.board)){
         draftState.win = true;
