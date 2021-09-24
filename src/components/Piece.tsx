@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch } from 'react-redux';
 import { leftClick, rightClick } from '../features/actionCreators';
 import displayValue from '../features/displayValue';
@@ -19,18 +18,17 @@ type Props = {
 
 const Piece = ({ piece }: Props) => {
   const dispatch = useDispatch();
-  const leftClickHandler = (event:any) => {
-    piece = piece || event.props.piece;
+  const leftClickHandler = () => {
     dispatch(leftClick(piece));
   };
 
 
   return (
-  <button className={pieceClass(piece)} onClick={event => leftClickHandler(event)}
-    onContextMenu={event => dispatch(rightClick(piece))}>
-    {displayValue(piece)}
-  </button>
-  );
+    <button className={pieceClass(piece)} onClick={() => leftClickHandler()}
+      onContextMenu={() => dispatch(rightClick(piece))}>
+      {displayValue(piece)}
+    </button>
+    );
 };
 
 export default Piece;
