@@ -2,11 +2,13 @@ import produce from 'immer';
 import {
   LEFTCLICK,
   RIGHTCLICK,
+  Action,
 } from './actionCreators';
 import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
+import { State } from './initialState';
 
-const reducer = (state, action) => {
+const reducer = (state: State, action: Action) => {
   if (state.win || state.loss) {
     return state;
   }
@@ -19,10 +21,12 @@ const reducer = (state, action) => {
       if (!piece.uncovered && !piece.markedAsMine) {
         draftState.board = zeroFinder(row, col, draftState.board);
       }
-      if (piece.isMine && !piece.markedasMine) {
+      if (piece.isMine && !piece.markedAsMine) {
         draftState.loss = true;
+        return draftState;
       } else if (checkWin(draftState.board)){
         draftState.win = true;
+        return draftState;
       }
     });
 

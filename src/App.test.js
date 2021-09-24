@@ -83,8 +83,12 @@ describe('App', () => {
   });
   it('should set \'loss\' property to true when an uncovered mine is clicked', () => {
     const button = wrapper.findWhere(node => findPiece(node, 0, 0));
-    expect(button.props().loss).toBe(false);
-    button.simulate('click', { ...button.props() });
+    expect(button.props().piece.markedAsMine).toBe(true);
+    button.simulate('contextmenu', { ...button.props().piece });
+    const button2 = wrapper.findWhere(node => findPiece(node, 0, 0));
+    expect(button2.props().piece.markedAsMine).toBe(false);
+    expect(button2.props().loss).toBe(false);
+    button2.simulate('click', { ...button2.props().piece });
     expect(wrapper.findWhere(node => findPiece(node, 0, 0)).props().loss).toBe(true);
   });
 });
