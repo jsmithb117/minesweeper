@@ -2,11 +2,12 @@ import { useSelector } from 'react-redux';
 import './App.css';
 import Rows from './components/Rows';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import RootState from './features/store';
 
 function App() {
   document.addEventListener('contextmenu', event => event.preventDefault());
-  const win = useSelector((state) => state.win);
-  const loss = useSelector((state) => state.loss);
+  const win = useSelector((state: typeof RootState) => state.win);
+  const loss = useSelector((state: typeof RootState) => state.loss);
 
   const boardColor = win ? 'green'
     : loss ? 'red'
@@ -18,7 +19,15 @@ function App() {
     <div className={className}>
       <HelmetProvider>
         <Rows />
-        <Helmet bodyAttributes={{style: `background-color : ${boardColor}`}} />
+        <Helmet>
+          <style type='text/css'>
+          {`
+            body {
+              background-color : ${boardColor}
+            }
+          `}
+          </style>
+        </Helmet>
       </HelmetProvider>
     </div>
   );
