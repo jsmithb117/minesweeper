@@ -2,6 +2,15 @@ import { Piece } from './boardCreator';
 export const LEFTCLICK: string = 'LEFTCLICK';
 export const RIGHTCLICK: string = 'RIGHTCLICK';
 
+export type Payload = {
+  piece: Piece
+};
+
+export type Action = {
+  type: string,
+  payload: Payload;
+};
+
 const click = (piece: Piece, isLeftClick: boolean) => {
   const val: boolean = piece.hasOwnProperty('val');
   const uncovered: boolean = piece.hasOwnProperty('uncovered');
@@ -13,15 +22,17 @@ const click = (piece: Piece, isLeftClick: boolean) => {
     return new Error('leftClick action creator called with improper props');
   }
   if (isLeftClick) {
-    return {
+    const action: Action = {
       type: LEFTCLICK,
       payload: { piece },
     };
+    return action;
   }
-  return {
+  const action: Action = {
     type: RIGHTCLICK,
     payload: { piece },
   };
+  return action;
 }
 export const leftClick = (piece: Piece) => click(piece, true);
 
