@@ -1,5 +1,16 @@
-const boardCreator = (length = 10, width = 10, mines = 10, testBoard = false) => {
-  const piece = {
+export type Piece = {
+    val: number,
+    isMine: boolean,
+    uncovered: boolean,
+    markedAsMine: boolean,
+    row: number,
+    col: number,
+};
+
+export type Board = Piece[][];
+
+const boardCreator = (length: number = 10, width: number = 10, mines: number = 10, testBoard: boolean = false) => {
+  const piece: Piece = {
     val: 0,
     isMine: false,
     uncovered: false,
@@ -7,11 +18,11 @@ const boardCreator = (length = 10, width = 10, mines = 10, testBoard = false) =>
     row: 0,
     col: 0,
   };
-  let board;
+  let board: Piece[][];
   if (testBoard) {
-    const blankBoard = new Array(length).fill(new Array(width).fill(piece));
-    board = blankBoard.map((rowArray, row) => {
-      return rowArray.map((newPiece, col) => {
+    const blankBoard: Board = new Array(length).fill(new Array(width).fill(piece));
+    board = blankBoard.map((rowArray: Piece[], row: number) => {
+      return rowArray.map((newPiece: Piece, col: number) => {
         if (row === 0) {
           return { ...newPiece, isMine: true, markedAsMine: true, row, col };
         }
@@ -23,9 +34,9 @@ const boardCreator = (length = 10, width = 10, mines = 10, testBoard = false) =>
     });
   } else {
 
-    const blankBoard = new Array(length).fill(new Array(width).fill(piece));
-    board = blankBoard.map((rowArray, row) => {
-      return rowArray.map((piece, col) => ({ ...piece, row, col }));
+    const blankBoard: Board = new Array(length).fill(new Array(width).fill(piece));
+    board = blankBoard.map((rowArray: Piece[], row: number) => {
+      return rowArray.map((piece: Piece, col: number) => ({ ...piece, row, col }));
     });
 
     let mineCount = 0;
@@ -47,7 +58,7 @@ const boardCreator = (length = 10, width = 10, mines = 10, testBoard = false) =>
   return board;
 };
 
-const countAdjacentMines = (row, col, board) => {
+const countAdjacentMines = (row: number, col: number, board: Board) => {
   let count = 0;
   for (let r = row - 1; r <= row + 1; r++) {
     for (let c = col - 1; c <= col + 1; c++) {
@@ -59,17 +70,6 @@ const countAdjacentMines = (row, col, board) => {
     }
   };
   return count;
-};
-
-export type Piece = {
-  piece: {
-    val: number,
-    isMine: boolean,
-    uncovered: boolean,
-    markedAsMine: boolean,
-    row: number,
-    col: number,
-  },
 };
 
 export default boardCreator;
