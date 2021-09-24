@@ -1,4 +1,4 @@
-import produce from 'immer';
+import produce, { Draft } from 'immer';
 import {
   LEFTCLICK,
   RIGHTCLICK,
@@ -7,17 +7,18 @@ import {
 import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
 import { State } from './initialState';
+import { Piece } from './boardCreator';
 
 const reducer = (state: State, action: Action) => {
   if (state.win || state.loss) {
     return state;
   }
-  const piece = action?.payload?.piece;
-  const row = piece?.row;
-  const col = piece?.col;
+  const piece: Piece = action?.payload?.piece;
+  const row: number = piece?.row;
+  const col: number = piece?.col;
 
   if (action.type === LEFTCLICK) {
-    const nextState = produce(state, (draftState) => {
+    const nextState = produce(state, (draftState: Draft<State>) => {
       if (!piece.uncovered && !piece.markedAsMine) {
         draftState.board = zeroFinder(row, col, draftState.board);
       }
@@ -34,7 +35,7 @@ const reducer = (state: State, action: Action) => {
   }
 
   if (action.type === RIGHTCLICK) {
-    const nextState = produce(state, (draftState) => {
+    const nextState = produce(state, (draftState: Draft<State>) => {
       if (!action.payload.piece.uncovered) {
         draftState.board[row][col].markedAsMine = !action.payload.piece.markedAsMine;
       }
