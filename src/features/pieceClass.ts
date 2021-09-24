@@ -1,7 +1,8 @@
 import buttonColor from './buttonColor';
+import { Piece } from './boardCreator';
 
-const pieceClass = (piece) => {
-  const className = `piece`;
+const pieceClass = (piece: Piece) => {
+  const className: string = `piece`;
 
   if (!piece.uncovered && !piece.markedAsMine) {
     return className.concat(' covered');
