@@ -61,4 +61,15 @@ const countAdjacentMines = (row, col, board) => {
   return count;
 };
 
+export type Piece = {
+  piece: {
+    val: number,
+    isMine: boolean,
+    uncovered: boolean,
+    markedAsMine: boolean,
+    row: number,
+    col: number,
+  },
+};
+
 export default boardCreator;
