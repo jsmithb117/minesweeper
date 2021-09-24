@@ -1,4 +1,6 @@
-const displayValue = (piece) => {
+import { Piece } from './boardCreator';
+
+const displayValue = (piece: Piece) => {
   if (piece.markedAsMine) {
     return 'X';
   }
