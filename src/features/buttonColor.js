@@ -1,4 +1,6 @@
-const buttonColorFunc = (piece) => (
+import { Piece } from './boardCreator';
+
+const buttonColorFunc = (piece: Piece) => (
   piece.isMine === true ? 'darkred' :
   piece.val === 0 ? null :
   piece.val === 1 ? 'blue' :
