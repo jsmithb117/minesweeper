@@ -35,6 +35,8 @@ typescript - Refactoring file by file in progress.
 
 * Typescript - In progress.
 
+* Styling updates to match what 'real' minesweeper looks like when you lose
+
 * Ability to reset and create a new board.
 
 * Form for reset board and Multiple board sizes, maybe X*Y board or easy/medium/hard.  Use separate reducer and actionCreators for form actions and use combineReducers

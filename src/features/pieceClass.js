@@ -10,7 +10,7 @@ const pieceClass = (piece) => {
     return className.concat(' covered mine');
   }
   if (piece.uncovered) {
-    return className.concat(` uncovered ${buttonColor(piece.val)}`);
+    return className.concat(` uncovered ${buttonColor(piece)}`);
   }
   return className;
 };

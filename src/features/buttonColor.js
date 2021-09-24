@@ -1,13 +1,14 @@
-const buttonColorFunc = (val) => (
-  val === 0 ? null :
-  val === 1 ? 'blue' :
-  val === 2 ? 'green' :
-  val === 3 ? 'red' :
-  val === 4 ? 'purple' :
-  val === 5 ? 'maroon' :
-  val === 6 ? 'turquoise' :
-  val === 7 ? 'black' :
-  val === 8 ? 'gray' :
+const buttonColorFunc = (piece) => (
+  piece.isMine === true ? 'darkred' :
+  piece.val === 0 ? null :
+  piece.val === 1 ? 'blue' :
+  piece.val === 2 ? 'green' :
+  piece.val === 3 ? 'red' :
+  piece.val === 4 ? 'purple' :
+  piece.val === 5 ? 'maroon' :
+  piece.val === 6 ? 'turquoise' :
+  piece.val === 7 ? 'black' :
+  piece.val === 8 ? 'gray' :
   null
 );
 
