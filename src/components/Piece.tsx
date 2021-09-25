@@ -3,10 +3,10 @@ import { leftClick, rightClick } from '../features/actionCreators';
 import displayValue from '../features/displayValue';
 import pieceClass from '../features/pieceClass';
 import AppDispatch from '../features/store';
-import { PieceType } from '../features/boardCreator';
+import { PieceInterface } from '../features/boardCreator';
 
 interface Props {
-  piece: PieceType,
+  piece: PieceInterface,
   loss: boolean,
   win: boolean,
 };
