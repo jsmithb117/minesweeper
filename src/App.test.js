@@ -31,7 +31,7 @@ describe('App', () => {
   it('should render 100 Piece components on testBoard', () => {
     expect(wrapper.find(Piece).length).toEqual(100)
   });
-  it('should render 10 Piece components whose val is set as \'X\' on testBoard', () => {
+  it('should render 10 Piece components whose isMine property is set to true on testBoard', () => {
     expect(wrapper.findWhere(node => node?.props()?.piece?.isMine).length).toEqual(10);
   });
   it('should render 10 Piece components whose \'markedAsMine\' property is set to true on testBoard', () => {
