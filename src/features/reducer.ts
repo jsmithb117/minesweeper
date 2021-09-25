@@ -7,13 +7,13 @@ import {
 import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
 import { State } from './initialState';
-import { Piece } from './boardCreator';
+import { PieceType } from './boardCreator';
 
 const reducer = (state: State, action: Action) => {
   if (state.win || state.loss) {
     return state;
   }
-  const piece: Piece = action?.payload?.piece;
+  const piece: PieceType = action?.payload?.piece;
   const row: number = piece?.row;
   const col: number = piece?.col;
 

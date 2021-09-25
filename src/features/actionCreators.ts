@@ -1,17 +1,17 @@
-import { Piece } from './boardCreator';
+import { PieceType } from './boardCreator';
 export const LEFTCLICK: string = 'LEFTCLICK';
 export const RIGHTCLICK: string = 'RIGHTCLICK';
 
-export type Payload = {
-  piece: Piece
+export interface Payload {
+  piece: PieceType
 };
 
-export type Action = {
+export interface Action {
   type: string,
   payload: Payload;
 };
 
-const click = (piece: Piece, isLeftClick: boolean) => {
+const click = (piece: PieceType, isLeftClick: boolean) => {
   const val: boolean = piece.hasOwnProperty('val');
   const uncovered: boolean = piece.hasOwnProperty('uncovered');
   const markedAsMine: boolean = piece.hasOwnProperty('markedAsMine');
@@ -34,7 +34,7 @@ const click = (piece: Piece, isLeftClick: boolean) => {
   };
   return action;
 }
-export const leftClick = (piece: Piece) => click(piece, true);
+export const leftClick = (piece: PieceType) => click(piece, true);
 
-export const rightClick = (piece: Piece) => click(piece, false);
+export const rightClick = (piece: PieceType) => click(piece, false);
 

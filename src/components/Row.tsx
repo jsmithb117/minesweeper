@@ -1,14 +1,8 @@
 import Piece from './Piece';
+import { PieceType } from '../features/boardCreator';
 
-type Props = {
-  row: Array<{
-    val: number,
-    isMine: boolean,
-    uncovered: boolean,
-    markedAsMine: boolean,
-    row: number,
-    col: number,
-  }>,
+interface Props {
+  row: Array<PieceType>,
   win: boolean,
   loss: boolean,
 };

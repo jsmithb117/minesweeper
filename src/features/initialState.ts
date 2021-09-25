@@ -1,6 +1,6 @@
 import boardCreator, { Board } from './boardCreator';
 
-export type State = {
+export interface State {
   board: Board,
   win: boolean,
   loss: boolean,

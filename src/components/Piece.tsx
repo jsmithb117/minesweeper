@@ -2,22 +2,17 @@ import { useDispatch } from 'react-redux';
 import { leftClick, rightClick } from '../features/actionCreators';
 import displayValue from '../features/displayValue';
 import pieceClass from '../features/pieceClass';
+import AppDispatch from '../features/store';
+import { PieceType } from '../features/boardCreator';
 
-type Props = {
-  piece: {
-    val: number,
-    isMine: boolean,
-    uncovered: boolean,
-    markedAsMine: boolean,
-    row: number,
-    col: number,
-  },
+interface Props {
+  piece: PieceType,
   loss: boolean,
   win: boolean,
 };
 
 const Piece = ({ piece }: Props) => {
-  const dispatch = useDispatch();
+  const dispatch: typeof AppDispatch = useDispatch();
   const leftClickHandler = () => {
     dispatch(leftClick(piece));
   };
