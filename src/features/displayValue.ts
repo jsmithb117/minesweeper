@@ -1,6 +1,6 @@
-import { Piece } from './boardCreator';
+import { IPiece } from './boardCreator';
 
-const displayValue = (piece: Piece) => {
+const displayValue = (piece: IPiece) => {
   if (piece.markedAsMine) {
     return 'X';
   }

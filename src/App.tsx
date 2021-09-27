@@ -1,13 +1,14 @@
-import { useSelector } from 'react-redux';
 import './App.css';
 import Rows from './components/Rows';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import RootState from './features/store';
+import { RootState } from './features/store';
+import { useAppSelector } from './features/hooks';
+
 
 function App() {
   document.addEventListener('contextmenu', event => event.preventDefault());
-  const win = useSelector((state: typeof RootState) => state.win);
-  const loss = useSelector((state: typeof RootState) => state.loss);
+  const win = useAppSelector((state: RootState) => state.win);
+  const loss = useAppSelector((state: RootState) => state.loss);
 
   const boardColor = win ? 'green'
     : loss ? 'red'

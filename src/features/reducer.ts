@@ -2,18 +2,18 @@ import produce, { Draft } from 'immer';
 import {
   LEFTCLICK,
   RIGHTCLICK,
-  Action,
+  IAction,
 } from './actionCreators';
 import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
 import { State } from './initialState';
-import { PieceInterface } from './boardCreator';
+import { IPiece } from './boardCreator';
 
-const reducer = (state: State, action: Action) => {
+const reducer = (state: any, action: IAction) => {
   if (state.win || state.loss) {
     return state;
   }
-  const piece: PieceInterface = action?.payload?.piece;
+  const piece: IPiece = action?.payload?.piece;
   const row: number = piece?.row;
   const col: number = piece?.col;
 

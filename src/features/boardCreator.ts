@@ -1,4 +1,4 @@
-export interface PieceInterface {
+export interface IPiece {
     val: number,
     isMine: boolean,
     uncovered: boolean,
@@ -7,11 +7,11 @@ export interface PieceInterface {
     col: number,
 };
 
-interface Row extends Array<PieceInterface>{};
-export interface Board extends Array<Row>{};
+export interface IRow extends Array<IPiece>{};
+export interface Board extends Array<IRow>{};
 
 const boardCreator = (length: number = 10, width: number = 10, mines: number = 10, testBoard: boolean = false) => {
-  const piece: PieceInterface = {
+  const piece: IPiece = {
     val: 0,
     isMine: false,
     uncovered: false,
@@ -22,8 +22,8 @@ const boardCreator = (length: number = 10, width: number = 10, mines: number = 1
   let board: Board;
   if (testBoard) {
     const blankBoard: Board = new Array(length).fill(new Array(width).fill(piece));
-    board = blankBoard.map((rowArray: PieceInterface[], row: number) => {
-      return rowArray.map((newPiece: PieceInterface, col: number) => {
+    board = blankBoard.map((rowArray: IPiece[], row: number) => {
+      return rowArray.map((newPiece: IPiece, col: number) => {
         if (row === 0) {
           return { ...newPiece, isMine: true, markedAsMine: true, row, col };
         }
@@ -36,8 +36,8 @@ const boardCreator = (length: number = 10, width: number = 10, mines: number = 1
   } else {
 
     const blankBoard: Board = new Array(length).fill(new Array(width).fill(piece));
-    board = blankBoard.map((rowArray: PieceInterface[], row: number) => {
-      return rowArray.map((piece: PieceInterface, col: number) => ({ ...piece, row, col }));
+    board = blankBoard.map((rowArray: IPiece[], row: number) => {
+      return rowArray.map((piece: IPiece, col: number) => ({ ...piece, row, col }));
     });
 
     let mineCount = 0;

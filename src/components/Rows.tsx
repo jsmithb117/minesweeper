@@ -1,11 +1,11 @@
 import Row from './Row';
-import { useSelector } from 'react-redux';
-import RootState from '../features/store';
+import { useAppSelector } from '../features/hooks';
 
 const Rows = () => {
-  const board = useSelector((state: typeof RootState) => state.board);
-  const win = useSelector((state: typeof RootState) => state.win);
-  const loss = useSelector((state: typeof RootState) => state.loss);
+  const board = useAppSelector((state) => state.board);
+  const win = useAppSelector((state) => state.win);
+
+  const loss = useAppSelector((state) => state.loss);
   const rowsMap = board.map((row: [], index: number) => {
     return (
       <Row row={row} key={`row${index}`} win={win} loss={loss} />

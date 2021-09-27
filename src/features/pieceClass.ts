@@ -1,7 +1,7 @@
 import buttonColor from './buttonColor';
-import { PieceInterface } from './boardCreator';
+import { IPiece } from './boardCreator';
 
-const pieceClass = (piece: PieceInterface) => {
+const pieceClass = (piece: IPiece) => {
   const className: string = `piece`;
 
   if (!piece.uncovered && !piece.markedAsMine) {

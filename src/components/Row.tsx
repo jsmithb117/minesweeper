@@ -1,8 +1,8 @@
 import Piece from './Piece';
-import { PieceInterface } from '../features/boardCreator';
+import { IRow } from '../features/boardCreator';
 
 interface Props {
-  row: Array<PieceInterface>,
+  row: IRow,
   win: boolean,
   loss: boolean,
 };

@@ -1,40 +1,35 @@
-import { PieceInterface } from './boardCreator';
+import { IPiece } from './boardCreator';
 export const LEFTCLICK: string = 'LEFTCLICK';
 export const RIGHTCLICK: string = 'RIGHTCLICK';
 
 export interface Payload {
-  piece: PieceInterface
+  piece: IPiece
 };
 
-export interface Action {
+export interface IAction {
   type: string,
   payload: Payload;
 };
 
-const click = (piece: PieceInterface, isLeftClick: boolean) => {
+const click = (piece: IPiece, isLeftClick: boolean) => {
   const val: boolean = piece.hasOwnProperty('val');
   const uncovered: boolean = piece.hasOwnProperty('uncovered');
   const markedAsMine: boolean = piece.hasOwnProperty('markedAsMine');
   const row: boolean = piece.hasOwnProperty('row');
   const col: boolean = piece.hasOwnProperty('col');
-
-  if (!val || !uncovered || !markedAsMine || !row || !col) {
-    return new Error('leftClick action creator called with improper props');
-  }
-  if (isLeftClick) {
-    const action: Action = {
-      type: LEFTCLICK,
-      payload: { piece },
-    };
-    return action;
-  }
-  const action: Action = {
-    type: RIGHTCLICK,
+  const requisites = val && uncovered && markedAsMine && row && col;
+  let action: IAction = {
+    type: '',
     payload: { piece },
   };
+  if (requisites && isLeftClick) {
+    action.type = LEFTCLICK;
+    return action;
+  };
+  action.type = RIGHTCLICK;
   return action;
 }
-export const leftClick = (piece: PieceInterface) => click(piece, true);
+export const leftClick = (piece: IPiece) => click(piece, true);
 
-export const rightClick = (piece: PieceInterface) => click(piece, false);
+export const rightClick = (piece: IPiece) => click(piece, false);
 
