@@ -1,6 +1,8 @@
+import { Board } from './boardCreator';
+
 // uncovers elements as required
-const zeroFinder = (row, col, board) => {
-  if (board[row][col].val !== 'X') {
+const zeroFinder = (row: number, col: number, board: Board) => {
+  if (!board[row][col].isMine) {
     board[row][col].uncovered = true;
   }
   // if element is zero, uncovers adjacent elements recursively
