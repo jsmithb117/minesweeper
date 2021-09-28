@@ -17,13 +17,13 @@ describe('initialState', () => {
     initialTestState.board.forEach((row, rowIndex) => {
       expect(Array.isArray(row)).toBe(true);
       expect(row.length).toBe(10);
-      row.forEach((piece) => {
+      row.forEach((piece, colIndex) => {
         let shouldBeUncovered = false;
         let shouldBeMarkedAsMine = false;
         if (rowIndex === 2) {
           shouldBeUncovered = true;
         }
-        if (rowIndex === 0) {
+        if ((rowIndex === 0 && colIndex !== 5) || (rowIndex === 5 && colIndex === 5)) {
           shouldBeMarkedAsMine = true;
         }
         expect(piece).toHaveProperty('val');

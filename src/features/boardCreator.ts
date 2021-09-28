@@ -24,11 +24,14 @@ const boardCreator = (length: number = 10, width: number = 10, mines: number = 1
     const blankBoard: Board = new Array(length).fill(new Array(width).fill(piece));
     board = blankBoard.map((rowArray: IPiece[], row: number) => {
       return rowArray.map((newPiece: IPiece, col: number) => {
-        if (row === 0) {
+        if (row === 0 && col !== 5) {
           return { ...newPiece, isMine: true, markedAsMine: true, row, col };
         }
         if (row === 2) {
           return { ...newPiece, uncovered: true, row, col };
+        }
+        if (row === 5 && col === 5) {
+          return { ...newPiece, isMine: true, markedAsMine: true, row, col };
         }
         return { ...newPiece, row, col };
       });
