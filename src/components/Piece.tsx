@@ -1,9 +1,8 @@
-import { useDispatch } from 'react-redux';
 import { leftClick, rightClick } from '../features/actionCreators';
 import displayValue from '../features/displayValue';
 import pieceClass from '../features/pieceClass';
-import { TDispatch } from '../features/store';
 import { IPiece } from '../features/boardCreator';
+import { useAppDispatch } from '../features/hooks';
 
 interface IProps {
   piece: IPiece,
@@ -12,7 +11,7 @@ interface IProps {
 };
 
 const Piece = ({ piece }: IProps) => {
-  const dispatch = useDispatch<TDispatch>();
+  const dispatch = useAppDispatch();
   const leftClickHandler = () => {
     dispatch(leftClick(piece));
   };
