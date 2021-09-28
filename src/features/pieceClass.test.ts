@@ -1,13 +1,23 @@
 import pieceClass from './pieceClass';
 
+type TPiece = {
+  val: number,
+  isMine: boolean,
+  uncovered: boolean,
+  markedAsMine: boolean,
+  row: number,
+  col: number,
+};
+
 describe('pieceClass', () => {
-  const piece = {
+  const piece: TPiece = {
     val: 0,
+    isMine: false,
     uncovered: false,
     markedAsMine: false,
     row: 0,
-    col: 0
-  }
+    col: 0,
+  };
   it('returns className for a covered Piece that is not a mine', () => {
     expect(pieceClass({ ...piece})).toBe('piece covered');
   });
@@ -41,7 +51,10 @@ describe('pieceClass', () => {
   it('returns className for an uncovered 9 Piece that is not a mine', () => {
     expect(pieceClass({ ...piece, val: 9, uncovered: true })).toBe('piece uncovered null');
   });
-  it('returns className for a covered Piece that is a mine', () => {
+  it('returns className for a covered Piece that is marked as a mine', () => {
     expect(pieceClass({ ...piece, markedAsMine: true })).toBe('piece covered mine');
+  });
+  it('returns className for an uncovered Piece that is marked as a mine', () => {
+    expect(pieceClass({ ...piece, uncovered: true, markedAsMine: true })).toBe('piece');
   });
 });

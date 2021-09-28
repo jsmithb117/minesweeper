@@ -1,7 +1,9 @@
-const checkWin = (board) => {
+import { Board } from './boardCreator';
+
+const checkWin = (board: Board) => {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
-      if (!board[i][j].uncovered && board[i][j].val !== 'X') {
+      if (!board[i][j].uncovered && !board[i][j].isMine) {
         return false;
       }
     }
