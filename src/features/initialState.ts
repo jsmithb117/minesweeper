@@ -16,7 +16,6 @@ const initialState = (test: boolean = false) => {
   }
   const newState: State = { ...state, board: boardCreator() }
   return newState;
-
 };
 
 export default initialState;
