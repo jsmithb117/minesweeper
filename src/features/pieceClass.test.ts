@@ -1,13 +1,23 @@
 import pieceClass from './pieceClass';
 
+type TPiece = {
+  val: number,
+  isMine: boolean,
+  uncovered: boolean,
+  markedAsMine: boolean,
+  row: number,
+  col: number,
+};
+
 describe('pieceClass', () => {
-  const piece = {
+  const piece: TPiece = {
     val: 0,
+    isMine: false,
     uncovered: false,
     markedAsMine: false,
     row: 0,
-    col: 0
-  }
+    col: 0,
+  };
   it('returns className for a covered Piece that is not a mine', () => {
     expect(pieceClass({ ...piece})).toBe('piece covered');
   });
