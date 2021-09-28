@@ -4,7 +4,6 @@ const initialTestState = initialState(test);
 const initialProductionState = initialState();
 
 describe('initialState', () => {
-
   it('should have a win property', () => {
     expect(initialTestState).toHaveProperty('win')
   });
@@ -18,7 +17,7 @@ describe('initialState', () => {
     initialTestState.board.forEach((row, rowIndex) => {
       expect(Array.isArray(row)).toBe(true);
       expect(row.length).toBe(10);
-      row.forEach((piece, colIndex) => {
+      row.forEach((piece) => {
         let shouldBeUncovered = false;
         let shouldBeMarkedAsMine = false;
         if (rowIndex === 2) {
@@ -48,7 +47,7 @@ describe('initialState', () => {
     initialProductionState.board.forEach((row, rowIndex) => {
       expect(Array.isArray(row)).toBe(true);
       expect(row.length).toBe(10);
-      row.forEach((piece, colIndex) => {
+      row.forEach((piece) => {
         expect(piece).toHaveProperty('val');
         expect(piece.val).toBeNumber();
         expect(piece).toHaveProperty('uncovered');
