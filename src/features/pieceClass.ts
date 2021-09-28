@@ -10,7 +10,7 @@ const pieceClass = (piece: IPiece) => {
   if (!piece.uncovered && piece.markedAsMine) {
     return className.concat(' covered mine');
   }
-  if (piece.uncovered) {
+  if (piece.uncovered && !piece.markedAsMine) {
     return className.concat(` uncovered ${buttonColor(piece)}`);
   }
   return className;

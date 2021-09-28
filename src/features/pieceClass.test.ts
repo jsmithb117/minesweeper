@@ -54,4 +54,7 @@ describe('pieceClass', () => {
   it('returns className for a covered Piece that is marked as a mine', () => {
     expect(pieceClass({ ...piece, markedAsMine: true })).toBe('piece covered mine');
   });
+  it('returns className for an uncovered Piece that is marked as a mine', () => {
+    expect(pieceClass({ ...piece, uncovered: true, markedAsMine: true })).toBe('piece');
+  });
 });
