@@ -51,7 +51,7 @@ describe('pieceClass', () => {
   it('returns className for an uncovered 9 Piece that is not a mine', () => {
     expect(pieceClass({ ...piece, val: 9, uncovered: true })).toBe('piece uncovered null');
   });
-  it('returns className for a covered Piece that is a mine', () => {
+  it('returns className for a covered Piece that is marked as a mine', () => {
     expect(pieceClass({ ...piece, markedAsMine: true })).toBe('piece covered mine');
   });
 });
