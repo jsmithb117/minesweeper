@@ -1,15 +1,83 @@
 import { IPiece } from './boardCreator';
+
 export const LEFTCLICK: string = 'LEFTCLICK';
 export const RIGHTCLICK: string = 'RIGHTCLICK';
+export const RESETTIME: string = 'RESETTIME';
+export const SETLENGTH: string = 'SETLENGTH';
+export const SETWIDTH: string = 'SETWIDTH';
+export const SETMINES: string = 'SETMINES';
+export const NEWBOARD: string = 'NEWBOARD';
+export const INCREMENTTIME: string = 'INCREMENTTIME';
 
-export interface Payload {
-  piece: IPiece
-};
-
-export interface IAction {
+export interface IActions {
   type: string,
-  payload: Payload;
+  payload: {
+    piece?: IPiece,
+    length?: number,
+    width?: number,
+    mines?: number,
+  },
 };
+export interface IClickAction extends IForm {
+  payload: {
+    piece: IPiece,
+  },
+};
+
+export interface IForm {
+  type: string,
+};
+
+interface ILength extends IForm {
+  payload: {
+    length: number,
+  };
+};
+
+export const resetTime = () => {
+  const action: IForm = {
+    type: RESETTIME
+  };
+  return action;
+};
+
+export const setLength = (length: number) => {
+  const action: ILength = {
+    type: SETLENGTH,
+    payload: { length },
+  };
+  return action;
+};
+
+export const setWidth = (width: number) => {
+  const action: IActions = {
+    type: SETLENGTH,
+    payload: { width },
+  };
+  return action;
+};
+
+export const setMines = (mines: number) => {
+  const action: IActions = {
+    type: SETMINES,
+    payload: { mines },
+  };
+  return action;
+};
+
+export const newBoard = () => {
+  const action: IForm = {
+    type: NEWBOARD,
+  };
+  return action;
+};
+
+export const incrementTime = () => {
+  const action: IForm = {
+    type: INCREMENTTIME,
+  };
+  return action;
+}
 
 const click = (piece: IPiece, isLeftClick: boolean) => {
   const val: boolean = piece.hasOwnProperty('val');
@@ -18,7 +86,7 @@ const click = (piece: IPiece, isLeftClick: boolean) => {
   const row: boolean = piece.hasOwnProperty('row');
   const col: boolean = piece.hasOwnProperty('col');
   const requisites = val && uncovered && markedAsMine && row && col;
-  let action: IAction = {
+  let action: IClickAction = {
     type: '',
     payload: { piece },
   };
@@ -26,10 +94,11 @@ const click = (piece: IPiece, isLeftClick: boolean) => {
     action.type = LEFTCLICK;
     return action;
   };
-  action.type = RIGHTCLICK;
+  if (requisites) {
+    action.type = RIGHTCLICK;
+  }
   return action;
 }
 export const leftClick = (piece: IPiece) => click(piece, true);
 
 export const rightClick = (piece: IPiece) => click(piece, false);
-
