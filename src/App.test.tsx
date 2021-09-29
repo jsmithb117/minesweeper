@@ -5,12 +5,12 @@ import { createStore } from 'redux';
 
 import reducer from './features/reducer';
 import App from './App';
-import initialState from './features/initialState';
+import initialStateCreator from './features/initialState';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Piece from './components/Piece';
 
 const testBoard = true;
-const initialTestState = initialState(testBoard);
+const initialTestState = initialStateCreator(testBoard);
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('App', () => {

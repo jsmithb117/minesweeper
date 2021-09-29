@@ -1,9 +1,9 @@
-import initialState from './initialState';
+import initialStateCreator from './initialState';
 const test = true;
-const initialTestState = initialState(test);
-const initialProductionState = initialState();
+const initialTestState = initialStateCreator(test);
+const initialProductionState = initialStateCreator();
 
-describe('initialState', () => {
+describe('initialStateCreator', () => {
   it('should have a win property', () => {
     expect(initialTestState).toHaveProperty('win')
   });
@@ -14,10 +14,10 @@ describe('initialState', () => {
     expect(initialTestState).toHaveProperty('board');
     expect(Array.isArray(initialTestState.board)).toBe(true);
     expect(initialTestState.board.length).toBe(10);
-    initialTestState.board.forEach((row, rowIndex) => {
+    initialTestState.board.forEach((row: any, rowIndex: number) => {
       expect(Array.isArray(row)).toBe(true);
       expect(row.length).toBe(10);
-      row.forEach((piece, colIndex) => {
+      row.forEach((piece: any, colIndex: number) => {
         let shouldBeUncovered = false;
         let shouldBeMarkedAsMine = false;
         if (rowIndex === 2) {
@@ -61,16 +61,4 @@ describe('initialState', () => {
       });
     });
   });
-
-  // it('each Piece should have a \'val\' property, set as \'X\' or 0', () => {
-  //   initialState.board.
-  // });
-  // it('each Piece should have an \'uncovered\' property, initially set as false', () => {
-  // });
-  // it('each Piece should have a \'markedAsMine\' property, initially set as false', () => {
-  // });
-  // it('each Piece should have an \'row\' property, initially set as false', () => {
-  // });
-  // it('each Piece should have an \'col\' property, initially set as false', () => {
-  // });
 });
