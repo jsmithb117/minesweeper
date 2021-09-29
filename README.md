@@ -39,9 +39,13 @@ typescript - Refactoring file by file in progress.
 
 * ~~Ability to reset and create a new board.~~ Merged with next todo.
 
-* Form for reset board and Multiple board sizes, maybe X*Y board or easy/medium/hard.  Use separate reducer and actionCreators for form actions and use combineReducers
+* Form for reset board and Multiple board sizes, maybe X*Y board or easy/medium/hard.   - In Progress
+
+* Use separate reducer and actionCreators for form actions and use combineReducers - Deferred until after 'Form for...'
 
 * Track 'score' (time to complete)
+
+* Add 'Pause' button that covers entire board and stops incrementing time
 
 * Build menu around board in app with stats and forms
 
