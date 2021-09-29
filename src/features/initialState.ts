@@ -1,6 +1,6 @@
 import boardCreator, { Board } from './boardCreator';
 
-export interface State {
+export interface IState {
   board: Board,
   win: boolean,
   loss: boolean,
@@ -14,7 +14,7 @@ const initialState = (test: boolean = false) => {
   if (test) {
     return { ...state, board: boardCreator(10, 10, 10, true) }
   }
-  const newState: State = { ...state, board: boardCreator() }
+  const newState: IState = { ...state, board: boardCreator() }
   return newState;
 };
 

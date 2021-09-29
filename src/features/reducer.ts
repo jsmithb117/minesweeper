@@ -6,7 +6,7 @@ import {
 } from './actionCreators';
 import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
-import { State } from './initialState';
+import { IState } from './initialState';
 import { IPiece } from './boardCreator';
 
 const reducer = (state: any, action: IAction) => {
@@ -18,7 +18,7 @@ const reducer = (state: any, action: IAction) => {
   const col: number = piece?.col;
 
   if (action.type === LEFTCLICK) {
-    const nextState = produce(state, (draftState: Draft<State>) => {
+    const nextState = produce(state, (draftState: Draft<IState>) => {
       if (!piece.uncovered && !piece.markedAsMine) {
         draftState.board = zeroFinder(row, col, draftState.board);
       }
@@ -35,7 +35,7 @@ const reducer = (state: any, action: IAction) => {
   }
 
   if (action.type === RIGHTCLICK) {
-    const nextState = produce(state, (draftState: Draft<State>) => {
+    const nextState = produce(state, (draftState: Draft<IState>) => {
       if (!action.payload.piece.uncovered) {
         draftState.board[row][col].markedAsMine = !action.payload.piece.markedAsMine;
       }
