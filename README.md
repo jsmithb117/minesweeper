@@ -35,13 +35,14 @@ typescript - Refactoring file by file in progress.
 
 * ~~Typescript~~ Complete
 
-* Styling updates to match what 'real' minesweeper looks like when you lose - Skipping for now as I'll have to update CSS after the next step anyway.
+* ~~Use separate reducer and actionCreators for form actions and use combineReducers~~
 
 * ~~Ability to reset and create a new board.~~ Merged with next todo.
 
+
 * Form for reset board and Multiple board sizes, maybe X*Y board or easy/medium/hard.   - In Progress
 
-* Use separate reducer and actionCreators for form actions and use combineReducers - Deferred until after 'Form for...'
+* Styling updates to match what 'real' minesweeper looks like when you lose
 
 * Track 'score' (time to complete)
 
