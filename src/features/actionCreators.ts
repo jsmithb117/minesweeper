@@ -8,6 +8,7 @@ export const SETWIDTH: string = 'SETWIDTH';
 export const SETMINES: string = 'SETMINES';
 export const NEWBOARD: string = 'NEWBOARD';
 export const INCREMENTTIME: string = 'INCREMENTTIME';
+export const REVERTBOARD: string = 'REVERTBOARD';
 
 export interface IFormAction extends IForm {
   payload: number,
@@ -52,7 +53,7 @@ export const setMines = (mines: number) => {
   return action;
 };
 
-export const newBoard = () => {
+export const newBoardAction = () => {
   const action: IForm = {
     type: NEWBOARD,
   };
@@ -64,7 +65,14 @@ export const incrementTime = () => {
     type: INCREMENTTIME,
   };
   return action;
-}
+};
+
+export const revertBoard = () => {
+  const action: IForm = {
+    type: REVERTBOARD,
+  };
+  return action;
+};
 
 const click = (piece: IPiece, isLeftClick: boolean) => {
   const val: boolean = piece.hasOwnProperty('val');
