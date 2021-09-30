@@ -18,10 +18,13 @@ export interface IActions {
     mines?: number,
   },
 };
+
+export interface IFormAction extends IForm {
+  payload: number,
+};
+
 export interface IClickAction extends IForm {
-  payload: {
-    piece: IPiece,
-  },
+  payload: IPiece,
 };
 
 export interface IForm {
@@ -88,7 +91,7 @@ const click = (piece: IPiece, isLeftClick: boolean) => {
   const requisites = val && uncovered && markedAsMine && row && col;
   let action: IClickAction = {
     type: '',
-    payload: { piece },
+    payload: piece,
   };
   if (requisites && isLeftClick) {
     action.type = LEFTCLICK;
