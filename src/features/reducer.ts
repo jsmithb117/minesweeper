@@ -8,21 +8,21 @@ import {
   SETWIDTH,
   SETMINES,
   NEWBOARD,
-  IActions,
+  IFormAction,
+  IClickAction,
 } from './actionCreators';
 import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
-import { IInitialState, IClickState, initialState } from './initialState';
+import { IInitialState, IClickState, IFormState, initialState } from './initialState';
 import boardCreator, { IPiece, backupPiece } from './boardCreator';
 
-export const clickReducer = (state: IInitialState = initialState, action: IActions) => {
+export const clickReducer = (state: IInitialState = initialState, action: IClickAction) => {
   if (state?.click?.win || state?.click?.loss) {
     return state;
   }
-  const piece: IPiece = action?.payload?.piece || backupPiece;
+  const piece: IPiece = action.payload || backupPiece;
   const row: number = piece.row;
   const col: number = piece.col;
-
 
   if (action.type === LEFTCLICK) {
     return produce(state, (draftState: Draft<IClickState>) => {
@@ -45,45 +45,43 @@ export const clickReducer = (state: IInitialState = initialState, action: IActio
       }
     });
   }
-
-  return state;
-};
-
-export const formReducer = (state: IInitialState = initialState, action: IActions) => {
-  if (action.type === RESETTIME) {
-    return produce((draft) => {
-      draft.time = 0;
-    });
-  }
-  if (action.type === INCREMENTTIME) {
-    return produce((draft) => {
-      draft.time += 1;
-    });
-  }
-  if (action.type === SETLENGTH) {
-    return produce((draft) => {
-      draft.length = action.payload.length;
-      return draft;
-    });
-  }
-  if (action.type === SETWIDTH) {
-    return produce((draft) => {
-      draft.width = action.payload.length;
-      return draft;
-    });
-  }
-  if (action.type === SETMINES) {
-    return produce((draft) => {
-      draft.mines = action.payload.mines;
-      return draft;
-    });
-  }
-  if (action.type === NEWBOARD) {
+    if (action.type === NEWBOARD) {
     return produce((draft) => {
       draft.board = boardCreator(draft.length, draft.width, draft.mines, false);
       return draft;
     })
   }
+  return state;
+};
 
+export const formReducer = (state: IInitialState = initialState, action: IFormAction) => {
+  if (action.type === RESETTIME) {
+    return produce((draft: Draft<IFormState>) => {
+      draft.time = 0;
+    });
+  }
+  if (action.type === INCREMENTTIME) {
+    return produce((draft: Draft<IFormState>) => {
+      draft.time += 1;
+    });
+  }
+  if (action.type === SETLENGTH) {
+    return produce((draft: Draft<IFormState>) => {
+      draft.length = action.payload;
+      return draft;
+    });
+  }
+  if (action.type === SETWIDTH) {
+    return produce((draft: Draft<IFormState>) => {
+      draft.width = action.payload;
+      return draft;
+    });
+  }
+  if (action.type === SETMINES) {
+    return produce((draft: Draft<IFormState>) => {
+      draft.mines = action.payload
+      return draft;
+    });
+  }
   return state;
 };
