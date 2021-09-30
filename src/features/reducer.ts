@@ -10,6 +10,7 @@ import {
   NEWBOARD,
   IFormAction,
   IClickAction,
+  REVERTBOARD,
 } from './actionCreators';
 import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
@@ -50,7 +51,13 @@ export const clickReducer = (state: IInitialState = initialState, action: IClick
     return produce((draft) => {
       draft.board = boardCreator(draft.length, draft.width, draft.mines, false);
       return draft;
-    })
+    });
+  }
+  if (action.type === REVERTBOARD) {
+    return produce((draft) => {
+      draft.board = draft.originalBoard;
+      return draft;
+    });
   }
   return state;
 };
