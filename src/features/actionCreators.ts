@@ -9,8 +9,10 @@ export const SETMINES: string = 'SETMINES';
 export const NEWBOARD: string = 'NEWBOARD';
 export const INCREMENTTIME: string = 'INCREMENTTIME';
 export const REVERTBOARD: string = 'REVERTBOARD';
+export const INCREMENTMINESDISPLAY: string = 'INCREMENTMINESDISPLAY';
+export const DECREMENTMINESDISPLAY: string = 'DECREMENTMINESDISPLAY';
 
-export interface IFormAction extends IForm {
+export interface IFormPayload extends IForm {
   payload: number,
 };
 
@@ -30,7 +32,7 @@ export const resetTime = () => {
 };
 
 export const setLength = (length: number) => {
-  const action: IFormAction = {
+  const action: IFormPayload = {
     type: SETLENGTH,
     payload: length,
   };
@@ -38,7 +40,7 @@ export const setLength = (length: number) => {
 };
 
 export const setWidth = (width: number) => {
-  const action: IFormAction = {
+  const action: IFormPayload = {
     type: SETLENGTH,
     payload: width,
   };
@@ -46,7 +48,7 @@ export const setWidth = (width: number) => {
 };
 
 export const setMines = (mines: number) => {
-  const action: IFormAction = {
+  const action: IFormPayload = {
     type: SETMINES,
     payload: mines,
   };
@@ -70,6 +72,22 @@ export const incrementTime = () => {
 export const revertBoard = () => {
   const action: IForm = {
     type: REVERTBOARD,
+  };
+  return action;
+};
+
+export const incrementMinesDisplay = () => {
+  const action: IFormPayload = {
+    type: INCREMENTMINESDISPLAY,
+    payload: 0,
+  };
+  return action;
+};
+
+export const decrementMinesDisplay = () => {
+  const action: IFormPayload = {
+    type: DECREMENTMINESDISPLAY,
+    payload: 0,
   };
   return action;
 };
