@@ -8,9 +8,11 @@ import {
   SETWIDTH,
   SETMINES,
   NEWBOARD,
-  IFormAction,
+  IFormPayload,
   IClickAction,
   REVERTBOARD,
+  INCREMENTMINESDISPLAY,
+  DECREMENTMINESDISPLAY
 } from './actionCreators';
 import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
@@ -42,6 +44,11 @@ export const clickReducer = (state: IInitialState = initialState, action: IClick
   if (action.type === RIGHTCLICK) {
     return produce(state, (draft: Draft<IClickState>) => {
       if (!piece.uncovered) {
+        if (!piece.markedAsMine) {
+          draft.piecesMarkedAsMine += 1;
+        } else {
+          draft.piecesMarkedAsMine -= 1;
+        }
         draft.board[row][col].markedAsMine = !piece.markedAsMine;
         return draft;
       }
@@ -62,7 +69,7 @@ export const clickReducer = (state: IInitialState = initialState, action: IClick
   return state;
 };
 
-export const formReducer = (state: IInitialState = initialState, action: IFormAction) => {
+export const formReducer = (state: IInitialState = initialState, action: IFormPayload) => {
   if (action.type === RESETTIME) {
     return produce((draft: Draft<IFormState>) => {
       draft.time = 0;
@@ -92,5 +99,18 @@ export const formReducer = (state: IInitialState = initialState, action: IFormAc
       return draft;
     });
   }
+  if (action.type === INCREMENTMINESDISPLAY) {
+    return produce((draft: Draft<IFormState>) => {
+      draft.minesDisplay += 1;
+      return draft;
+    });
+  }
+  if (action.type === DECREMENTMINESDISPLAY) {
+    return produce((draft: Draft<IFormState>) => {
+      draft.minesDisplay -= 1;
+      return draft;
+    }
+    )};
+
   return state;
 };
