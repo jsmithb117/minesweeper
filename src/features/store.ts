@@ -1,6 +1,5 @@
 import { clickReducer, formReducer}  from './reducer';
 import { createStore, combineReducers } from 'redux';
-// import { combineReducers } from '@reduxjs/toolkit';
 import initialStateCreator from './initialState';
 
 export const rootReducer = combineReducers({ click: clickReducer, form: formReducer });
