@@ -1,6 +1,7 @@
 import boardCreator, { Board } from './boardCreator';
 
 export interface IClickState {
+  piecesMarkedAsMine: number,
   board: Board,
   originalBoard: Board,
   win: boolean,
@@ -8,7 +9,6 @@ export interface IClickState {
 };
 
 export interface IFormState {
-  piecesMarkedAsMine: number,
   minesDisplay: number,
   time: number,
   length: number,
@@ -29,13 +29,13 @@ const initialStateCreator = (
   const newBoard = boardCreator(length, width, mines, test);
   const state: IInitialState = {
     click: {
+      piecesMarkedAsMine: 0,
       board: newBoard,
       originalBoard: newBoard,
       win: false,
       loss: false,
     },
     form: {
-      piecesMarkedAsMine: 0,
       minesDisplay: 0,
       time: 0,
       length: 10,
@@ -49,3 +49,8 @@ const initialStateCreator = (
 export const initialState: IInitialState = initialStateCreator(10,10,10,false);
 
 export default initialStateCreator;
+
+//how do I set minesDisplay after a rightClick?
+  //create a new actions called INCREMENTMINESDISPLAY and DECREMENTMINESDISPLAY
+  //handle actions in formReducer
+  //dispatch both actions on right click.
