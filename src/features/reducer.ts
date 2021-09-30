@@ -25,23 +25,24 @@ export const clickReducer = (state: IInitialState = initialState, action: IClick
   const col: number = piece.col;
 
   if (action.type === LEFTCLICK) {
-    return produce(state, (draftState: Draft<IClickState>) => {
+    return produce(state, (draft: Draft<IClickState>) => {
       if (!piece.uncovered && !piece.markedAsMine) {
-        draftState.board = zeroFinder(row, col, draftState.board);
+        draft.board = zeroFinder(row, col, draft.board);
       }
       if (piece.isMine && !piece.markedAsMine) {
-        draftState.loss = true;
-        return draftState;
-      } else if (checkWin(draftState.board)) {
-        draftState.win = true;
-        return draftState;
+        draft.loss = true;
+        return draft;
+      } else if (checkWin(draft.board)) {
+        draft.win = true;
+        return draft;
       }
     });
   }
   if (action.type === RIGHTCLICK) {
-    return produce(state, (draftState: Draft<IClickState>) => {
+    return produce(state, (draft: Draft<IClickState>) => {
       if (!piece.uncovered) {
-        draftState.board[row][col].markedAsMine = !piece.markedAsMine;
+        draft.board[row][col].markedAsMine = !piece.markedAsMine;
+        return draft;
       }
     });
   }
@@ -58,6 +59,7 @@ export const formReducer = (state: IInitialState = initialState, action: IFormAc
   if (action.type === RESETTIME) {
     return produce((draft: Draft<IFormState>) => {
       draft.time = 0;
+      return draft;
     });
   }
   if (action.type === INCREMENTTIME) {
