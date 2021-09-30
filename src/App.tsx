@@ -7,8 +7,8 @@ import { useAppSelector } from './features/hooks';
 
 function App() {
   document.addEventListener('contextmenu', event => event.preventDefault());
-  const win = useAppSelector((state: RootState) => state.win);
-  const loss = useAppSelector((state: RootState) => state.loss);
+  const win = useAppSelector((state: RootState) => state.click.win);
+  const loss = useAppSelector((state: RootState) => state.click.loss);
 
   const boardColor = win ? 'green'
     : loss ? 'red'

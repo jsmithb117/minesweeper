@@ -12,7 +12,7 @@ import {
 } from './actionCreators';
 import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
-import { IState } from './initialState';
+import { IInitialState } from './initialState';
 import boardCreator, { IPiece, backupPiece } from './boardCreator';
 
 const reducer = (state: any, action: IActions) => {
@@ -25,23 +25,23 @@ const reducer = (state: any, action: IActions) => {
 
 
   if (action.type === LEFTCLICK) {
-    return produce(state, (draftState: Draft<IState>) => {
+    return produce(state, (draftState: Draft<IInitialState>) => {
       if (!piece.uncovered && !piece.markedAsMine) {
-        draftState.board = zeroFinder(row, col, draftState.board);
+        draftState.click.board = zeroFinder(row, col, draftState.click.board);
       }
       if (piece.isMine && !piece.markedAsMine) {
-        draftState.loss = true;
+        draftState.click.loss = true;
         return draftState;
-      } else if (checkWin(draftState.board)) {
-        draftState.win = true;
+      } else if (checkWin(draftState.click.board)) {
+        draftState.click.win = true;
         return draftState;
       }
     });
   }
   if (action.type === RIGHTCLICK) {
-    return produce(state, (draftState: Draft<IState>) => {
+    return produce(state, (draftState: Draft<IInitialState>) => {
       if (!piece.uncovered) {
-        draftState.board[row][col].markedAsMine = !piece.markedAsMine;
+        draftState.click.board[row][col].markedAsMine = !piece.markedAsMine;
       }
     });
   }
@@ -87,9 +87,4 @@ const reducer = (state: any, action: IActions) => {
   return state;
 };
 
-// const formReducer = (state: IState, action: IActions) => {
-
-// };
-
-// export default clickReducer;
 export default reducer;

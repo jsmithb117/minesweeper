@@ -2,7 +2,7 @@ import reducer  from './reducer';
 import { createStore } from 'redux';
 import initialStateCreator from './initialState';
 
-const initialState = initialStateCreator(false, );
+const initialState = initialStateCreator(10, 10, 10, false);
 const store = createStore(reducer, initialState);
 
 export default store;
