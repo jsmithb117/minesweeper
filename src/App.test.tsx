@@ -3,20 +3,19 @@ import { Provider } from 'react-redux';
 import Enzyme, { mount, ReactWrapper } from 'enzyme';
 import { createStore } from 'redux';
 
-import reducer from './features/reducer';
+import { rootReducer } from './features/store';
 import App from './App';
 import initialStateCreator from './features/initialState';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Piece from './components/Piece';
 
-// const testBoard = true;
-const initialTestState = initialStateCreator(10,10,10,true);
+const initialTestState: any = initialStateCreator(10,10,10,true);
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('App', () => {
   let store, wrapper: ReactWrapper;
   beforeEach(() => {
-    store = createStore(reducer, initialTestState);
+    store = createStore(rootReducer, initialTestState);
     wrapper = mount(
       <Provider store={store}>
         <React.StrictMode>
@@ -98,4 +97,3 @@ describe('App', () => {
     expect(findPieceAtRowCol(0, 0).props().loss).toBe(true);
   });
 });
-

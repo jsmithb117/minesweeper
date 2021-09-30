@@ -1,14 +1,13 @@
 import './App.css';
 import Rows from './components/Rows';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { RootState } from './features/store';
 import { useAppSelector } from './features/hooks';
-
+import { IInitialState } from './features/initialState';
 
 function App() {
   document.addEventListener('contextmenu', event => event.preventDefault());
-  const win = useAppSelector((state: RootState) => state.click.win);
-  const loss = useAppSelector((state: RootState) => state.click.loss);
+  const win = useAppSelector((state: IInitialState) => state.click.win);
+  const loss = useAppSelector((state: IInitialState) => state.click.loss);
 
   const boardColor = win ? 'green'
     : loss ? 'red'

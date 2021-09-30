@@ -12,11 +12,11 @@ import {
 } from './actionCreators';
 import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
-import { IInitialState } from './initialState';
+import { IInitialState, IClickState, initialState } from './initialState';
 import boardCreator, { IPiece, backupPiece } from './boardCreator';
 
-const reducer = (state: any, action: IActions) => {
-  if (state.win || state.loss) {
+export const clickReducer = (state: IInitialState = initialState, action: IActions) => {
+  if (state?.click?.win || state?.click?.loss) {
     return state;
   }
   const piece: IPiece = action?.payload?.piece || backupPiece;
@@ -25,26 +25,31 @@ const reducer = (state: any, action: IActions) => {
 
 
   if (action.type === LEFTCLICK) {
-    return produce(state, (draftState: Draft<IInitialState>) => {
+    return produce(state, (draftState: Draft<IClickState>) => {
       if (!piece.uncovered && !piece.markedAsMine) {
-        draftState.click.board = zeroFinder(row, col, draftState.click.board);
+        draftState.board = zeroFinder(row, col, draftState.board);
       }
       if (piece.isMine && !piece.markedAsMine) {
-        draftState.click.loss = true;
+        draftState.loss = true;
         return draftState;
-      } else if (checkWin(draftState.click.board)) {
-        draftState.click.win = true;
+      } else if (checkWin(draftState.board)) {
+        draftState.win = true;
         return draftState;
       }
     });
   }
   if (action.type === RIGHTCLICK) {
-    return produce(state, (draftState: Draft<IInitialState>) => {
+    return produce(state, (draftState: Draft<IClickState>) => {
       if (!piece.uncovered) {
-        draftState.click.board[row][col].markedAsMine = !piece.markedAsMine;
+        draftState.board[row][col].markedAsMine = !piece.markedAsMine;
       }
     });
   }
+
+  return state;
+};
+
+export const formReducer = (state: IInitialState = initialState, action: IActions) => {
   if (action.type === RESETTIME) {
     return produce((draft) => {
       draft.time = 0;
@@ -80,11 +85,5 @@ const reducer = (state: any, action: IActions) => {
     })
   }
 
-  if (action.type.slice(0, 7) !== '@@redux') {
-    console.error('Action not found: ', action);
-  }
-
   return state;
 };
-
-export default reducer;
