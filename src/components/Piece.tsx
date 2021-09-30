@@ -1,4 +1,4 @@
-import { leftClick, rightClick } from '../features/actionCreators';
+import { leftClick, rightClick, incrementMinesDisplay, decrementMinesDisplay } from '../features/actionCreators';
 import displayValue from '../features/displayValue';
 import pieceClass from '../features/pieceClass';
 import { IPiece } from '../features/boardCreator';
@@ -15,11 +15,18 @@ const Piece = ({ piece }: IProps) => {
   const leftClickHandler = () => {
     dispatch(leftClick(piece));
   };
-
+  const rightClickHandler = () => {
+    if (piece.markedAsMine) {
+      dispatch(incrementMinesDisplay());
+    } else {
+      dispatch(decrementMinesDisplay());
+    }
+    dispatch(rightClick(piece));
+  };
 
   return (
     <button className={pieceClass(piece)} onClick={() => leftClickHandler()}
-      onContextMenu={() => dispatch(rightClick(piece))}>
+      onContextMenu={() => rightClickHandler()}>
       {displayValue(piece)}
     </button>
     );
