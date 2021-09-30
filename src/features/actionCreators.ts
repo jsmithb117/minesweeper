@@ -9,16 +9,6 @@ export const SETMINES: string = 'SETMINES';
 export const NEWBOARD: string = 'NEWBOARD';
 export const INCREMENTTIME: string = 'INCREMENTTIME';
 
-export interface IActions {
-  type: string,
-  payload: {
-    piece?: IPiece,
-    length?: number,
-    width?: number,
-    mines?: number,
-  },
-};
-
 export interface IFormAction extends IForm {
   payload: number,
 };
@@ -31,12 +21,6 @@ export interface IForm {
   type: string,
 };
 
-interface ILength extends IForm {
-  payload: {
-    length: number,
-  };
-};
-
 export const resetTime = () => {
   const action: IForm = {
     type: RESETTIME
@@ -45,25 +29,25 @@ export const resetTime = () => {
 };
 
 export const setLength = (length: number) => {
-  const action: ILength = {
+  const action: IFormAction = {
     type: SETLENGTH,
-    payload: { length },
+    payload: length,
   };
   return action;
 };
 
 export const setWidth = (width: number) => {
-  const action: IActions = {
+  const action: IFormAction = {
     type: SETLENGTH,
-    payload: { width },
+    payload: width,
   };
   return action;
 };
 
 export const setMines = (mines: number) => {
-  const action: IActions = {
+  const action: IFormAction = {
     type: SETMINES,
-    payload: { mines },
+    payload: mines,
   };
   return action;
 };
