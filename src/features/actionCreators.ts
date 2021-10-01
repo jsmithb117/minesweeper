@@ -52,7 +52,7 @@ export const setLength = (length: number) => {
 
 export const setWidth = (width: number) => {
   const action: IFormPayload = {
-    type: SETLENGTH,
+    type: SETWIDTH,
     payload: width,
   };
   return action;
