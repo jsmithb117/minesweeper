@@ -5,6 +5,7 @@ import { useAppSelector, useAppDispatch } from './features/hooks';
 import { IInitialState } from './features/initialState';
 import { useEffect } from 'react';
 import { setMinesDisplay } from './features/actionCreators';
+import Form from './components/Form';
 
 function App() {
   document.addEventListener('contextmenu', event => event.preventDefault());
@@ -25,6 +26,7 @@ function App() {
   return (
     <div className={className}>
       <HelmetProvider>
+        <Form />
         <Rows />
         <Helmet>
           <style type='text/css'>
