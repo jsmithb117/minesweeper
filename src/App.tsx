@@ -1,10 +1,11 @@
 import './App.css';
 import Rows from './components/Rows';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { useAppSelector, useAppDispatch } from './features/hooks';
+import { useAppSelector } from './features/hooks';
+import { useDispatch } from 'react-redux';
 import { IInitialState } from './features/initialState';
 import { useEffect } from 'react';
-import { setMinesDisplay } from './features/actionCreators';
+import { incrementTime, setMinesDisplay } from './features/actionCreators';
 import Form from './components/Form';
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
   const win = useAppSelector((state: IInitialState) => state.click.win);
   const loss = useAppSelector((state: IInitialState) => state.click.loss);
   const mines = useAppSelector((state: IInitialState) => state.form.mines);
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   const boardColor = win ? 'green'
     : loss ? 'red'
@@ -22,7 +23,15 @@ function App() {
 
   useEffect(() => {
     dispatch(setMinesDisplay(mines));
-  }, [dispatch, mines])
+  }, [dispatch, mines]);
+
+  useEffect(() => {
+    const timeInterval = setInterval(() => {
+      dispatch(incrementTime());
+    }, 1000);
+    return () => clearInterval(timeInterval);
+  });
+
   return (
     <div className={className}>
       <HelmetProvider>
