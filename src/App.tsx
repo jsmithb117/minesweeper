@@ -5,7 +5,7 @@ import { useAppSelector } from './features/hooks';
 import { useDispatch } from 'react-redux';
 import { IInitialState } from './features/initialState';
 import { useEffect } from 'react';
-import { incrementTime, newBoardAction, setMinesDisplay,  } from './features/actionCreators';
+import { incrementTime, newBoardAction, setMinesDisplay, updateOriginalBoard, UPDATEORIGINALBOARD,  } from './features/actionCreators';
 import Form from './components/Form';
 
 function App() {
@@ -35,9 +35,10 @@ function App() {
   });
 
   useEffect(() => {
-    console.log('dispatching a new board, mines: ', mines);
-    dispatch(newBoardAction(length, width, mines))
-  }, [dispatch, length, width, mines])
+    // console.log('dispatching a new board, mines: ', mines);
+    dispatch(newBoardAction(length, width, mines));
+    dispatch(updateOriginalBoard());
+  }, [dispatch, length, width, mines]);
 
   return (
     <div className={className}>

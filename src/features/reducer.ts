@@ -15,6 +15,7 @@ import {
   SETMINESDISPLAY,
   RESETWINLOSS,
   NEWBOARD,
+  UPDATEORIGINALBOARD,
 } from './actionCreators';
 import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
@@ -76,6 +77,12 @@ export const clickReducer = (state: IInitialState = initialState, action: IFormB
     return produce(state, (draft: Draft<IClickState>) => {
       draft.win = false;
       draft.loss = false;
+      return draft;
+    });
+  }
+  if (action.type === UPDATEORIGINALBOARD) {
+    return produce(state, (draft: Draft<IClickState>) => {
+      draft.originalBoard = draft.board;
       return draft;
     });
   }

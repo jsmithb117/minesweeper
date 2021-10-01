@@ -13,6 +13,7 @@ export const INCREMENTMINESDISPLAY: string = 'INCREMENTMINESDISPLAY';
 export const DECREMENTMINESDISPLAY: string = 'DECREMENTMINESDISPLAY';
 export const SETMINESDISPLAY: string =  'SETMINESDISPLAY';
 export const RESETWINLOSS: string = 'RESETWINLOSS';
+export const UPDATEORIGINALBOARD: string = 'UPDATEORIGINALBOARD';
 
 export interface IFormPayload extends IForm {
   payload: number,
@@ -113,6 +114,12 @@ export const setMinesDisplay = (minesDisplay: number) => {
 export const resetWinLoss = () => {
   const action: IForm = {
     type: RESETWINLOSS
+  };
+  return action;
+};
+export const updateOriginalBoard = () => {
+  const action: IForm = {
+    type: UPDATEORIGINALBOARD,
   };
   return action;
 };
