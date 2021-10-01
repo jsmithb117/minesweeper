@@ -95,7 +95,7 @@ const BottomForm = () => {
               <input
                 type="number"
                 value={length}
-                min="10"
+                min="6"
                 max="100"
                 onChange={(e) => setStateLength(parseInt(e.target.value))}
               />
@@ -105,7 +105,7 @@ const BottomForm = () => {
               <input
                 type="number"
                 value={width}
-                min="10"
+                min="6"
                 max="100"
                 onChange={(e) => setStateWidth(parseInt(e.target.value))}
               />
@@ -115,7 +115,7 @@ const BottomForm = () => {
               <input
                 type="number"
                 value={mines}
-                min="10"
+                min="6"
                 max="100"
                 onChange={(e) => setStateMines(parseInt(e.target.value))}
               />
