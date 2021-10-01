@@ -35,8 +35,7 @@ function App() {
   });
 
   useEffect(() => {
-    // console.log('dispatching a new board, mines: ', mines);
-    dispatch(newBoardAction(length, width, mines));
+    dispatch(newBoardAction(width, length, mines));
     dispatch(updateOriginalBoard());
   }, [dispatch, length, width, mines]);
 
