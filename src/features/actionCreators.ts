@@ -12,12 +12,13 @@ export const REVERTBOARD: string = 'REVERTBOARD';
 export const INCREMENTMINESDISPLAY: string = 'INCREMENTMINESDISPLAY';
 export const DECREMENTMINESDISPLAY: string = 'DECREMENTMINESDISPLAY';
 export const SETMINESDISPLAY: string =  'SETMINESDISPLAY';
+export const RESETWINLOSS: string = 'RESETWINLOSS';
 
 export interface IFormPayload extends IForm {
   payload: number,
 };
 
-export interface IClickAction extends IForm {
+export interface IClickPayload extends IForm {
   payload: IPiece,
 };
 
@@ -99,7 +100,13 @@ export const setMinesDisplay = (minesDisplay: number) => {
     payload: minesDisplay
   };
   return action;
-}
+};
+export const resetWinLoss = () => {
+  const action: IForm = {
+    type: RESETWINLOSS
+  };
+  return action;
+};
 
 const click = (piece: IPiece, isLeftClick: boolean) => {
   const val: boolean = piece.hasOwnProperty('val');
@@ -108,7 +115,7 @@ const click = (piece: IPiece, isLeftClick: boolean) => {
   const row: boolean = piece.hasOwnProperty('row');
   const col: boolean = piece.hasOwnProperty('col');
   const requisites = val && uncovered && markedAsMine && row && col;
-  let action: IClickAction = {
+  let action: IClickPayload = {
     type: '',
     payload: piece,
   };

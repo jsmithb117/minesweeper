@@ -8,18 +8,19 @@ import {
   SETWIDTH,
   SETMINES,
   IFormPayload,
-  IClickAction,
+  IClickPayload,
   REVERTBOARD,
   INCREMENTMINESDISPLAY,
   DECREMENTMINESDISPLAY,
-  SETMINESDISPLAY
+  SETMINESDISPLAY,
+  RESETWINLOSS
 } from './actionCreators';
 import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
 import { IInitialState, IClickState, IFormState, initialState } from './initialState';
 import { IPiece, backupPiece } from './boardCreator';
 
-export const clickReducer = (state: IInitialState = initialState, action: IClickAction) => {
+export const clickReducer = (state: IInitialState = initialState, action: IClickPayload) => {
   if (state?.click?.win || state?.click?.loss) {
     return state;
   }
@@ -63,6 +64,13 @@ export const clickReducer = (state: IInitialState = initialState, action: IClick
   if (action.type === REVERTBOARD) {
     return produce(state, (draft: Draft<IClickState>) => {
       draft.board = draft.originalBoard;
+      return draft;
+    });
+  }
+  if (action.type === RESETWINLOSS) {
+    return produce(state, (draft: Draft<IClickState>) => {
+      draft.win = false;
+      draft.loss = false;
       return draft;
     });
   }
