@@ -40,7 +40,7 @@ typescript - Refactoring file by file in progress.
 * ~~Ability to reset and create a new board.~~ Merged with next todo.
 
 
-* Form for reset board and Multiple board sizes, maybe X*Y board or easy/medium/hard.   - In Progress
+* Form for reset board and Multiple board sizes, maybe X*Y board or easy/medium/hard.   - Works, but is buggy. (Reset Board will reset to the default board.  fix is to update originalBoard when creating a new board)
 
 * Styling updates to match what 'real' minesweeper looks like when you lose
 
