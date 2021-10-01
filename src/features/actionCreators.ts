@@ -18,8 +18,16 @@ export interface IFormPayload extends IForm {
   payload: number,
 };
 
+export interface IFormBoard extends IForm {
+  payload: {
+    length: number,
+    width: number,
+    mines: number,
+  };
+};
+
 export interface IClickPayload extends IForm {
-  payload: IPiece,
+  payload: any,
 };
 
 export interface IForm {
@@ -57,10 +65,11 @@ export const setMines = (mines: number) => {
   return action;
 };
 
-export const newBoardAction = () => {
-  const action: IForm = {
+export const newBoardAction = (length: number, width: number, mines: number) => {
+  const action: IFormBoard = {
     type: NEWBOARD,
-  };
+    payload: { length, width, mines },
+    };
   return action;
 };
 

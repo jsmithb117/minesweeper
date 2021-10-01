@@ -13,14 +13,16 @@ import {
   INCREMENTMINESDISPLAY,
   DECREMENTMINESDISPLAY,
   SETMINESDISPLAY,
-  RESETWINLOSS
+  RESETWINLOSS,
+  NEWBOARD,
 } from './actionCreators';
 import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
 import { IInitialState, IClickState, IFormState, initialState } from './initialState';
-import { IPiece, backupPiece } from './boardCreator';
+import boardCreator, { IPiece, backupPiece } from './boardCreator';
+import { IFormBoard } from './actionCreators';
 
-export const clickReducer = (state: IInitialState = initialState, action: IClickPayload) => {
+export const clickReducer = (state: IInitialState = initialState, action: IFormBoard | IClickPayload ) => {
   if (state?.click?.win || state?.click?.loss) {
     return state;
   }
@@ -55,12 +57,15 @@ export const clickReducer = (state: IInitialState = initialState, action: IClick
       }
     });
   }
-  //   if (action.type === NEWBOARD) {
-  //   return produce(state, (draft: Draft<IClickState>) => {
-  //     draft.board = boardCreator(draft.length, draft.width, draft.mines, false);
-  //     return draft;
-  //   });
-  // }
+    if (action.type === NEWBOARD) {
+    return produce(state, (draft: Draft<IClickState>) => {
+      const length = action.payload.length;
+      const width = action.payload.width;
+      const mines = action.payload.mines;
+      draft.board = boardCreator(length, width, mines, false);
+      return draft;
+    });
+  }
   if (action.type === REVERTBOARD) {
     return produce(state, (draft: Draft<IClickState>) => {
       draft.board = draft.originalBoard;

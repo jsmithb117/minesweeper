@@ -5,13 +5,15 @@ import { useAppSelector } from './features/hooks';
 import { useDispatch } from 'react-redux';
 import { IInitialState } from './features/initialState';
 import { useEffect } from 'react';
-import { incrementTime, setMinesDisplay } from './features/actionCreators';
+import { incrementTime, newBoardAction, setMinesDisplay,  } from './features/actionCreators';
 import Form from './components/Form';
 
 function App() {
   document.addEventListener('contextmenu', event => event.preventDefault());
   const win = useAppSelector((state: IInitialState) => state.click.win);
   const loss = useAppSelector((state: IInitialState) => state.click.loss);
+  const length = useAppSelector((state: IInitialState) => state.form.length);
+  const width = useAppSelector((state: IInitialState) => state.form.width);
   const mines = useAppSelector((state: IInitialState) => state.form.mines);
   const dispatch = useDispatch();
 
@@ -31,6 +33,11 @@ function App() {
     }, 1000);
     return () => clearInterval(timeInterval);
   });
+
+  useEffect(() => {
+    console.log('dispatching a new board, mines: ', mines);
+    dispatch(newBoardAction(length, width, mines))
+  }, [dispatch, length, width, mines])
 
   return (
     <div className={className}>
