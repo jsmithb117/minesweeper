@@ -11,6 +11,7 @@ export const INCREMENTTIME: string = 'INCREMENTTIME';
 export const REVERTBOARD: string = 'REVERTBOARD';
 export const INCREMENTMINESDISPLAY: string = 'INCREMENTMINESDISPLAY';
 export const DECREMENTMINESDISPLAY: string = 'DECREMENTMINESDISPLAY';
+export const SETMINESDISPLAY: string =  'SETMINESDISPLAY';
 
 export interface IFormPayload extends IForm {
   payload: number,
@@ -91,6 +92,14 @@ export const decrementMinesDisplay = () => {
   };
   return action;
 };
+
+export const setMinesDisplay = (minesDisplay: number) => {
+  const action: IFormPayload = {
+    type: SETMINESDISPLAY,
+    payload: minesDisplay
+  };
+  return action;
+}
 
 const click = (piece: IPiece, isLeftClick: boolean) => {
   const val: boolean = piece.hasOwnProperty('val');
