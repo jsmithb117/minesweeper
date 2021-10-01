@@ -8,10 +8,10 @@ const TopForm = () => {
   return (
     <div className="topform">
       <div className="minesremaining">
-        {minesDisplay}
+        Mines Remaining: {minesDisplay}
       </div>
       <div className="time">
-        {time}
+        Time: {time}
       </div>
     </div>
   );
