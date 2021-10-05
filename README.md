@@ -21,9 +21,11 @@ redux - Same board, different state management.  Uses Redux Hooks and immer.
 
 testing - PR's include coverage reports.
 
+typescript - Complete.
+
 ### Work In Progress
 
-typescript - Refactoring file by file in progress.
+####Form - Display on top(MinesRemaining, ResetBoard, Time), form on bottom(Create new board: Beginner, Intermediate, Expert, Custom).
 
 ### Todo:
 
