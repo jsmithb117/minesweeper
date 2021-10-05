@@ -1,21 +1,21 @@
 import './App.css';
 import Rows from './components/Rows';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { useAppSelector } from './features/hooks';
-import { useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from './features/hooks';
 import { IInitialState } from './features/initialState';
 import { useEffect } from 'react';
-import { incrementTime, newBoardAction, setMinesDisplay, updateOriginalBoard, UPDATEORIGINALBOARD,  } from './features/actionCreators';
+import { incrementTime, newBoardAction, setMinesDisplay, updateOriginalBoard } from './features/actionCreators';
 import Form from './components/Form';
 
-function App() {
+function App(props: { test: boolean }) {
   document.addEventListener('contextmenu', event => event.preventDefault());
   const win = useAppSelector((state: IInitialState) => state.click.win);
   const loss = useAppSelector((state: IInitialState) => state.click.loss);
   const length = useAppSelector((state: IInitialState) => state.form.length);
   const width = useAppSelector((state: IInitialState) => state.form.width);
   const mines = useAppSelector((state: IInitialState) => state.form.mines);
-  const dispatch = useDispatch();
+
+  const dispatch = useAppDispatch();
 
   const boardColor = win ? 'green'
     : loss ? 'red'
@@ -35,9 +35,11 @@ function App() {
   });
 
   useEffect(() => {
-    dispatch(newBoardAction(width, length, mines));
-    dispatch(updateOriginalBoard());
-  }, [dispatch, length, width, mines]);
+    if (!props.test) {
+      dispatch(newBoardAction(length, width, mines));
+      dispatch(updateOriginalBoard());
+    };
+  }, [dispatch, props.test, length, width, mines]);
 
   return (
     <div className={className}>

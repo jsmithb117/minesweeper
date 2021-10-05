@@ -19,7 +19,7 @@ describe('App', () => {
     wrapper = mount(
       <Provider store={store}>
         <React.StrictMode>
-          <App />
+          <App test={true}/>
         </React.StrictMode>
       </Provider>
     );
