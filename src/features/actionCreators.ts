@@ -36,14 +36,14 @@ export interface IForm {
 };
 
 export const resetTime = () => {
-  const action: IForm = {
+  const action = {
     type: RESETTIME
   };
   return action;
 };
 
 export const setLength = (length: number) => {
-  const action: IFormPayload = {
+  const action = {
     type: SETLENGTH,
     payload: length,
   };
@@ -51,7 +51,7 @@ export const setLength = (length: number) => {
 };
 
 export const setWidth = (width: number) => {
-  const action: IFormPayload = {
+  const action = {
     type: SETWIDTH,
     payload: width,
   };
@@ -59,7 +59,7 @@ export const setWidth = (width: number) => {
 };
 
 export const setMines = (mines: number) => {
-  const action: IFormPayload = {
+  const action = {
     type: SETMINES,
     payload: mines,
   };
@@ -67,7 +67,7 @@ export const setMines = (mines: number) => {
 };
 
 export const newBoardAction = (length: number, width: number, mines: number) => {
-  const action: IFormBoard = {
+  const action = {
     type: NEWBOARD,
     payload: { length, width, mines },
     };
@@ -75,20 +75,25 @@ export const newBoardAction = (length: number, width: number, mines: number) => 
 };
 
 export const incrementTime = () => {
-  const action: IForm = {
+  //FIXME Cannot assign action as IForm for some reason
+  const action: IFormPayload = {
     type: INCREMENTTIME,
+    payload: 0,
   };
   return action;
 };
 
 export const revertBoard = () => {
-  const action: IForm = {
+    //FIXME Cannot assign action as IForm for some reason
+  const action: IFormPayload  = {
     type: REVERTBOARD,
+    payload: 0,
   };
   return action;
 };
 
 export const incrementMinesDisplay = () => {
+    //FIXME Cannot assign action as IForm for some reason
   const action: IFormPayload = {
     type: INCREMENTMINESDISPLAY,
     payload: 0,
@@ -98,6 +103,7 @@ export const incrementMinesDisplay = () => {
 
 export const decrementMinesDisplay = () => {
   const action: IFormPayload = {
+      //FIXME Cannot assign action as IForm for some reason
     type: DECREMENTMINESDISPLAY,
     payload: 0,
   };
@@ -107,19 +113,21 @@ export const decrementMinesDisplay = () => {
 export const setMinesDisplay = (minesDisplay: number) => {
   const action: IFormPayload = {
     type: SETMINESDISPLAY,
-    payload: minesDisplay
+    payload: minesDisplay,
   };
   return action;
 };
 export const resetWinLoss = () => {
   const action: IForm = {
-    type: RESETWINLOSS
+    type: RESETWINLOSS,
   };
   return action;
 };
 export const updateOriginalBoard = () => {
-  const action: IForm = {
+    //FIXME Cannot assign action as IForm for some reason
+  const action: IFormPayload = {
     type: UPDATEORIGINALBOARD,
+    payload: 0,
   };
   return action;
 };
