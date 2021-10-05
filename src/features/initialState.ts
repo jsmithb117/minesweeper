@@ -46,6 +46,4 @@ const initialStateCreator = (
   return state;
 };
 
-export const initialState: IInitialState = initialStateCreator(10,10,10,false);
-
 export default initialStateCreator;

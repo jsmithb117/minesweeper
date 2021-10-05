@@ -19,11 +19,11 @@ import {
 } from './actionCreators';
 import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
-import { IInitialState, IClickState, IFormState, initialState } from './initialState';
+import { IInitialState, IClickState, IFormState } from './initialState';
 import boardCreator, { IPiece, backupPiece } from './boardCreator';
 import { IFormBoard } from './actionCreators';
 
-export const clickReducer = (state: IInitialState = initialState, action: IFormBoard | IClickPayload ) => {
+export const clickReducer = (state: IInitialState | null = null, action: IFormBoard | IClickPayload) => {
   if (state?.click?.win || state?.click?.loss) {
     return state;
   }
@@ -58,7 +58,7 @@ export const clickReducer = (state: IInitialState = initialState, action: IFormB
       }
     });
   }
-    if (action.type === NEWBOARD) {
+  if (action.type === NEWBOARD) {
     return produce(state, (draft: Draft<IClickState>) => {
       const length = action.payload.length;
       const width = action.payload.width;
@@ -89,7 +89,7 @@ export const clickReducer = (state: IInitialState = initialState, action: IFormB
   return state;
 };
 
-export const formReducer = (state: IInitialState = initialState, action: IFormPayload) => {
+export const formReducer = (state: IInitialState | null = null, action: IFormPayload) => {
   if (action.type === RESETTIME) {
     return produce(state, (draft: Draft<IFormState>) => {
       draft.time = 0;
@@ -130,7 +130,8 @@ export const formReducer = (state: IInitialState = initialState, action: IFormPa
       draft.minesDisplay -= 1;
       return draft;
     }
-    )};
+    )
+  };
   if (action.type === SETMINESDISPLAY) {
     return produce(state, (draft: Draft<IFormState>) => {
       draft.minesDisplay = action.payload;
