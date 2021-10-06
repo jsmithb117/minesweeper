@@ -3,7 +3,7 @@ import { useAppSelector } from '../features/hooks';
 import { IInitialState } from '../features/initialState';
 import { revertBoard, resetWinLoss } from '../features/actionCreators';
 
-const TopForm = () => {
+const Display = () => {
   const minesDisplay = useAppSelector((state: IInitialState) => state.form.minesDisplay);
   const time = useAppSelector((state: IInitialState) => state.form.time);
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const TopForm = () => {
   };
 
   return (
-    <div className="topform">
+    <div className="display">
       <div className="minesremaining">
         Mines Remaining: {minesDisplay}
       </div>
@@ -28,4 +28,4 @@ const TopForm = () => {
   );
 };
 
-export default TopForm;
+export default Display;

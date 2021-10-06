@@ -6,6 +6,7 @@ import { IInitialState } from './features/initialState';
 import { useEffect } from 'react';
 import { incrementTime, newBoardAction, setMinesDisplay, updateOriginalBoard } from './features/actionCreators';
 import Form from './components/Form';
+import Display from './components/Display';
 
 function App(props: { test: boolean }) {
   document.addEventListener('contextmenu', event => event.preventDefault());
@@ -44,8 +45,9 @@ function App(props: { test: boolean }) {
   return (
     <div className={className}>
       <HelmetProvider>
-        <Form />
+        <Display />
         <Rows />
+        <Form />
         <Helmet>
           <style type='text/css'>
           {`
