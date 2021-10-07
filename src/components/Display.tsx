@@ -16,13 +16,13 @@ const Display = () => {
   return (
     <div className="appchild display">
       <span className="minesremaining">
-        Mines Remaining: {minesDisplay}
+        {minesDisplay}
       </span>
       <button className="reset" onClick={resetButtonHandler}>
         Reset Board
       </button>
       <div className="time">
-        Time: {time}
+        {time}
       </div>
     </div>
   );
