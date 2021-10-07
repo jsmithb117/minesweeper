@@ -15,7 +15,6 @@ const Piece = ({ piece }: IProps) => {
   const dispatch = useAppDispatch();
   const width = useSelector((state: any) => state.form.width);
   const length = useSelector((state: any) => state.form.length);
-  console.log('length: ', length)
 
   const leftClickHandler = () => {
     dispatch(leftClick(piece));
