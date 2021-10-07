@@ -1,39 +1,71 @@
+:root {
+  --piece-height: 50px;
+  --piece-width: 50px;
+  --w8: 12.5%;
+  --w9: 11.11%;
+  --w10: 10%;
+  --w11: 9.1%;
+  --w12: 8.33%;
+  --w13: 7.7%;
+  --w14: 7.14%;
+  --w15: 6.66%;
+  --w16: 6.25%;
+  --w17: 5.88%;
+  --w18: 5.55%;
+  --w19: 5.26%;
+  --w20: 5%;
+  --w21: 4.76%;
+  --w22: 4.54%;
+  --w23: 4.34%;
+  --w24: 4.17%;
+  --w25: 4%;
+  --w26: 3.84%;
+  --w27: 3.7%;
+  --w28: 3.57%;
+  --w29: 3.48%;
+  --w30: 3.33%;
+  --h8: 62.5px;
+  --h9: 55.5469px;
+  --h10: 50px;
+  --h11: 45.5px;
+  --h12: 41.6406px;
+  --h13: 38.5px;
+  --h14: 35.6875px;
+  --h15: 33.2969px;
+  --h16: 31.25px;
+  --h17: 29.3906px;
+  --h18: 27.75px;
+  --h19: 26.2969px;
+  --h20: 25px;
+  --h21: 23.7969px;
+  --h22: 22.6875px;
+  --h23: 21.6875px;
+  --h24: 20.8438px;
+  --h25: 20px;
+  --h26: 19.1875px;
+  --h27: 18.5px;
+  --h28: 17.8438px;
+  --h29: 17.3906px;
+  --h30: 16.6406px;
+}
 body {
   background-color: white;
 }
-
-.rows {
-  display: grid;
+.covered .uncovered {
+  border-style: solid;
+  text-align: center;
+  text-decoration: none;
+  font-size: 36px;
+  display: inline-block;
 }
-
-.piece {
-  border-color: white;
-  height: 100%;
-  width: 10%;
-}
-
-button {
-  font-weight: 900;
-}
-
 .covered {
   background-color: #c0c0c0;
-  border-style: solid;
-  color: #c0c0c0;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 36px;
-}
+  color: lightgray;
 
+}
 .uncovered {
   background-color: lightgray;
-  border-style: solid;
   color: lightgray;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 36px;
 }
 .blue {
   color: blue;
@@ -62,4 +94,210 @@ button {
 .mine {
   color: darkred;
   background-color: red;
+}
+
+.app {
+  display: inline-grid;
+  flex-direction: column;
+  place-items: center stretch;
+}
+/* .appchild {
+  margin: 2px;
+  padding: 1px 5px;
+} */
+
+.piece {
+  border-color: white;
+  vertical-align: middle;
+  box-sizing: unset;
+}
+button {
+  font-weight: 900;
+  padding: 0;
+}
+.length8 {
+  height: var(--h8);
+}
+.width8 {
+  width: var(--w8);
+  font-size: 36px;
+}
+.length9 {
+  height: var(--h9);
+}
+.width9 {
+  width: var(--w9);
+  font-size: 35px;
+}
+.length10 {
+  height: var(--h10);
+}
+.width10 {
+  width: var(--w10);
+  font-size: 30px;
+}
+.length11 {
+  height: var(--h11);
+}
+.width11 {
+  width: var(--w11);
+  font-size: 29px;
+}
+.length12 {
+  height: var(--h12);
+}
+.width12 {
+  width: var(--w12);
+  font-size: 29px;
+}
+.length13 {
+  height: var(--h13);
+}
+.width13 {
+  width: var(--w13);
+  font-size: 28px;
+}
+.length14 {
+  height: var(--h14);
+}
+.width14 {
+  width: var(--w14);
+  font-size: 26px;
+}
+.length15 {
+  height: var(--h15);
+}
+.width15 {
+  width: var(--w15);
+  font-size: 24px;
+}
+.length16 {
+  height: var(--h16);
+}
+.width16 {
+  width: var(--w16);
+  font-size: 23px;
+}
+.length17 {
+  height: var(--h17);
+}
+.width17 {
+  width: var(--w17);
+  font-size: 22px;
+}
+.length18 {
+  height: var(--h18);
+}
+.width18 {
+  width: var(--w18);
+  font-size: 21px;
+}
+.length19 {
+  height: var(--h19);
+}
+.width19 {
+  width: var(--w19);
+  font-size: 20px;
+}
+.length20 {
+  height: var(--h20);
+}
+.width20 {
+  width: var(--w20);
+  font-size: 20px;
+}
+.length21 {
+  height: var(--h21);
+}
+.width21 {
+  width: var(--w21);
+  font-size: 18px;
+}
+.length22 {
+  height: var(--h22);
+}
+.width22 {
+  width: var(--w22);
+  font-size: 16px;
+}
+.length23 {
+  height: var(--h23);
+}
+.width23 {
+  width: var(--w23);
+  font-size: 16px;
+}
+.length24 {
+  height: var(--h24);
+}
+.width24 {
+  width: var(--w24);
+  font-size: 15px;
+}
+.length25 {
+  height: var(--h25);
+}
+.width25 {
+  width: var(--w25);
+  font-size: 15px;
+}
+.length26 {
+  height: var(--h26);
+}
+.width26 {
+  width: var(--w26);
+  font-size: 15px;
+}
+.length27 {
+  height: var(--h27);
+}
+.width27 {
+  width: var(--w27);
+  font-size: 14px;
+}
+.length28 {
+  height: var(--h28);
+}
+.width28 {
+  width: var(--w28);
+  font-size: 14px;
+}
+.length29 {
+  height: var(--h29);
+}
+.width29 {
+  width: var(--w29);
+  font-size: 13px;
+}
+.length30 {
+  height: var(--h30);
+}
+.width30 {
+  width: var(--w30);
+  font-size: 13px;
+}
+.minesremaining {
+  border-style: solid;
+  border-color: red;
+}
+
+.time {
+  border-style: solid;
+  border-color: green;
+}
+.display {
+  /* display: block; */
+  /* grid-template-columns: 1fr 1fr 1fr; */
+}
+.rows {
+  border-style: solid;
+  border-color: purple;
+  white-space: nowrap;
+  display: inline;
+  min-width: 500px;
+  max-width: 800px;
+  padding-top: 50px;
+  padding-right: 50px;
+  padding-bottom: 50px;
+  padding-left: 5px;
 }
