@@ -14,11 +14,11 @@ const Display = () => {
   };
 
   return (
-    <div className="display">
-      <div className="minesremaining">
+    <div className="appchild display">
+      <span className="minesremaining">
         Mines Remaining: {minesDisplay}
-      </div>
-      <button onClick={resetButtonHandler}>
+      </span>
+      <button className="reset" onClick={resetButtonHandler}>
         Reset Board
       </button>
       <div className="time">
