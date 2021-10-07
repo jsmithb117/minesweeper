@@ -22,7 +22,7 @@ function App(props: { test: boolean }) {
     : loss ? 'red'
     : 'white';
 
-  const className = 'minesweeper'.concat(boardColor);
+  const className = 'app minesweeper'.concat(boardColor);
 
   useEffect(() => {
     dispatch(setMinesDisplay(mines));
