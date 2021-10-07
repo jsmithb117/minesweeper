@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { leftClick, rightClick, incrementMinesDisplay, decrementMinesDisplay } from '../features/actionCreators';
 import displayValue from '../features/displayValue';
 import pieceClass from '../features/pieceClass';
@@ -12,6 +13,10 @@ interface IProps {
 
 const Piece = ({ piece }: IProps) => {
   const dispatch = useAppDispatch();
+  const width = useSelector((state: any) => state.form.width);
+  const length = useSelector((state: any) => state.form.length);
+  console.log('length: ', length)
+
   const leftClickHandler = () => {
     dispatch(leftClick(piece));
   };
@@ -25,9 +30,9 @@ const Piece = ({ piece }: IProps) => {
   };
 
   return (
-    <button className={pieceClass(piece)} onClick={() => leftClickHandler()}
+    <button className={pieceClass(piece, width, length)} onClick={() => leftClickHandler()}
       onContextMenu={() => rightClickHandler()}>
-      {displayValue(piece)}
+      <span className="number">{displayValue(piece)}</span>
     </button>
     );
 };
