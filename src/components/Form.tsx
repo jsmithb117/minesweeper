@@ -6,7 +6,7 @@ import {
   setMines
 } from '../features/actionCreators';
 
-const BottomForm = () => {
+const Form = () => {
   const dispatch = useDispatch();
   const beginner = 'Beginner';
   const intermediate = 'Intermediate';
@@ -46,9 +46,9 @@ const BottomForm = () => {
   };
 
   return (
-    <div className="bottomform">
+    <div className="appchild form">
       <form onSubmit={formSubmit}>
-        <div className="radio">
+        <div className="radio beginner">
           <label>
             <input
               type="radio"
@@ -59,7 +59,7 @@ const BottomForm = () => {
             {beginner}
           </label>
         </div>
-        <div className="radio">
+        <div className="radio intermediate">
           <label>
             <input
               type="radio"
@@ -70,7 +70,7 @@ const BottomForm = () => {
             {intermediate}
           </label>
         </div>
-        <div className="radio">
+        <div className="radio expert">
           <label>
             <input
               type="radio"
@@ -81,7 +81,7 @@ const BottomForm = () => {
             {expert}
           </label>
         </div>
-        <div className="radio">
+        <div className="radio custom">
           <label>
             <input
               type="radio"
@@ -90,7 +90,7 @@ const BottomForm = () => {
               onChange={onRadioChange}
             />
             {custom}
-            <div className="number length">
+            <div className="radionumber length">
               {"Length:"}
               <input
                 type="number"
@@ -100,7 +100,7 @@ const BottomForm = () => {
                 onChange={(e) => setStateLength(parseInt(e.target.value))}
               />
             </div>
-            <div className="number width">
+            <div className="radionumber width">
               {"Width:"}
               <input
                 type="number"
@@ -110,7 +110,7 @@ const BottomForm = () => {
                 onChange={(e) => setStateWidth(parseInt(e.target.value))}
               />
             </div>
-            <div className="number mines">
+            <div className="radionumber mines">
               {"Mines:"}
               <input
                 type="number"
@@ -122,7 +122,7 @@ const BottomForm = () => {
             </div>
           </label>
         </div>
-        <div>
+        <div className="radio selected">
           Selected option is : {selected}
         </div>
         <button className="btn btn-default" type="submit">
@@ -133,4 +133,4 @@ const BottomForm = () => {
   );
 };
 
-export default BottomForm;
+export default Form;
