@@ -13,7 +13,7 @@ const Rows = () => {
   });
 
   return (
-    <div className="rows">
+    <div className="appchild rows">
       {rowsMap}
     </div>
   );
