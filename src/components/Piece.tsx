@@ -27,7 +27,16 @@ const Piece = ({ piece }: IProps) => {
     }
     dispatch(rightClick(piece));
   };
-
+  if (piece.markedAsMine) {
+    return (
+      <button className={pieceClass(piece, width, length)} onClick={() => leftClickHandler()}
+      onContextMenu={() => rightClickHandler()}>
+      <span className="number">
+      <svg width="24" height="24" viewBox="0 0 24 24"><path d="M21 8l-16-6v-2h-2v24h2v-10l16-6zm-5.696 0l-10.304 3.864v-7.728l10.304 3.864z"/></svg>
+      </span>
+    </button>
+    )
+  }
   return (
     <button className={pieceClass(piece, width, length)} onClick={() => leftClickHandler()}
       onContextMenu={() => rightClickHandler()}>
