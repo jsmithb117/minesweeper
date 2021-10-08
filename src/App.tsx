@@ -2,7 +2,6 @@ import './App.css';
 import Rows from './components/Rows';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useAppSelector, useAppDispatch } from './features/hooks';
-import { IInitialState } from './features/initialState';
 import { useEffect } from 'react';
 import { incrementTime, newBoardAction, setMinesDisplay, updateOriginalBoard } from './features/actionCreators';
 import Form from './components/Form';
@@ -10,11 +9,11 @@ import Display from './components/Display';
 
 function App(props: { test: boolean }) {
   document.addEventListener('contextmenu', event => event.preventDefault());
-  const win = useAppSelector((state: IInitialState) => state.click.win);
-  const loss = useAppSelector((state: IInitialState) => state.click.loss);
-  const length = useAppSelector((state: IInitialState) => state.form.length);
-  const width = useAppSelector((state: IInitialState) => state.form.width);
-  const mines = useAppSelector((state: IInitialState) => state.form.mines);
+  const win = useAppSelector((state) => state?.click?.win);
+  const loss = useAppSelector((state) => state?.click?.loss);
+  const length = useAppSelector((state) => state.form?.length);
+  const width = useAppSelector((state) => state.form?.width);
+  const mines = useAppSelector((state) => state.form?.mines);
 
   const dispatch = useAppDispatch();
 

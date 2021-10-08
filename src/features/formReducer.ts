@@ -10,9 +10,9 @@ import {
   DECREMENTMINESDISPLAY,
   SETMINESDISPLAY,
 } from './actionCreators';
-import { IInitialState, IFormState } from './initialState';
+import { IFormState } from './initialState';
 
-const formReducer = (state: IInitialState | null = null, action: IFormPayload) => {
+const formReducer = (state: IFormState | null = null, action: IFormPayload) => {
   if (action.type === RESETTIME) {
     return produce(state, (draft: Draft<IFormState>) => {
       draft.time = 0;

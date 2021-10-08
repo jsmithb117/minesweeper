@@ -7,8 +7,8 @@ import { useAppDispatch } from '../features/hooks';
 
 interface IProps {
   piece: IPiece,
-  loss: boolean,
-  win: boolean,
+  loss: boolean | undefined,
+  win: boolean | undefined,
 };
 
 const Piece = ({ piece }: IProps) => {
