@@ -13,7 +13,7 @@ const initialTestState: any = initialStateCreator(10,10,10,true);
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('App', () => {
-  let store, wrapper: ReactWrapper;
+  let store: any, wrapper: ReactWrapper;
   beforeEach(() => {
     store = createStore(rootReducer, initialTestState);
     wrapper = mount(
@@ -95,5 +95,29 @@ describe('App', () => {
     expect(button2.props().loss).toBe(false);
     button2.simulate('click', { ...button2.props().piece });
     expect(findPieceAtRowCol(0, 0).props().loss).toBe(true);
+  });
+  it('should increment \'minesDisplay\' property when a piece whose \'markedAsMine\' property is true is clicked', () => {
+    const firstState = store.getState();
+    expect(firstState.form.minesDisplay).toBe(10);
+    const button = findPieceAtRowCol(0, 0);
+    button.simulate('contextmenu', { ...button.props().piece });
+    const secondState = store.getState();
+    expect(secondState.form.minesDisplay).toBe(11);
+  });
+  it('should decrement \'minesDisplay\' property when a piece whose \'markedAsMine\' property is false is clicked', () => {
+    const button = findPieceAtRowCol(9, 9);
+    button.simulate('contextmenu', { ...button.props().piece });
+    const secondState = store.getState();
+    expect(secondState.form.minesDisplay).toBe(9);
+  });
+  it('should reset \'minesDisplay\' property when \'Reset Board\' button is pressed', () => {
+    const button = findPieceAtRowCol(9, 9);
+    button.simulate('contextmenu', { ...button.props().piece });
+    const secondState = store.getState();
+    expect(secondState.form.minesDisplay).toBe(9);
+    const resetButton = wrapper.find('#reset');
+    resetButton.simulate('click');
+    const thirdState = store.getState();
+    expect(thirdState.form.minesDisplay).toBe(10);
   });
 });
