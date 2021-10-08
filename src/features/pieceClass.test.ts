@@ -22,7 +22,7 @@ describe('pieceClass', () => {
     expect(pieceClass({ ...piece }, 10, 10)).toBe('piece width10 length10 covered');
   });
   it('returns className for an uncovered 0 Piece that is not a mine', () => {
-    expect(pieceClass({ ...piece, uncovered: true }, 10, 10)).toBe('piece width10 length10 uncovered null');
+    expect(pieceClass({ ...piece, uncovered: true }, 10, 10)).toBe('piece width10 length10 uncovered lightgray');
   });
   it('returns className for an uncovered 1 Piece that is not a mine', () => {
     expect(pieceClass({ ...piece, val: 1, uncovered: true }, 10, 10)).toBe('piece width10 length10 uncovered blue');
