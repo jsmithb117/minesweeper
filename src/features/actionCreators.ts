@@ -14,6 +14,7 @@ export const DECREMENTMINESDISPLAY: string = 'DECREMENTMINESDISPLAY';
 export const SETMINESDISPLAY: string =  'SETMINESDISPLAY';
 export const RESETWINLOSS: string = 'RESETWINLOSS';
 export const UPDATEORIGINALBOARD: string = 'UPDATEORIGINALBOARD';
+export const TESTBOARD = 'TESTBOARD';
 
 export interface IFormPayload extends IForm {
   payload: number,
@@ -66,7 +67,7 @@ export const setMines = (mines: number) => {
   return action;
 };
 
-export const newBoardAction = (length: number, width: number, mines: number) => {
+export const newBoardAction = (length: number = 10, width: number = 10, mines: number = 10) => {
   const action = {
     type: NEWBOARD,
     payload: { length, width, mines },
@@ -110,7 +111,7 @@ export const decrementMinesDisplay = () => {
   return action;
 };
 
-export const setMinesDisplay = (minesDisplay: number) => {
+export const setMinesDisplay = (minesDisplay: number = 0) => {
   const action: IFormPayload = {
     type: SETMINESDISPLAY,
     payload: minesDisplay,
@@ -152,6 +153,14 @@ const click = (piece: IPiece, isLeftClick: boolean) => {
   }
   return action;
 }
+
+export const testBoard = () => {
+  const action = {
+    type: TESTBOARD,
+  };
+  return action;
+};
+
 export const leftClick = (piece: IPiece) => click(piece, true);
 
 export const rightClick = (piece: IPiece) => click(piece, false);

@@ -10,12 +10,12 @@ import {
 } from './actionCreators';
 import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
-import { IInitialState, IClickState } from './initialState';
+import { IClickState } from './initialState';
 import boardCreator, { IPiece, backupPiece } from './boardCreator';
-import { IFormBoard } from './actionCreators';
+import { IFormBoard, TESTBOARD } from './actionCreators';
 
-const clickReducer = (state: IInitialState | null = null, action: IFormBoard | IClickPayload) => {
-  if (state?.click?.win || state?.click?.loss) {
+const clickReducer = (state: IClickState | null = null, action: IFormBoard | IClickPayload) => {
+  if (state?.win || state?.loss) {
     return state;
   }
   const piece: IPiece = action.payload || backupPiece;
@@ -74,6 +74,12 @@ const clickReducer = (state: IInitialState | null = null, action: IFormBoard | I
   if (action.type === UPDATEORIGINALBOARD) {
     return produce(state, (draft: Draft<IClickState>) => {
       draft.originalBoard = draft.board;
+      return draft;
+    });
+  }
+  if (action.type === TESTBOARD) {
+    return produce(state, (draft: Draft<IClickState>) => {
+      draft.board = boardCreator(10, 10, 10, true);
       return draft;
     });
   }
