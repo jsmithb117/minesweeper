@@ -17,7 +17,7 @@ const Form = () => {
   const [length, setStateLength] = useState(10);
   const [width, setStateWidth] = useState(10);
   const [mines, setStateMines] = useState(10);
-
+ //TESTME -->
   const formSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
 
@@ -44,7 +44,7 @@ const Form = () => {
     }
     setSelected(e.target.value);
   };
-
+ //<-- TESTME
   return (
     <div className="appchild form">
       <form onSubmit={formSubmit}>

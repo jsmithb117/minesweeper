@@ -50,12 +50,14 @@ const clickReducer = (state: IClickState | null = null, action: IFormBoard | ICl
     });
   }
   if (action.type === NEWBOARD) {
+    //TESTME -->
     return produce(state, (draft: Draft<IClickState>) => {
       const length = action.payload.length;
       const width = action.payload.width;
       const mines = action.payload.mines;
       draft.board = boardCreator(length, width, mines, false);
       return draft;
+      //<-- TESTME
     });
   }
   if (action.type === REVERTBOARD) {
@@ -71,6 +73,7 @@ const clickReducer = (state: IClickState | null = null, action: IFormBoard | ICl
       return draft;
     });
   }
+    //TESTME -->
   if (action.type === UPDATEORIGINALBOARD) {
     return produce(state, (draft: Draft<IClickState>) => {
       draft.originalBoard = draft.board;
@@ -83,6 +86,8 @@ const clickReducer = (state: IClickState | null = null, action: IFormBoard | ICl
       return draft;
     });
   }
+      //<-- TESTME
+
   return state;
 };
 
