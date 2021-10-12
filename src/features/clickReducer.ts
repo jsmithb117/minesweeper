@@ -15,6 +15,21 @@ import boardCreator, { IPiece, backupPiece } from './boardCreator';
 import { IFormBoard, TESTBOARD } from './actionCreators';
 
 const clickReducer = (state: IClickState | null = null, action: IFormBoard | IClickPayload) => {
+  if (action.type === UPDATEORIGINALBOARD) {
+    return produce(state, (draft: Draft<IClickState>) => {
+      draft.originalBoard = draft.board;
+      return draft;
+    });
+  }
+
+  if (action.type === RESETWINLOSS) {
+    return produce(state, (draft: Draft<IClickState>) => {
+      draft.win = false;
+      draft.loss = false;
+      return draft;
+    });
+  }
+
   if (state?.win || state?.loss) {
     return state;
   }
@@ -66,20 +81,20 @@ const clickReducer = (state: IClickState | null = null, action: IFormBoard | ICl
       return draft;
     });
   }
-  if (action.type === RESETWINLOSS) {
-    return produce(state, (draft: Draft<IClickState>) => {
-      draft.win = false;
-      draft.loss = false;
-      return draft;
-    });
-  }
+  // if (action.type === RESETWINLOSS) {
+  //   return produce(state, (draft: Draft<IClickState>) => {
+  //     draft.win = false;
+  //     draft.loss = false;
+  //     return draft;
+  //   });
+  // }
     //TESTME -->
-  if (action.type === UPDATEORIGINALBOARD) {
-    return produce(state, (draft: Draft<IClickState>) => {
-      draft.originalBoard = draft.board;
-      return draft;
-    });
-  }
+  // if (action.type === UPDATEORIGINALBOARD) {
+  //   return produce(state, (draft: Draft<IClickState>) => {
+  //     draft.originalBoard = draft.board;
+  //     return draft;
+  //   });
+  // }
   if (action.type === TESTBOARD) {
     return produce(state, (draft: Draft<IClickState>) => {
       draft.board = boardCreator(10, 10, 10, true);
