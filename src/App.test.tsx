@@ -12,7 +12,7 @@ import Piece from './components/Piece';
 const initialTestState: any = initialStateCreator(10,10,10,true);
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('App', () => {
+describe('App with testBoard', () => {
   let store: any, wrapper: ReactWrapper;
   beforeEach(() => {
     store = createStore(rootReducer, initialTestState);
@@ -119,5 +119,27 @@ describe('App', () => {
     resetButton.simulate('click');
     const thirdState = store.getState();
     expect(thirdState.form.minesDisplay).toBe(10);
+  });
+});
+
+
+describe('App with production board', () => {
+  let store: any, wrapper: ReactWrapper;
+  beforeEach(() => {
+    store = createStore(rootReducer, initialTestState);
+    wrapper = mount(
+      <Provider store={store}>
+        <React.StrictMode>
+          <App test={false} />
+        </React.StrictMode>
+      </Provider>
+    );
+  });
+
+  it('should create a testBoard when the \'Test Board\' button is clicked', () => {
+    const testBoardButton = wrapper.find('#testBoard');
+    testBoardButton.simulate('click');
+    const mines = wrapper.find(Piece).findWhere((n) => n.props()?.piece?.markedAsMine === true);
+    expect(mines.length).toBe(10);
   });
 });
