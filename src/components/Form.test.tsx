@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, fireEvent, screen } from '@testing-library/react'
-import '@testing-library/jest-dom'
+// import '@testing-library/jest-dom'
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -35,7 +35,7 @@ test('updates Form state on \'Beginner\' radio select and updates store on submi
   expect(secondState.form.mines).toBe(8);
 });
 
-test('updates Form state on \'Default\' radio select and updates store on submit', async () => {
+test('updates Form state on \'Default\' radio select and updates store on submit', () => {
   const store = createStore(rootReducer, initialTestState);
   render(
     <Provider store={store}>
@@ -62,7 +62,7 @@ test('updates Form state on \'Default\' radio select and updates store on submit
   expect(secondState.form.mines).toBe(10);
 });
 
-test('updates Form state on \'Intermediate\' radio select and updates store on submit', async () => {
+test('updates Form state on \'Intermediate\' radio select and updates store on submit', () => {
   const store = createStore(rootReducer, initialTestState);
   render(
     <Provider store={store}>
@@ -87,7 +87,7 @@ test('updates Form state on \'Intermediate\' radio select and updates store on s
   expect(secondState.form.mines).toBe(40);
 });
 
-test('updates Form state on \'Expert\' radio select and updates store on submit', async () => {
+test('updates Form state on \'Expert\' radio select and updates store on submit', () => {
   const store = createStore(rootReducer, initialTestState);
   render(
     <Provider store={store}>
