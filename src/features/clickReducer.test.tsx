@@ -9,18 +9,20 @@ import App from '../App';
 import initialStateCreator from './initialState';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Piece from '../components/Piece';
+import { newBoardAction } from './actionCreators';
+import { nodeModuleNameResolver } from 'typescript';
 
 const initialTestState: any = initialStateCreator(10,10,10,true);
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('clickReducer', () => {
+describe('clickReducer test board', () => {
   let store: any, wrapper: ReactWrapper;
   beforeEach(() => {
     store = createStore(rootReducer, initialTestState);
     wrapper = mount(
       <Provider store={store}>
         <React.StrictMode>
-          <App test={true}/>
+          <App test={true} />
         </React.StrictMode>
       </Provider>
     );
@@ -71,4 +73,23 @@ describe('clickReducer', () => {
     const thirdState = store.getState();
     expect(thirdState.click.board[5][5].markedAsMine).toBe(true);
   })
+});
+
+describe('clickReducer production board', () => {
+  let store: any, wrapper: ReactWrapper;
+  beforeEach(() => {
+    store = createStore(rootReducer, initialTestState);
+    wrapper = mount(
+      <Provider store={store}>
+        <React.StrictMode>
+          <App test={false} />
+        </React.StrictMode>
+      </Provider>
+    );
+  });
+
+  it('should create a board with 10 mines', () => {
+    const mines= wrapper.find(Piece).findWhere((node) => node.props().piece?.isMine === true);
+    expect(mines.length).toBe(10);
+  });
 });

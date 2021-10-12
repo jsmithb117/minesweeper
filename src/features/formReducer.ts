@@ -13,7 +13,6 @@ import {
 import { IFormState } from './initialState';
 
 const formReducer = (state: IFormState | null = null, action: IFormPayload) => {
-  //TESTME -->
   if (action.type === RESETTIME) {
     return produce(state, (draft: Draft<IFormState>) => {
       draft.time = 0;
@@ -27,7 +26,6 @@ const formReducer = (state: IFormState | null = null, action: IFormPayload) => {
   }
   if (action.type === SETLENGTH) {
     return produce(state, (draft: Draft<IFormState>) => {
-      // console.log('setting length: ', action.payload)
       draft.length = action.payload;
       return draft;
     });
@@ -44,7 +42,6 @@ const formReducer = (state: IFormState | null = null, action: IFormPayload) => {
       return draft;
     });
   }
-  //<-- TESTME
   if (action.type === INCREMENTMINESDISPLAY) {
     return produce(state, (draft: Draft<IFormState>) => {
       draft.minesDisplay += 1;
