@@ -3,24 +3,23 @@ import { Provider } from 'react-redux';
 import Enzyme, { mount, ReactWrapper } from 'enzyme';
 import { createStore } from 'redux';
 
-import reducer from './features/reducer';
+import { rootReducer } from './features/store';
 import App from './App';
-import initialState from './features/initialState';
+import initialStateCreator from './features/initialState';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Piece from './components/Piece';
 
-const testBoard = true;
-const initialTestState = initialState(testBoard);
+const initialTestState: any = initialStateCreator(10,10,10,true);
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('App', () => {
-  let store, wrapper: ReactWrapper;
+describe('App with testBoard', () => {
+  let store: any, wrapper: ReactWrapper;
   beforeEach(() => {
-    store = createStore(reducer, initialTestState);
+    store = createStore(rootReducer, initialTestState);
     wrapper = mount(
       <Provider store={store}>
         <React.StrictMode>
-          <App />
+          <App test={true}/>
         </React.StrictMode>
       </Provider>
     );
@@ -97,5 +96,50 @@ describe('App', () => {
     button2.simulate('click', { ...button2.props().piece });
     expect(findPieceAtRowCol(0, 0).props().loss).toBe(true);
   });
+  it('should increment \'minesDisplay\' property when a piece whose \'markedAsMine\' property is true is clicked', () => {
+    const firstState = store.getState();
+    expect(firstState.form.minesDisplay).toBe(10);
+    const button = findPieceAtRowCol(0, 0);
+    button.simulate('contextmenu', { ...button.props().piece });
+    const secondState = store.getState();
+    expect(secondState.form.minesDisplay).toBe(11);
+  });
+  it('should decrement \'minesDisplay\' property when a piece whose \'markedAsMine\' property is false is clicked', () => {
+    const button = findPieceAtRowCol(9, 9);
+    button.simulate('contextmenu', { ...button.props().piece });
+    const secondState = store.getState();
+    expect(secondState.form.minesDisplay).toBe(9);
+  });
+  it('should reset \'minesDisplay\' property when \'Reset Board\' button is pressed', () => {
+    const button = findPieceAtRowCol(9, 9);
+    button.simulate('contextmenu', { ...button.props().piece });
+    const secondState = store.getState();
+    expect(secondState.form.minesDisplay).toBe(9);
+    const resetButton = wrapper.find('#reset');
+    resetButton.simulate('click');
+    const thirdState = store.getState();
+    expect(thirdState.form.minesDisplay).toBe(10);
+  });
 });
 
+
+describe('App with production board', () => {
+  let store: any, wrapper: ReactWrapper;
+  beforeEach(() => {
+    store = createStore(rootReducer, initialTestState);
+    wrapper = mount(
+      <Provider store={store}>
+        <React.StrictMode>
+          <App test={false} />
+        </React.StrictMode>
+      </Provider>
+    );
+  });
+
+  it('should create a testBoard when the \'Test Board\' button is clicked', () => {
+    const testBoardButton = wrapper.find('#testBoard');
+    testBoardButton.simulate('click');
+    const mines = wrapper.find(Piece).findWhere((n) => n.props()?.piece?.markedAsMine === true);
+    expect(mines.length).toBe(10);
+  });
+});

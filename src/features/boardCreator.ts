@@ -9,16 +9,16 @@ export interface IPiece {
 
 export interface IRow extends Array<IPiece>{};
 export interface Board extends Array<IRow>{};
-
+export const backupPiece: IPiece = {
+  val: 0,
+  isMine: false,
+  uncovered: false,
+  markedAsMine: false,
+  row: 0,
+  col: 0,
+};
 const boardCreator = (length: number = 10, width: number = 10, mines: number = 10, testBoard: boolean = false) => {
-  const piece: IPiece = {
-    val: 0,
-    isMine: false,
-    uncovered: false,
-    markedAsMine: false,
-    row: 0,
-    col: 0,
-  };
+  const piece = { ...backupPiece };
   let board: Board;
   if (testBoard) {
     const blankBoard: Board = new Array(length).fill(new Array(width).fill(piece));

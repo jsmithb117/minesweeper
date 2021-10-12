@@ -1,21 +1,12 @@
-import reducer from './reducer';
-import { createStore } from 'redux';
-import boardCreator, { Board } from './boardCreator';
+// import { clickReducer, formReducer}  from './reducer';
+import clickReducer from './clickReducer';
+import formReducer from './formReducer';
+import { createStore, combineReducers } from 'redux';
+import initialStateCreator from './initialState';
 
-interface IInitialState {
-  board: Board,
-  win: boolean,
-  loss: boolean
-};
-
-const initialState: IInitialState = {
-  board: boardCreator(10, 10, 10, false),
-  win: false,
-  loss: false,
-};
-
-const store = createStore(reducer, initialState);
-
+export const rootReducer = combineReducers({ click: clickReducer, form: formReducer });
+const initialState: any = initialStateCreator();
+const store = createStore(rootReducer, initialState);
 export default store;
 export type RootState = ReturnType<typeof store.getState>;
 export type TDispatch = typeof store.dispatch;

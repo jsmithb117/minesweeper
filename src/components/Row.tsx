@@ -3,8 +3,8 @@ import { IRow } from '../features/boardCreator';
 
 interface Props {
   row: IRow,
-  win: boolean,
-  loss: boolean,
+  win: boolean | undefined,
+  loss: boolean | undefined,
 };
 
 const Row = ({ row, win, loss }: Props) => {

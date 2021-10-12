@@ -37,13 +37,19 @@ typescript - Complete.
 
 * ~~Typescript~~ Complete
 
-* Styling updates to match what 'real' minesweeper looks like when you lose - Skipping for now as I'll have to update CSS after the next step anyway.
+* ~~Use separate reducer and actionCreators for form actions and use combineReducers~~ - Complete
 
 * ~~Ability to reset and create a new board.~~ Merged with next todo.
 
-* Form for reset board and Multiple board sizes, maybe X*Y board or easy/medium/hard.  Use separate reducer and actionCreators for form actions and use combineReducers - Nearly complete, needs New Board button and styling.
+
+
+* ~~Form for reset board and Multiple board sizes, maybe X*Y board or easy/medium/hard.~~ - Complete
+
+* Styling updates to match what 'real' minesweeper looks like when you lose
 
 * Track 'score' (time to complete)
+
+* Add 'Pause' button that covers entire board and stops incrementing time
 
 * Build menu around board in app with stats and forms
 
@@ -84,10 +90,14 @@ The problem was that I was shallow-copying an array with nested objects but I ne
 
 Lesson learned: ALWAYS use Immer or Redux Toolkit for state mutations in a Redux project.
 
-#### Cleaning up more questionable decisions
+### Cleaning up more questionable decisions
 
 I used the pieces on my board to store a 'val' property which could be a string or a number.  I realized the mistake early, but deferred refactoring it until I had some tests set up because I knew refactoring it was going to be a big task.  That mistake caught up to me as soon as I began refactoring for Typescript so I decided to fix it right in the typescript branch.  Even having those tests to support me and check if and where my code was broken, refactoring was a manageable chore.
 
 I solved the problem by adding an 'isMine' boolean property and using that to conditionally render the display value.
 
 Lesson learned:  Use Typescript from the beginning and/or just don't make silly mistakes like allowing a property type to change in different circumstances.
+
+### Problems using the newest version of React with Enzyme
+
+I have been using Enzyme to render my tests.  There is no adapter for React17 for Enzyme yet, so I am using a community version that claims to work on React17.  Most features work fine, however, it seems that there may be an issue selecting radio buttons.  No matter what type of event I simulate, the onRadioChange method of the Form component will not execute.  After many hours assuming the problem was on my end (this may still be true), I changed my assumption that the problem was with my code and refactored to use @testing-library/react, to render and test my Form component.  This isn't a very interesting problem, but it's a problem worth keeping in mind.  It's still a safe bet to approach a bug as if the problem is 100% your fault, but there are times when you're doing what you're supposed to be doing, but one of your dependencies has a bug in it.  I may make a minimum reproducible example and see what StackOverflow thinks.

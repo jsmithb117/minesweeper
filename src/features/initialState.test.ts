@@ -1,23 +1,23 @@
-import initialState from './initialState';
+import initialStateCreator from './initialState';
 const test = true;
-const initialTestState = initialState(test);
-const initialProductionState = initialState();
+const initialTestState = initialStateCreator(10, 10, 10, test);
+const initialProductionState = initialStateCreator();
 
-describe('initialState', () => {
+describe('initialStateCreator', () => {
   it('should have a win property', () => {
-    expect(initialTestState).toHaveProperty('win')
+    expect(initialTestState.click).toHaveProperty('win')
   });
   it('should have a loss property', () => {
-    expect(initialTestState).toHaveProperty('loss')
+    expect(initialTestState.click).toHaveProperty('loss')
   });
   it('should have a board property in the proper shape for a test board', () => {
-    expect(initialTestState).toHaveProperty('board');
-    expect(Array.isArray(initialTestState.board)).toBe(true);
-    expect(initialTestState.board.length).toBe(10);
-    initialTestState.board.forEach((row, rowIndex) => {
+    expect(initialTestState.click).toHaveProperty('board');
+    expect(Array.isArray(initialTestState.click.board)).toBe(true);
+    expect(initialTestState.click.board.length).toBe(10);
+    initialTestState.click.board.forEach((row: any, rowIndex: number) => {
       expect(Array.isArray(row)).toBe(true);
       expect(row.length).toBe(10);
-      row.forEach((piece, colIndex) => {
+      row.forEach((piece: any, colIndex: number) => {
         let shouldBeUncovered = false;
         let shouldBeMarkedAsMine = false;
         if (rowIndex === 2) {
@@ -41,10 +41,10 @@ describe('initialState', () => {
   });
   it('should have a board property in the proper shape for a \'real\' board', () => {
 
-    expect(initialProductionState).toHaveProperty('board');
-    expect(Array.isArray(initialProductionState.board)).toBe(true);
-    expect(initialProductionState.board.length).toBe(10);
-    initialProductionState.board.forEach((row, rowIndex) => {
+    expect(initialProductionState.click).toHaveProperty('board');
+    expect(Array.isArray(initialProductionState.click.board)).toBe(true);
+    expect(initialProductionState.click.board.length).toBe(10);
+    initialProductionState.click.board.forEach((row) => {
       expect(Array.isArray(row)).toBe(true);
       expect(row.length).toBe(10);
       row.forEach((piece) => {
@@ -61,16 +61,4 @@ describe('initialState', () => {
       });
     });
   });
-
-  // it('each Piece should have a \'val\' property, set as \'X\' or 0', () => {
-  //   initialState.board.
-  // });
-  // it('each Piece should have an \'uncovered\' property, initially set as false', () => {
-  // });
-  // it('each Piece should have a \'markedAsMine\' property, initially set as false', () => {
-  // });
-  // it('each Piece should have an \'row\' property, initially set as false', () => {
-  // });
-  // it('each Piece should have an \'col\' property, initially set as false', () => {
-  // });
 });

@@ -1,7 +1,7 @@
 import { IPiece } from './boardCreator';
 
 const buttonColorFunc = (piece: IPiece) => (
-  piece.val === 0 ? null :
+  piece.val === 0 ? 'lightgray' :
   piece.val === 1 ? 'blue' :
   piece.val === 2 ? 'green' :
   piece.val === 3 ? 'red' :

@@ -1,21 +1,49 @@
 import boardCreator, { Board } from './boardCreator';
 
-export interface State {
+export interface IClickState {
+  piecesMarkedAsMine: number,
   board: Board,
+  originalBoard: Board,
   win: boolean,
   loss: boolean,
 };
 
-const initialState = (test: boolean = false) => {
-  const state: { win: boolean, loss: boolean } = {
-    win: false,
-    loss: false,
-  };
-  if (test) {
-    return { ...state, board: boardCreator(10, 10, 10, true) }
-  }
-  const newState: State = { ...state, board: boardCreator() }
-  return newState;
+export interface IFormState {
+  minesDisplay: number,
+  time: number,
+  length: number,
+  width: number,
+  mines: number,
 };
 
-export default initialState;
+export interface IInitialState {
+  click: IClickState,
+  form: IFormState,
+};
+
+const initialStateCreator = (
+  length: number = 10,
+  width: number = 10,
+  mines: number = 10,
+  test: boolean = false) => {
+  const newBoard = boardCreator(length, width, mines, test);
+  const state: IInitialState = {
+    click: {
+      piecesMarkedAsMine: 0,
+      board: newBoard,
+      originalBoard: newBoard,
+      win: false,
+      loss: false,
+    },
+    form: {
+      minesDisplay: 0,
+      time: 0,
+      length: 10,
+      width: 10,
+      mines: 10,
+    }
+  }
+  return state;
+};
+
+export default initialStateCreator;

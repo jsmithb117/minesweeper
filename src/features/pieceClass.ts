@@ -1,8 +1,8 @@
 import buttonColor from './buttonColor';
 import { IPiece } from './boardCreator';
 
-const pieceClass = (piece: IPiece) => {
-  const className: string = `piece`;
+const pieceClass = (piece: IPiece, width: number, length: number) => {
+  const className: string = `piece width${width} length${length}`;
 
   if (!piece.uncovered && !piece.markedAsMine) {
     return className.concat(' covered');

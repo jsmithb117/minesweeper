@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.9.6",
@@ -47,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react": "^12.1.2",
     "@types/enzyme": "^3.10.9",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
     "chromedriver": "^93.0.1",
