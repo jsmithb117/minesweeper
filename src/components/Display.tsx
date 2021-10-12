@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../features/hooks';
-import { IInitialState } from '../features/initialState';
 import { revertBoard, resetWinLoss, setMinesDisplay, testBoard } from '../features/actionCreators';
 
 const Display = () => {
