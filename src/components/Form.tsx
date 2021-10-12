@@ -9,15 +9,16 @@ import {
 const Form = () => {
   const dispatch = useDispatch();
   const beginner = 'Beginner';
+  const defaultVal = 'Default';
   const intermediate = 'Intermediate';
   const expert = 'Expert';
   const custom = 'Custom';
 
-  const [selected, setSelected] = useState(beginner);
+  const [selected, setSelected] = useState(defaultVal);
   const [length, setStateLength] = useState(10);
   const [width, setStateWidth] = useState(10);
   const [mines, setStateMines] = useState(10);
- //TESTME -->
+
   const formSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
 
@@ -32,6 +33,11 @@ const Form = () => {
       setStateWidth(8);
       setStateMines(8);
     }
+    if (val === defaultVal) {
+      setStateLength(10);
+      setStateWidth(10);
+      setStateMines(10);
+    }
     if (val === intermediate) {
       setStateLength(13);
       setStateWidth(15);
@@ -44,19 +50,29 @@ const Form = () => {
     }
     setSelected(e.target.value);
   };
- //<-- TESTME
   return (
     <div className="appchild form">
-      <form onSubmit={formSubmit}>
+      <form onSubmit={(e) => formSubmit(e)}>
         <div className="radio beginner">
           <label>
             <input
               type="radio"
               value={beginner}
               checked={selected === beginner}
-              onChange={onRadioChange}
+              onChange={(e) => onRadioChange(e)}
             />
             {beginner}
+          </label>
+        </div>
+        <div className="radio default">
+          <label>
+            <input
+              type="radio"
+              value={defaultVal}
+              checked={selected === defaultVal}
+              onChange={(e) => onRadioChange(e)}
+            />
+            {defaultVal}
           </label>
         </div>
         <div className="radio intermediate">
@@ -125,7 +141,7 @@ const Form = () => {
         <div className="radio selected">
           Selected option is : {selected}
         </div>
-        <button className="btn btn-default" type="submit">
+        <button className="submitradio" type="submit">
           Submit
         </button>
       </form>
