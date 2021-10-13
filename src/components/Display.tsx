@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../features/hooks';
-import { revertBoard, resetWinLoss, setMinesDisplay, testBoard } from '../features/actionCreators';
+import { revertBoard, resetWinLoss, setMinesDisplay, testBoard, pause } from '../features/actionCreators';
 
 const Display = () => {
   const minesDisplay = useAppSelector((state) => state?.form?.minesDisplay);
@@ -16,7 +16,11 @@ const Display = () => {
 
   const testBoardHandler = () => {
     dispatch(testBoard());
-  }
+  };
+  const pauseHandler = () => {
+    dispatch(pause());
+  };
+
   return (
     <div className="appchild display">
       <span className="minesremaining">
@@ -35,6 +39,9 @@ const Display = () => {
       </span>
       <button id="testBoard" onClick={testBoardHandler}>
         Test Board
+      </button>
+      <button id="pause" onClick={pauseHandler}>
+        Pause
       </button>
     </div>
   );
