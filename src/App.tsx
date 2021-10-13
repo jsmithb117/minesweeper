@@ -14,6 +14,7 @@ function App(props: { test: boolean }) {
   const length = useAppSelector((state) => state.form?.length);
   const width = useAppSelector((state) => state.form?.width);
   const mines = useAppSelector((state) => state.form?.mines);
+  const paused = useAppSelector((state) => state.form?.paused);
 
   const dispatch = useAppDispatch();
 
@@ -28,7 +29,7 @@ function App(props: { test: boolean }) {
   }, [dispatch, mines]);
 
   useEffect(() => {
-    if (!loss && !win) {
+    if (!loss && !win && !paused) {
       const timeInterval = setInterval(() => {
         dispatch(incrementTime());
       }, 1000);

@@ -9,6 +9,7 @@ import {
   INCREMENTMINESDISPLAY,
   DECREMENTMINESDISPLAY,
   SETMINESDISPLAY,
+  PAUSE
 } from './actionCreators';
 import { IFormState } from './initialState';
 
@@ -58,6 +59,12 @@ const formReducer = (state: IFormState | null = null, action: IFormPayload) => {
   if (action.type === SETMINESDISPLAY) {
     return produce(state, (draft: Draft<IFormState>) => {
       draft.minesDisplay = action.payload;
+      return draft;
+    });
+  }
+  if (action.type === PAUSE) {
+    return produce(state, (draft: Draft<IFormState>) => {
+      draft.paused = !draft.paused;
       return draft;
     });
   }

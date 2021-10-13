@@ -14,6 +14,7 @@ export interface IFormState {
   length: number,
   width: number,
   mines: number,
+  paused: boolean,
 };
 
 export interface IInitialState {
@@ -41,6 +42,7 @@ const initialStateCreator = (
       length: 10,
       width: 10,
       mines: 10,
+      paused: false,
     }
   }
   return state;

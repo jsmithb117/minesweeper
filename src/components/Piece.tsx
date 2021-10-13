@@ -16,10 +16,12 @@ const Piece = ({ piece }: IProps) => {
   const width = useSelector((state: any) => state.form.width);
   const length = useSelector((state: any) => state.form.length);
   const loss = useSelector((state: any) => state.click.loss);
+  const paused = useSelector((state: any) => state.form.paused);
 
   const leftClickHandler = () => {
     dispatch(leftClick(piece));
   };
+
   const rightClickHandler = () => {
     if (piece.markedAsMine) {
       dispatch(incrementMinesDisplay());
@@ -28,8 +30,16 @@ const Piece = ({ piece }: IProps) => {
     }
     dispatch(rightClick(piece));
   };
+
   const className = pieceClass(piece, width, length);
 
+  if (paused) {
+    return (
+      <button className={pieceClass({ ...piece, uncovered: false}, width, length).concat(' paused')}>
+
+    </button>
+    )
+  }
   if (piece.markedAsMine) {
     return (
       <button className={className} onClick={() => leftClickHandler()}

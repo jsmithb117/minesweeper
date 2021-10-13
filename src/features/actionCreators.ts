@@ -15,6 +15,7 @@ export const SETMINESDISPLAY: string =  'SETMINESDISPLAY';
 export const RESETWINLOSS: string = 'RESETWINLOSS';
 export const UPDATEORIGINALBOARD: string = 'UPDATEORIGINALBOARD';
 export const TESTBOARD = 'TESTBOARD';
+export const PAUSE = 'PAUSE';
 
 export interface IFormPayload extends IForm {
   payload: number,
@@ -160,6 +161,13 @@ export const testBoard = () => {
   };
   return action;
 };
+
+export const pause = () => {
+  const action = {
+    type: PAUSE,
+  };
+  return action;
+}
 
 export const leftClick = (piece: IPiece) => click(piece, true);
 
