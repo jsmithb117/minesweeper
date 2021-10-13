@@ -28,10 +28,12 @@ function App(props: { test: boolean }) {
   }, [dispatch, mines]);
 
   useEffect(() => {
-    const timeInterval = setInterval(() => {
-      dispatch(incrementTime());
-    }, 1000);
-    return () => clearInterval(timeInterval);
+    if (!loss && !win) {
+      const timeInterval = setInterval(() => {
+        dispatch(incrementTime());
+      }, 1000);
+      return () => clearInterval(timeInterval);
+    }
   });
 
   useEffect(() => {
