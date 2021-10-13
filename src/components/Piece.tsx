@@ -15,6 +15,7 @@ const Piece = ({ piece }: IProps) => {
   const dispatch = useAppDispatch();
   const width = useSelector((state: any) => state.form.width);
   const length = useSelector((state: any) => state.form.length);
+  const loss = useSelector((state: any) => state.click.loss);
 
   const leftClickHandler = () => {
     dispatch(leftClick(piece));
@@ -27,18 +28,31 @@ const Piece = ({ piece }: IProps) => {
     }
     dispatch(rightClick(piece));
   };
+  const className = pieceClass(piece, width, length);
+
   if (piece.markedAsMine) {
     return (
-      <button className={pieceClass(piece, width, length)} onClick={() => leftClickHandler()}
+      <button className={className} onClick={() => leftClickHandler()}
       onContextMenu={() => rightClickHandler()}>
-      <span className="number">
-      <svg width="24" height="24" viewBox="0 0 24 24"><path d="M21 8l-16-6v-2h-2v24h2v-10l16-6zm-5.696 0l-10.304 3.864v-7.728l10.304 3.864z"/></svg>
+      <span className="flag">
+      <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M8 44c4-10 28-10 32 0z" stroke="#000"/><path d="M24 6L2 15l22 10z" stroke="black" fill="red"/><path strokeLinecap="round" strokeWidth="4" stroke="black" d="M24 6v34"/></svg>
       </span>
     </button>
     )
   }
+  if (piece.isMine && loss) {
+    return (
+      <button className={className} onClick={() => leftClickHandler()}
+      onContextMenu={() => rightClickHandler()}>
+      <span className="number">
+      <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="18"/><path strokeLinecap="round" strokeWidth="6" stroke="#000" d="M8 8l32 32M8 40L40 8M4 24h40M24 4v40"/><path d="M10 24a14 14 0 0114-14" stroke="#848484" fill="none" strokeLinecap="round" strokeWidth="3"/></svg>
+      </span>
+    </button>
+    )
+  }
+
   return (
-    <button className={pieceClass(piece, width, length)} onClick={() => leftClickHandler()}
+    <button className={className} onClick={() => leftClickHandler()}
       onContextMenu={() => rightClickHandler()}>
       <span className="number">{displayValue(piece)}</span>
     </button>
