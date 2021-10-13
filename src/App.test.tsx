@@ -142,4 +142,17 @@ describe('App with production board', () => {
     const mines = wrapper.find(Piece).findWhere((n) => n.props()?.piece?.markedAsMine === true);
     expect(mines.length).toBe(10);
   });
+  it('should toggle state.form.paused when \'Pause\' button is clicked', () => {
+    const firstPauseState = store.getState().form.paused;
+    expect(firstPauseState).toBe(false);
+
+    const pauseButton = wrapper.find('#pause');
+    pauseButton.simulate('click');
+    const secondPauseState = store.getState().form.paused;
+    expect(secondPauseState).toBe(true);
+
+    pauseButton.simulate('click');
+    const thirdPauseState = store.getState().form.paused;
+    expect(thirdPauseState).toBe(false);
+  });
 });
