@@ -1,6 +1,5 @@
 import Row from './Row';
 import { useAppSelector } from '../features/hooks';
-import { IInitialState } from '../features/initialState';
 
 const Rows = () => {
   const board = useAppSelector((state) => state?.click?.board);
