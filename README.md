@@ -21,7 +21,9 @@ redux - Same board, different state management.  Uses Redux Hooks and immer.
 
 testing - PR's include coverage reports.
 
-typescript - Complete.
+typescript - Refactors for typescript
+
+forms - Adds a display at the top for # of mines remaining and a form at the bottom to change the board size
 
 ### Work In Progress
 
@@ -45,13 +47,13 @@ typescript - Complete.
 
 * ~~Styling updates to match what 'real' minesweeper looks like when you lose~~ - Complete
 
-* Track 'score' (time to complete)
+* ~~Track 'score' (time to complete)~~ - Merged with Backend
 
 * Add 'Pause' button that covers entire board and stops incrementing time
 
 * Build menu around board in app with stats and forms
 
-* Express/Mongo (REST API) server and username (no auth) for data persistence between sessions
+* Express/Mongo (REST API) server and username (no auth) for data persistence between sessions, Track 'score' (time to complete)
 
 * Add auth for users (plaintext)
 
