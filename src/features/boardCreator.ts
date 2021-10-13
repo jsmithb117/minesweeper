@@ -3,6 +3,7 @@ export interface IPiece {
     isMine: boolean,
     uncovered: boolean,
     markedAsMine: boolean,
+    loser: boolean,
     row: number,
     col: number,
 };
@@ -14,6 +15,7 @@ export const backupPiece: IPiece = {
   isMine: false,
   uncovered: false,
   markedAsMine: false,
+  loser: false,
   row: 0,
   col: 0,
 };

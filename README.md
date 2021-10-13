@@ -25,8 +25,6 @@ typescript - Complete.
 
 ### Work In Progress
 
-####Form - Display on top(MinesRemaining, ResetBoard, Time), form on bottom(Create new board: Beginner, Intermediate, Expert, Custom).
-
 ### Todo:
 
 * ~~More Testing~~ Always more testing.
@@ -45,7 +43,7 @@ typescript - Complete.
 
 * ~~Form for reset board and Multiple board sizes, maybe X*Y board or easy/medium/hard.~~ - Complete
 
-* Styling updates to match what 'real' minesweeper looks like when you lose
+* ~~Styling updates to match what 'real' minesweeper looks like when you lose~~ - Complete
 
 * Track 'score' (time to complete)
 
