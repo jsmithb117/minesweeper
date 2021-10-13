@@ -5,6 +5,7 @@ type TPiece = {
   isMine: boolean,
   uncovered: boolean,
   markedAsMine: boolean,
+  loser: boolean,
   row: number,
   col: number,
 };
@@ -15,6 +16,7 @@ describe('pieceClass', () => {
     isMine: false,
     uncovered: false,
     markedAsMine: false,
+    loser: false,
     row: 0,
     col: 0,
   };
@@ -55,6 +57,6 @@ describe('pieceClass', () => {
     expect(pieceClass({ ...piece, markedAsMine: true }, 10, 10)).toBe('piece width10 length10 covered mine');
   });
   it('returns className for an uncovered Piece that is marked as a mine', () => {
-    expect(pieceClass({ ...piece, uncovered: true, markedAsMine: true }, 10, 10)).toBe('piece width10 length10');
+    expect(pieceClass({ ...piece, uncovered: true, markedAsMine: true }, 10, 10)).toBe('piece width10 length10 mine');
   });
 });

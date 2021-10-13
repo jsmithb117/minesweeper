@@ -44,6 +44,7 @@ const clickReducer = (state: IClickState | null = null, action: IFormBoard | ICl
       }
       if (piece.isMine && !piece.markedAsMine) {
         draft.loss = true;
+        draft.board[piece.row][piece.col].loser = true;
         return draft;
       } else if (checkWin(draft.board)) {
         draft.win = true;
