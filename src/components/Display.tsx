@@ -1,6 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../features/hooks';
-import { revertBoard, resetWinLoss, setMinesDisplay, testBoard, pause } from '../features/actionCreators';
+import { revertBoard, resetWinLoss, testBoard } from '../features/clickActionCreators';
+import { setMinesDisplay, pause } from '../features/formActionCreators';
+
 
 const Display = () => {
   const minesDisplay = useAppSelector((state) => state?.form?.minesDisplay);

@@ -3,7 +3,9 @@ import Rows from './components/Rows';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useAppSelector, useAppDispatch } from './features/hooks';
 import { useEffect } from 'react';
-import { incrementTime, newBoardAction, setMinesDisplay, updateOriginalBoard } from './features/actionCreators';
+import { newBoardAction, updateOriginalBoard} from './features/clickActionCreators';
+import { incrementTime, setMinesDisplay } from './features/formActionCreators';
+
 import Form from './components/Form';
 import Display from './components/Display';
 

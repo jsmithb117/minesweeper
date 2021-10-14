@@ -6,21 +6,17 @@ import {
   RESETWINLOSS,
   NEWBOARD,
   UPDATEORIGINALBOARD,
-} from './actionCreators';
+} from './clickActionCreators';
 import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
 import { IClickState } from './initialState';
 import boardCreator, { backupPiece } from './boardCreator';
-import { TESTBOARD } from './actionCreators';
-type actionType = {
-  type: string,
-  payload: {
-    length: number,
-    width: number,
-    mines: number,
-  },
-};
-const clickReducer = (state: IClickState | null = null, action: actionType) => {
+import { TESTBOARD } from './clickActionCreators';
+import TAction from '../interfaces/interfaces';
+
+const clickReducer = (state: IClickState | null = null, action: TAction) => {
+  console.log('action: ', action)
+
   if (action.type === UPDATEORIGINALBOARD) {
     return produce(state, (draft: Draft<IClickState>) => {
       draft.originalBoard = draft.board;
@@ -50,7 +46,7 @@ const clickReducer = (state: IClickState | null = null, action: actionType) => {
     isMine?: boolean,
   };
 
-  const piece: IPayload = action.payload || backupPiece;
+  const piece = action.payload ? action.payload : backupPiece;
   const row = piece.row || 0;
   const col = piece.col || 0;
 
@@ -84,9 +80,12 @@ const clickReducer = (state: IClickState | null = null, action: actionType) => {
   }
   if (action.type === NEWBOARD) {
     return produce(state, (draft: Draft<IClickState>) => {
-      const length = action.payload.length;
-      const width = action.payload.width;
-      const mines = action.payload.mines;
+      let length, width, mines;
+      if (action.payload) {
+        length = action.payload.length;
+        width = action.payload.width;
+        mines = action.payload.mines;
+      }
       draft.board = boardCreator(length, width, mines, false);
       return draft;
     });

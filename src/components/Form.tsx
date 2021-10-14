@@ -4,7 +4,7 @@ import {
   setLength,
   setWidth,
   setMines
-} from '../features/actionCreators';
+} from '../features/formActionCreators';
 
 const Form = () => {
   const dispatch = useDispatch();
