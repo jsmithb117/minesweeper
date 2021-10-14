@@ -149,17 +149,31 @@ const click = (piece: IPiece, isLeftClick: boolean) => {
   const row: boolean = piece.hasOwnProperty('row');
   const col: boolean = piece.hasOwnProperty('col');
   const requisites = val && uncovered && markedAsMine && row && col;
-  let action: IClickPayload = {
+  interface actionType {
+    type: string,
+    payload: {
+      val: number,
+      isMine: boolean,
+      uncovered: boolean,
+      markedAsMine: boolean,
+      loser: boolean,
+      row: number,
+      col: number,
+    }
+  }
+  let action: actionType = {
     type: '',
     payload: piece,
   };
   if (requisites && isLeftClick) {
     action.type = LEFTCLICK;
+    console.log('action: ', action);
     return action;
   };
   if (requisites) {
     action.type = RIGHTCLICK;
   }
+  console.log('action: ', action);
   return action;
 }
 
