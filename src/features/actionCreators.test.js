@@ -89,7 +89,6 @@ describe('actionCreators', () => {
     const action = incrementTime();
     expect(action).toEqual({
       type: INCREMENTTIME,
-      payload: 0,
     });
   });
 });

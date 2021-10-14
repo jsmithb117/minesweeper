@@ -1,4 +1,4 @@
-import produce, { Draft } from 'immer';
+import produce from 'immer';
 import {
   RESETTIME,
   INCREMENTTIME,
@@ -10,39 +10,10 @@ import {
   SETMINESDISPLAY,
   PAUSE
 } from './formActionCreators';
-
+import TAction from '../interfaces/interfaces';
 import { IFormState } from './initialState';
 
-interface IFormNoPayload {
-  type: string,
-};
-interface IFormNumberPayload {
-  type: string,
-  payload: number,
-};
-
-interface IFormBaseTest {
-  type: string,
-};
-
-interface IFormNumberPayloadTest extends IFormBaseTest{
-  payload: number,
-};
-
-interface IFormObjectPayloadTest extends IFormBaseTest {
-  payload: {
-    length: number,
-    width: number,
-    mines: number,
-  },
-};
-
-// type IFormPayloadTest = IFormNumberPayloadTest| IFormObjectPayloadTest | (IFormNumberPayloadTest & IFormObjectPayloadTest);
-type actions =
-IFormNumberPayloadTest & IFormObjectPayloadTest & IFormNoPayload
-
-const formReducer = (state: IFormState | null = null, action: actions) => {
-  // console.log('action: ', action);
+const formReducer = (state: IFormState | null = null, action: TAction) => {
   if (action.type === RESETTIME) {
     return produce(state, (draft) => {
       if (draft) {
@@ -61,7 +32,7 @@ const formReducer = (state: IFormState | null = null, action: actions) => {
   }
   if (action.type === SETLENGTH) {
     return produce(state, (draft) => {
-      if (draft) {
+      if (draft && typeof action.payload === 'number') {
         draft.length = action.payload;
       }
       return draft;
@@ -70,14 +41,16 @@ const formReducer = (state: IFormState | null = null, action: actions) => {
   if (action.type === SETWIDTH) {
     return produce(state, (draft) => {
       if (draft) {
-        draft.width = action.payload;
+        if (typeof action.payload === 'number') {
+          draft.width = action.payload;
+        }
       }
       return draft;
     });
   }
   if (action.type === SETMINES) {
     return produce(state, (draft) => {
-      if (draft) {
+      if (draft && typeof action.payload === 'number') {
         draft.mines = action.payload
       }
       return draft;
@@ -102,8 +75,8 @@ const formReducer = (state: IFormState | null = null, action: actions) => {
   };
   if (action.type === SETMINESDISPLAY) {
     return produce(state, (draft) => {
-      if (draft) {
-        draft.minesDisplay = action.payload;
+      if (draft && typeof action.payload?.minesDisplay === 'number') {
+        draft.minesDisplay = action.payload.minesDisplay;
       }
       return draft;
     });

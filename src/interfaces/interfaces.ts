@@ -1,7 +1,3 @@
-interface IActionNoPayload {
-  type: string,
-};
-
 interface TAction {
   type: string,
   payload?: {
@@ -19,7 +15,5 @@ interface TAction {
     number?: number,
   },
 };
-
-// type TAction = IActionPayload | IActionNoPayload | (IActionPayload & IActionNoPayload);
 
 export default TAction;

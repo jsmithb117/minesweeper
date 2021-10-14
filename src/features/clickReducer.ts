@@ -15,8 +15,6 @@ import { TESTBOARD } from './clickActionCreators';
 import TAction from '../interfaces/interfaces';
 
 const clickReducer = (state: IClickState | null = null, action: TAction) => {
-  console.log('action: ', action)
-
   if (action.type === UPDATEORIGINALBOARD) {
     return produce(state, (draft: Draft<IClickState>) => {
       draft.originalBoard = draft.board;
@@ -35,16 +33,6 @@ const clickReducer = (state: IClickState | null = null, action: TAction) => {
   if (state?.win || state?.loss) {
     return state;
   }
-  interface IPayload {
-    length?: number,
-    width?: number,
-    mines?: number,
-    row?: number,
-    col?: number,
-    uncovered?: boolean,
-    markedAsMine?: boolean,
-    isMine?: boolean,
-  };
 
   const piece = action.payload ? action.payload : backupPiece;
   const row = piece.row || 0;
