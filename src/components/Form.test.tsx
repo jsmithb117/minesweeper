@@ -121,7 +121,7 @@ test('Custom attribute inputs update state', () => {
       </React.StrictMode>
     </Provider>
   );
-  const firstState = store.getState();
+  const firstForm: any = store.getState().form;
   const submitButton = screen.getByTestId('submit-input');
   const lengthBox = screen.getByTestId('length-input');
   const widthBox = screen.getByTestId('width-input');
@@ -132,12 +132,11 @@ test('Custom attribute inputs update state', () => {
   fireEvent.change(minesBox, { target: { value: '13' } });
   click(submitButton);
 
-  const secondState = store.getState();
-
-  expect(firstState.form.length).toBe(10);
-  expect(firstState.form.width).toBe(10);
-  expect(firstState.form.mines).toBe(10);
-  expect(secondState.form.length).toBe(11);
-  expect(secondState.form.width).toBe(12);
-  expect(secondState.form.mines).toBe(13);
+  const secondForm: any = store.getState().form;
+  expect(firstForm.length).toBe(10);
+  expect(firstForm.width).toBe(10);
+  expect(firstForm.mines).toBe(10);
+  expect(secondForm.length).toBe(11);
+  expect(secondForm.width).toBe(12);
+  expect(secondForm.mines).toBe(13);
 });
