@@ -1,9 +1,9 @@
 import React from 'react'
 import { render, fireEvent, screen } from '@testing-library/react'
-// import '@testing-library/jest-dom'
-
+import { click } from '@testing-library/user-event/dist/click';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+
 import { rootReducer } from '../features/store';
 import initialStateCreator from '../features/initialState';
 import Form from './Form';
@@ -110,4 +110,34 @@ test('updates Form state on \'Expert\' radio select and updates store on submit'
   expect(secondState.form.length).toBe(16);
   expect(secondState.form.width).toBe(30);
   expect(secondState.form.mines).toBe(99);
+});
+
+test('Custom attribute inputs update state', () => {
+  const store = createStore(rootReducer, initialTestState);
+  render(
+    <Provider store={store}>
+      <React.StrictMode>
+        <Form />
+      </React.StrictMode>
+    </Provider>
+  );
+  const firstState = store.getState();
+  const submitButton = screen.getByTestId('submit-input');
+  const lengthBox = screen.getByTestId('length-input');
+  const widthBox = screen.getByTestId('width-input');
+  const minesBox = screen.getByTestId('mines-input');
+
+  fireEvent.change(lengthBox, { target: { value: '11' } });
+  fireEvent.change(widthBox, { target: { value: '12' } });
+  fireEvent.change(minesBox, { target: { value: '13' } });
+  click(submitButton);
+
+  const secondState = store.getState();
+
+  expect(firstState.form.length).toBe(10);
+  expect(firstState.form.width).toBe(10);
+  expect(firstState.form.mines).toBe(10);
+  expect(secondState.form.length).toBe(11);
+  expect(secondState.form.width).toBe(12);
+  expect(secondState.form.mines).toBe(13);
 });

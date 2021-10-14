@@ -57,6 +57,7 @@ const Form = () => {
           <label>
             <input
               type="radio"
+              id="beginner"
               value={beginner}
               checked={selected === beginner}
               onChange={(e) => onRadioChange(e)}
@@ -68,6 +69,7 @@ const Form = () => {
           <label>
             <input
               type="radio"
+              id="default"
               value={defaultVal}
               checked={selected === defaultVal}
               onChange={(e) => onRadioChange(e)}
@@ -79,6 +81,7 @@ const Form = () => {
           <label>
             <input
               type="radio"
+              id="intermediate"
               value={intermediate}
               checked={selected === intermediate}
               onChange={onRadioChange}
@@ -90,6 +93,7 @@ const Form = () => {
           <label>
             <input
               type="radio"
+              id="expert"
               value={expert}
               checked={selected === expert}
               onChange={onRadioChange}
@@ -101,6 +105,7 @@ const Form = () => {
           <label>
             <input
               type="radio"
+              id="custom"
               value={custom}
               checked={selected === custom}
               onChange={onRadioChange}
@@ -110,6 +115,8 @@ const Form = () => {
               {"Length:"}
               <input
                 type="number"
+                id="customlength"
+                data-testid="length-input"
                 value={length}
                 min="6"
                 max="100"
@@ -120,6 +127,8 @@ const Form = () => {
               {"Width:"}
               <input
                 type="number"
+                id="customwidth"
+                data-testid="width-input"
                 value={width}
                 min="6"
                 max="100"
@@ -130,6 +139,8 @@ const Form = () => {
               {"Mines:"}
               <input
                 type="number"
+                id="custommines"
+                data-testid="mines-input"
                 value={mines}
                 min="6"
                 max="100"
@@ -141,7 +152,12 @@ const Form = () => {
         <div className="radio selected">
           Selected option is : {selected}
         </div>
-        <button className="submitradio" type="submit">
+        <button
+          className="submitradio"
+          type="submit"
+          id="customsubmit"
+          data-testid="submit-input"
+        >
           Submit
         </button>
       </form>
