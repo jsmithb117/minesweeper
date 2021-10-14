@@ -14,10 +14,10 @@ describe('initialStateCreator', () => {
     expect(initialTestState.click).toHaveProperty('board');
     expect(Array.isArray(initialTestState.click.board)).toBe(true);
     expect(initialTestState.click.board.length).toBe(10);
-    initialTestState.click.board.forEach((row: any, rowIndex: number) => {
+    initialTestState.click.board.forEach((row, rowIndex: number) => {
       expect(Array.isArray(row)).toBe(true);
       expect(row.length).toBe(10);
-      row.forEach((piece: any, colIndex: number) => {
+      row.forEach((piece, colIndex: number) => {
         let shouldBeUncovered = false;
         let shouldBeMarkedAsMine = false;
         if (rowIndex === 2) {

@@ -30,7 +30,7 @@ export interface IFormBoard extends IForm {
 };
 
 export interface IClickPayload extends IForm {
-  payload: number | IPiece,
+  payload: IPiece,
 };
 
 export interface IForm {
@@ -69,7 +69,15 @@ export const setMines = (mines: number) => {
 };
 
 export const newBoardAction = (length: number = 10, width: number = 10, mines: number = 10) => {
-  const action = {
+  type actionType = {
+    type: string,
+    payload: {
+      length: number,
+      width: number,
+      mines: number,
+    },
+  };
+  const action: actionType = {
     type: NEWBOARD,
     payload: { length, width, mines },
     };
