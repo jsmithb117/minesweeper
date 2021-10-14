@@ -1,5 +1,3 @@
-import clickReducer from './clickReducer';
-
 import React from 'react';
 import { Provider } from 'react-redux';
 import Enzyme, { mount, ReactWrapper } from 'enzyme';
@@ -9,8 +7,7 @@ import App from '../App';
 import initialStateCreator from './initialState';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Piece from '../components/Piece';
-import { newBoardAction } from './actionCreators';
-import { nodeModuleNameResolver } from 'typescript';
+
 
 const initialTestState: any = initialStateCreator(10,10,10,true);
 Enzyme.configure({ adapter: new Adapter() });
