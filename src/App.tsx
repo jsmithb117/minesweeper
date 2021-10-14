@@ -20,6 +20,7 @@ function App(props: { test: boolean }) {
 
   const boardColor = win ? 'green'
     : loss ? 'red'
+    : paused ? 'blue'
     : 'white';
 
   const className = 'app minesweeper'.concat(boardColor);
