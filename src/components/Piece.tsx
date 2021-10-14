@@ -11,12 +11,23 @@ interface IProps {
   win: boolean | undefined,
 };
 
+interface IState {
+  form: {
+    width: number,
+    length: number,
+    paused: boolean,
+  },
+  click: {
+    loss: boolean,
+  }
+}
+
 const Piece = ({ piece }: IProps) => {
   const dispatch = useAppDispatch();
-  const width = useSelector((state: any) => state.form.width);
-  const length = useSelector((state: any) => state.form.length);
-  const loss = useSelector((state: any) => state.click.loss);
-  const paused = useSelector((state: any) => state.form.paused);
+  const width = useSelector((state: IState) => state.form.width);
+  const length = useSelector((state: IState) => state.form.length);
+  const loss = useSelector((state: IState) => state.click.loss);
+  const paused = useSelector((state: IState) => state.form.paused);
 
   const leftClickHandler = () => {
     dispatch(leftClick(piece));

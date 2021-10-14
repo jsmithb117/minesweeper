@@ -30,7 +30,7 @@ export interface IFormBoard extends IForm {
 };
 
 export interface IClickPayload extends IForm {
-  payload: any,
+  payload: number | IPiece,
 };
 
 export interface IForm {

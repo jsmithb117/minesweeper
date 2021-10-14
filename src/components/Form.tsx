@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   setLength,
@@ -19,6 +19,12 @@ const Form = () => {
   const [width, setStateWidth] = useState(10);
   const [mines, setStateMines] = useState(10);
 
+  interface event {
+    target: {
+      value: string,
+    }
+  };
+
   const formSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
 
@@ -26,7 +32,7 @@ const Form = () => {
     dispatch(setWidth(width));
     dispatch(setMines(mines));
   }
-  const onRadioChange = (e: any) => {
+  const onRadioChange = (e: event) => {
     const val = e.target.value;
     if (val === beginner) {
       setStateLength(8);

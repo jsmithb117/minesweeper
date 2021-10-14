@@ -8,7 +8,7 @@ import { rootReducer } from '../features/store';
 import initialStateCreator from '../features/initialState';
 import Form from './Form';
 
-const initialTestState: any = initialStateCreator(10, 10, 10, true);
+const initialTestState = initialStateCreator(10, 10, 10, true);
 
 test('updates Form state on \'Beginner\' radio select and updates store on submit', async () => {
   const store = createStore(rootReducer, initialTestState);
