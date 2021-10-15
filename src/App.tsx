@@ -5,7 +5,6 @@ import { useAppSelector, useAppDispatch } from './features/hooks';
 import { useEffect } from 'react';
 import { newBoardAction, updateOriginalBoard} from './features/clickActionCreators';
 import { incrementTime, setMinesDisplay } from './features/formActionCreators';
-
 import Form from './components/Form';
 import Display from './components/Display';
 
@@ -13,10 +12,10 @@ function App(props: { test: boolean }) {
   document.addEventListener('contextmenu', event => event.preventDefault());
   const win = useAppSelector((state) => state?.click?.win);
   const loss = useAppSelector((state) => state?.click?.loss);
-  const length = useAppSelector((state) => state.form?.length);
-  const width = useAppSelector((state) => state.form?.width);
-  const mines = useAppSelector((state) => state.form?.mines);
-  const paused = useAppSelector((state) => state.form?.paused);
+  const length = useAppSelector((state: { form: { length: number }}) => state.form.length);
+  const width = useAppSelector((state: { form: { width: number }}) => state.form.width);
+  const mines = useAppSelector((state: { form: { mines: number }}) => state.form.mines);
+  const paused = useAppSelector((state: { form: { paused: boolean }}) => state.form.paused);
 
   const dispatch = useAppDispatch();
 

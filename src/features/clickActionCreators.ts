@@ -1,5 +1,4 @@
 import { IPiece } from './boardCreator';
-import TAction from '../interfaces/interfaces';
 
 export const LEFTCLICK: string = 'LEFTCLICK';
 export const RIGHTCLICK: string = 'RIGHTCLICK';
@@ -9,8 +8,8 @@ export const RESETWINLOSS: string = 'RESETWINLOSS';
 export const UPDATEORIGINALBOARD: string = 'UPDATEORIGINALBOARD';
 export const TESTBOARD = 'TESTBOARD';
 
-export const newBoardAction = (length: number = 10, width: number = 10, mines: number = 10) => {
-  const action: TAction = {
+export const newBoardAction = (length = 10, width = 10, mines = 10) => {
+  const action = {
     type: NEWBOARD,
     payload: { length, width, mines },
     };
@@ -18,20 +17,20 @@ export const newBoardAction = (length: number = 10, width: number = 10, mines: n
 };
 
 export const revertBoard = () => {
-  const action: TAction  = {
+  const action  = {
     type: REVERTBOARD,
   };
   return action;
 };
 
 export const resetWinLoss = () => {
-  const action: TAction = {
+  const action = {
     type: RESETWINLOSS,
   };
   return action;
 };
 export const updateOriginalBoard = () => {
-  const action: TAction = {
+  const action = {
     type: UPDATEORIGINALBOARD,
   };
   return action;
@@ -47,7 +46,7 @@ interface Piece {
   col: number,
 };
 
-const click = (piece: Piece, isLeftClick: boolean) => {
+const click = (piece: IPiece, isLeftClick: boolean) => {
   const val: boolean = piece.hasOwnProperty('val');
   const uncovered: boolean = piece.hasOwnProperty('uncovered');
   const markedAsMine: boolean = piece.hasOwnProperty('markedAsMine');
@@ -55,25 +54,13 @@ const click = (piece: Piece, isLeftClick: boolean) => {
   const col: boolean = piece.hasOwnProperty('col');
   const requisites = val && uncovered && markedAsMine && row && col;
 
-  interface formActionType {
-    type: string,
-    payload: {
-      val: number,
-      isMine: boolean,
-      uncovered: boolean,
-      markedAsMine: boolean,
-      loser: boolean,
-      row: number,
-      col: number,
-    },
-  };
-
-  let action: formActionType = {
+  let action = {
     type: '',
     payload: piece,
   };
   if (requisites && isLeftClick) {
     action.type = LEFTCLICK;
+    action.payload = piece;
     return action;
   };
   if (requisites) {
@@ -83,12 +70,11 @@ const click = (piece: Piece, isLeftClick: boolean) => {
 }
 
 export const testBoard = () => {
-  const action: TAction = {
+  const action = {
     type: TESTBOARD,
   };
   return action;
 };
 
 export const leftClick = (piece: Piece) => click(piece, true);
-
 export const rightClick = (piece: IPiece) => click(piece, false);

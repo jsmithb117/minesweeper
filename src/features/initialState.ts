@@ -18,8 +18,21 @@ export interface IFormState {
 };
 
 export interface IInitialState {
-  click: IClickState,
-  form: IFormState,
+  click: {
+    piecesMarkedAsMine: number,
+    board: Board,
+    originalBoard: Board,
+    win: boolean,
+    loss: boolean,
+  },
+  form: {
+    minesDisplay: number,
+    time: number,
+    length: number,
+    width: number,
+    mines: number,
+    paused: boolean,
+  },
 };
 
 const initialStateCreator = (

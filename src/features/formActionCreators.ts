@@ -1,4 +1,9 @@
-import TAction from '../interfaces/interfaces';
+import { IActionMinesDisplay,
+  IActionNoPayload,
+  IActionLengthPayload,
+  IActionWidthPayload,
+  IActionMinesPayload,
+} from '../interfaces/interfaces';
 
 export const RESETTIME: string = 'RESETTIME';
 export const SETLENGTH: string = 'SETLENGTH';
@@ -11,14 +16,14 @@ export const SETMINESDISPLAY: string =  'SETMINESDISPLAY';
 export const PAUSE = 'PAUSE';
 
 export const resetTime = () => {
-  const action: TAction = {
+  const action: IActionNoPayload = {
     type: RESETTIME
   };
   return action;
 };
 
 export const setLength = (length: number) => {
-  const action: TAction = {
+  const action: IActionLengthPayload = {
     type: SETLENGTH,
     payload: {
       length,
@@ -28,7 +33,7 @@ export const setLength = (length: number) => {
 };
 
 export const setWidth = (width: number) => {
-  const action: TAction = {
+  const action: IActionWidthPayload = {
     type: SETWIDTH,
     payload: {
       width
@@ -38,7 +43,7 @@ export const setWidth = (width: number) => {
 };
 
 export const setMines = (mines: number) => {
-  const action: TAction = {
+  const action: IActionMinesPayload = {
     type: SETMINES,
     payload: {
       mines
@@ -48,28 +53,28 @@ export const setMines = (mines: number) => {
 };
 
 export const incrementTime = () => {
-  const action: TAction  = {
+  const action: IActionNoPayload  = {
     type: INCREMENTTIME,
   };
   return action;
 };
 
 export const incrementMinesDisplay = () => {
-  const action: TAction = {
+  const action: IActionNoPayload = {
     type: INCREMENTMINESDISPLAY,
   };
   return action;
 };
 
 export const decrementMinesDisplay = () => {
-  const action: TAction = {
+  const action: IActionNoPayload = {
     type: DECREMENTMINESDISPLAY,
   };
   return action;
 };
 
 export const setMinesDisplay = (minesDisplay: number = 0) => {
-  const action: TAction = {
+  const action: IActionMinesDisplay = {
     type: SETMINESDISPLAY,
     payload: {
       minesDisplay
@@ -79,7 +84,7 @@ export const setMinesDisplay = (minesDisplay: number = 0) => {
 };
 
 export const pause = () => {
-  const action: TAction = {
+  const action: IActionNoPayload = {
     type: PAUSE,
   };
   return action;

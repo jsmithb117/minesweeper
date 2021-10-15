@@ -90,7 +90,7 @@ const Form = () => {
               id="intermediate"
               value={intermediate}
               checked={selected === intermediate}
-              onChange={onRadioChange}
+              onChange={(e) => onRadioChange(e)}
             />
             {intermediate}
           </label>
@@ -102,7 +102,7 @@ const Form = () => {
               id="expert"
               value={expert}
               checked={selected === expert}
-              onChange={onRadioChange}
+              onChange={(e) => onRadioChange(e)}
             />
             {expert}
           </label>

@@ -12,9 +12,8 @@ import checkWin from './checkWin';
 import { IClickState } from './initialState';
 import boardCreator, { backupPiece } from './boardCreator';
 import { TESTBOARD } from './clickActionCreators';
-import TAction from '../interfaces/interfaces';
 
-const clickReducer = (state: IClickState | null = null, action: TAction) => {
+const clickReducer = (state: IClickState | null = null, action: any) => {
   if (action.type === UPDATEORIGINALBOARD) {
     return produce(state, (draft: Draft<IClickState>) => {
       draft.originalBoard = draft.board;
