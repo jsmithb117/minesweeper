@@ -34,6 +34,35 @@ test('updates Form state on \'Beginner\' radio select and updates store on submi
   expect(secondState.form.mines).toBe(8);
 });
 
+test('updates Form state on \'Default\' radio select and updates store on submit', async () => {
+  const store = createStore(rootReducer, initialTestState);
+  render(
+    <Provider store={store}>
+      <React.StrictMode>
+        <Form />
+      </React.StrictMode>
+    </Provider>
+  );
+  const firstState: any = store.getState();
+  expect(firstState.form.length).toBe(10);
+  expect(firstState.form.width).toBe(10);
+  expect(firstState.form.mines).toBe(10);
+
+  const bButton = screen.getByLabelText('Beginner')
+  const submit = screen.getByText('Submit')
+  fireEvent.click(bButton);
+  fireEvent.click(submit);
+
+  const DButton = screen.getByLabelText('Default')
+  fireEvent.click(DButton);
+  fireEvent.click(submit);
+
+  const secondState: any = store.getState();
+  expect(secondState.form.length).toBe(10);
+  expect(secondState.form.width).toBe(10);
+  expect(secondState.form.mines).toBe(10);
+});
+
 test('updates Form state on \'Intermediate\' radio select and updates store on submit', () => {
   const store: any = createStore(rootReducer, initialTestState);
   render(
