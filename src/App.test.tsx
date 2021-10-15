@@ -9,7 +9,7 @@ import initialStateCreator from './features/initialState';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Piece from './components/Piece';
 
-const initialTestState = initialStateCreator(10,10,10,true);
+const initialTestState: any = initialStateCreator(10,10,10,true);
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('App with testBoard', () => {
