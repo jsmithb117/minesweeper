@@ -1,4 +1,3 @@
-// import { clickReducer, formReducer}  from './reducer';
 import clickReducer from './clickReducer';
 import formReducer from './formReducer';
 import { createStore, combineReducers } from 'redux';

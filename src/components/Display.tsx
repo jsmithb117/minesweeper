@@ -1,11 +1,13 @@
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../features/hooks';
-import { revertBoard, resetWinLoss, setMinesDisplay, testBoard } from '../features/actionCreators';
+import { revertBoard, resetWinLoss, testBoard } from '../features/clickActionCreators';
+import { setMinesDisplay, pause } from '../features/formActionCreators';
+import { DisplayState } from '../interfaces/interfaces';
 
 const Display = () => {
-  const minesDisplay = useAppSelector((state) => state?.form?.minesDisplay);
-  const mines = useAppSelector((state) => state?.form?.mines);
-  const time = useAppSelector((state) => state?.form?.time);
+  const minesDisplay = useAppSelector((state: DisplayState) => state.form.minesDisplay);
+  const mines = useAppSelector((state: DisplayState) => state.form.mines);
+  const time = useAppSelector((state: DisplayState) => state.form.time);
   const dispatch = useDispatch();
 
   const resetButtonHandler = () => {
@@ -16,7 +18,11 @@ const Display = () => {
 
   const testBoardHandler = () => {
     dispatch(testBoard());
-  }
+  };
+  const pauseHandler = () => {
+    dispatch(pause());
+  };
+
   return (
     <div className="appchild display">
       <span className="minesremaining">
@@ -35,6 +41,9 @@ const Display = () => {
       </span>
       <button id="testBoard" onClick={testBoardHandler}>
         Test Board
+      </button>
+      <button id="pause" onClick={pauseHandler}>
+        Pause
       </button>
     </div>
   );

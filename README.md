@@ -25,6 +25,8 @@ typescript - Refactors for typescript
 
 forms - Adds a display at the top for # of mines remaining and a form at the bottom to change the board size
 
+pause - Adds the ability to cover the whole board and pause time.
+
 ### Work In Progress
 
 ### Todo:
@@ -49,9 +51,7 @@ forms - Adds a display at the top for # of mines remaining and a form at the bot
 
 * ~~Track 'score' (time to complete)~~ - Merged with Backend
 
-* Add 'Pause' button that covers entire board and stops incrementing time
-
-* Build menu around board in app with stats and forms
+* ~~Add 'Pause' button that covers entire board and stops incrementing time~~ - Complete
 
 * Express/Mongo (REST API) server and username (no auth) for data persistence between sessions, Track 'score' (time to complete)
 
@@ -101,3 +101,36 @@ Lesson learned:  Use Typescript from the beginning and/or just don't make silly 
 ### Problems using the newest version of React with Enzyme
 
 I have been using Enzyme to render my tests.  There is no adapter for React17 for Enzyme yet, so I am using a community version that claims to work on React17.  Most features work fine, however, it seems that there may be an issue selecting radio buttons.  No matter what type of event I simulate, the onRadioChange method of the Form component will not execute.  After many hours assuming the problem was on my end (this may still be true), I changed my assumption that the problem was with my code and refactored to use @testing-library/react, to render and test my Form component.  This isn't a very interesting problem, but it's a problem worth keeping in mind.  It's still a safe bet to approach a bug as if the problem is 100% your fault, but there are times when you're doing what you're supposed to be doing, but one of your dependencies has a bug in it.  I may make a minimum reproducible example and see what StackOverflow thinks.
+
+### Typescript...
+This one's a little different than the others.  I was able to solve the others and write about it.  I haven't yet figured this one out so I'm writing about a problem without writing about the solution.
+
+I've tried to only use the any type temporarily until I am able to code it properly, but I've found a situation where I'm stuck.  clickReducer takes in a state (slice) and an action.  The state is easy to type but I'm having trouble with the action.
+
+There are many different shapes of actions, and I'm having trouble defining a type that will work with all of them, specifically, my problem is in my understanding of how to use Unions and Intersections.  I've tried the following that works in some cases, but not in others:
+interface Type1  {
+  type: string,
+};
+interface Type2 extends Type1 {
+    payload: { length: number }
+};
+interface Type3 extends Type1 {
+    payload: { width: number }
+};
+
+For Type3, TS expects: { action: 'somestring', width: 10 };
+If I do a Union of the three (type Type4 = Type1 | Type2 | Type3), it would expect { action: 'somestring' }, which is not what I want.
+If I do an Intersection of the three, it would expect { length: 10, width: 10 }, which is also not what I want.
+If I were to do a Union of the three and the Intersection of the three (type Type4 = Type1 | Type2 | Type3 | (Type1 & Type2 & Type 3)), it would expect { action: 'somestring', payload: {length: 10, width: 10}}, which is again not what I want.
+
+I would like the payload to either be { length: number } or { width: number }.
+I've even tried to use optional properties like:
+{ type: string,
+  payload?: {
+    width?: number,
+    length?: number
+  }
+}
+but again, this doesn't work.  The only thing that I can think of that would work is to add all properties to all actions and only use the properties that I need but that just seems wrong.
+
+Until I solve this problem, I'm going to type the actions as 'any' in the reducers.  There's also another any type in store.ts, but that's a problem for another day.

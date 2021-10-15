@@ -1,21 +1,23 @@
 import {
   LEFTCLICK,
   RIGHTCLICK,
+  NEWBOARD,
+  leftClick,
+  rightClick,
+  newBoardAction,
+} from './clickActionCreators';
+import {
   RESETTIME,
   SETLENGTH,
   SETWIDTH,
   SETMINES,
-  NEWBOARD,
   INCREMENTTIME,
-  leftClick,
-  rightClick,
   resetTime,
   setLength,
   setWidth,
   setMines,
-  newBoardAction,
   incrementTime,
-} from './actionCreators';
+} from './formActionCreators';
 
 describe('actionCreators', () => {
   it('should create a LEFTCLICK action in the proper format', () => {
@@ -63,16 +65,16 @@ describe('actionCreators', () => {
     expect(action).toEqual({ type: RESETTIME });
   });
   it('should create a setLength action in the proper format', () => {
-    const action = setLength();
-    expect(action).toEqual({ type: SETLENGTH });
+    const action = setLength(11);
+    expect(action).toEqual({ type: SETLENGTH, payload: { length: 11 } });
   });
   it('should create a setWidth action in the proper format', () => {
-    const action = setWidth();
-    expect(action).toEqual({ type: SETWIDTH });
+    const action = setWidth(12);
+    expect(action).toEqual({ type: SETWIDTH, payload: { width: 12 } });
   });
   it('should create a setMines action in the proper format', () => {
-    const action = setMines();
-    expect(action).toEqual({ type: SETMINES });
+    const action = setMines(13);
+    expect(action).toEqual({ type: SETMINES, payload: { mines: 13 } });
   });
   it('should create a newBoardAction action in the proper format', () => {
     const action = newBoardAction(10, 10, 10);
@@ -89,7 +91,6 @@ describe('actionCreators', () => {
     const action = incrementTime();
     expect(action).toEqual({
       type: INCREMENTTIME,
-      payload: 0,
     });
   });
 });

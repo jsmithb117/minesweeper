@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   setLength,
   setWidth,
   setMines
-} from '../features/actionCreators';
+} from '../features/formActionCreators';
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -19,6 +19,12 @@ const Form = () => {
   const [width, setStateWidth] = useState(10);
   const [mines, setStateMines] = useState(10);
 
+  interface event {
+    target: {
+      value: string,
+    }
+  };
+
   const formSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
 
@@ -26,7 +32,7 @@ const Form = () => {
     dispatch(setWidth(width));
     dispatch(setMines(mines));
   }
-  const onRadioChange = (e: any) => {
+  const onRadioChange = (e: event) => {
     const val = e.target.value;
     if (val === beginner) {
       setStateLength(8);
@@ -57,6 +63,7 @@ const Form = () => {
           <label>
             <input
               type="radio"
+              id="beginner"
               value={beginner}
               checked={selected === beginner}
               onChange={(e) => onRadioChange(e)}
@@ -68,6 +75,7 @@ const Form = () => {
           <label>
             <input
               type="radio"
+              id="default"
               value={defaultVal}
               checked={selected === defaultVal}
               onChange={(e) => onRadioChange(e)}
@@ -79,9 +87,10 @@ const Form = () => {
           <label>
             <input
               type="radio"
+              id="intermediate"
               value={intermediate}
               checked={selected === intermediate}
-              onChange={onRadioChange}
+              onChange={(e) => onRadioChange(e)}
             />
             {intermediate}
           </label>
@@ -90,9 +99,10 @@ const Form = () => {
           <label>
             <input
               type="radio"
+              id="expert"
               value={expert}
               checked={selected === expert}
-              onChange={onRadioChange}
+              onChange={(e) => onRadioChange(e)}
             />
             {expert}
           </label>
@@ -101,6 +111,7 @@ const Form = () => {
           <label>
             <input
               type="radio"
+              id="custom"
               value={custom}
               checked={selected === custom}
               onChange={onRadioChange}
@@ -110,6 +121,8 @@ const Form = () => {
               {"Length:"}
               <input
                 type="number"
+                id="customlength"
+                data-testid="length-input"
                 value={length}
                 min="6"
                 max="100"
@@ -120,6 +133,8 @@ const Form = () => {
               {"Width:"}
               <input
                 type="number"
+                id="customwidth"
+                data-testid="width-input"
                 value={width}
                 min="6"
                 max="100"
@@ -130,6 +145,8 @@ const Form = () => {
               {"Mines:"}
               <input
                 type="number"
+                id="custommines"
+                data-testid="mines-input"
                 value={mines}
                 min="6"
                 max="100"
@@ -141,7 +158,12 @@ const Form = () => {
         <div className="radio selected">
           Selected option is : {selected}
         </div>
-        <button className="submitradio" type="submit">
+        <button
+          className="submitradio"
+          type="submit"
+          id="customsubmit"
+          data-testid="submit-input"
+        >
           Submit
         </button>
       </form>

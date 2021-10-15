@@ -14,11 +14,25 @@ export interface IFormState {
   length: number,
   width: number,
   mines: number,
+  paused: boolean,
 };
 
 export interface IInitialState {
-  click: IClickState,
-  form: IFormState,
+  click: {
+    piecesMarkedAsMine: number,
+    board: Board,
+    originalBoard: Board,
+    win: boolean,
+    loss: boolean,
+  },
+  form: {
+    minesDisplay: number,
+    time: number,
+    length: number,
+    width: number,
+    mines: number,
+    paused: boolean,
+  },
 };
 
 const initialStateCreator = (
@@ -41,6 +55,7 @@ const initialStateCreator = (
       length: 10,
       width: 10,
       mines: 10,
+      paused: false,
     }
   }
   return state;
