@@ -25,6 +25,8 @@ typescript - Refactors for typescript
 
 forms - Adds a display at the top for # of mines remaining and a form at the bottom to change the board size
 
+pause - Adds the ability to cover the whole board and pause time.
+
 ### Work In Progress
 
 ### Todo:
@@ -49,9 +51,7 @@ forms - Adds a display at the top for # of mines remaining and a form at the bot
 
 * ~~Track 'score' (time to complete)~~ - Merged with Backend
 
-* Add 'Pause' button that covers entire board and stops incrementing time
-
-* Build menu around board in app with stats and forms
+* ~~Add 'Pause' button that covers entire board and stops incrementing time~~ - Complete
 
 * Express/Mongo (REST API) server and username (no auth) for data persistence between sessions, Track 'score' (time to complete)
 
