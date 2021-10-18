@@ -48,3 +48,26 @@ const HighScores = mongoose.model('HighScores', highScoresSchema);
 //postCompletedBoard
 //  update highDefaultScores as necessary
 //  return highDefaultScores
+
+
+
+
+export const postLogin = ({ username, password }) => {
+  return new Promise((resolve, reject) => {
+    resolve(
+      Users.findOne({ username: username })
+      .then((dbResponse) => {
+        return dbResponse;
+      })
+    );
+    reject(`Error finding username:  ${username}`);
+  });
+};
+
+export const createLogin = (user) => {
+  return new Promise((resolve, reject) => {
+    const newUser = newUserCreator(user);
+    resolve(Users.create(newUser));
+    reject('Error creating new user');
+  });
+};

@@ -36,6 +36,31 @@ app.use(bodyParser.json());
 //     seconds: 26,
 //     date: new Date(),
 //   }
+app.post('/insecurelogin', (req, res) => {
+  postLogin(req.body)
+    .then((dbResponse) => {
+      if (!dbResponse) {
+        // console.log('creating user');
+        createLogin(req.body)
+          .then((newUserResponse) => {
+            // console.log('newUserResponse: ', newUserResponse);
+            res.status(201).send(newUserResponse);
+          })
+      }
+      if (dbResponse && req.body.password === dbResponse.plainTextPassword) {
+        // console.log('user exists')
+        res.send(dbResponse);
+      }
+      if (dbResponse && req.body.password !== dbResponse.plainTextPassword) {
+        // console.log('incorrect password')
+        res.sendStatus(401);
+      }
+    })
+    .catch((err) => {
+      console.error('Error in /insecurelogin: ', err);
+      res.status(400).send(err);
+    });
+});
 
 
 app.get('/test', (req, res) => {
