@@ -125,7 +125,7 @@ const Form = () => {
                 data-testid="length-input"
                 value={length}
                 min="6"
-                max="100"
+                max="30"
                 onChange={(e) => setStateLength(parseInt(e.target.value))}
               />
             </div>
@@ -137,7 +137,7 @@ const Form = () => {
                 data-testid="width-input"
                 value={width}
                 min="6"
-                max="100"
+                max="30"
                 onChange={(e) => setStateWidth(parseInt(e.target.value))}
               />
             </div>
@@ -149,7 +149,7 @@ const Form = () => {
                 data-testid="mines-input"
                 value={mines}
                 min="6"
-                max="100"
+                max="99"
                 onChange={(e) => setStateMines(parseInt(e.target.value))}
               />
             </div>

@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "minesweeper",
   "version": "0.1.0",
   "private": true,
@@ -10,22 +11,25 @@
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
     "@types/react-helmet": "^6.1.2",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
     "immer": "^8.0.1",
+    "mongoose": "^6.0.11",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet-async": "^1.1.2",
     "react-redux": "^7.2.5",
     "react-scripts": "4.0.3",
     "redux": "^4.1.1",
-    "redux-thunk": "^2.3.0",
-    "typescript": "^4.4.3"
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "coverage": "npm test -- --coverage --watchAll=false"
+    "coverage": "npm test -- --coverage --watchAll=false",
+    "startserver": "nodemon ./server/server.js"
   },
   "eslintConfig": {
     "extends": [
@@ -50,6 +54,8 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.3.0",
     "@types/enzyme": "^3.10.9",
+    "@types/express": "^4.17.13",
+    "@types/mongoose": "^5.11.97",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
     "chromedriver": "^93.0.1",
     "enzyme": "^3.11.0",
