@@ -29,6 +29,8 @@ pause - Adds the ability to cover the whole board and pause time.
 
 ### Work In Progress
 
+Working on Express server and MongoDB to persist and render 'high scores'
+
 ### Todo:
 
 * ~~More Testing~~ Always more testing.
@@ -53,7 +55,7 @@ pause - Adds the ability to cover the whole board and pause time.
 
 * ~~Add 'Pause' button that covers entire board and stops incrementing time~~ - Complete
 
-* Express/Mongo (REST API) server and username (no auth) for data persistence between sessions, Track 'score' (time to complete)
+* Express/Mongo (REST API) server and username (plaintext auth) for data persistence between sessions, Track 'score' (time to complete)
 
 * Add auth for users (plaintext)
 
