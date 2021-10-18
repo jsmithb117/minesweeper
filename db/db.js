@@ -50,7 +50,26 @@ const HighScores = mongoose.model('HighScores', highScoresSchema);
 //  return highDefaultScores
 
 
+export const getBeginnerHighScores = () => {
+  return new Promise((resolve, reject) => {
+    resolve(HighScores.findOne({ highDefaultScores: 'beginner' }));
+    reject('Error finding Beginner high scores');
+  });
+};
 
+export const getIntermediateHighScores = () => {
+  return new Promise((resolve, reject) => {
+    resolve(HighScores.findOne({ highDefaultScores: 'intermediate' }));
+    reject('Error finding Intermediate high scores');
+  });
+};
+
+export const getExpertHighScores = () => {
+  return new Promise((resolve, reject) => {
+    resolve(HighScores.findOne({ highDefaultScores: 'expert' }));
+    reject('Error finding Expert high scores');
+  });
+};
 
 export const postLogin = ({ username, password }) => {
   return new Promise((resolve, reject) => {
@@ -71,3 +90,21 @@ export const createLogin = (user) => {
     reject('Error creating new user');
   });
 };
+
+export const postCompletedBoard = ({ username, difficulty, seconds, date }) => {
+  return new Promise((resolve, reject) => {
+    resolve(
+      Users.updateOne({ username }, {
+        allDefaultScores: {
+          [difficulty]: { $push: { seconds, date } }
+        }
+      }, )
+      .then((dbResponse) => {
+        console.log('dbResponse: ', dbResponse);
+        return dbResponse;
+      })
+      .catch((err) => new Error(err.toString()))
+    );
+    reject('Error updating completed board');
+  })
+}
