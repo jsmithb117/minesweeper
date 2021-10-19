@@ -3,43 +3,37 @@ import mongoose from 'mongoose';
 export const usersSchema = new mongoose.Schema({
   username: String,
   plainTextPassword: String,
-  highestDefaultScores: {
-    beginner: {
-      seconds: Number,
-      date: Date,
-    },
-    intermediate: {
-      seconds: Number,
-      date: Date,
-    },
-    expert: {
-      seconds: Number,
-      date: Date,
-    },
+  best_beginner_score: {
+    username: String,
+    seconds: Number,
+    date: Date,
   },
-  allDefaultScores: {
-    beginner: [{
-      username: String,
-      seconds: Number,
-      date: Date,
-    }],
-    intermediate: [{
-      username: String,
-      seconds: Number,
-      date: Date,
-    }],
-    expert: [{
-      username: String,
-      seconds: Number,
-      date: Date,
-    }],
+  best_intermediate_score: {
+    username: String,
+    seconds: Number,
+    date: Date,
   },
-  numberOfDefaultGamesPlayed: {
-    beginner: Number,
-    intermediate: Number,
-    expert: Number,
+  best_expert_score: {
+    username: String,
+    seconds: Number,
+    date: Date,
   },
-  totalNumberOfGamesPlayed: Number,
+  beginner_scores: [{
+    username: String,
+    seconds: Number,
+    date: Date,
+  }],
+  intermediate_scores: [{
+    username: String,
+    seconds: Number,
+    date: Date,
+  }],
+  expert_scores: [{
+    username: String,
+    seconds: Number,
+    date: Date,
+  }],
+  total_games_played: Number,
 }, { retainKeyOrder: true });
 
 export const highScoresSchema = new mongoose.Schema({
