@@ -2,34 +2,25 @@ const newUserCreator = ({ username, password }) => {
   const newUser = {
     username,
     plainTextPassword: password,
-    highestDefaultScores: {
-      beginner: {
-        username,
-        seconds: Number.POSITIVE_INFINITY,
-        date: new Date(),
-      },
-      intermediate: {
-        username,
-        seconds: Number.POSITIVE_INFINITY,
-        date: new Date(),
-      },
-      expert: {
-        username,
-        seconds: Number.POSITIVE_INFINITY,
-        date: new Date(),
-      },
+    best_beginner_score: {
+      username,
+      seconds: Number.POSITIVE_INFINITY,
+      date: new Date(),
     },
-    allDefaultScores: {
-      beginner: [],
-      intermediate: [],
-      expert: [],
+    best_intermediate_score: {
+      username,
+      seconds: Number.POSITIVE_INFINITY,
+      date: new Date(),
     },
-    numberOfDefaultGamesPlayed: {
-      beginner: 0,
-      intermediate: 0,
-      expert: 0,
+    best_expert_score: {
+      username,
+      seconds: Number.POSITIVE_INFINITY,
+      date: new Date(),
     },
-    totalNumberOfGamesPlayed: 0,
+    beginner_scores: [],
+    intermediate_scores: [],
+    expert_scores: [],
+    total_games_played: 0,
   };
   return newUser;
 };
