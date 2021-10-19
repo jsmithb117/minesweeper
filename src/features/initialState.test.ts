@@ -14,10 +14,10 @@ describe('initialStateCreator', () => {
     expect(initialTestState.click).toHaveProperty('board');
     expect(Array.isArray(initialTestState.click.board)).toBe(true);
     expect(initialTestState.click.board.length).toBe(10);
-    initialTestState.click.board.forEach((row, rowIndex: number) => {
+    initialTestState.click.board.forEach((row: any, rowIndex: number) => {
       expect(Array.isArray(row)).toBe(true);
       expect(row.length).toBe(10);
-      row.forEach((piece, colIndex: number) => {
+      row.forEach((piece: any, colIndex: number) => {
         let shouldBeUncovered = false;
         let shouldBeMarkedAsMine = false;
         if (rowIndex === 2) {
@@ -44,10 +44,10 @@ describe('initialStateCreator', () => {
     expect(initialProductionState.click).toHaveProperty('board');
     expect(Array.isArray(initialProductionState.click.board)).toBe(true);
     expect(initialProductionState.click.board.length).toBe(10);
-    initialProductionState.click.board.forEach((row) => {
+    initialProductionState.click.board.forEach((row: any) => {
       expect(Array.isArray(row)).toBe(true);
       expect(row.length).toBe(10);
-      row.forEach((piece) => {
+      row.forEach((piece: any) => {
         expect(piece).toHaveProperty('val');
         expect(piece.val).toBeNumber();
         expect(piece).toHaveProperty('uncovered');

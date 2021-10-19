@@ -13,7 +13,6 @@ import {
 const app = express();
 export const port = 3001;
 
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
