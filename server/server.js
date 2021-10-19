@@ -7,7 +7,8 @@ import {
   getIntermediateHighScores,
   getExpertHighScores,
   postCompletedBoard,
-  createHighScores
+  createHighScores,
+  totalGamesPlayed,
 } from '../db/db.js';
 const app = express();
 export const port = 3001;
@@ -76,7 +77,6 @@ app.post('/insecurelogin', (req, res) => {
 app.post('/completed', (req, res) => {
   postCompletedBoard(req.body)
     .then((dbResponse) => {
-      // console.log('server dbResponse: ', dbResponse);
       res.send(dbResponse);
     })
     .catch((err) => {
@@ -90,9 +90,15 @@ app.post('/create_high_scores', (req, res) => {
     .then((dbResponse) => {
       res.send(dbResponse);
     })
-    .catch((err) => {
-      reject(err);
-    });
+    .catch((err) => console.error(err));
+});
+
+app.get('/played', (req, res) => {
+  totalGamesPlayed(req.body)
+    .then((dbResponse) => {
+      res.status(200).json(dbResponse);
+    })
+    .catch((err) => console.error(err));
 });
 
 app.get('/test', (req, res) => {

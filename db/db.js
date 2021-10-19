@@ -131,3 +131,13 @@ export const createHighScores = () => {
       });
   });
 };
+
+export const totalGamesPlayed = ({ username }) => {
+  return new Promise((resolve, reject) => {
+    Users.findOne({ username })
+      .then((dbResponse) => {
+        resolve(dbResponse.total_games_played);
+      })
+      .catch((err) => reject(err));
+  });
+};
