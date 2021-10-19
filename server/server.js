@@ -7,6 +7,7 @@ import {
   getIntermediateHighScores,
   getExpertHighScores,
   postCompletedBoard,
+  createHighScores
 } from '../db/db.js';
 const app = express();
 export const port = 3001;
@@ -75,14 +76,24 @@ app.post('/insecurelogin', (req, res) => {
 app.post('/completed', (req, res) => {
   postCompletedBoard(req.body)
     .then((dbResponse) => {
-      console.log('server dbResponse: ', dbResponse);
+      // console.log('server dbResponse: ', dbResponse);
       res.send(dbResponse);
     })
     .catch((err) => {
       console.error('Error in /completed: ', err);
       res.sendStatus(400);
     })
-})
+});
+
+app.post('/create_high_scores', (req, res) => {
+  createHighScores()
+    .then((dbResponse) => {
+      res.send(dbResponse);
+    })
+    .catch((err) => {
+      reject(err);
+    });
+});
 
 app.get('/test', (req, res) => {
   console.log('got a request at /test');

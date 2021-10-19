@@ -70,18 +70,29 @@ export const postCompletedBoard = ({ username, difficulty, seconds, date, }) => 
   const isDefaultDifficulty = beginnerDif || intermediateDif || expertDif;
 
   return new Promise((resolve, reject) => {
-    const updateObject = {
+    const userUpdateObject = {
       $inc: { total_games_played: 1 },
+    };
+    const highScoresUpdateObject = {
+      $push: {
+        [difficulty]: {
+          $each: [{ username, seconds, date }],
+          $sort: { seconds: 1 },
+          $slice: 10,
+        },
+      },
     };
 
     if (isDefaultDifficulty) {
-      updateObject.$push = {
+      userUpdateObject.$push = {
         [`${difficulty}_scores`]: { username, seconds, date }
       };
+      HighScores.updateOne({ id: 1 }, highScoresUpdateObject)
+        .catch((err) => reject(err));
     }
 
     if (isDefaultDifficulty || difficulty === 'custom') {
-      Users.updateOne({ username }, updateObject)
+      Users.updateOne({ username }, userUpdateObject)
         .then(() => {
           resolve(Users.findOne({ username }));
         })
@@ -92,5 +103,22 @@ export const postCompletedBoard = ({ username, difficulty, seconds, date, }) => 
     } else {
       reject(new Error('Unknown difficulty: ', difficulty));
     }
+  });
+};
+
+export const createHighScores = () => {
+  return new Promise((resolve, reject) => {
+    HighScores.create({
+        id: 1,
+        beginner: [],
+        intermediate: [],
+        expert: [],
+      })
+      .then((dbResponse) => {
+        resolve(dbResponse);
+      })
+      .catch((err) => {
+        reject(err);
+      });
   });
 };

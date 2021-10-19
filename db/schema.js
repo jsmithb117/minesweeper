@@ -37,22 +37,21 @@ export const usersSchema = new mongoose.Schema({
 }, { retainKeyOrder: true });
 
 export const highScoresSchema = new mongoose.Schema({
-  highDefaultScores: {
-    beginner: [{
-      username: String,
-      seconds: Number,
-      date: Date,
-    }],
-    intermediate: [{
-      username: String,
-      seconds: Number,
-      date: Date,
-    }],
-    expert: [{
-      username: String,
-      seconds: Number,
-      date: Date,
-    }],
-  },
+  id: Number,
+  beginner: [{
+    username: String,
+    seconds: Number,
+    date: Date,
+  }],
+  intermediate: [{
+    username: String,
+    seconds: Number,
+    date: Date,
+  }],
+  expert: [{
+    username: String,
+    seconds: Number,
+    date: Date,
+  }],
   totalNumberOfGamesPlayed: Number,
 });
