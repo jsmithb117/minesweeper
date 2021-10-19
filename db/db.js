@@ -89,6 +89,15 @@ export const postCompletedBoard = ({ username, difficulty, seconds, date, }) => 
       };
       HighScores.updateOne({ id: 1 }, highScoresUpdateObject)
         .catch((err) => reject(err));
+      Users.findOne({ username })
+        .then((usersResponse) => {
+          if (seconds < usersResponse[`best_${difficulty}_score`].seconds) {
+            Users.updateOne({ username }, {
+                [`best_${difficulty}_score`]: { username, seconds, date }
+              })
+              .catch((err) => reject(err));
+          }
+        });
     }
 
     if (isDefaultDifficulty || difficulty === 'custom') {
