@@ -48,6 +48,7 @@ const initialStateCreator = (
       intermediateScores: [{ username: '', seconds: Number.NEGATIVE_INFINITY, date: new Date() }],
       expertScores: [{ username: '', seconds: Number.NEGATIVE_INFINITY, date: new Date() }],
       totalGamesPlayed: 0,
+      username: '',
     }
   }
   return state;

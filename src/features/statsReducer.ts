@@ -1,17 +1,4 @@
 import produce, { Draft } from 'immer';
-import {
-  LEFTCLICK,
-  RIGHTCLICK,
-  REVERTBOARD,
-  RESETWINLOSS,
-  NEWBOARD,
-  UPDATEORIGINALBOARD,
-} from './clickActionCreators';
-import zeroFinder from './zeroFinder';
-import checkWin from './checkWin';
-import { IClickState } from './initialState';
-import boardCreator from './boardCreator';
-import { TESTBOARD } from './clickActionCreators';
 import { IStatsState } from '../interfaces/interfaces';
 import { SETBEGINNERSCORES, SETBESTBEGINNERSCORE, SETBESTEXPERTSCORE, SETBESTINTERMEDIATESCORE, SETEXPERTSCORES, SETINTERMEDIATESCORES, SETTOTALGAMESPLAYED } from './statsActionCreators';
 const statsReducer = (state: IStatsState | null = null, action: any) => {

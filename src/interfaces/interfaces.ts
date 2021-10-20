@@ -82,6 +82,7 @@ export interface IStatsState {
     intermediateScores: IScore[],
     expertScores: IScore[],
     totalGamesPlayed: number,
+    username: string,
 };
 
 export interface IInitialState {
@@ -127,6 +128,7 @@ export interface IAction {
     intermediateScores: IScore[] | null,
     expertScores: IScore[] | null,
     totalGamesPlayed: number | null,
+    username: string | null,
   }
 };
 
@@ -138,4 +140,7 @@ export interface IStatsUpdate {
   intermediateScores: IScore[] | null,
   expertScores: IScore[] | null,
   totalGamesPlayed: number | null,
+};
+export interface IUserUpdate extends IStatsUpdate {
+  username: string,
 };

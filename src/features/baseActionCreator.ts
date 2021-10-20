@@ -32,6 +32,7 @@ const baseActionCreator = (type: string, payloadObject: any | null) => {
       intermediateScores: payloadObject?.intermediateScores || null,
       expertScores: payloadObject?.expertScores || null,
       totalGamesPlayed: payloadObject?.totalGamesPlayed || null,
+      username: payloadObject?.username || null,
     },
   };
   return action;

@@ -7,6 +7,9 @@ import { newBoardAction, updateOriginalBoard} from './features/clickActionCreato
 import { incrementTime, setMinesDisplay } from './features/formActionCreators';
 import Form from './components/Form';
 import Display from './components/Display';
+import { setStats } from './features/statsActionCreators';
+
+import store from './features/store';
 
 function App(props: { test: boolean }) {
   document.addEventListener('contextmenu', event => event.preventDefault());
@@ -16,7 +19,10 @@ function App(props: { test: boolean }) {
   const width = useAppSelector((state: { form: { width: number }}) => state.form.width);
   const mines = useAppSelector((state: { form: { mines: number }}) => state.form.mines);
   const paused = useAppSelector((state: { form: { paused: boolean }}) => state.form.paused);
+  const username =useAppSelector((state) => state?.stats?.username);
 
+  const PORT = 3001;
+  const URI = `http://localhost:${PORT}`;
   const dispatch = useAppDispatch();
 
   const boardColor = win ? 'green'
@@ -45,6 +51,27 @@ function App(props: { test: boolean }) {
       dispatch(updateOriginalBoard());
     };
   }, [dispatch, props.test, length, width, mines]);
+
+  useEffect(() => {
+    async function fetchInitialData (username: string, password: string) {
+      let highScoreData = await fetch(URI.concat('/highscores'));
+      highScoreData = await highScoreData.json();
+      const userOpts = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password }),
+      };
+      let userData = await fetch(URI.concat('/user'), userOpts)
+      .then((serverResponse) => {
+        return serverResponse.json();
+      })
+      .catch(err => console.error(err));
+      dispatch(setStats(userData));
+    };
+    fetchInitialData('user1', 'insecurePassword');
+  }, []);
 
   return (
     <div className={className}>

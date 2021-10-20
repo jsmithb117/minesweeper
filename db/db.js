@@ -22,24 +22,49 @@ const HighScores = mongoose.model('HighScores', highScoresSchema);
 
 export const getBeginnerHighScores = () => {
   return new Promise((resolve, reject) => {
-    resolve(HighScores.findOne({ highDefaultScores: 'beginner' }));
-    reject(new Error('Error finding Beginner high scores'));
+    HighScores.findOne({ id: 1 }) //There are better ways to store this in the database, but it works...  FIXME
+      .then((dbResponse) => {
+        resolve(dbResponse.beginner);
+      })
+      .catch((err) => {
+        reject(new Error(new Error('Error finding Beginner high scores')))
+      })
   });
 };
 
 export const getIntermediateHighScores = () => {
   return new Promise((resolve, reject) => {
-    resolve(HighScores.findOne({ highDefaultScores: 'intermediate' }));
-    reject(new Error('Error finding Intermediate high scores'));
+    HighScores.findOne({ id: 1 })
+      .then((dbResponse) => {
+        resolve(dbResponse.intermediate);
+      })
+      .catch((err) => {
+        reject(new Error(new Error('Error finding Intermediate high scores')))
+      })
   });
 };
 
 export const getExpertHighScores = () => {
   return new Promise((resolve, reject) => {
-    resolve(HighScores.findOne({ highDefaultScores: 'expert' }));
-    reject(new Error('Error finding Expert high scores'));
+    HighScores.findOne({ id: 1 })
+      .then((dbResponse) => {
+        resolve(dbResponse.expert);
+      })
+      .catch((err) => {
+        reject(new Error(new Error('Error finding Expert high scores')))
+      })
   });
 };
+
+export const getUserData = ({ username }) => {
+  return new Promise((resolve, reject) => {
+    Users.findOne({ username })
+      .then((userDoc) => {
+        resolve(userDoc);
+      })
+      .catch((err) => reject(err));
+  });
+}
 
 export const postLogin = ({ username, password }) => {
   return new Promise((resolve, reject) => {
