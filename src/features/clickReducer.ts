@@ -10,10 +10,13 @@ import {
 import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
 import { IClickState } from './initialState';
-import boardCreator, { backupPiece } from './boardCreator';
+import boardCreator from './boardCreator';
 import { TESTBOARD } from './clickActionCreators';
 
 const clickReducer = (state: IClickState | null = null, action: any) => {
+  if (action.type.slice(0,7) === '@@redux') {
+    return state;
+  }
   if (action.type === UPDATEORIGINALBOARD) {
     return produce(state, (draft: Draft<IClickState>) => {
       draft.originalBoard = draft.board;
@@ -33,18 +36,20 @@ const clickReducer = (state: IClickState | null = null, action: any) => {
     return state;
   }
 
-  const piece = action.payload ? action.payload : backupPiece;
-  const row = piece.row || 0;
-  const col = piece.col || 0;
+  const row = action.payload?.piece?.row || 0;
+  const col = action.payload?.piece?.col || 0;
+  const uncovered = action.payload?.piece?.uncovered;
+  const markedAsMine = action.payload?.piece?.markedAsMine;
+  const isMine = action.payload?.piece?.isMine;
 
   if (action.type === LEFTCLICK) {
     return produce(state, (draft: Draft<IClickState>) => {
-      if (!piece.uncovered && !piece.markedAsMine) {
+      if (!uncovered && !markedAsMine) {
         draft.board = zeroFinder(row, col, draft.board);
       }
-      if (piece.isMine && !piece.markedAsMine) {
+      if (isMine && !markedAsMine) {
         draft.loss = true;
-        draft.board[piece.row || 0][piece.col || 0].loser = true;
+        draft.board[row || 0][col || 0].loser = true;
         return draft;
       } else if (checkWin(draft.board)) {
         draft.win = true;
@@ -54,13 +59,13 @@ const clickReducer = (state: IClickState | null = null, action: any) => {
   }
   if (action.type === RIGHTCLICK) {
     return produce(state, (draft: Draft<IClickState>) => {
-      if (!piece.uncovered) {
-        if (!piece.markedAsMine) {
+      if (!uncovered) {
+        if (!markedAsMine) {
           draft.piecesMarkedAsMine += 1;
         } else {
           draft.piecesMarkedAsMine -= 1;
         }
-        draft.board[row][col].markedAsMine = !piece.markedAsMine;
+        draft.board[row][col].markedAsMine = !markedAsMine;
         return draft;
       }
     });

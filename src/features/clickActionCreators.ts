@@ -1,4 +1,5 @@
-import { IPiece } from './boardCreator';
+import { IPiece } from '../interfaces/interfaces';
+import baseActionCreator from './baseActionCreator';
 
 export const LEFTCLICK: string = 'LEFTCLICK';
 export const RIGHTCLICK: string = 'RIGHTCLICK';
@@ -9,41 +10,23 @@ export const UPDATEORIGINALBOARD: string = 'UPDATEORIGINALBOARD';
 export const TESTBOARD = 'TESTBOARD';
 
 export const newBoardAction = (length = 10, width = 10, mines = 10) => {
-  const action = {
-    type: NEWBOARD,
-    payload: { length, width, mines },
-    };
-  return action;
+  const payloadObject = {
+    length,
+    width,
+    mines,
+  }
+  return baseActionCreator(NEWBOARD, payloadObject);
 };
 
 export const revertBoard = () => {
-  const action  = {
-    type: REVERTBOARD,
-  };
-  return action;
+  return baseActionCreator(REVERTBOARD, null);
 };
 
 export const resetWinLoss = () => {
-  const action = {
-    type: RESETWINLOSS,
-  };
-  return action;
+  return baseActionCreator(RESETWINLOSS, null);
 };
 export const updateOriginalBoard = () => {
-  const action = {
-    type: UPDATEORIGINALBOARD,
-  };
-  return action;
-};
-
-interface Piece {
-  val: number,
-  isMine: boolean,
-  uncovered: boolean,
-  markedAsMine: boolean,
-  loser: boolean,
-  row: number,
-  col: number,
+  return baseActionCreator(UPDATEORIGINALBOARD, null);
 };
 
 const click = (piece: IPiece, isLeftClick: boolean) => {
@@ -54,27 +37,22 @@ const click = (piece: IPiece, isLeftClick: boolean) => {
   const col: boolean = piece.hasOwnProperty('col');
   const requisites = val && uncovered && markedAsMine && row && col;
 
-  let action = {
-    type: '',
-    payload: piece,
-  };
+  let action = baseActionCreator('', null);
   if (requisites && isLeftClick) {
-    action.type = LEFTCLICK;
-    action.payload = piece;
+    action = baseActionCreator(LEFTCLICK, { piece });
     return action;
   };
   if (requisites) {
-    action.type = RIGHTCLICK;
+    return baseActionCreator(RIGHTCLICK, { piece });
   }
-  return action;
+  return baseActionCreator('', null);
 }
 
 export const testBoard = () => {
-  const action = {
-    type: TESTBOARD,
-  };
-  return action;
+  return baseActionCreator(TESTBOARD, null);
 };
 
-export const leftClick = (piece: Piece) => click(piece, true);
+export const leftClick = (piece: IPiece) => {
+  return click(piece, true)
+};
 export const rightClick = (piece: IPiece) => click(piece, false);
