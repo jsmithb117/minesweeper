@@ -74,7 +74,6 @@ function App(props: { test: boolean }) {
         beginnerScores: highScoreData.beginner,
         intermediateScores: highScoreData.intermediate,
         expertScores: highScoreData.expert,
-
       }
       dispatch(setStats(statsUpdate))
     };
