@@ -1,5 +1,3 @@
-import { Board } from '../features/boardCreator';
-
 export interface IActionNoPayload {
   type: string,
 };
@@ -17,6 +15,8 @@ export interface IPiece {
   row: number,
   col: number,
 };
+export interface IRow extends Array<IPiece>{};
+export interface Board extends Array<IRow>{};
 
 export interface IActionPiecePayload extends IActionNoPayload {
   payload: IPiece,
@@ -74,29 +74,7 @@ export interface IFormState {
   paused: boolean,
 };
 
-export interface IScore {
-  username: string,
-  seconds: number,
-  date: Date,
-};
-
-export interface IInitialState {
-  click: {
-    piecesMarkedAsMine: number,
-    board: Board,
-    originalBoard: Board,
-    win: boolean,
-    loss: boolean,
-  },
-  form: {
-    minesDisplay: number,
-    time: number,
-    length: number,
-    width: number,
-    mines: number,
-    paused: boolean,
-  },
-  stats: {
+export interface IStatsState {
     bestBeginnerScore: IScore,
     bestIntermediateScore: IScore,
     bestExpertScore: IScore,
@@ -104,8 +82,20 @@ export interface IInitialState {
     intermediateScores: IScore[],
     expertScores: IScore[],
     totalGamesPlayed: number,
-  }
 };
+
+export interface IInitialState {
+  click: IClickState,
+  form: IFormState,
+  stats: IStatsState,
+};
+
+export interface IScore {
+  username: string,
+  seconds: number,
+  date: Date,
+};
+
 
 export interface IAction {
   type: String | null,
@@ -141,11 +131,11 @@ export interface IAction {
 };
 
 export interface IStatsUpdate {
-  bestBeginnerScore: IScore,
-  bestIntermediateScore: IScore,
-  bestExpertScore: IScore,
-  beginnerScores: IScore[],
-  intermediateScores: IScore[],
-  expertScores: IScore[],
-  totalGamesPlayed: number,
+  bestBeginnerScore: IScore | null,
+  bestIntermediateScore: IScore | null,
+  bestExpertScore: IScore | null,
+  beginnerScores: IScore[] | null,
+  intermediateScores: IScore[] | null,
+  expertScores: IScore[] | null,
+  totalGamesPlayed: number | null,
 };

@@ -1,5 +1,5 @@
+import { IRow } from '../interfaces/interfaces';
 import Piece from './Piece';
-import { IRow } from '../features/boardCreator';
 
 interface Props {
   row: IRow,

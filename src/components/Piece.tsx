@@ -3,8 +3,8 @@ import { leftClick, rightClick } from '../features/clickActionCreators';
 import { incrementMinesDisplay, decrementMinesDisplay } from '../features/formActionCreators';
 import displayValue from '../features/displayValue';
 import pieceClass from '../features/pieceClass';
-import { IPiece } from '../features/boardCreator';
 import { useAppDispatch } from '../features/hooks';
+import { IPiece } from '../interfaces/interfaces';
 
 interface IProps {
   piece: IPiece,
