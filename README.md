@@ -27,9 +27,16 @@ forms - Adds a display at the top for # of mines remaining and a form at the bot
 
 pause - Adds the ability to cover the whole board and pause time.
 
+fullstack - Creates a server/database to persist and render high score data
+
 ### Work In Progress
 
-Working on Express server and MongoDB to persist and render 'high scores'
+Express server and MongoDB to persist and render 'high scores'
+Database - Done (mostly)
+Server - Done (mostly)
+Client - Done (mostly)
+
+Work remaining: Write tests(more tests, always), make some minor refactors to improve maintainability and readability(better code, always)
 
 ### Todo:
 
@@ -136,3 +143,5 @@ I've even tried to use optional properties like:
 but again, this doesn't work.  The only thing that I can think of that would work is to add all properties to all actions and only use the properties that I need but that just seems wrong.
 
 Until I solve this problem, I'm going to type the actions as 'any' in the reducers.  There's also another any type in store.ts, but that's a problem for another day.
+
+Update: I ended up going with the 'add all properties to all actions' route in the fullstack branch.  I added a function that takes in an 'options' object that creates an action with all properties set to null, then updates the necessary properties of the action from the options object. I tried to create it in such a way that if I need to create a new action with a new payload property, I only need to change the interface and the 'baseActionCreator' function, but there may be other things I'd need to update.  If I find that this solutions isn't easily maintainable, I'll explore other patterns to refactor to.  It seems to work fine right now, time will tell.
