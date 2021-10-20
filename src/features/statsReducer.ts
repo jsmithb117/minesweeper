@@ -1,9 +1,30 @@
 import produce, { Draft } from 'immer';
 import { IStatsState } from '../interfaces/interfaces';
-import { SETBEGINNERSCORES, SETBESTBEGINNERSCORE, SETBESTEXPERTSCORE, SETBESTINTERMEDIATESCORE, SETEXPERTSCORES, SETINTERMEDIATESCORES, SETTOTALGAMESPLAYED } from './statsActionCreators';
+import {
+  SETBEGINNERSCORES,
+  SETBESTBEGINNERSCORE,
+  SETBESTEXPERTSCORE,
+  SETBESTINTERMEDIATESCORE,
+  SETEXPERTSCORES,
+  SETINTERMEDIATESCORES,
+  SETSTATS,
+  SETTOTALGAMESPLAYED,
+} from './statsActionCreators';
+
 const statsReducer = (state: IStatsState | null = null, action: any) => {
   if (action.type.slice(0,7) === '@@redux') {
     return state;
+  }
+  if (action.type === SETSTATS) {
+    return produce(state, (draft: Draft<IStatsState>) => {
+      draft.bestBeginnerScore = action.payload.bestBeginnerScore;
+      draft.bestIntermediateScore = action.payload.bestIntermediateScore;
+      draft.bestExpertScore = action.payload.bestExpertScore;
+      draft.beginnerScores = action.payload.beginnerScores;
+      draft.intermediateScores = action.payload.intermediateScores;
+      draft.expertScores = action.payload.expertScores;
+      return draft;
+    });
   }
   if (action.type === SETBESTBEGINNERSCORE) {
     return produce(state, (draft: Draft<IStatsState>) => {

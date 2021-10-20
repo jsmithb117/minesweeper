@@ -78,7 +78,7 @@ app.post('/user/', (req, res) => {
     }) => {
       if (plainTextPassword === req.body.password) { //insecure, FIXME
         res.send({
-          beginnerScores: beginner_scores,
+          bestBeginnerScore: best_beginner_score,
           bestIntermediateScore: best_intermediate_score,
           bestExpertScore: best_expert_score,
           beginnerScores: beginner_scores,

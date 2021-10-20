@@ -144,3 +144,19 @@ export interface IStatsUpdate {
 export interface IUserUpdate extends IStatsUpdate {
   username: string,
 };
+
+export interface IBestProps {
+  type: string,
+  score: IScore,
+};
+
+export interface IBestGlobalProps {
+  type: string,
+  scores: IScore[],
+};
+
+export interface IBestGlobalScoreProps {
+  type: string,
+  score: IScore,
+  rank: number,
+}
