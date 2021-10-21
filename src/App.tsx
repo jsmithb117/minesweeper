@@ -9,7 +9,7 @@ import Form from './components/Form';
 import Display from './components/Display';
 
 import HighScores from './components/HighScores';
-import { setStats } from './features/statsActionCreators';
+import { setBestExpertScore, setBestIntermediateScore, setStats } from './features/statsActionCreators';
 
 function App(props: { test: boolean }) {
   document.addEventListener('contextmenu', event => event.preventDefault());
@@ -43,37 +43,25 @@ function App(props: { test: boolean }) {
         },
         body: JSON.stringify({ username, difficulty, seconds, date: new Date() }),
       };
-      //post /completed
-        //body:
-          //username, difficulty, seconds, date
-        //then dispatch(setStats with optionsObject)
-          //optionsObject signature:
-            //bestBeginnerScore{score},
-            //bestIntermedaiteScore{score},
-            //bestExpertScore{score},
-            //beginnerScores[...{score}],
-            //intermediateScores[...{score}],
-            //expertScores[...{score}]
-      // const body = {
-      //   username: ,
-      //   difficulty: ,
-      //   seconds: ,
-      //   date: new Date(),
-      // }
-      const postNewScore = async () => {
-        console.log('options: ', options);
-        let userData = await fetch(URI.concat('/completed'), options)
+
+      fetch(URI.concat('/completed'), options)
         .then((dbResponse) => {
           return dbResponse.json();
         })
         .then((json) => {
-          console.log('json: ', json);
-          return json;
+          const statsObject = {
+            bestBeginnerScore: json.best_beginner_score,
+            bestIntermediateScore: json.best_intermediate_score,
+            bestExpertScore: json.best_expert_score,
+            beginnerScores: json.beginner_scores,
+            intermediateScores: json.intermediate_scores,
+            expertScores: json.expert_scores,
+            totalGamesPlayed: json.total_games_played,
+            username: username,
+          }
+          dispatch(setStats(statsObject));
         })
         .catch((err) => console.error(err));
-
-      };
-      postNewScore();
     }
   }, [dispatch, win]);
 

@@ -109,13 +109,6 @@ export const postCompletedBoard = ({ username, difficulty, seconds, date, }) => 
     };
 
     if (isDefaultDifficulty) {
-      console.log('isDefaultDifficulty')
-      console.log('username, ', username);
-      console.log('lowerCaseDifficulty, ', lowerCaseDifficulty);
-      console.log('seconds, ', seconds);
-      console.log('date, ', date);
-      console.log('`${lowerCaseDifficulty}_scores`: ', `${lowerCaseDifficulty}_scores`);
-
       userUpdateObject.$push = {
         [`${lowerCaseDifficulty}_scores`]: { username, seconds, date }
       };
