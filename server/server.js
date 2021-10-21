@@ -81,7 +81,7 @@ app.post('/user/', (req, res) => {
           bestBeginnerScore: best_beginner_score,
           bestIntermediateScore: best_intermediate_score,
           bestExpertScore: best_expert_score,
-          beginnerScores: beginner_scores,
+          beginnerScores: beginner_scores.sort((a, b) => a.seconds - b.seconds),
           intermediateScores: intermediate_scores,
           expertScores: expert_scores,
           totalGamesPlayed: total_games_played,

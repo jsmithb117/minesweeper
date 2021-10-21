@@ -7,9 +7,10 @@ import { newBoardAction, updateOriginalBoard } from './features/clickActionCreat
 import { incrementTime, setMinesDisplay } from './features/formActionCreators';
 import Form from './components/Form';
 import Display from './components/Display';
+import { IScore } from './interfaces/interfaces';
 
 import HighScores from './components/HighScores';
-import { setBestExpertScore, setBestIntermediateScore, setStats } from './features/statsActionCreators';
+import { setStats } from './features/statsActionCreators';
 
 function App(props: { test: boolean }) {
   document.addEventListener('contextmenu', event => event.preventDefault());
@@ -29,8 +30,8 @@ function App(props: { test: boolean }) {
 
   const boardColor = win ? 'green'
     : loss ? 'red'
-      : paused ? 'blue'
-        : 'white';
+    : paused ? 'blue'
+    : 'white';
 
   const className = 'app minesweeper'.concat(boardColor);
 
@@ -38,16 +39,12 @@ function App(props: { test: boolean }) {
     if (win) {
       const options = {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, difficulty, seconds, date: new Date() }),
       };
 
       fetch(URI.concat('/completed'), options)
-        .then((dbResponse) => {
-          return dbResponse.json();
-        })
+        .then((dbResponse) => dbResponse.json())
         .then((json) => {
           const statsObject = {
             bestBeginnerScore: json.best_beginner_score,
@@ -63,7 +60,7 @@ function App(props: { test: boolean }) {
         })
         .catch((err) => console.error(err));
     }
-  }, [dispatch, win]);
+  }, [dispatch, URI, difficulty, seconds, username, win]);
 
   useEffect(() => {
     dispatch(setMinesDisplay(mines));
@@ -86,32 +83,29 @@ function App(props: { test: boolean }) {
   }, [dispatch, props.test, length, width, mines]);
 
   useEffect(() => {
-    async function fetchInitialData(username: string, password: string) {
+    (async function (username = 'user1', password = 'insecurePassword') {
       const highScoreData = await fetch(URI.concat('/highscores'))
-        .then((highScoreResponse) => highScoreResponse.json());
+        .then((highScoreResponse) => highScoreResponse.json())
+        .catch((err) => console.error(err));
       const userOpts = {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
       };
       let userData = await fetch(URI.concat('/user'), userOpts)
-        .then((serverResponse) => {
-          return serverResponse.json();
-        })
+        .then((serverResponse) => serverResponse.json())
         .catch(err => console.error(err));
       const statsUpdate = {
         bestBeginnerScore: userData.bestBeginnerScore,
         bestIntermediateScore: userData.bestIntermediateScore,
         bestExpertScore: userData.bestExpertScore,
-        beginnerScores: highScoreData.beginner,
-        intermediateScores: highScoreData.intermediate,
-        expertScores: highScoreData.expert,
+        beginnerScores: highScoreData.beginner.sort((a: IScore, b: IScore) => a.seconds - b.seconds),
+        intermediateScores: highScoreData.intermediate.sort((a: IScore, b: IScore) => a.seconds - b.seconds),
+        expertScores: highScoreData.expert.sort((a: IScore, b: IScore) => a.seconds - b.seconds),
       }
       dispatch(setStats(statsUpdate))
-    };
-    fetchInitialData('user1', 'insecurePassword'); //should be a form to enter username/password with changeHandlers for local state and onSubmit for dispatch(action) FIXME
+    })();
+    //should be a form to enter username/password with changeHandlers for local state and onSubmit for dispatch(action) FIXME
   }, [URI, dispatch]);
 
   return (
