@@ -72,6 +72,7 @@ export interface IFormState {
   width: number,
   mines: number,
   paused: boolean,
+  difficulty: string,
 };
 
 export interface IStatsState {
@@ -129,6 +130,7 @@ export interface IAction {
     expertScores: IScore[] | null,
     totalGamesPlayed: number | null,
     username: string | null,
+    difficulty: string | null,
   }
 };
 

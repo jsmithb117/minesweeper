@@ -19,6 +19,9 @@ function App(props: { test: boolean }) {
   const width = useAppSelector((state: { form: { width: number } }) => state.form.width);
   const mines = useAppSelector((state: { form: { mines: number } }) => state.form.mines);
   const paused = useAppSelector((state: { form: { paused: boolean } }) => state.form.paused);
+  const username = useAppSelector((state: any) => state.stats.username);
+  const difficulty = useAppSelector((state: any) => state.form.difficulty);
+  const seconds = useAppSelector((state: any) => state.form.time)
 
   const PORT = 3001;
   const URI = `http://localhost:${PORT}`;
@@ -30,6 +33,49 @@ function App(props: { test: boolean }) {
         : 'white';
 
   const className = 'app minesweeper'.concat(boardColor);
+
+  useEffect(() => {
+    if (win) {
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, difficulty, seconds, date: new Date() }),
+      };
+      //post /completed
+        //body:
+          //username, difficulty, seconds, date
+        //then dispatch(setStats with optionsObject)
+          //optionsObject signature:
+            //bestBeginnerScore{score},
+            //bestIntermedaiteScore{score},
+            //bestExpertScore{score},
+            //beginnerScores[...{score}],
+            //intermediateScores[...{score}],
+            //expertScores[...{score}]
+      // const body = {
+      //   username: ,
+      //   difficulty: ,
+      //   seconds: ,
+      //   date: new Date(),
+      // }
+      const postNewScore = async () => {
+        console.log('options: ', options);
+        let userData = await fetch(URI.concat('/completed'), options)
+        .then((dbResponse) => {
+          return dbResponse.json();
+        })
+        .then((json) => {
+          console.log('json: ', json);
+          return json;
+        })
+        .catch((err) => console.error(err));
+
+      };
+      postNewScore();
+    }
+  }, [dispatch, win]);
 
   useEffect(() => {
     dispatch(setMinesDisplay(mines));

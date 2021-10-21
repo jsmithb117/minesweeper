@@ -3,7 +3,9 @@ import { IActionMinesDisplay,
   IActionLengthPayload,
   IActionWidthPayload,
   IActionMinesPayload,
+  IAction,
 } from '../interfaces/interfaces';
+import baseActionCreator from './baseActionCreator';
 
 export const RESETTIME: string = 'RESETTIME';
 export const SETLENGTH: string = 'SETLENGTH';
@@ -14,6 +16,13 @@ export const INCREMENTMINESDISPLAY: string = 'INCREMENTMINESDISPLAY';
 export const DECREMENTMINESDISPLAY: string = 'DECREMENTMINESDISPLAY';
 export const SETMINESDISPLAY: string =  'SETMINESDISPLAY';
 export const PAUSE = 'PAUSE';
+export const DIFFICULTY = 'DIFFICULTY';
+
+export const setDifficulty = (difficulty: string) => {
+  const payloadObject = { difficulty };
+  const action: IAction = baseActionCreator(DIFFICULTY, payloadObject);
+  return action;
+};
 
 export const resetTime = () => {
   const action: IActionNoPayload = {

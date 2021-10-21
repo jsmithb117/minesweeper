@@ -1,4 +1,4 @@
-import produce from 'immer';
+import produce, { Draft } from 'immer';
 import {
   RESETTIME,
   INCREMENTTIME,
@@ -8,16 +8,21 @@ import {
   INCREMENTMINESDISPLAY,
   DECREMENTMINESDISPLAY,
   SETMINESDISPLAY,
-  PAUSE
+  PAUSE,
+  DIFFICULTY
 } from './formActionCreators';
 import { IFormState } from './initialState';
 
 const formReducer = (state: IFormState | null = null, action: any) => {
+  if (action.type === DIFFICULTY) {
+    return produce(state, (draft: Draft<{ difficulty: string }>) => {
+      draft.difficulty = action.payload.difficulty;
+      return draft;
+    })
+  }
   if (action.type === RESETTIME) {
     return produce(state, (draft: { time: number }) => {
-      if (draft) {
         draft.time = 0;
-      }
       return draft;
     });
   }

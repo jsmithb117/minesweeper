@@ -19,6 +19,27 @@ import {
   incrementTime,
 } from './formActionCreators';
 
+import {
+  SETBESTBEGINNERSCORE,
+  SETBESTINTERMEDIATESCORE,
+  SETBESTEXPERTSCORE,
+  SETBEGINNERSCORES,
+  SETINTERMEDIATESCORES,
+  SETEXPERTSCORES,
+  SETTOTALGAMESPLAYED,
+  SETUSERNAME,
+  SETSTATS,
+  setStats,
+  setUsername,
+  setBestBeginnerScore,
+  setBestIntermediateScore,
+  setBestExpertScore,
+  setBeginnerScores,
+  setIntermediateScores,
+  setExpertScores,
+  setTotalGamesPlayed,
+} from './statsActionCreators';
+
 describe('actionCreators', () => {
   it('should create a LEFTCLICK action in the proper format', () => {
     const piece = {

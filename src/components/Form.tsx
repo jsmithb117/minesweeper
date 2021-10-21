@@ -3,21 +3,22 @@ import { useDispatch } from 'react-redux';
 import {
   setLength,
   setWidth,
-  setMines
+  setMines,
+  setDifficulty,
 } from '../features/formActionCreators';
-
+export const defaultVal = 'Default';
 const Form = () => {
   const dispatch = useDispatch();
   const beginner = 'Beginner';
-  const defaultVal = 'Default';
   const intermediate = 'Intermediate';
   const expert = 'Expert';
   const custom = 'Custom';
 
-  const [selected, setSelected] = useState(defaultVal);
+  const [difficulty, setStateDifficulty] = useState(defaultVal);
   const [length, setStateLength] = useState(10);
   const [width, setStateWidth] = useState(10);
   const [mines, setStateMines] = useState(10);
+
 
   interface event {
     target: {
@@ -31,6 +32,7 @@ const Form = () => {
     dispatch(setLength(length));
     dispatch(setWidth(width));
     dispatch(setMines(mines));
+    dispatch(setDifficulty(difficulty));
   }
   const onRadioChange = (e: event) => {
     const val = e.target.value;
@@ -54,7 +56,7 @@ const Form = () => {
       setStateWidth(30);
       setStateMines(99);
     }
-    setSelected(e.target.value);
+    setStateDifficulty(e.target.value);
   };
   return (
     <div className="appchild form">
@@ -65,7 +67,7 @@ const Form = () => {
               type="radio"
               id="beginner"
               value={beginner}
-              checked={selected === beginner}
+              checked={difficulty === beginner}
               onChange={(e) => onRadioChange(e)}
             />
             {beginner}
@@ -77,7 +79,7 @@ const Form = () => {
               type="radio"
               id="default"
               value={defaultVal}
-              checked={selected === defaultVal}
+              checked={difficulty === defaultVal}
               onChange={(e) => onRadioChange(e)}
             />
             {defaultVal}
@@ -89,7 +91,7 @@ const Form = () => {
               type="radio"
               id="intermediate"
               value={intermediate}
-              checked={selected === intermediate}
+              checked={difficulty === intermediate}
               onChange={(e) => onRadioChange(e)}
             />
             {intermediate}
@@ -101,7 +103,7 @@ const Form = () => {
               type="radio"
               id="expert"
               value={expert}
-              checked={selected === expert}
+              checked={difficulty === expert}
               onChange={(e) => onRadioChange(e)}
             />
             {expert}
@@ -113,7 +115,7 @@ const Form = () => {
               type="radio"
               id="custom"
               value={custom}
-              checked={selected === custom}
+              checked={difficulty === custom}
               onChange={onRadioChange}
             />
             {custom}
@@ -155,8 +157,8 @@ const Form = () => {
             </div>
           </label>
         </div>
-        <div className="radio selected">
-          Selected option is : {selected}
+        <div className="radio difficulty">
+          Selected option is : {difficulty}
         </div>
         <button
           className="submitradio"

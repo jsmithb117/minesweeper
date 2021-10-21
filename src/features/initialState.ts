@@ -1,5 +1,6 @@
 import boardCreator from './boardCreator';
 import { Board, IInitialState } from '../interfaces/interfaces';
+import { defaultVal } from '../components/Form';
 
 export interface IClickState {
   piecesMarkedAsMine: number,
@@ -39,6 +40,7 @@ const initialStateCreator = (
       width: 10,
       mines: 10,
       paused: false,
+      difficulty: defaultVal,
     },
     stats: {
       bestBeginnerScore: { username: '', seconds: Number.NEGATIVE_INFINITY, date: new Date() },
@@ -48,7 +50,7 @@ const initialStateCreator = (
       intermediateScores: [{ username: '', seconds: Number.NEGATIVE_INFINITY, date: new Date() }],
       expertScores: [{ username: '', seconds: Number.NEGATIVE_INFINITY, date: new Date() }],
       totalGamesPlayed: 0,
-      username: '',
+      username: 'user1',
     }
   }
   return state;

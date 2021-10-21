@@ -87,20 +87,20 @@ export const createLogin = (user) => {
 };
 
 export const postCompletedBoard = ({ username, difficulty, seconds, date, }) => {
-  const beginnerDif = difficulty === 'beginner';
-  const intermediateDif = difficulty === 'intermediate';
-  const expertDif = difficulty === 'expert';
-  const customDif = difficulty === 'custom';
+  const beginnerDif = difficulty === 'Beginner';
+  const intermediateDif = difficulty === 'Intermediate';
+  const expertDif = difficulty === 'Expert';
+  const customDif = difficulty === 'Custom';
+  const lowerCaseDifficulty = difficulty.toLowerCase();
 
   const isDefaultDifficulty = beginnerDif || intermediateDif || expertDif;
-
   return new Promise((resolve, reject) => {
     const userUpdateObject = {
       $inc: { total_games_played: 1 },
     };
     const highScoresUpdateObject = {
       $push: {
-        [difficulty]: {
+        [lowerCaseDifficulty]: {
           $each: [{ username, seconds, date }],
           $sort: { seconds: 1 },
           $slice: 10,
@@ -109,23 +109,30 @@ export const postCompletedBoard = ({ username, difficulty, seconds, date, }) => 
     };
 
     if (isDefaultDifficulty) {
+      console.log('isDefaultDifficulty')
+      console.log('username, ', username);
+      console.log('lowerCaseDifficulty, ', lowerCaseDifficulty);
+      console.log('seconds, ', seconds);
+      console.log('date, ', date);
+      console.log('`${lowerCaseDifficulty}_scores`: ', `${lowerCaseDifficulty}_scores`);
+
       userUpdateObject.$push = {
-        [`${difficulty}_scores`]: { username, seconds, date }
+        [`${lowerCaseDifficulty}_scores`]: { username, seconds, date }
       };
       HighScores.updateOne({ id: 1 }, highScoresUpdateObject)
         .catch((err) => reject(err));
       Users.findOne({ username })
         .then((usersResponse) => {
-          if (seconds < usersResponse[`best_${difficulty}_score`].seconds) {
+          if (seconds < usersResponse[`best_${lowerCaseDifficulty}_score`].seconds) {
             Users.updateOne({ username }, {
-                [`best_${difficulty}_score`]: { username, seconds, date }
+                [`best_${lowerCaseDifficulty}_score`]: { username, seconds, date }
               })
               .catch((err) => reject(err));
           }
         });
     }
 
-    if (isDefaultDifficulty || difficulty === 'custom') {
+    if (isDefaultDifficulty || lowerCaseDifficulty === 'custom') {
       Users.updateOne({ username }, userUpdateObject)
         .then(() => {
           resolve(Users.findOne({ username }));
@@ -135,7 +142,7 @@ export const postCompletedBoard = ({ username, difficulty, seconds, date, }) => 
           reject(err);
         });
     } else {
-      reject(new Error('Unknown difficulty: ', difficulty));
+      reject(new Error('Unknown difficulty: ', lowerCaseDifficulty));
     }
   });
 };
