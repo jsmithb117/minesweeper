@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { BaseSyntheticEvent, FormEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   setLength,
@@ -19,6 +19,10 @@ const Form = () => {
   const [width, setStateWidth] = useState(10);
   const [mines, setStateMines] = useState(10);
 
+  const LENGTH = 'LENGTH';
+  const WIDTH = 'WIDTH';
+  const MINES = 'MINES';
+
 
   interface event {
     target: {
@@ -36,6 +40,7 @@ const Form = () => {
   }
   const onRadioChange = (e: event) => {
     const val = e.target.value;
+    console.log(val);
     if (val === beginner) {
       setStateLength(8);
       setStateWidth(8);
@@ -58,6 +63,25 @@ const Form = () => {
     }
     setStateDifficulty(e.target.value);
   };
+  interface TEvent extends BaseSyntheticEvent {
+    target: {
+      value: string
+    },
+  };
+  const onNumberInput = (e: TEvent, type: string) => {
+    const val = parseInt(e.target.value);
+    if (type === LENGTH) {
+      setStateLength(val);
+    }
+    if (type === WIDTH) {
+      setStateWidth(val);
+    }
+    if (type === MINES) {
+      setStateMines(val);
+    }
+    setStateDifficulty(custom);
+  };
+
   return (
     <div className="appchild form">
       <form onSubmit={(e) => formSubmit(e)}>
@@ -116,7 +140,7 @@ const Form = () => {
               id="custom"
               value={custom}
               checked={difficulty === custom}
-              onChange={onRadioChange}
+              onChange={(e) => onRadioChange(e)}
             />
             {custom}
             <div className="radionumber length">
@@ -128,7 +152,7 @@ const Form = () => {
                 value={length}
                 min="6"
                 max="30"
-                onChange={(e) => setStateLength(parseInt(e.target.value))}
+                onChange={(e) => onNumberInput(e, LENGTH)}
               />
             </div>
             <div className="radionumber width">
@@ -140,7 +164,7 @@ const Form = () => {
                 value={width}
                 min="6"
                 max="30"
-                onChange={(e) => setStateWidth(parseInt(e.target.value))}
+                onChange={(e) => onNumberInput(e, WIDTH)}
               />
             </div>
             <div className="radionumber mines">
@@ -152,7 +176,7 @@ const Form = () => {
                 value={mines}
                 min="6"
                 max="99"
-                onChange={(e) => setStateMines(parseInt(e.target.value))}
+                onChange={(e) => onNumberInput(e, MINES)}
               />
             </div>
           </label>

@@ -127,9 +127,7 @@ app.post('/insecurelogin', (req, res) => {
 //username, difficulty, seconds, date: new Date()
 app.post('/completed', (req, res) => {
   postCompletedBoard(req.body)
-    .then((dbResponse) => {
-      res.send(dbResponse);
-    })
+    .then((dbResponse) => res.send(dbResponse))
     .catch((err) => {
       console.error('Error in /completed: ', err);
       res.sendStatus(400);
