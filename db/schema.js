@@ -53,4 +53,5 @@ export const highScoresSchema = new mongoose.Schema({
     seconds: Number,
     date: Date,
   }],
+  globalGamesCompleted: Number,
 });

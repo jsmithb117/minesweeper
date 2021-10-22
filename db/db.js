@@ -75,7 +75,13 @@ export const postCompletedBoard = ({ username, difficulty, seconds, date, }) => 
 
   return new Promise((resolve, reject) => {
     const userUpdateObject = { $inc: { total_games_completed: 1 } };
-    const highScoresUpdateObject = {
+    const highScoresNonDefaultUpdateObject = {
+      $inc: {
+        globalGamesCompleted: 1
+      },
+    }
+    const highScoresDefaultUpdateObject = {
+      ...highScoresNonDefaultUpdateObject,
       $push: {
         [lowerCaseDifficulty]: {
           $each: [{ username, seconds, date }],
@@ -93,7 +99,7 @@ export const postCompletedBoard = ({ username, difficulty, seconds, date, }) => 
           $slice: 10,
         }
       };
-      HighScores.updateOne({ id: 1 }, highScoresUpdateObject)
+      HighScores.updateOne({ id: 1 }, highScoresDefaultUpdateObject)
         .catch((err) => reject(err));
       Users.findOne({ username })
         .then((usersResponse) => {
@@ -104,6 +110,9 @@ export const postCompletedBoard = ({ username, difficulty, seconds, date, }) => 
               .catch((err) => reject(err));
           }
         })
+    } else {
+      HighScores.updateOne({ username }, highScoresNonDefaultUpdateObject)
+        .catch((err) => reject(err));
     }
     Users.updateOne({ username }, userUpdateObject)
       .then(() => resolve(Users.findOne({ username })))
@@ -118,6 +127,7 @@ export const createHighScores = () => {
         beginner: [],
         intermediate: [],
         expert: [],
+        globalGamesCompleted: 0,
       })
       .then((dbResponse) => resolve(dbResponse))
       .catch((err) => reject(err));
