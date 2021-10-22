@@ -53,7 +53,7 @@ function App(props: { test: boolean }) {
             beginnerScores: json.beginner_scores,
             intermediateScores: json.intermediate_scores,
             expertScores: json.expert_scores,
-            totalGamesPlayed: json.total_games_played,
+            totalGamesCompleted: json.total_games_completed,
             username: username,
           }
           dispatch(setStats(statsObject));

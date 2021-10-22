@@ -20,7 +20,7 @@ const newUserCreator = ({ username, password }) => {
     beginner_scores: [],
     intermediate_scores: [],
     expert_scores: [],
-    total_games_played: 0,
+    total_games_completed: 0,
   };
   return newUser;
 };

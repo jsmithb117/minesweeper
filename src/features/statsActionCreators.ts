@@ -8,7 +8,7 @@ export const SETBESTEXPERTSCORE = 'SETBESTEXPERTSCORE';
 export const SETBEGINNERSCORES = 'SETBEGINNERSCORES';
 export const SETINTERMEDIATESCORES = 'SETINTERMEDIATESCORES';
 export const SETEXPERTSCORES = 'SETEXPERTSCORES';
-export const SETTOTALGAMESPLAYED = 'SETTOTALGAMESPLAYED';
+export const SETTOTALGAMESCOMPLETED = 'SETTOTALGAMESCOMPLETED';
 export const SETUSERNAME = 'SETUSERNAME';
 export const SETSTATS = 'SETSTATS';
 
@@ -39,4 +39,4 @@ export const setIntermediateScores = (intermediateScores: IScore[]) => ({ ...bas
 
 export const setExpertScores = (expertScores: IScore[]) => ({ ...baseActionCreator, expertScores });
 
-export const setTotalGamesPlayed = (totalGamesPlayed: number) => ({ ...baseActionCreator, totalGamesPlayed });
+export const setTotalGamesCompleted = (totalGamesCompleted: number) => ({ ...baseActionCreator, totalGamesCompleted });

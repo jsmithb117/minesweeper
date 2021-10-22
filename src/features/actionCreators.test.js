@@ -26,7 +26,7 @@ import {
   SETBEGINNERSCORES,
   SETINTERMEDIATESCORES,
   SETEXPERTSCORES,
-  SETTOTALGAMESPLAYED,
+  SETTOTALGAMESCOMPLETED,
   SETUSERNAME,
   SETSTATS,
   setStats,
@@ -37,7 +37,7 @@ import {
   setBeginnerScores,
   setIntermediateScores,
   setExpertScores,
-  setTotalGamesPlayed,
+  setTotalGamesCompleted,
 } from './statsActionCreators';
 
 describe('actionCreators', () => {

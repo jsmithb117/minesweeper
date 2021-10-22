@@ -33,7 +33,7 @@ export const usersSchema = new mongoose.Schema({
     seconds: Number,
     date: Date,
   }],
-  total_games_played: Number,
+  total_games_completed: Number,
 }, { retainKeyOrder: true });
 
 export const highScoresSchema = new mongoose.Schema({
@@ -53,5 +53,4 @@ export const highScoresSchema = new mongoose.Schema({
     seconds: Number,
     date: Date,
   }],
-  totalNumberOfGamesPlayed: Number,
 });

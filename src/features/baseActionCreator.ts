@@ -31,7 +31,7 @@ const baseActionCreator = (type: string, payloadObject: any | null) => {
       beginnerScores: payloadObject?.beginnerScores || null,
       intermediateScores: payloadObject?.intermediateScores || null,
       expertScores: payloadObject?.expertScores || null,
-      totalGamesPlayed: payloadObject?.totalGamesPlayed || null,
+      totalGamesCompleted: payloadObject?.totalGamesCompleted || null,
       username: payloadObject?.username || null,
       difficulty: payloadObject?.difficulty || null,
     },

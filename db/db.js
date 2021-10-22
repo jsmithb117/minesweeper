@@ -74,7 +74,7 @@ export const postCompletedBoard = ({ username, difficulty, seconds, date, }) => 
   const isDefaultDifficulty = beginnerDif || intermediateDif || expertDif;
 
   return new Promise((resolve, reject) => {
-    const userUpdateObject = { $inc: { total_games_played: 1 } };
+    const userUpdateObject = { $inc: { total_games_completed: 1 } };
     const highScoresUpdateObject = {
       $push: {
         [lowerCaseDifficulty]: {
@@ -127,10 +127,10 @@ export const createHighScores = () => {
   })
 };
 
-export const totalGamesPlayed = ({ username }) => {
+export const totalGamesCompleted = ({ username }) => {
   return new Promise((resolve, reject) => {
     Users.findOne({ username })
-      .then((dbResponse) => resolve(dbResponse.total_games_played))
+      .then((dbResponse) => resolve(dbResponse.total_games_completed))
       .catch((err) => reject(err));
   })
 };

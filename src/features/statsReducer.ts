@@ -8,7 +8,7 @@ import {
   SETEXPERTSCORES,
   SETINTERMEDIATESCORES,
   SETSTATS,
-  SETTOTALGAMESPLAYED,
+  SETTOTALGAMESCOMPLETED,
 } from './statsActionCreators';
 
 const statsReducer = (state: IStatsState | null = null, action: any) => {
@@ -62,9 +62,9 @@ const statsReducer = (state: IStatsState | null = null, action: any) => {
       return draft;
     });
   }
-  if (action.type === SETTOTALGAMESPLAYED) {
+  if (action.type === SETTOTALGAMESCOMPLETED) {
     return produce(state, (draft: Draft<IStatsState>) => {
-      draft.totalGamesPlayed = action.payload.totalGamesPlayed;
+      draft.totalGamesCompleted = action.payload.totalGamesCompleted;
       return draft;
     });
   }

@@ -8,7 +8,7 @@ import {
   getExpertHighScores,
   postCompletedBoard,
   createHighScores,
-  totalGamesPlayed,
+  totalGamesCompleted,
   getUserData,
 } from '../db/db.js';
 import cors from 'cors';
@@ -73,7 +73,7 @@ app.post('/user/', (req, res) => {
       best_beginner_score,
       best_intermediate_score,
       best_expert_score,
-      total_games_played,
+      total_games_completed,
       plainTextPassword,
     }) => {
       if (plainTextPassword === req.body.password) { //insecure, FIXME
@@ -84,7 +84,7 @@ app.post('/user/', (req, res) => {
           beginnerScores: beginner_scores.sort((a, b) => a.seconds - b.seconds),
           intermediateScores: intermediate_scores,
           expertScores: expert_scores,
-          totalGamesPlayed: total_games_played,
+          totalGamesCompleted: total_games_completed,
         });
       } else {
         res.sendStatus(401);
@@ -123,6 +123,8 @@ app.post('/insecurelogin', (req, res) => {
     });
 });
 
+
+//username, difficulty, seconds, date: new Date()
 app.post('/completed', (req, res) => {
   postCompletedBoard(req.body)
     .then((dbResponse) => {
@@ -143,7 +145,7 @@ app.post('/create_high_scores', (req, res) => {
 });
 
 app.get('/played', (req, res) => {
-  totalGamesPlayed(req.body)
+  totalGamesCompleted(req.body)
     .then((dbResponse) => {
       res.status(200).json(dbResponse);
     })
