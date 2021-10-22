@@ -106,7 +106,7 @@ export const postCompletedBoard = ({ username, difficulty, seconds, date, }) => 
         })
     }
 
-    if (isDefaultDifficulty || lowerCaseDifficulty === 'custom') {
+    if (isDefaultDifficulty || lowerCaseDifficulty === 'custom' || lowerCaseDifficulty === 'default') {
       Users.updateOne({ username }, userUpdateObject)
         .then(() => resolve(Users.findOne({ username })))
         .catch((err) => reject(err));
