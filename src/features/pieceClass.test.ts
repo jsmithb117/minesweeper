@@ -1,17 +1,10 @@
+import { IPiece } from '../interfaces/interfaces';
 import pieceClass from './pieceClass';
 
-type TPiece = {
-  val: number,
-  isMine: boolean,
-  uncovered: boolean,
-  markedAsMine: boolean,
-  loser: boolean,
-  row: number,
-  col: number,
-};
+
 
 describe('pieceClass', () => {
-  const piece: TPiece = {
+  const piece: IPiece = {
     val: 0,
     isMine: false,
     uncovered: false,

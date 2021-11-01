@@ -4,24 +4,7 @@ import { incrementMinesDisplay, decrementMinesDisplay } from '../features/formAc
 import displayValue from '../features/displayValue';
 import pieceClass from '../features/pieceClass';
 import { useAppDispatch } from '../features/hooks';
-import { IPiece } from '../interfaces/interfaces';
-
-interface IProps {
-  piece: IPiece,
-  loss: boolean | undefined,
-  win: boolean | undefined,
-};
-
-interface IState {
-  form: {
-    width: number,
-    length: number,
-    paused: boolean,
-  },
-  click: {
-    loss: boolean,
-  }
-}
+import { IProps, IState } from '../interfaces/interfaces';
 
 const Piece = ({ piece }: IProps) => {
   const dispatch = useAppDispatch();

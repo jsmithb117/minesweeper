@@ -1,6 +1,5 @@
 import { Board, IPiece } from "../interfaces/interfaces";
 
-
 export const backupPiece: IPiece = {
   val: 0,
   isMine: false,

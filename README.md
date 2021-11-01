@@ -27,6 +27,8 @@ forms - Adds a display at the top for # of mines remaining and a form at the bot
 
 pause - Adds the ability to cover the whole board and pause time.
 
+fullstack - Stores each user score for each default board, top 10 global scores for each default board, and total games played. Renders top user score for each default board and top ten global scores for each default board.
+
 ### Work In Progress
 
 ### Todo:

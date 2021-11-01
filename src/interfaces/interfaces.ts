@@ -1,3 +1,6 @@
+import { BaseSyntheticEvent } from 'react';
+import store from '../features/store';
+
 export interface IActionNoPayload {
   type: string,
 };
@@ -161,4 +164,59 @@ export interface IBestGlobalScoreProps {
   type: string,
   score: IScore,
   rank: number,
-}
+};
+
+export interface event {
+  target: {
+    value: string,
+  }
+};
+
+export interface TEvent extends BaseSyntheticEvent {
+  target: {
+    value: string
+  },
+};
+
+export interface IProps {
+  piece: IPiece,
+  loss: boolean | undefined,
+  win: boolean | undefined,
+};
+
+export interface IState {
+  form: {
+    width: number,
+    length: number,
+    paused: boolean,
+  },
+  click: {
+    loss: boolean,
+  },
+};
+
+export interface IRowProps {
+  row: IRow,
+  win: boolean | undefined,
+  loss: boolean | undefined,
+};
+
+export interface IClickState {
+  piecesMarkedAsMine: number,
+  board: Board,
+  originalBoard: Board,
+  win: boolean,
+  loss: boolean,
+};
+
+export interface IFormState {
+  minesDisplay: number,
+  time: number,
+  length: number,
+  width: number,
+  mines: number,
+  paused: boolean,
+};
+
+export type RootState = ReturnType<typeof store.getState>;
+export type TDispatch = typeof store.dispatch;

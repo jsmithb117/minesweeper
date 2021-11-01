@@ -1,4 +1,4 @@
-import React, { BaseSyntheticEvent, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   setLength,
@@ -6,7 +6,10 @@ import {
   setMines,
   setDifficulty,
 } from '../features/formActionCreators';
+import { event, TEvent } from '../interfaces/interfaces';
+
 export const defaultVal = 'Default';
+
 const Form = () => {
   const dispatch = useDispatch();
   const beginner = 'Beginner';
@@ -22,13 +25,6 @@ const Form = () => {
   const LENGTH = 'LENGTH';
   const WIDTH = 'WIDTH';
   const MINES = 'MINES';
-
-
-  interface event {
-    target: {
-      value: string,
-    }
-  };
 
   const formSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
@@ -62,11 +58,7 @@ const Form = () => {
     }
     setStateDifficulty(e.target.value);
   };
-  interface TEvent extends BaseSyntheticEvent {
-    target: {
-      value: string
-    },
-  };
+
   const onNumberInput = (e: TEvent, type: string) => {
     const val = parseInt(e.target.value);
     if (type === LENGTH) {

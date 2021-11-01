@@ -1,23 +1,6 @@
 import boardCreator from './boardCreator';
-import { Board, IInitialState } from '../interfaces/interfaces';
+import { IInitialState } from '../interfaces/interfaces';
 import { defaultVal } from '../components/Form';
-
-export interface IClickState {
-  piecesMarkedAsMine: number,
-  board: Board,
-  originalBoard: Board,
-  win: boolean,
-  loss: boolean,
-};
-
-export interface IFormState {
-  minesDisplay: number,
-  time: number,
-  length: number,
-  width: number,
-  mines: number,
-  paused: boolean,
-};
 
 const initialStateCreator = (
   length: number = 10,

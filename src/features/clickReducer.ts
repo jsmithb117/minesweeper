@@ -9,7 +9,7 @@ import {
 } from './clickActionCreators';
 import zeroFinder from './zeroFinder';
 import checkWin from './checkWin';
-import { IClickState } from './initialState';
+import { IClickState } from '../interfaces/interfaces';
 import boardCreator from './boardCreator';
 import { TESTBOARD } from './clickActionCreators';
 

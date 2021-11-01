@@ -11,7 +11,7 @@ import {
   PAUSE,
   DIFFICULTY
 } from './formActionCreators';
-import { IFormState } from './initialState';
+import { IFormState } from '../interfaces/interfaces';
 
 const formReducer = (state: IFormState | null = null, action: any) => {
   if (action.type === DIFFICULTY) {
