@@ -1,4 +1,4 @@
-import React, { BaseSyntheticEvent, FormEvent, useState } from 'react';
+import React, { BaseSyntheticEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   setLength,
@@ -40,7 +40,6 @@ const Form = () => {
   }
   const onRadioChange = (e: event) => {
     const val = e.target.value;
-    console.log(val);
     if (val === beginner) {
       setStateLength(8);
       setStateWidth(8);

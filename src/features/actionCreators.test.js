@@ -52,11 +52,33 @@ describe('actionCreators', () => {
     const left = leftClick(piece);
     expect(left).toEqual({
       payload: {
-        col: 0,
-        row: 0,
-        markedAsMine: false,
-        uncovered: false,
-        val: 0
+        val: null,
+        isMine: null,
+        uncovered: null,
+        markedAsMine: null,
+        loser: null,
+        row: null,
+        col: null,
+        piece: {
+          col: 0,
+          row: 0,
+          val: 0,
+          uncovered: false,
+          markedAsMine: false,
+        },
+        length: null,
+        width: null,
+        mines: null,
+        minesDisplay: null,
+        bestBeginnerScore: null,
+        bestIntermediateScore: null,
+        bestExpertScore: null,
+        beginnerScores: null,
+        intermediateScores: null,
+        expertScores: null,
+        totalGamesCompleted: null,
+        username: null,
+        difficulty: null,
       },
       type: LEFTCLICK
     });
@@ -72,11 +94,33 @@ describe('actionCreators', () => {
     const right = rightClick(piece);
     expect(right).toEqual({
       payload: {
-        col: 0,
-        row: 0,
-        markedAsMine: false,
-        uncovered: false,
-        val: 0
+        val: null,
+        isMine: null,
+        uncovered: null,
+        markedAsMine: null,
+        loser: null,
+        row: null,
+        col: null,
+        piece: {
+          col: 0,
+          row: 0,
+          val: 0,
+          uncovered: false,
+          markedAsMine: false,
+        },
+        length: null,
+        width: null,
+        mines: null,
+        minesDisplay: null,
+        bestBeginnerScore: null,
+        bestIntermediateScore: null,
+        bestExpertScore: null,
+        beginnerScores: null,
+        intermediateScores: null,
+        expertScores: null,
+        totalGamesCompleted: null,
+        username: null,
+        difficulty: null,
       },
       type: RIGHTCLICK
     });
@@ -102,9 +146,35 @@ describe('actionCreators', () => {
     expect(action).toEqual({
       type: NEWBOARD,
       payload: {
+        val: null,
+        isMine: null,
+        uncovered: null,
+        markedAsMine: null,
+        loser: null,
+        row: null,
+        col: null,
+        piece: {
+          col: null,
+          row: null,
+          val: null,
+          uncovered: null,
+          markedAsMine: null,
+          isMine: null,
+          loser: null,
+        },
         length: 10,
         width: 10,
         mines: 10,
+        minesDisplay: null,
+        bestBeginnerScore: null,
+        bestIntermediateScore: null,
+        bestExpertScore: null,
+        beginnerScores: null,
+        intermediateScores: null,
+        expertScores: null,
+        totalGamesCompleted: null,
+        username: null,
+        difficulty: null,
       }
     });
   });
