@@ -1,4 +1,4 @@
-import { IPiece } from './boardCreator';
+import { IPiece } from "../interfaces/interfaces";
 
 const displayValue = (piece: IPiece) => {
   if (piece.uncovered && !piece.isMine) {

@@ -1,4 +1,4 @@
-import { Board } from './boardCreator';
+import { Board } from "../interfaces/interfaces";
 
 // uncovers elements as required
 const zeroFinder = (row: number, col: number, board: Board) => {

@@ -1,15 +1,5 @@
-export interface IPiece {
-    val: number,
-    isMine: boolean,
-    uncovered: boolean,
-    markedAsMine: boolean,
-    loser: boolean,
-    row: number,
-    col: number,
-};
+import { Board, IPiece } from "../interfaces/interfaces";
 
-export interface IRow extends Array<IPiece>{};
-export interface Board extends Array<IRow>{};
 export const backupPiece: IPiece = {
   val: 0,
   isMine: false,

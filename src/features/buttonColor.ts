@@ -1,4 +1,4 @@
-import { IPiece } from './boardCreator';
+import { IPiece } from "../interfaces/interfaces";
 
 const buttonColorFunc = (piece: IPiece) => (
   piece.val === 0 ? 'lightgray' :

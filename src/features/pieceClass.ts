@@ -1,5 +1,5 @@
+import { IPiece } from '../interfaces/interfaces';
 import buttonColor from './buttonColor';
-import { IPiece } from './boardCreator';
 
 const pieceClass = (piece: IPiece, width: number, length: number) => {
   let className: string = `piece width${width} length${length}`;

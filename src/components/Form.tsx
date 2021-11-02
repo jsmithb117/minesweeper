@@ -3,27 +3,28 @@ import { useDispatch } from 'react-redux';
 import {
   setLength,
   setWidth,
-  setMines
+  setMines,
+  setDifficulty,
 } from '../features/formActionCreators';
+import { event, TEvent } from '../interfaces/interfaces';
+
+export const defaultVal = 'Default';
 
 const Form = () => {
   const dispatch = useDispatch();
   const beginner = 'Beginner';
-  const defaultVal = 'Default';
   const intermediate = 'Intermediate';
   const expert = 'Expert';
   const custom = 'Custom';
 
-  const [selected, setSelected] = useState(defaultVal);
+  const [difficulty, setStateDifficulty] = useState(defaultVal);
   const [length, setStateLength] = useState(10);
   const [width, setStateWidth] = useState(10);
   const [mines, setStateMines] = useState(10);
 
-  interface event {
-    target: {
-      value: string,
-    }
-  };
+  const LENGTH = 'LENGTH';
+  const WIDTH = 'WIDTH';
+  const MINES = 'MINES';
 
   const formSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
@@ -31,6 +32,7 @@ const Form = () => {
     dispatch(setLength(length));
     dispatch(setWidth(width));
     dispatch(setMines(mines));
+    dispatch(setDifficulty(difficulty));
   }
   const onRadioChange = (e: event) => {
     const val = e.target.value;
@@ -54,8 +56,23 @@ const Form = () => {
       setStateWidth(30);
       setStateMines(99);
     }
-    setSelected(e.target.value);
+    setStateDifficulty(e.target.value);
   };
+
+  const onNumberInput = (e: TEvent, type: string) => {
+    const val = parseInt(e.target.value);
+    if (type === LENGTH) {
+      setStateLength(val);
+    }
+    if (type === WIDTH) {
+      setStateWidth(val);
+    }
+    if (type === MINES) {
+      setStateMines(val);
+    }
+    setStateDifficulty(custom);
+  };
+
   return (
     <div className="appchild form">
       <form onSubmit={(e) => formSubmit(e)}>
@@ -65,7 +82,7 @@ const Form = () => {
               type="radio"
               id="beginner"
               value={beginner}
-              checked={selected === beginner}
+              checked={difficulty === beginner}
               onChange={(e) => onRadioChange(e)}
             />
             {beginner}
@@ -77,7 +94,7 @@ const Form = () => {
               type="radio"
               id="default"
               value={defaultVal}
-              checked={selected === defaultVal}
+              checked={difficulty === defaultVal}
               onChange={(e) => onRadioChange(e)}
             />
             {defaultVal}
@@ -89,7 +106,7 @@ const Form = () => {
               type="radio"
               id="intermediate"
               value={intermediate}
-              checked={selected === intermediate}
+              checked={difficulty === intermediate}
               onChange={(e) => onRadioChange(e)}
             />
             {intermediate}
@@ -101,7 +118,7 @@ const Form = () => {
               type="radio"
               id="expert"
               value={expert}
-              checked={selected === expert}
+              checked={difficulty === expert}
               onChange={(e) => onRadioChange(e)}
             />
             {expert}
@@ -113,8 +130,8 @@ const Form = () => {
               type="radio"
               id="custom"
               value={custom}
-              checked={selected === custom}
-              onChange={onRadioChange}
+              checked={difficulty === custom}
+              onChange={(e) => onRadioChange(e)}
             />
             {custom}
             <div className="radionumber length">
@@ -125,8 +142,8 @@ const Form = () => {
                 data-testid="length-input"
                 value={length}
                 min="6"
-                max="100"
-                onChange={(e) => setStateLength(parseInt(e.target.value))}
+                max="30"
+                onChange={(e) => onNumberInput(e, LENGTH)}
               />
             </div>
             <div className="radionumber width">
@@ -137,8 +154,8 @@ const Form = () => {
                 data-testid="width-input"
                 value={width}
                 min="6"
-                max="100"
-                onChange={(e) => setStateWidth(parseInt(e.target.value))}
+                max="30"
+                onChange={(e) => onNumberInput(e, WIDTH)}
               />
             </div>
             <div className="radionumber mines">
@@ -149,14 +166,14 @@ const Form = () => {
                 data-testid="mines-input"
                 value={mines}
                 min="6"
-                max="100"
-                onChange={(e) => setStateMines(parseInt(e.target.value))}
+                max="99"
+                onChange={(e) => onNumberInput(e, MINES)}
               />
             </div>
           </label>
         </div>
-        <div className="radio selected">
-          Selected option is : {selected}
+        <div className="radio difficulty">
+          Selected option is : {difficulty}
         </div>
         <button
           className="submitradio"

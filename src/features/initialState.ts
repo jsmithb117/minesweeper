@@ -1,39 +1,6 @@
-import boardCreator, { Board } from './boardCreator';
-
-export interface IClickState {
-  piecesMarkedAsMine: number,
-  board: Board,
-  originalBoard: Board,
-  win: boolean,
-  loss: boolean,
-};
-
-export interface IFormState {
-  minesDisplay: number,
-  time: number,
-  length: number,
-  width: number,
-  mines: number,
-  paused: boolean,
-};
-
-export interface IInitialState {
-  click: {
-    piecesMarkedAsMine: number,
-    board: Board,
-    originalBoard: Board,
-    win: boolean,
-    loss: boolean,
-  },
-  form: {
-    minesDisplay: number,
-    time: number,
-    length: number,
-    width: number,
-    mines: number,
-    paused: boolean,
-  },
-};
+import boardCreator from './boardCreator';
+import { IInitialState } from '../interfaces/interfaces';
+import { defaultVal } from '../components/Form';
 
 const initialStateCreator = (
   length: number = 10,
@@ -56,6 +23,17 @@ const initialStateCreator = (
       width: 10,
       mines: 10,
       paused: false,
+      difficulty: defaultVal,
+    },
+    stats: {
+      bestBeginnerScore: { username: '', seconds: Number.NEGATIVE_INFINITY, date: new Date() },
+      bestIntermediateScore: { username: '', seconds: Number.NEGATIVE_INFINITY, date: new Date() },
+      bestExpertScore: { username: '', seconds: Number.NEGATIVE_INFINITY, date: new Date() },
+      beginnerScores: [{ username: '', seconds: Number.NEGATIVE_INFINITY, date: new Date() }],
+      intermediateScores: [{ username: '', seconds: Number.NEGATIVE_INFINITY, date: new Date() }],
+      expertScores: [{ username: '', seconds: Number.NEGATIVE_INFINITY, date: new Date() }],
+      totalGamesCompleted: 0,
+      username: 'user1',
     }
   }
   return state;

@@ -1,4 +1,4 @@
-import { Board } from './boardCreator';
+import { Board } from "../interfaces/interfaces";
 
 const checkWin = (board: Board) => {
   for (let i = 0; i < board.length; i++) {

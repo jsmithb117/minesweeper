@@ -3,25 +3,8 @@ import { leftClick, rightClick } from '../features/clickActionCreators';
 import { incrementMinesDisplay, decrementMinesDisplay } from '../features/formActionCreators';
 import displayValue from '../features/displayValue';
 import pieceClass from '../features/pieceClass';
-import { IPiece } from '../features/boardCreator';
 import { useAppDispatch } from '../features/hooks';
-
-interface IProps {
-  piece: IPiece,
-  loss: boolean | undefined,
-  win: boolean | undefined,
-};
-
-interface IState {
-  form: {
-    width: number,
-    length: number,
-    paused: boolean,
-  },
-  click: {
-    loss: boolean,
-  }
-}
+import { IProps, IState } from '../interfaces/interfaces';
 
 const Piece = ({ piece }: IProps) => {
   const dispatch = useAppDispatch();
