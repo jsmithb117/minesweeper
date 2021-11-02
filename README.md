@@ -63,7 +63,7 @@ query - Implement React Query
 
 * ~~Add High score board~~ - Merged with Express/Mongo
 
-* Replace Redux with React Query
+* Implement React Query where Redux uses server data
 
 * GraphQL for queries
 
