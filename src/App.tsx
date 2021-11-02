@@ -7,10 +7,14 @@ import { newBoardAction, updateOriginalBoard } from './features/clickActionCreat
 import { incrementTime, setMinesDisplay } from './features/formActionCreators';
 import Form from './components/Form';
 import Display from './components/Display';
-import { IScore } from './interfaces/interfaces';
-
+import { QueryClient, QueryClientProvider } from 'react-query';
 import HighScores from './components/HighScores';
 import { setStats } from './features/statsActionCreators';
+import { IStatsObject } from './interfaces/interfaces';
+
+const queryClient = new QueryClient();
+const PORT = 3001;
+export const URI = `http://localhost:${PORT}`;
 
 function App(props: { test: boolean }) {
   document.addEventListener('contextmenu', event => event.preventDefault());
@@ -24,14 +28,12 @@ function App(props: { test: boolean }) {
   const difficulty = useAppSelector((state: any) => state.form.difficulty);
   const seconds = useAppSelector((state: any) => state.form.time)
 
-  const PORT = 3001;
-  const URI = `http://localhost:${PORT}`;
   const dispatch = useAppDispatch();
 
   const boardColor = win ? 'green'
     : loss ? 'red'
-    : paused ? 'blue'
-    : 'white';
+      : paused ? 'blue'
+        : 'white';
 
   const className = 'app minesweeper'.concat(boardColor);
 
@@ -46,7 +48,7 @@ function App(props: { test: boolean }) {
       fetch(URI.concat('/completed'), options)
         .then((dbResponse) => dbResponse.json())
         .then((json) => {
-          const statsObject = {
+          const statsObject: IStatsObject = {
             bestBeginnerScore: json.best_beginner_score,
             bestIntermediateScore: json.best_intermediate_score,
             bestExpertScore: json.best_expert_score,
@@ -60,7 +62,7 @@ function App(props: { test: boolean }) {
         })
         .catch((err) => console.error(err));
     }
-  }, [dispatch, URI, difficulty, seconds, username, win]);
+  }, [dispatch, difficulty, seconds, username, win]);
 
   useEffect(() => {
     dispatch(setMinesDisplay(mines));
@@ -82,49 +84,25 @@ function App(props: { test: boolean }) {
     };
   }, [dispatch, props.test, length, width, mines]);
 
-  useEffect(() => {
-    (async function (username = 'user1', password = 'insecurePassword') {
-      const highScoreData = await fetch(URI.concat('/highscores'))
-        .then((highScoreResponse) => highScoreResponse.json())
-        .catch((err) => console.error(err));
-      const userOpts = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      };
-      let userData = await fetch(URI.concat('/user'), userOpts)
-        .then((serverResponse) => serverResponse.json())
-        .catch(err => console.error(err));
-      const statsUpdate = {
-        bestBeginnerScore: userData.bestBeginnerScore,
-        bestIntermediateScore: userData.bestIntermediateScore,
-        bestExpertScore: userData.bestExpertScore,
-        beginnerScores: highScoreData.beginner.sort((a: IScore, b: IScore) => a.seconds - b.seconds),
-        intermediateScores: highScoreData.intermediate.sort((a: IScore, b: IScore) => a.seconds - b.seconds),
-        expertScores: highScoreData.expert.sort((a: IScore, b: IScore) => a.seconds - b.seconds),
-      }
-      dispatch(setStats(statsUpdate))
-    })();
-    //should be a form to enter username/password with changeHandlers for local state and onSubmit for dispatch(action) FIXME
-  }, [URI, dispatch]);
-
   return (
     <div className={className}>
-      <HelmetProvider>
-        <Display />
-        <Rows />
-        <HighScores />
-        <Form />
-        <Helmet>
-          <style type='text/css'>
-            {`
+      <QueryClientProvider client={queryClient}>
+        <HelmetProvider>
+          <Display />
+          <Rows />
+          <HighScores />
+          <Form />
+          <Helmet>
+            <style type='text/css'>
+              {`
             body {
               background-color : ${boardColor}
             }
-          `}
-          </style>
-        </Helmet>
-      </HelmetProvider>
+            `}
+            </style>
+          </Helmet>
+        </HelmetProvider>
+      </QueryClientProvider>
     </div>
   );
 }
