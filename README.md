@@ -10,7 +10,7 @@ I initally created a bare minimum implementation of [Minesweeper](https://github
 
 This repo is closely based on that app and I will use this repo as a platform for learning/reinforcing other technologies (Typescript, GraphQL...).
 
-I intend to make all major changes in Branches and integrated into the Main branch with Pull Requests.  Main branch changes should be sporadic and minor, ex: Removed rfdc dependency, Adjusted css to responsively render buttons...
+I intend to make all major changes in Branches and integrated into the Main branch with Pull Requests.  ~~Main branch changes should be sporadic and minor, ex: Removed rfdc dependency, Adjusted css to responsively render buttons...~~ No more main branch commits!
 
 ## Branches
 
@@ -31,37 +31,42 @@ fullstack - Stores each user score for each default board, top 10 global scores 
 
 ### Work In Progress
 
+Express server and MongoDB to persist and render 'high scores'
+Database - Done (mostly)
+Server - Done (mostly)
+Client - Done (mostly)
+
+Work remaining: Write tests(more tests, always), make some minor refactors to improve maintainability and readability(better code, always)
+
 ### Todo:
 
 * ~~More Testing~~ Always more testing.
 
-* ~~Make app responsive~~ Responsive-ish
+* ~~Make app responsive~~ ~~Responsive-ish~~ It is no longer responsive-ish.  TODO
 
-* ~~PropType validation~~ Complete
+* ~~PropType validation~~ ~~Complete~~ Not necessary with Typescript
 
 * ~~Typescript~~ Complete
 
 * ~~Use separate reducer and actionCreators for form actions and use combineReducers~~ - Complete
 
-* ~~Ability to reset and create a new board.~~ Merged with next todo.
-
-
+* ~~Ability to reset and create a new board.~~
 
 * ~~Form for reset board and Multiple board sizes, maybe X*Y board or easy/medium/hard.~~ - Complete
 
 * ~~Styling updates to match what 'real' minesweeper looks like when you lose~~ - Complete
 
-* ~~Track 'score' (time to complete)~~ - Merged with Backend
+* ~~Track 'score' (time to complete)~~
 
 * ~~Add 'Pause' button that covers entire board and stops incrementing time~~ - Complete
 
-* Express/Mongo (REST API) server and username (no auth) for data persistence between sessions, Track 'score' (time to complete)
+* Express/Mongo (REST API) server and username (plaintext auth) for data persistence between sessions, Track 'score' (time to complete)
 
-* Add auth for users (plaintext)
+* ~~Add auth for users (plaintext)~~ Merged with Express/Mongo
 
-* Add salt/hash for passwords
+* Add salt/hash for passwords - I may do it manually as a learning experience or use a library or SaaS product
 
-* Add High score board
+* ~~Add High score board~~ - Merged with Express/Mongo
 
 * GraphQL for queries
 
@@ -94,7 +99,7 @@ Lesson learned: ALWAYS use Immer or Redux Toolkit for state mutations in a Redux
 
 ### Cleaning up more questionable decisions
 
-I used the pieces on my board to store a 'val' property which could be a string or a number.  I realized the mistake early, but deferred refactoring it until I had some tests set up because I knew refactoring it was going to be a big task.  That mistake caught up to me as soon as I began refactoring for Typescript so I decided to fix it right in the typescript branch.  Even having those tests to support me and check if and where my code was broken, refactoring was a manageable chore.
+I used the pieces on my board to store a 'val' property which could be a string or a number.  I realized the mistake early, but deferred refactoring it until I had some tests set up because I knew refactoring it was going to be a big task.  That mistake caught up to me as soon as I began refactoring for Typescript so I decided to fix it right in the typescript branch.  Having those tests to support me to check if and where my code was broken, refactoring was a manageable chore.
 
 I solved the problem by adding an 'isMine' boolean property and using that to conditionally render the display value.
 
@@ -103,6 +108,8 @@ Lesson learned:  Use Typescript from the beginning and/or just don't make silly 
 ### Problems using the newest version of React with Enzyme
 
 I have been using Enzyme to render my tests.  There is no adapter for React17 for Enzyme yet, so I am using a community version that claims to work on React17.  Most features work fine, however, it seems that there may be an issue selecting radio buttons.  No matter what type of event I simulate, the onRadioChange method of the Form component will not execute.  After many hours assuming the problem was on my end (this may still be true), I changed my assumption that the problem was with my code and refactored to use @testing-library/react, to render and test my Form component.  This isn't a very interesting problem, but it's a problem worth keeping in mind.  It's still a safe bet to approach a bug as if the problem is 100% your fault, but there are times when you're doing what you're supposed to be doing, but one of your dependencies has a bug in it.  I may make a minimum reproducible example and see what StackOverflow thinks.
+
+Update: I posted something on StackOverflow  ( https://stackoverflow.com/questions/69559144/testing-radio-buttons-in-react-17-with-enzyme ) and have gotten 0 responses in 7 days.
 
 ### Typescript...
 This one's a little different than the others.  I was able to solve the others and write about it.  I haven't yet figured this one out so I'm writing about a problem without writing about the solution.
@@ -136,3 +143,5 @@ I've even tried to use optional properties like:
 but again, this doesn't work.  The only thing that I can think of that would work is to add all properties to all actions and only use the properties that I need but that just seems wrong.
 
 Until I solve this problem, I'm going to type the actions as 'any' in the reducers.  There's also another any type in store.ts, but that's a problem for another day.
+
+Update: I ended up going with the 'add all properties to all actions' route in the fullstack branch.  I added a function that takes in an 'options' object that creates an action with all properties set to null, then updates the necessary properties of the action from the options object. I tried to create it in such a way that if I need to create a new action with a new payload property, I only need to change the interface and the 'baseActionCreator' function, but there may be other things I'd need to update.  If I find that this solutions isn't easily maintainable, I'll explore other patterns to refactor to.  It seems to work fine right now, time will tell.
