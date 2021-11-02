@@ -31,12 +31,7 @@ fullstack - Stores each user score for each default board, top 10 global scores 
 
 ### Work In Progress
 
-Express server and MongoDB to persist and render 'high scores'
-Database - Done (mostly)
-Server - Done (mostly)
-Client - Done (mostly)
-
-Work remaining: Write tests(more tests, always), make some minor refactors to improve maintainability and readability(better code, always)
+query - Implement React Query
 
 ### Todo:
 
@@ -60,13 +55,15 @@ Work remaining: Write tests(more tests, always), make some minor refactors to im
 
 * ~~Add 'Pause' button that covers entire board and stops incrementing time~~ - Complete
 
-* Express/Mongo (REST API) server and username (plaintext auth) for data persistence between sessions, Track 'score' (time to complete)
+* ~~Express/Mongo (REST API) server and username (plaintext auth) for data persistence between sessions, Track 'score' (time to complete)~~
 
 * ~~Add auth for users (plaintext)~~ Merged with Express/Mongo
 
 * Add salt/hash for passwords - I may do it manually as a learning experience or use a library or SaaS product
 
 * ~~Add High score board~~ - Merged with Express/Mongo
+
+* Replace Redux with React Query
 
 * GraphQL for queries
 
