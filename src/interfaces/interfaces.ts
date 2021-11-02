@@ -110,7 +110,7 @@ export interface IAction {
     uncovered: Boolean | null,
     markedAsMine: Boolean | null,
     loser: Boolean | null,
-    row: Number | null,
+    row: number | null,
     col: Number | null,
     piece: {
       val: Number | null,
@@ -118,13 +118,13 @@ export interface IAction {
       uncovered: Boolean | null,
       markedAsMine: Boolean | null,
       loser: Boolean | null,
-      row: Number | null,
-      col: Number | null,
+      row: number | null,
+      col: number | null,
     },
-    length: Number | null,
-    width: Number | null,
-    mines: Number | null,
-    minesDisplay: Number | null,
+    length: number | null,
+    width: number | null,
+    mines: number | null,
+    minesDisplay: number | null,
     bestBeginnerScore: IScore | null,
     bestIntermediateScore: IScore | null,
     bestExpertScore: IScore | null,
@@ -220,3 +220,21 @@ export interface IFormState {
 
 export type RootState = ReturnType<typeof store.getState>;
 export type TDispatch = typeof store.dispatch;
+
+
+export interface IScore {
+  username: string,
+  seconds: number,
+  date: Date,
+  _id: string
+}
+export interface IStatsObject {
+  beginnerScores: IScore[],
+  intermediateScores: IScore[],
+  expertScores: IScore[],
+  bestBeginnerScore: IScore,
+  bestIntermediateScore: IScore,
+  bestExpertScore: IScore,
+  totalGamesCompleted: number,
+  username: string,
+}

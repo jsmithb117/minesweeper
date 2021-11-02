@@ -1,4 +1,4 @@
-import { IUserUpdate } from '../interfaces/interfaces';
+import { IStatsUpdate, IUserUpdate } from '../interfaces/interfaces';
 import baseActionCreator from './baseActionCreator';
 import { IScore } from '../interfaces/interfaces';
 
@@ -12,7 +12,7 @@ export const SETTOTALGAMESCOMPLETED = 'SETTOTALGAMESCOMPLETED';
 export const SETUSERNAME = 'SETUSERNAME';
 export const SETSTATS = 'SETSTATS';
 
-export const setStats = (updateObject: any) => {
+export const setStats = (updateObject: IStatsUpdate) => {
   const action = baseActionCreator(SETSTATS, updateObject);
   return action;
 }

@@ -11,12 +11,12 @@ import {
   PAUSE,
   DIFFICULTY
 } from './formActionCreators';
-import { IFormState } from '../interfaces/interfaces';
+import { IAction, IFormState } from '../interfaces/interfaces';
 
-const formReducer = (state: IFormState | null = null, action: any) => {
+const formReducer = (state: IFormState | null = null, action: IAction) => {
   if (action.type === DIFFICULTY) {
     return produce(state, (draft: Draft<{ difficulty: string }>) => {
-      draft.difficulty = action.payload.difficulty;
+      draft.difficulty = action.payload.difficulty || '';
       return draft;
     })
   }
@@ -36,19 +36,19 @@ const formReducer = (state: IFormState | null = null, action: any) => {
   }
   if (action.type === SETLENGTH) {
     return produce(state, (draft: { length: number }) => {
-      draft.length = action.payload.length;
+      draft.length = action.payload.length || 0;
       return draft;
     });
   }
   if (action.type === SETWIDTH) {
     return produce(state, (draft: { width: number }) => {
-          draft.width = action.payload.width;
+          draft.width = action.payload.width || 0;
       return draft;
     });
   }
   if (action.type === SETMINES) {
     return produce(state, (draft: { mines: number }) => {
-        draft.mines = action.payload.mines;
+        draft.mines = action.payload.mines || 0;
       return draft;
     });
   }
@@ -68,8 +68,8 @@ const formReducer = (state: IFormState | null = null, action: any) => {
     )
   };
   if (action.type === SETMINESDISPLAY) {
-    return produce(state, (draft: { minesDisplay: number }) => {
-        draft.minesDisplay = action.payload.minesDisplay;
+    return produce(state, (draft: { minesDisplay: number}) => {
+        draft.minesDisplay = action.payload.minesDisplay || 0;
       return draft;
     });
   }
