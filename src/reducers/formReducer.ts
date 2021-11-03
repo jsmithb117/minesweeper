@@ -10,7 +10,7 @@ import {
   SETMINESDISPLAY,
   PAUSE,
   DIFFICULTY
-} from './formActionCreators';
+} from '../actionCreators/formActionCreators';
 import { IAction, IFormState } from '../interfaces/interfaces';
 
 const formReducer = (state: IFormState | null = null, action: IAction) => {

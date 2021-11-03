@@ -5,7 +5,7 @@ import {
   setWidth,
   setMines,
   setDifficulty,
-} from '../features/formActionCreators';
+} from '../actionCreators/formActionCreators';
 import { event, TEvent } from '../interfaces/interfaces';
 
 export const defaultVal = 'Default';

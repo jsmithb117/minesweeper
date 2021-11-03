@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import { leftClick, rightClick } from '../features/clickActionCreators';
-import { incrementMinesDisplay, decrementMinesDisplay } from '../features/formActionCreators';
+import { leftClick, rightClick } from '../actionCreators/clickActionCreators';
+import { incrementMinesDisplay, decrementMinesDisplay } from '../actionCreators/formActionCreators';
 import displayValue from '../features/displayValue';
 import pieceClass from '../features/pieceClass';
 import { useAppDispatch } from '../features/hooks';

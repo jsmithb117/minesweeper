@@ -3,13 +3,13 @@ import Rows from './components/Rows';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useAppSelector, useAppDispatch } from './features/hooks';
 import { useEffect } from 'react';
-import { newBoardAction, updateOriginalBoard } from './features/clickActionCreators';
-import { incrementTime, setMinesDisplay } from './features/formActionCreators';
+import { newBoardAction, updateOriginalBoard } from './actionCreators/clickActionCreators';
+import { incrementTime, setMinesDisplay } from './actionCreators/formActionCreators';
 import Form from './components/Form';
 import Display from './components/Display';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import HighScores from './components/HighScores';
-import { setStats } from './features/statsActionCreators';
+import { setStats } from './actionCreators/statsActionCreators';
 import { IStatsObject } from './interfaces/interfaces';
 
 const queryClient = new QueryClient();

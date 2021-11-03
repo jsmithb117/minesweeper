@@ -9,7 +9,7 @@ import {
   SETINTERMEDIATESCORES,
   SETSTATS,
   SETTOTALGAMESCOMPLETED,
-} from './statsActionCreators';
+} from '../actionCreators/statsActionCreators';
 import { IStatsDraft } from '../interfaces/interfaces';
 
 const statsReducer = (state: IStatsState | null = null, action: IAction) => {

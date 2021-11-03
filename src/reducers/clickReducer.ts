@@ -6,12 +6,12 @@ import {
   RESETWINLOSS,
   NEWBOARD,
   UPDATEORIGINALBOARD,
-} from './clickActionCreators';
-import zeroFinder from './zeroFinder';
-import checkWin from './checkWin';
+} from '../actionCreators/clickActionCreators';
+import zeroFinder from '../features/zeroFinder';
+import checkWin from '../features/checkWin';
 import { IAction, IClickState } from '../interfaces/interfaces'
-import boardCreator from './boardCreator';
-import { TESTBOARD } from './clickActionCreators';
+import boardCreator from '../features/boardCreator';
+import { TESTBOARD } from '../actionCreators/clickActionCreators';
 
 const clickReducer = (state: IClickState | null = null, action: IAction) => {
   if (action?.type?.slice(0,7) === '@@redux') {

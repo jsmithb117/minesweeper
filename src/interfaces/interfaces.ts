@@ -50,14 +50,7 @@ export interface IActionMinesDisplay extends IActionNoPayload {
 };
 
 export interface DisplayState {
-  form: {
-    minesDisplay: number,
-    time: number,
-    length: number,
-    width: number,
-    mines: number,
-    paused: boolean,
-  },
+  form: IFormState,
 };
 
 export interface IClickState {
