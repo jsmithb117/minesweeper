@@ -3,11 +3,6 @@ import formReducer from "./formReducer";
 import initialStateCreator from '../features/initialState';
 
 const initialState = initialStateCreator();
-const username = 'user1';
-const seconds = 26;
-const date = new Date();
-const _id = '618172424cc87daf91d0bad0';
-const score = { _id, username, seconds, date };
 
 describe('formReducer', () => {
   it('handles the INCREMENTTIME and RESETTIME actions', () => {
