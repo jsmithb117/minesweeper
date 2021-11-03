@@ -29,9 +29,11 @@ pause - Adds the ability to cover the whole board and pause time.
 
 fullstack - Stores each user score for each default board, top 10 global scores for each default board, and total games played. Renders top user score for each default board and top ten global scores for each default board.
 
-### Work In Progress
+query - Uses React Query for fetching data from server
 
-query - Implement React Query
+### Next up / Work In Progress
+
+graphql - Refactor server and client to use GraphQL for queries
 
 ### Todo:
 
@@ -63,7 +65,7 @@ query - Implement React Query
 
 * ~~Add High score board~~ - Merged with Express/Mongo
 
-* Implement React Query where Redux uses server data
+* ~~Implement React Query where Redux uses server data~~ - Complete
 
 * GraphQL for queries
 
