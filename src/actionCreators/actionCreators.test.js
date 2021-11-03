@@ -75,125 +75,47 @@ const baseAction = {
 };
 
 describe('clickActionCreators', () => {
+  const piece = {
+    val: 0,
+    uncovered: false,
+    markedAsMine: false,
+    row: 0,
+    col: 0,
+  };
+
   it('should create a LEFTCLICK action in the proper format', () => {
-    const piece = {
-      val: 0,
-      uncovered: false,
-      markedAsMine: false,
-      row: 0,
-      col: 0,
-    };
     const left = leftClick(piece);
     expect(left).toEqual({
+      ...baseAction,
+      type: LEFTCLICK,
       payload: {
-        val: null,
-        isMine: null,
-        uncovered: null,
-        markedAsMine: null,
-        loser: null,
-        row: null,
-        col: null,
-        piece: {
-          col: 0,
-          row: 0,
-          val: 0,
-          uncovered: false,
-          markedAsMine: false,
-        },
-        length: null,
-        width: null,
-        mines: null,
-        minesDisplay: null,
-        bestBeginnerScore: null,
-        bestIntermediateScore: null,
-        bestExpertScore: null,
-        beginnerScores: null,
-        intermediateScores: null,
-        expertScores: null,
-        totalGamesCompleted: null,
-        username: null,
-        difficulty: null,
+        ...baseAction.payload,
+        piece,
       },
-      type: LEFTCLICK
     });
   });
   it('should create a RIGHTCLICK action in the proper format', () => {
-    const piece = {
-      val: 0,
-      uncovered: false,
-      markedAsMine: false,
-      row: 0,
-      col: 0,
-    };
     const right = rightClick(piece);
     expect(right).toEqual({
+      ...baseAction,
+      type: RIGHTCLICK,
       payload: {
-        val: null,
-        isMine: null,
-        uncovered: null,
-        markedAsMine: null,
-        loser: null,
-        row: null,
-        col: null,
-        piece: {
-          col: 0,
-          row: 0,
-          val: 0,
-          uncovered: false,
-          markedAsMine: false,
-        },
-        length: null,
-        width: null,
-        mines: null,
-        minesDisplay: null,
-        bestBeginnerScore: null,
-        bestIntermediateScore: null,
-        bestExpertScore: null,
-        beginnerScores: null,
-        intermediateScores: null,
-        expertScores: null,
-        totalGamesCompleted: null,
-        username: null,
-        difficulty: null,
+        ...baseAction.payload,
+        piece,
       },
-      type: RIGHTCLICK
     });
   });
-  it('should create a newBoardAction action in the proper format', () => {
+  it('should create a NEWBOARD action in the proper format', () => {
     const action = newBoardAction(10, 10, 10);
     expect(action).toEqual({
+      ...baseAction,
       type: NEWBOARD,
       payload: {
-        val: null,
-        isMine: null,
-        uncovered: null,
-        markedAsMine: null,
-        loser: null,
-        row: null,
-        col: null,
-        piece: {
-          col: null,
-          row: null,
-          val: null,
-          uncovered: null,
-          markedAsMine: null,
-          isMine: null,
-          loser: null,
-        },
+        ...baseAction.payload,
         length: 10,
         width: 10,
         mines: 10,
-        minesDisplay: null,
-        bestBeginnerScore: null,
-        bestIntermediateScore: null,
-        bestExpertScore: null,
-        beginnerScores: null,
-        intermediateScores: null,
-        expertScores: null,
-        totalGamesCompleted: null,
-        username: null,
-        difficulty: null,
-      }
+      },
     });
   });
 });
@@ -201,23 +123,50 @@ describe('clickActionCreators', () => {
 describe('formActionCreators', () => {
   it('should create a resetTime action in the proper format', () => {
     const action = resetTime();
-    expect(action.type).toEqual(RESETTIME);
+    expect(action).toEqual({
+      ...baseAction,
+      type: RESETTIME,
+    });
   });
-  it('should create a setLength action in the proper format', () => {
+  it('should create a SETLENGTH action in the proper format', () => {
     const action = setLength(11);
-    expect(action).toEqual({ type: SETLENGTH, payload: { length: 11 } });
+    expect(action).toEqual({
+      ...baseAction,
+      type: SETLENGTH,
+      payload: {
+        ...baseAction.payload,
+        length: 11,
+      },
+    });
   });
-  it('should create a setWidth action in the proper format', () => {
+  it('should create a SETWIDTH action in the proper format', () => {
     const action = setWidth(12);
-    expect(action).toEqual({ type: SETWIDTH, payload: { width: 12 } });
+    expect(action).toEqual({
+      ...baseAction,
+      type: SETWIDTH,
+      payload: {
+        ...baseAction.payload,
+        width: 12,
+      },
+    });
   });
-  it('should create a setMines action in the proper format', () => {
+  it('should create a SETMINES action in the proper format', () => {
     const action = setMines(13);
-    expect(action).toEqual({ type: SETMINES, payload: { mines: 13 } });
+    expect(action).toEqual({
+      ...baseAction,
+      type: SETMINES,
+      payload: {
+        ...baseAction.payload,
+        mines: 13,
+      },
+    });
   });
-  it('should create a incrementTime action in the proper format', () => {
+  it('should create a INCREMENTTIME action in the proper format', () => {
     const action = incrementTime();
-    expect(action.type).toEqual(INCREMENTTIME);
+    expect(action).toEqual({
+      ...baseAction,
+      type: INCREMENTTIME,
+    });
   });
 });
 
