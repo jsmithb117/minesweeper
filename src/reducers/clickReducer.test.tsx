@@ -2,9 +2,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import Enzyme, { mount, ReactWrapper } from 'enzyme';
 import { createStore } from 'redux';
-import { rootReducer } from './store';
+import { rootReducer } from '../features/store';
 import App from '../App';
-import initialStateCreator from './initialState';
+import initialStateCreator from '../features/initialState';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Piece from '../components/Piece';
 
