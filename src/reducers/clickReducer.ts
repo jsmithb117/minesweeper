@@ -6,25 +6,25 @@ import {
   RESETWINLOSS,
   NEWBOARD,
   UPDATEORIGINALBOARD,
-} from './clickActionCreators';
-import zeroFinder from './zeroFinder';
-import checkWin from './checkWin';
-import { IClickState } from '../interfaces/interfaces';
-import boardCreator from './boardCreator';
-import { TESTBOARD } from './clickActionCreators';
+} from '../actionCreators/clickActionCreators';
+import zeroFinder from '../features/zeroFinder';
+import checkWin from '../features/checkWin';
+import { IAction, IClickState } from '../interfaces/interfaces'
+import boardCreator from '../features/boardCreator';
+import { TESTBOARD } from '../actionCreators/clickActionCreators';
 
-const clickReducer = (state: IClickState | null = null, action: any) => {
-  if (action.type.slice(0,7) === '@@redux') {
+const clickReducer = (state: IClickState | null = null, action: IAction) => {
+  if (action?.type?.slice(0,7) === '@@redux') {
     return state;
   }
-  if (action.type === UPDATEORIGINALBOARD) {
+  if (action?.type === UPDATEORIGINALBOARD) {
     return produce(state, (draft: Draft<IClickState>) => {
       draft.originalBoard = draft.board;
       return draft;
     });
   }
 
-  if (action.type === RESETWINLOSS) {
+  if (action?.type === RESETWINLOSS) {
     return produce(state, (draft: Draft<IClickState>) => {
       draft.win = false;
       draft.loss = false;
@@ -36,16 +36,17 @@ const clickReducer = (state: IClickState | null = null, action: any) => {
     return state;
   }
 
-  const row = action.payload?.piece?.row || 0;
-  const col = action.payload?.piece?.col || 0;
-  const uncovered = action.payload?.piece?.uncovered;
-  const markedAsMine = action.payload?.piece?.markedAsMine;
-  const isMine = action.payload?.piece?.isMine;
+  const row: number = action?.payload?.piece?.row || 0;
+  const col = action?.payload?.piece?.col || 0;
+  const uncovered = action?.payload?.piece?.uncovered;
+  const markedAsMine = action?.payload?.piece?.markedAsMine;
+  const isMine = action?.payload?.piece?.isMine;
 
-  if (action.type === LEFTCLICK) {
+  if (action?.type === LEFTCLICK) {
     return produce(state, (draft: Draft<IClickState>) => {
       if (!uncovered && !markedAsMine) {
         draft.board = zeroFinder(row, col, draft.board);
+
       }
       if (isMine && !markedAsMine) {
         draft.loss = true;
@@ -57,7 +58,7 @@ const clickReducer = (state: IClickState | null = null, action: any) => {
       }
     });
   }
-  if (action.type === RIGHTCLICK) {
+  if (action?.type === RIGHTCLICK) {
     return produce(state, (draft: Draft<IClickState>) => {
       if (!uncovered) {
         if (!markedAsMine) {
@@ -70,26 +71,28 @@ const clickReducer = (state: IClickState | null = null, action: any) => {
       }
     });
   }
-  if (action.type === NEWBOARD) {
+  if (action?.type === NEWBOARD) {
     return produce(state, (draft: Draft<IClickState>) => {
-      let length, width, mines;
-      if (action.payload) {
-        length = action.payload.length;
-        width = action.payload.width;
-        mines = action.payload.mines;
+      let length: number | undefined,
+      width: number | undefined,
+      mines: number | undefined;
+      if (action?.payload) {
+        length = action?.payload?.length || undefined;
+        width = action?.payload.width || undefined;
+        mines = action?.payload.mines || undefined;
       }
       draft.board = boardCreator(length, width, mines, false);
       return draft;
     });
   }
-  if (action.type === REVERTBOARD) {
+  if (action?.type === REVERTBOARD) {
     return produce(state, (draft: Draft<IClickState>) => {
       draft.board = draft.originalBoard;
       return draft;
     });
   }
 
-  if (action.type === TESTBOARD) {
+  if (action?.type === TESTBOARD) {
     return produce(state, (draft: Draft<IClickState>) => {
       draft.board = boardCreator(10, 10, 10, true);
       return draft;

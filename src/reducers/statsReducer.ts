@@ -1,5 +1,5 @@
-import produce, { Draft } from 'immer';
-import { IStatsState } from '../interfaces/interfaces';
+import produce from 'immer';
+import { IAction, IStatsState } from '../interfaces/interfaces';
 import {
   SETBEGINNERSCORES,
   SETBESTBEGINNERSCORE,
@@ -9,14 +9,15 @@ import {
   SETINTERMEDIATESCORES,
   SETSTATS,
   SETTOTALGAMESCOMPLETED,
-} from './statsActionCreators';
+} from '../actionCreators/statsActionCreators';
+import { IStatsDraft } from '../interfaces/interfaces';
 
-const statsReducer = (state: IStatsState | null = null, action: any) => {
+const statsReducer = (state: IStatsState | null = null, action: IAction) => {
   if (action.type.slice(0,7) === '@@redux') {
     return state;
   }
   if (action.type === SETSTATS) {
-    return produce(state, (draft: Draft<IStatsState>) => {
+    return produce(state, (draft: IStatsDraft) => {
       draft.bestBeginnerScore = action.payload.bestBeginnerScore;
       draft.bestIntermediateScore = action.payload.bestIntermediateScore;
       draft.bestExpertScore = action.payload.bestExpertScore;
@@ -27,43 +28,43 @@ const statsReducer = (state: IStatsState | null = null, action: any) => {
     });
   }
   if (action.type === SETBESTBEGINNERSCORE) {
-    return produce(state, (draft: Draft<IStatsState>) => {
+    return produce(state, (draft: IStatsDraft) => {
       draft.bestBeginnerScore = action.payload.bestBeginnerScore;
       return draft;
     });
   }
   if (action.type === SETBESTINTERMEDIATESCORE) {
-    return produce(state, (draft: Draft<IStatsState>) => {
+    return produce(state, (draft: IStatsDraft) => {
       draft.bestIntermediateScore = action.payload.bestIntermediateScore;
       return draft;
     });
   }
   if (action.type === SETBESTEXPERTSCORE) {
-    return produce(state, (draft: Draft<IStatsState>) => {
+    return produce(state, (draft: IStatsDraft) => {
       draft.bestExpertScore = action.payload.bestExpertScore;
       return draft;
     });
   }
   if (action.type === SETBEGINNERSCORES) {
-    return produce(state, (draft: Draft<IStatsState>) => {
+    return produce(state, (draft: IStatsDraft) => {
       draft.beginnerScores = action.payload.beginnerScores;
       return draft;
     });
   }
   if (action.type === SETINTERMEDIATESCORES) {
-    return produce(state, (draft: Draft<IStatsState>) => {
+    return produce(state, (draft: IStatsDraft) => {
       draft.intermediateScores = action.payload.intermediateScores;
       return draft;
     });
   }
   if (action.type === SETEXPERTSCORES) {
-    return produce(state, (draft: Draft<IStatsState>) => {
+    return produce(state, (draft: IStatsDraft) => {
       draft.expertScores = action.payload.expertScores;
       return draft;
     });
   }
   if (action.type === SETTOTALGAMESCOMPLETED) {
-    return produce(state, (draft: Draft<IStatsState>) => {
+    return produce(state, (draft: IStatsDraft) => {
       draft.totalGamesCompleted = action.payload.totalGamesCompleted;
       return draft;
     });

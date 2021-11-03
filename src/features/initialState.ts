@@ -26,15 +26,45 @@ const initialStateCreator = (
       difficulty: defaultVal,
     },
     stats: {
-      bestBeginnerScore: { username: '', seconds: Number.NEGATIVE_INFINITY, date: new Date() },
-      bestIntermediateScore: { username: '', seconds: Number.NEGATIVE_INFINITY, date: new Date() },
-      bestExpertScore: { username: '', seconds: Number.NEGATIVE_INFINITY, date: new Date() },
-      beginnerScores: [{ username: '', seconds: Number.NEGATIVE_INFINITY, date: new Date() }],
-      intermediateScores: [{ username: '', seconds: Number.NEGATIVE_INFINITY, date: new Date() }],
-      expertScores: [{ username: '', seconds: Number.NEGATIVE_INFINITY, date: new Date() }],
+      bestBeginnerScore: {
+        _id: '',
+        username: '',
+        seconds: Number.NEGATIVE_INFINITY,
+        date: new Date(),
+      },
+      bestIntermediateScore: {
+        _id: '',
+        username: '',
+        seconds: Number.NEGATIVE_INFINITY,
+        date: new Date(),
+      },
+      bestExpertScore: {
+        _id: '',
+        username: '',
+        seconds: Number.NEGATIVE_INFINITY,
+        date: new Date(),
+      },
+      beginnerScores: [{
+        _id: '',
+        username: '',
+        seconds: Number.NEGATIVE_INFINITY,
+        date: new Date(),
+      }],
+      intermediateScores: [{
+        _id: '',
+        username: '',
+        seconds: Number.NEGATIVE_INFINITY,
+        date: new Date(),
+      }],
+      expertScores: [{
+        _id: '',
+        username: '',
+        seconds: Number.NEGATIVE_INFINITY,
+        date: new Date(),
+      }],
       totalGamesCompleted: 0,
       username: 'user1',
-    }
+    },
   }
   return state;
 };

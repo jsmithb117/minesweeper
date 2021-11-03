@@ -1,13 +1,12 @@
-import { useDispatch } from 'react-redux';
-import { useAppSelector } from '../features/hooks';
-import { revertBoard, resetWinLoss, testBoard } from '../features/clickActionCreators';
-import { setMinesDisplay, pause } from '../features/formActionCreators';
+import { useDispatch, useSelector } from 'react-redux';
+import { revertBoard, resetWinLoss, testBoard } from '../actionCreators/clickActionCreators';
+import { setMinesDisplay, pause } from '../actionCreators/formActionCreators';
 import { DisplayState } from '../interfaces/interfaces';
 
 const Display = () => {
-  const minesDisplay = useAppSelector((state: DisplayState) => state.form.minesDisplay);
-  const mines = useAppSelector((state: DisplayState) => state.form.mines);
-  const time = useAppSelector((state: DisplayState) => state.form.time);
+  const minesDisplay = useSelector((state: DisplayState) => state.form.minesDisplay);
+  const mines = useSelector((state: DisplayState) => state.form.mines);
+  const time = useSelector((state: DisplayState) => state.form.time);
   const dispatch = useDispatch();
 
   const resetButtonHandler = () => {
