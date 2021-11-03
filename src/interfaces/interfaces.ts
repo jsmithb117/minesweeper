@@ -103,7 +103,7 @@ export interface IScore {
 
 
 export interface IAction {
-  type: String | null,
+  type: String,
   payload: {
     val: Number | null,
     isMine: Boolean | null,
@@ -237,4 +237,13 @@ export interface IStatsObject {
   bestExpertScore: IScore,
   totalGamesCompleted: number,
   username: string,
+}
+export interface IStatsDraft {
+  bestBeginnerScore: IScore | null,
+  bestIntermediateScore: IScore | null,
+  bestExpertScore: IScore | null,
+  beginnerScores: IScore[] | null,
+  intermediateScores: IScore[] | null,
+  expertScores: IScore[] | null,
+  totalGamesCompleted: number | null,
 }
