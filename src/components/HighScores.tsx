@@ -15,6 +15,7 @@ const HighScores = () => {
 
   const highScores = useQuery(['highscores', { username, password }], async () => {
     const response = await fetch(URI.concat('/highscores'));
+    /* istanbul ignore next */
     if (!response.ok) {
       throw new Error('Error fetching high scores');
     }
@@ -28,6 +29,7 @@ const HighScores = () => {
       body: JSON.stringify({ username, password }),
     };
     const response = await fetch(URI.concat('/user'), userOpts);
+    /* istanbul ignore next */
     if (!response.ok) {
       throw new Error('Error fetching user data');
     }

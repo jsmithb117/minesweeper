@@ -17,6 +17,7 @@ const PORT = 3001;
 export const URI = `http://localhost:${PORT}`;
 
 function App(props: { test: boolean }) {
+  /* istanbul ignore next */
   document.addEventListener('contextmenu', event => event.preventDefault());
   const win = useAppSelector((state) => state?.click?.win);
   const loss = useAppSelector((state) => state?.click?.loss);
@@ -45,6 +46,7 @@ function App(props: { test: boolean }) {
         body: JSON.stringify({ username, difficulty, seconds, date: new Date() }),
       };
 
+      /* istanbul ignore next */
       fetch(URI.concat('/completed'), options)
         .then((dbResponse) => dbResponse.json())
         .then((json) => {
@@ -68,6 +70,7 @@ function App(props: { test: boolean }) {
     dispatch(setMinesDisplay(mines));
   }, [dispatch, mines]);
 
+/* istanbul ignore next */
   useEffect(() => {
     if (!loss && !win && !paused) {
       const timeInterval = setInterval(() => {

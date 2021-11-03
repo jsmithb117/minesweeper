@@ -21,22 +21,30 @@ export const setUsername = (updateObject: IUserUpdate) => {
   return baseActionCreator(SETUSERNAME, updateObject);
 };
 
-export const setBestBeginnerScore = (bestBeginnerScore: IScore) => (
-  {
-    ...baseActionCreator,
-    action: SETBESTBEGINNERSCORE,
-    bestBeginnerScore
-  }
-);
+export const setBestBeginnerScore = (bestBeginnerScore: IScore) => {
+  return baseActionCreator(SETBESTBEGINNERSCORE, { bestBeginnerScore })
+};
 
-export const setBestIntermediateScore = (bestIntermediateScore: IScore) => ({ ...baseActionCreator, bestIntermediateScore });
+export const setBestIntermediateScore = (bestIntermediateScore: IScore) => {
+  return baseActionCreator(SETBESTINTERMEDIATESCORE, { bestIntermediateScore })
+};
 
-export const setBestExpertScore = (bestExpertScore: IScore) => ({ ...baseActionCreator, bestExpertScore });
+export const setBestExpertScore = (bestExpertScore: IScore) => {
+  return baseActionCreator(SETBESTEXPERTSCORE, { bestExpertScore })
+};
 
-export const setBeginnerScores = (beginnerScores: IScore[]) => ({ ...baseActionCreator, beginnerScores });
+export const setBeginnerScores = (beginnerScores: IScore[]) => {
+  return baseActionCreator(SETBEGINNERSCORES, { beginnerScores });
+};
 
-export const setIntermediateScores = (intermediateScores: IScore[]) => ({ ...baseActionCreator, intermediateScores });
+export const setIntermediateScores = (intermediateScores: IScore[]) => {
+  return baseActionCreator(SETINTERMEDIATESCORES, { intermediateScores });
+};
 
-export const setExpertScores = (expertScores: IScore[]) => ({ ...baseActionCreator, expertScores });
+export const setExpertScores = (expertScores: IScore[]) => {
+  return baseActionCreator(SETEXPERTSCORES, { expertScores });
+};
 
-export const setTotalGamesCompleted = (totalGamesCompleted: number) => ({ ...baseActionCreator, totalGamesCompleted });
+export const setTotalGamesCompleted = (totalGamesCompleted: number) => {
+  return baseActionCreator(SETTOTALGAMESCOMPLETED, { totalGamesCompleted });
+}

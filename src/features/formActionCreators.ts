@@ -25,10 +25,7 @@ export const setDifficulty = (difficulty: string) => {
 };
 
 export const resetTime = () => {
-  const action: IActionNoPayload = {
-    type: RESETTIME
-  };
-  return action;
+  return baseActionCreator(RESETTIME, null)
 };
 
 export const setLength = (length: number) => {
@@ -62,10 +59,7 @@ export const setMines = (mines: number) => {
 };
 
 export const incrementTime = () => {
-  const action: IActionNoPayload  = {
-    type: INCREMENTTIME,
-  };
-  return action;
+  return baseActionCreator(INCREMENTTIME, null);
 };
 
 export const incrementMinesDisplay = () => {
