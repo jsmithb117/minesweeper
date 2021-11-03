@@ -1,6 +1,6 @@
 import statsReducer from "./statsReducer";
-import initialStateCreator from './initialState';
-import { setBeginnerScores, setBestBeginnerScore, setBestExpertScore, setBestIntermediateScore, setExpertScores, setIntermediateScores, setStats, setTotalGamesCompleted } from "./statsActionCreators";
+import initialStateCreator from '../features/initialState';
+import { setBeginnerScores, setBestBeginnerScore, setBestExpertScore, setBestIntermediateScore, setExpertScores, setIntermediateScores, setStats, setTotalGamesCompleted } from "../actionCreators/statsActionCreators";
 
 const initialState = initialStateCreator();
 const username = 'user1';
