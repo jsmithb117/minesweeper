@@ -1,10 +1,3 @@
-import { IActionMinesDisplay,
-  IActionNoPayload,
-  IActionLengthPayload,
-  IActionWidthPayload,
-  IActionMinesPayload,
-  IAction,
-} from '../interfaces/interfaces';
 import baseActionCreator from './baseActionCreator';
 
 export const RESETTIME: string = 'RESETTIME';
@@ -18,77 +11,13 @@ export const SETMINESDISPLAY: string =  'SETMINESDISPLAY';
 export const PAUSE = 'PAUSE';
 export const DIFFICULTY = 'DIFFICULTY';
 
-export const setDifficulty = (difficulty: string) => {
-  const payloadObject = { difficulty };
-  const action: IAction = baseActionCreator(DIFFICULTY, payloadObject);
-  return action;
-};
-
-export const resetTime = () => {
-  return baseActionCreator(RESETTIME, null)
-};
-
-export const setLength = (length: number) => {
-  const action: IActionLengthPayload = {
-    type: SETLENGTH,
-    payload: {
-      length,
-    },
-  };
-  return action;
-};
-
-export const setWidth = (width: number) => {
-  const action: IActionWidthPayload = {
-    type: SETWIDTH,
-    payload: {
-      width
-    },
-  };
-  return action;
-};
-
-export const setMines = (mines: number) => {
-  const action: IActionMinesPayload = {
-    type: SETMINES,
-    payload: {
-      mines
-    },
-  };
-  return action;
-};
-
-export const incrementTime = () => {
-  return baseActionCreator(INCREMENTTIME, null);
-};
-
-export const incrementMinesDisplay = () => {
-  const action: IActionNoPayload = {
-    type: INCREMENTMINESDISPLAY,
-  };
-  return action;
-};
-
-export const decrementMinesDisplay = () => {
-  const action: IActionNoPayload = {
-    type: DECREMENTMINESDISPLAY,
-  };
-  return action;
-};
-
-export const setMinesDisplay = (minesDisplay: number = 0) => {
-  const action: IActionMinesDisplay = {
-    type: SETMINESDISPLAY,
-    payload: {
-      minesDisplay
-    },
-  };
-  return action;
-};
-
-export const pause = () => {
-  const action: IActionNoPayload = {
-    type: PAUSE,
-  };
-  return action;
-}
+export const setDifficulty = (difficulty: string) => baseActionCreator(DIFFICULTY, { difficulty });
+export const resetTime = () => baseActionCreator(RESETTIME, null);
+export const setLength = (length: number) => baseActionCreator(SETLENGTH, { length });
+export const setWidth = (width: number) => baseActionCreator(SETWIDTH, { width });
+export const setMines = (mines: number) => baseActionCreator(SETMINES, { mines });
+export const incrementTime = () => baseActionCreator(INCREMENTTIME, null);
+export const incrementMinesDisplay = () => baseActionCreator(INCREMENTMINESDISPLAY, null);
+export const decrementMinesDisplay = () => baseActionCreator(DECREMENTMINESDISPLAY, null);
+export const setMinesDisplay = (minesDisplay: number = 0) => baseActionCreator(SETMINESDISPLAY, { minesDisplay });
+export const pause = () => baseActionCreator(PAUSE, null);

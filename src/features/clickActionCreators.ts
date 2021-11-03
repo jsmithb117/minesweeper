@@ -18,17 +18,6 @@ export const newBoardAction = (length = 10, width = 10, mines = 10) => {
   return baseActionCreator(NEWBOARD, payloadObject);
 };
 
-export const revertBoard = () => {
-  return baseActionCreator(REVERTBOARD, null);
-};
-
-export const resetWinLoss = () => {
-  return baseActionCreator(RESETWINLOSS, null);
-};
-export const updateOriginalBoard = () => {
-  return baseActionCreator(UPDATEORIGINALBOARD, null);
-};
-
 const click = (piece: IPiece, isLeftClick: boolean) => {
   const val: boolean = piece.hasOwnProperty('val');
   const uncovered: boolean = piece.hasOwnProperty('uncovered');
@@ -37,10 +26,8 @@ const click = (piece: IPiece, isLeftClick: boolean) => {
   const col: boolean = piece.hasOwnProperty('col');
   const requisites = val && uncovered && markedAsMine && row && col;
 
-  let action = baseActionCreator('', null);
   if (requisites && isLeftClick) {
-    action = baseActionCreator(LEFTCLICK, { piece });
-    return action;
+    return baseActionCreator(LEFTCLICK, { piece });
   };
   if (requisites) {
     return baseActionCreator(RIGHTCLICK, { piece });
@@ -48,11 +35,9 @@ const click = (piece: IPiece, isLeftClick: boolean) => {
   return baseActionCreator('', null);
 }
 
-export const testBoard = () => {
-  return baseActionCreator(TESTBOARD, null);
-};
-
-export const leftClick = (piece: IPiece) => {
-  return click(piece, true)
-};
+export const revertBoard = () => baseActionCreator(REVERTBOARD, null);
+export const resetWinLoss = () => baseActionCreator(RESETWINLOSS, null);
+export const updateOriginalBoard = () => baseActionCreator(UPDATEORIGINALBOARD, null);
+export const testBoard = () => baseActionCreator(TESTBOARD, null);
+export const leftClick = (piece: IPiece) => click(piece, true);
 export const rightClick = (piece: IPiece) => click(piece, false);
