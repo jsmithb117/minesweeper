@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1635963514401" clover="3.2.0">
-  <project timestamp="1635963514401" name="All files">
-    <metrics statements="501" coveredstatements="494" conditionals="348" coveredconditionals="325" methods="132" coveredmethods="128" elements="981" coveredelements="947" complexity="0" loc="501" ncloc="501" packages="4" files="26" classes="26"/>
+<coverage generated="1635967724960" clover="3.2.0">
+  <project timestamp="1635967724960" name="All files">
+    <metrics statements="465" coveredstatements="458" conditionals="348" coveredconditionals="325" methods="132" coveredmethods="128" elements="945" coveredelements="911" complexity="0" loc="465" ncloc="465" packages="6" files="26" classes="26"/>
     <package name="src">
       <metrics statements="25" coveredstatements="25" conditionals="10" coveredconditionals="10" methods="13" coveredmethods="13"/>
       <file name="App.tsx" path="/home/jsmithb117/minesweeper/src/App.tsx">
@@ -33,6 +33,91 @@
         <line num="90" count="50" type="stmt"/>
       </file>
     </package>
+    <package name="src.actionCreators">
+      <metrics statements="70" coveredstatements="69" conditionals="57" coveredconditionals="52" methods="28" coveredmethods="28"/>
+      <file name="baseActionCreator.ts" path="/home/jsmithb117/minesweeper/src/actionCreators/baseActionCreator.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="42" coveredconditionals="42" methods="1" coveredmethods="1"/>
+        <line num="3" count="8" type="stmt"/>
+        <line num="4" count="209" type="stmt"/>
+        <line num="13" count="209" type="stmt"/>
+        <line num="39" count="209" type="stmt"/>
+      </file>
+      <file name="clickActionCreators.ts" path="/home/jsmithb117/minesweeper/src/actionCreators/clickActionCreators.ts">
+        <metrics statements="28" coveredstatements="27" conditionals="14" coveredconditionals="10" methods="8" coveredmethods="8"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="12" count="5" type="cond" truecount="0" falsecount="3"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="21" count="5" type="stmt"/>
+        <line num="22" count="120" type="stmt"/>
+        <line num="23" count="120" type="stmt"/>
+        <line num="24" count="120" type="stmt"/>
+        <line num="25" count="120" type="stmt"/>
+        <line num="26" count="120" type="stmt"/>
+        <line num="27" count="120" type="cond" truecount="5" falsecount="0"/>
+        <line num="29" count="120" type="cond" truecount="4" falsecount="0"/>
+        <line num="30" count="108" type="stmt"/>
+        <line num="32" count="12" type="cond" truecount="1" falsecount="1"/>
+        <line num="33" count="12" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="38" count="5" type="stmt"/>
+        <line num="39" count="5" type="stmt"/>
+        <line num="40" count="5" type="stmt"/>
+        <line num="41" count="5" type="stmt"/>
+        <line num="42" count="108" type="stmt"/>
+        <line num="43" count="12" type="stmt"/>
+      </file>
+      <file name="formActionCreators.ts" path="/home/jsmithb117/minesweeper/src/actionCreators/formActionCreators.ts">
+        <metrics statements="20" coveredstatements="20" conditionals="1" coveredconditionals="0" methods="10" coveredmethods="10"/>
+        <line num="3" count="8" type="stmt"/>
+        <line num="4" count="8" type="stmt"/>
+        <line num="5" count="8" type="stmt"/>
+        <line num="6" count="8" type="stmt"/>
+        <line num="7" count="8" type="stmt"/>
+        <line num="8" count="8" type="stmt"/>
+        <line num="9" count="8" type="stmt"/>
+        <line num="10" count="8" type="stmt"/>
+        <line num="11" count="8" type="stmt"/>
+        <line num="12" count="8" type="stmt"/>
+        <line num="14" count="8" type="stmt"/>
+        <line num="15" count="8" type="stmt"/>
+        <line num="16" count="8" type="stmt"/>
+        <line num="17" count="8" type="stmt"/>
+        <line num="18" count="8" type="stmt"/>
+        <line num="19" count="8" type="stmt"/>
+        <line num="20" count="8" type="stmt"/>
+        <line num="21" count="8" type="stmt"/>
+        <line num="22" count="19" type="cond" truecount="0" falsecount="1"/>
+        <line num="23" count="8" type="stmt"/>
+      </file>
+      <file name="statsActionCreators.ts" path="/home/jsmithb117/minesweeper/src/actionCreators/statsActionCreators.ts">
+        <metrics statements="18" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="9"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="11" count="6" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="13" count="6" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="16" count="6" type="stmt"/>
+        <line num="17" count="6" type="stmt"/>
+        <line num="18" count="6" type="stmt"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="20" count="6" type="stmt"/>
+        <line num="21" count="6" type="stmt"/>
+        <line num="22" count="6" type="stmt"/>
+        <line num="23" count="6" type="stmt"/>
+      </file>
+    </package>
     <package name="src.components">
       <metrics statements="134" coveredstatements="128" conditionals="36" coveredconditionals="36" methods="48" coveredmethods="44"/>
       <file name="BestGlobal.tsx" path="/home/jsmithb117/minesweeper/src/components/BestGlobal.tsx">
@@ -55,20 +140,20 @@
       </file>
       <file name="Display.tsx" path="/home/jsmithb117/minesweeper/src/components/Display.tsx">
         <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="7"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="8" count="198" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="198" type="stmt"/>
+        <line num="8" count="200" type="stmt"/>
         <line num="9" count="200" type="stmt"/>
-        <line num="10" count="200" type="stmt"/>
-        <line num="11" count="110" type="stmt"/>
-        <line num="13" count="110" type="stmt"/>
+        <line num="10" count="110" type="stmt"/>
+        <line num="12" count="110" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="19" count="110" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
-        <line num="22" count="110" type="stmt"/>
-        <line num="23" count="2" type="stmt"/>
-        <line num="26" count="110" type="stmt"/>
+        <line num="18" count="110" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="21" count="110" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="25" count="110" type="stmt"/>
       </file>
       <file name="Form.tsx" path="/home/jsmithb117/minesweeper/src/components/Form.tsx">
         <metrics statements="58" coveredstatements="57" conditionals="14" coveredconditionals="14" methods="13" coveredmethods="12"/>
@@ -198,14 +283,7 @@
       </file>
     </package>
     <package name="src.features">
-      <metrics statements="342" coveredstatements="341" conditionals="302" coveredconditionals="279" methods="71" coveredmethods="71"/>
-      <file name="baseActionCreator.ts" path="/home/jsmithb117/minesweeper/src/features/baseActionCreator.ts">
-        <metrics statements="4" coveredstatements="4" conditionals="42" coveredconditionals="42" methods="1" coveredmethods="1"/>
-        <line num="3" count="8" type="stmt"/>
-        <line num="4" count="276" type="stmt"/>
-        <line num="13" count="276" type="stmt"/>
-        <line num="39" count="276" type="stmt"/>
-      </file>
+      <metrics statements="95" coveredstatements="95" conditionals="138" coveredconditionals="133" methods="15" coveredmethods="15"/>
       <file name="boardCreator.ts" path="/home/jsmithb117/minesweeper/src/features/boardCreator.ts">
         <metrics statements="37" coveredstatements="37" conditionals="24" coveredconditionals="20" methods="8" coveredmethods="8"/>
         <line num="3" count="7" type="stmt"/>
@@ -227,9 +305,9 @@
         <line num="35" count="1000" type="stmt"/>
         <line num="38" count="10" type="stmt"/>
         <line num="39" count="10" type="stmt"/>
-        <line num="40" count="106" type="stmt"/>
-        <line num="41" count="106" type="stmt"/>
-        <line num="42" count="106" type="cond" truecount="2" falsecount="0"/>
+        <line num="40" count="104" type="stmt"/>
+        <line num="41" count="104" type="stmt"/>
+        <line num="42" count="104" type="cond" truecount="2" falsecount="0"/>
         <line num="43" count="100" type="stmt"/>
         <line num="44" count="100" type="stmt"/>
         <line num="49" count="16" type="stmt"/>
@@ -243,7 +321,7 @@
         <line num="61" count="14400" type="cond" truecount="4" falsecount="0"/>
         <line num="62" count="12544" type="stmt"/>
         <line num="63" count="12544" type="cond" truecount="2" falsecount="0"/>
-        <line num="64" count="1127" type="stmt"/>
+        <line num="64" count="1148" type="stmt"/>
         <line num="68" count="1600" type="stmt"/>
       </file>
       <file name="buttonColor.ts" path="/home/jsmithb117/minesweeper/src/features/buttonColor.ts">
@@ -260,45 +338,81 @@
         <line num="7" count="34" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
       </file>
-      <file name="clickActionCreators.ts" path="/home/jsmithb117/minesweeper/src/features/clickActionCreators.ts">
-        <metrics statements="35" coveredstatements="34" conditionals="14" coveredconditionals="10" methods="8" coveredmethods="8"/>
-        <line num="4" count="5" type="stmt"/>
-        <line num="5" count="5" type="stmt"/>
-        <line num="6" count="5" type="stmt"/>
-        <line num="7" count="5" type="stmt"/>
-        <line num="8" count="5" type="stmt"/>
-        <line num="9" count="5" type="stmt"/>
-        <line num="10" count="5" type="stmt"/>
-        <line num="12" count="5" type="cond" truecount="0" falsecount="3"/>
-        <line num="13" count="4" type="stmt"/>
-        <line num="18" count="4" type="stmt"/>
-        <line num="21" count="5" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
-        <line num="25" count="5" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
-        <line num="28" count="5" type="stmt"/>
-        <line num="29" count="3" type="stmt"/>
-        <line num="32" count="5" type="stmt"/>
-        <line num="33" count="120" type="stmt"/>
-        <line num="34" count="120" type="stmt"/>
-        <line num="35" count="120" type="stmt"/>
-        <line num="36" count="120" type="stmt"/>
-        <line num="37" count="120" type="stmt"/>
-        <line num="38" count="120" type="cond" truecount="5" falsecount="0"/>
-        <line num="40" count="120" type="stmt"/>
-        <line num="41" count="120" type="cond" truecount="4" falsecount="0"/>
-        <line num="42" count="108" type="stmt"/>
-        <line num="43" count="108" type="stmt"/>
-        <line num="45" count="12" type="cond" truecount="1" falsecount="1"/>
-        <line num="46" count="12" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
-        <line num="51" count="5" type="stmt"/>
-        <line num="52" count="1" type="stmt"/>
-        <line num="55" count="5" type="stmt"/>
-        <line num="56" count="108" type="stmt"/>
-        <line num="58" count="12" type="stmt"/>
+      <file name="displayValue.ts" path="/home/jsmithb117/minesweeper/src/features/displayValue.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="11060" type="cond" truecount="4" falsecount="0"/>
+        <line num="5" count="1862" type="stmt"/>
+        <line num="7" count="9198" type="stmt"/>
       </file>
-      <file name="clickReducer.ts" path="/home/jsmithb117/minesweeper/src/features/clickReducer.ts">
+      <file name="hooks.ts" path="/home/jsmithb117/minesweeper/src/features/hooks.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="12450" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+      </file>
+      <file name="initialState.ts" path="/home/jsmithb117/minesweeper/src/features/initialState.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="10" count="12" type="stmt"/>
+        <line num="11" count="12" type="stmt"/>
+        <line num="69" count="12" type="stmt"/>
+      </file>
+      <file name="pieceClass.ts" path="/home/jsmithb117/minesweeper/src/features/pieceClass.ts">
+        <metrics statements="11" coveredstatements="11" conditionals="12" coveredconditionals="12" methods="1" coveredmethods="1"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="12613" type="stmt"/>
+        <line num="7" count="12613" type="cond" truecount="2" falsecount="0"/>
+        <line num="8" count="10740" type="stmt"/>
+        <line num="10" count="12613" type="cond" truecount="4" falsecount="0"/>
+        <line num="11" count="1270" type="stmt"/>
+        <line num="13" count="12613" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="6" type="stmt"/>
+        <line num="16" count="12613" type="cond" truecount="4" falsecount="0"/>
+        <line num="17" count="1872" type="stmt"/>
+        <line num="19" count="12613" type="stmt"/>
+      </file>
+      <file name="zeroFinder.ts" path="/home/jsmithb117/minesweeper/src/features/zeroFinder.ts">
+        <metrics statements="29" coveredstatements="29" conditionals="72" coveredconditionals="71" methods="1" coveredmethods="1"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="5" count="232" type="cond" truecount="2" falsecount="0"/>
+        <line num="6" count="229" type="stmt"/>
+        <line num="9" count="232" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="183" type="cond" truecount="4" falsecount="0"/>
+        <line num="15" count="183" type="cond" truecount="3" falsecount="1"/>
+        <line num="16" count="183" type="cond" truecount="4" falsecount="0"/>
+        <line num="18" count="183" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="183" type="cond" truecount="2" falsecount="0"/>
+        <line num="21" count="183" type="cond" truecount="4" falsecount="0"/>
+        <line num="22" count="183" type="cond" truecount="4" falsecount="0"/>
+        <line num="23" count="183" type="cond" truecount="4" falsecount="0"/>
+        <line num="26" count="183" type="cond" truecount="5" falsecount="0"/>
+        <line num="27" count="28" type="stmt"/>
+        <line num="29" count="183" type="cond" truecount="5" falsecount="0"/>
+        <line num="30" count="12" type="stmt"/>
+        <line num="32" count="183" type="cond" truecount="5" falsecount="0"/>
+        <line num="33" count="14" type="stmt"/>
+        <line num="35" count="183" type="cond" truecount="5" falsecount="0"/>
+        <line num="36" count="57" type="stmt"/>
+        <line num="38" count="183" type="cond" truecount="5" falsecount="0"/>
+        <line num="39" count="39" type="stmt"/>
+        <line num="41" count="183" type="cond" truecount="5" falsecount="0"/>
+        <line num="42" count="26" type="stmt"/>
+        <line num="44" count="183" type="cond" truecount="5" falsecount="0"/>
+        <line num="45" count="24" type="stmt"/>
+        <line num="47" count="183" type="cond" truecount="5" falsecount="0"/>
+        <line num="48" count="4" type="stmt"/>
+        <line num="51" count="232" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.interfaces">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="interfaces.ts" path="/home/jsmithb117/minesweeper/src/interfaces/interfaces.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.reducers">
+      <metrics statements="141" coveredstatements="141" conditionals="107" coveredconditionals="94" methods="28" coveredmethods="28"/>
+      <file name="clickReducer.ts" path="/home/jsmithb117/minesweeper/src/reducers/clickReducer.ts">
         <metrics statements="55" coveredstatements="55" conditionals="51" coveredconditionals="46" methods="8" coveredmethods="8"/>
         <line num="16" count="4" type="cond" truecount="1" falsecount="0"/>
         <line num="17" count="224" type="cond" truecount="2" falsecount="0"/>
@@ -356,56 +470,7 @@
         <line num="98" count="1" type="stmt"/>
         <line num="102" count="54" type="stmt"/>
       </file>
-      <file name="displayValue.ts" path="/home/jsmithb117/minesweeper/src/features/displayValue.ts">
-        <metrics statements="4" coveredstatements="4" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="4" count="11060" type="cond" truecount="4" falsecount="0"/>
-        <line num="5" count="1862" type="stmt"/>
-        <line num="7" count="9198" type="stmt"/>
-      </file>
-      <file name="formActionCreators.ts" path="/home/jsmithb117/minesweeper/src/features/formActionCreators.ts">
-        <metrics statements="39" coveredstatements="39" conditionals="1" coveredconditionals="0" methods="10" coveredmethods="10"/>
-        <line num="10" count="8" type="stmt"/>
-        <line num="11" count="8" type="stmt"/>
-        <line num="12" count="8" type="stmt"/>
-        <line num="13" count="8" type="stmt"/>
-        <line num="14" count="8" type="stmt"/>
-        <line num="15" count="8" type="stmt"/>
-        <line num="16" count="8" type="stmt"/>
-        <line num="17" count="8" type="stmt"/>
-        <line num="18" count="8" type="stmt"/>
-        <line num="19" count="8" type="stmt"/>
-        <line num="21" count="8" type="stmt"/>
-        <line num="22" count="6" type="stmt"/>
-        <line num="23" count="6" type="stmt"/>
-        <line num="24" count="6" type="stmt"/>
-        <line num="27" count="8" type="stmt"/>
-        <line num="28" count="2" type="stmt"/>
-        <line num="31" count="8" type="stmt"/>
-        <line num="32" count="7" type="stmt"/>
-        <line num="38" count="7" type="stmt"/>
-        <line num="41" count="8" type="stmt"/>
-        <line num="42" count="7" type="stmt"/>
-        <line num="48" count="7" type="stmt"/>
-        <line num="51" count="8" type="stmt"/>
-        <line num="52" count="7" type="stmt"/>
-        <line num="58" count="7" type="stmt"/>
-        <line num="61" count="8" type="stmt"/>
-        <line num="62" count="2" type="stmt"/>
-        <line num="65" count="8" type="stmt"/>
-        <line num="66" count="7" type="stmt"/>
-        <line num="69" count="7" type="stmt"/>
-        <line num="72" count="8" type="stmt"/>
-        <line num="73" count="4" type="stmt"/>
-        <line num="76" count="4" type="stmt"/>
-        <line num="79" count="8" type="cond" truecount="0" falsecount="1"/>
-        <line num="80" count="19" type="stmt"/>
-        <line num="86" count="19" type="stmt"/>
-        <line num="89" count="8" type="stmt"/>
-        <line num="90" count="2" type="stmt"/>
-        <line num="93" count="2" type="stmt"/>
-      </file>
-      <file name="formReducer.ts" path="/home/jsmithb117/minesweeper/src/features/formReducer.ts">
+      <file name="formReducer.ts" path="/home/jsmithb117/minesweeper/src/reducers/formReducer.ts">
         <metrics statements="45" coveredstatements="45" conditionals="37" coveredconditionals="29" methods="11" coveredmethods="11"/>
         <line num="16" count="5" type="cond" truecount="1" falsecount="0"/>
         <line num="17" count="226" type="cond" truecount="2" falsecount="0"/>
@@ -453,70 +518,12 @@
         <line num="81" count="2" type="stmt"/>
         <line num="84" count="168" type="stmt"/>
       </file>
-      <file name="hooks.ts" path="/home/jsmithb117/minesweeper/src/features/hooks.ts">
-        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="4" count="12450" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-      </file>
-      <file name="initialState.ts" path="/home/jsmithb117/minesweeper/src/features/initialState.ts">
-        <metrics statements="4" coveredstatements="4" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
-        <line num="5" count="7" type="stmt"/>
-        <line num="10" count="12" type="stmt"/>
-        <line num="11" count="12" type="stmt"/>
-        <line num="69" count="12" type="stmt"/>
-      </file>
-      <file name="pieceClass.ts" path="/home/jsmithb117/minesweeper/src/features/pieceClass.ts">
-        <metrics statements="11" coveredstatements="11" conditionals="12" coveredconditionals="12" methods="1" coveredmethods="1"/>
-        <line num="4" count="3" type="stmt"/>
-        <line num="5" count="12613" type="stmt"/>
-        <line num="7" count="12613" type="cond" truecount="2" falsecount="0"/>
-        <line num="8" count="10740" type="stmt"/>
-        <line num="10" count="12613" type="cond" truecount="4" falsecount="0"/>
-        <line num="11" count="1270" type="stmt"/>
-        <line num="13" count="12613" type="cond" truecount="2" falsecount="0"/>
-        <line num="14" count="6" type="stmt"/>
-        <line num="16" count="12613" type="cond" truecount="4" falsecount="0"/>
-        <line num="17" count="1872" type="stmt"/>
-        <line num="19" count="12613" type="stmt"/>
-      </file>
-      <file name="statsActionCreators.ts" path="/home/jsmithb117/minesweeper/src/features/statsActionCreators.ts">
-        <metrics statements="28" coveredstatements="28" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="9"/>
-        <line num="5" count="6" type="stmt"/>
-        <line num="6" count="6" type="stmt"/>
-        <line num="7" count="6" type="stmt"/>
-        <line num="8" count="6" type="stmt"/>
-        <line num="9" count="6" type="stmt"/>
-        <line num="10" count="6" type="stmt"/>
-        <line num="11" count="6" type="stmt"/>
-        <line num="12" count="6" type="stmt"/>
-        <line num="13" count="6" type="stmt"/>
-        <line num="15" count="6" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="20" count="6" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="24" count="6" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
-        <line num="28" count="6" type="stmt"/>
-        <line num="29" count="2" type="stmt"/>
-        <line num="32" count="6" type="stmt"/>
-        <line num="33" count="2" type="stmt"/>
-        <line num="36" count="6" type="stmt"/>
-        <line num="37" count="2" type="stmt"/>
-        <line num="40" count="6" type="stmt"/>
-        <line num="41" count="2" type="stmt"/>
-        <line num="44" count="6" type="stmt"/>
-        <line num="45" count="2" type="stmt"/>
-        <line num="48" count="6" type="stmt"/>
-        <line num="49" count="2" type="stmt"/>
-      </file>
-      <file name="statsReducer.ts" path="/home/jsmithb117/minesweeper/src/features/statsReducer.ts">
+      <file name="statsReducer.ts" path="/home/jsmithb117/minesweeper/src/reducers/statsReducer.ts">
         <metrics statements="41" coveredstatements="41" conditionals="19" coveredconditionals="19" methods="9" coveredmethods="9"/>
-        <line num="14" count="5" type="cond" truecount="1" falsecount="0"/>
-        <line num="15" count="232" type="cond" truecount="2" falsecount="0"/>
-        <line num="16" count="41" type="stmt"/>
-        <line num="18" count="191" type="cond" truecount="2" falsecount="0"/>
-        <line num="19" count="1" type="stmt"/>
+        <line num="15" count="5" type="cond" truecount="1" falsecount="0"/>
+        <line num="16" count="232" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="41" type="stmt"/>
+        <line num="19" count="191" type="cond" truecount="2" falsecount="0"/>
         <line num="20" count="1" type="stmt"/>
         <line num="21" count="1" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
@@ -524,73 +531,36 @@
         <line num="24" count="1" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
-        <line num="29" count="190" type="cond" truecount="2" falsecount="0"/>
-        <line num="30" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="30" count="190" type="cond" truecount="2" falsecount="0"/>
         <line num="31" count="1" type="stmt"/>
         <line num="32" count="1" type="stmt"/>
-        <line num="35" count="189" type="cond" truecount="2" falsecount="0"/>
-        <line num="36" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="36" count="189" type="cond" truecount="2" falsecount="0"/>
         <line num="37" count="1" type="stmt"/>
         <line num="38" count="1" type="stmt"/>
-        <line num="41" count="188" type="cond" truecount="2" falsecount="0"/>
-        <line num="42" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="42" count="188" type="cond" truecount="2" falsecount="0"/>
         <line num="43" count="1" type="stmt"/>
         <line num="44" count="1" type="stmt"/>
-        <line num="47" count="187" type="cond" truecount="2" falsecount="0"/>
-        <line num="48" count="1" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="48" count="187" type="cond" truecount="2" falsecount="0"/>
         <line num="49" count="1" type="stmt"/>
         <line num="50" count="1" type="stmt"/>
-        <line num="53" count="186" type="cond" truecount="2" falsecount="0"/>
-        <line num="54" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="54" count="186" type="cond" truecount="2" falsecount="0"/>
         <line num="55" count="1" type="stmt"/>
         <line num="56" count="1" type="stmt"/>
-        <line num="59" count="185" type="cond" truecount="2" falsecount="0"/>
-        <line num="60" count="1" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="60" count="185" type="cond" truecount="2" falsecount="0"/>
         <line num="61" count="1" type="stmt"/>
         <line num="62" count="1" type="stmt"/>
-        <line num="65" count="184" type="cond" truecount="2" falsecount="0"/>
-        <line num="66" count="1" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="66" count="184" type="cond" truecount="2" falsecount="0"/>
         <line num="67" count="1" type="stmt"/>
         <line num="68" count="1" type="stmt"/>
-        <line num="72" count="183" type="stmt"/>
-      </file>
-      <file name="zeroFinder.ts" path="/home/jsmithb117/minesweeper/src/features/zeroFinder.ts">
-        <metrics statements="29" coveredstatements="29" conditionals="72" coveredconditionals="71" methods="1" coveredmethods="1"/>
-        <line num="4" count="4" type="stmt"/>
-        <line num="5" count="232" type="cond" truecount="2" falsecount="0"/>
-        <line num="6" count="229" type="stmt"/>
-        <line num="9" count="232" type="cond" truecount="2" falsecount="0"/>
-        <line num="14" count="183" type="cond" truecount="4" falsecount="0"/>
-        <line num="15" count="183" type="cond" truecount="3" falsecount="1"/>
-        <line num="16" count="183" type="cond" truecount="4" falsecount="0"/>
-        <line num="18" count="183" type="cond" truecount="2" falsecount="0"/>
-        <line num="19" count="183" type="cond" truecount="2" falsecount="0"/>
-        <line num="21" count="183" type="cond" truecount="4" falsecount="0"/>
-        <line num="22" count="183" type="cond" truecount="4" falsecount="0"/>
-        <line num="23" count="183" type="cond" truecount="4" falsecount="0"/>
-        <line num="26" count="183" type="cond" truecount="5" falsecount="0"/>
-        <line num="27" count="28" type="stmt"/>
-        <line num="29" count="183" type="cond" truecount="5" falsecount="0"/>
-        <line num="30" count="12" type="stmt"/>
-        <line num="32" count="183" type="cond" truecount="5" falsecount="0"/>
-        <line num="33" count="14" type="stmt"/>
-        <line num="35" count="183" type="cond" truecount="5" falsecount="0"/>
-        <line num="36" count="57" type="stmt"/>
-        <line num="38" count="183" type="cond" truecount="5" falsecount="0"/>
-        <line num="39" count="39" type="stmt"/>
-        <line num="41" count="183" type="cond" truecount="5" falsecount="0"/>
-        <line num="42" count="26" type="stmt"/>
-        <line num="44" count="183" type="cond" truecount="5" falsecount="0"/>
-        <line num="45" count="24" type="stmt"/>
-        <line num="47" count="183" type="cond" truecount="5" falsecount="0"/>
-        <line num="48" count="4" type="stmt"/>
-        <line num="51" count="232" type="stmt"/>
-      </file>
-    </package>
-    <package name="src.interfaces">
-      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="interfaces.ts" path="/home/jsmithb117/minesweeper/src/interfaces/interfaces.ts">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="73" count="183" type="stmt"/>
       </file>
     </package>
   </project>
