@@ -8,21 +8,25 @@ import App from './App';
 import initialStateCreator from './features/initialState';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Piece from './components/Piece';
+import { QueryClientProvider } from 'react-query';
+import queryClient from './features/queryClient';
 
-const initialTestState: any = initialStateCreator(10,10,10,true);
+const initialTestState: any = initialStateCreator(10, 10, 10, true);
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('App with testBoard', () => {
-  let store= createStore(rootReducer, initialTestState);
+  let store = createStore(rootReducer, initialTestState);
   let wrapper: ReactWrapper;
   beforeEach(() => {
     store = createStore(rootReducer, initialTestState);
     wrapper = mount(
-      <Provider store={store}>
-        <React.StrictMode>
-          <App test={true}/>
-        </React.StrictMode>
-      </Provider>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <React.StrictMode>
+            <App test={true} />
+          </React.StrictMode>
+        </Provider>
+      </QueryClientProvider>
     );
   })
 
@@ -49,10 +53,10 @@ describe('App with testBoard', () => {
     expect(button.props().piece.uncovered).toBe(false);
     expect(button.props().piece.markedAsMine).toBe(false);
     button.simulate('contextmenu', { ...button.props() });
-    const button2 = findPieceAtRowCol(1,1);
+    const button2 = findPieceAtRowCol(1, 1);
     expect(button2.props().piece.markedAsMine).toBe(true);
     button2.simulate('click', { ...button2.props() });
-    const button3 = findPieceAtRowCol(1,1);
+    const button3 = findPieceAtRowCol(1, 1);
     expect(button3.props().piece.uncovered).toBe(false);
   });
   it('should toggle \'markedAsMine\' property when piece is right clicked', () => {
@@ -125,16 +129,18 @@ describe('App with testBoard', () => {
 
 
 describe('App with production board', () => {
-  let store= createStore(rootReducer, initialTestState);
+  let store = createStore(rootReducer, initialTestState);
   let wrapper: ReactWrapper;
   beforeEach(() => {
     store = createStore(rootReducer, initialTestState);
     wrapper = mount(
-      <Provider store={store}>
-        <React.StrictMode>
-          <App test={false} />
-        </React.StrictMode>
-      </Provider>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <React.StrictMode>
+            <App test={false} />
+          </React.StrictMode>
+        </Provider>
+      </QueryClientProvider>
     );
   });
 

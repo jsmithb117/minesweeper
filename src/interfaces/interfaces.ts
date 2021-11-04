@@ -94,6 +94,9 @@ export interface IScore {
   date: Date,
 };
 
+export interface IPostScore extends IScore {
+  difficulty: string,
+};
 
 export interface IAction {
   type: String,
