@@ -7,12 +7,10 @@ import { newBoardAction, updateOriginalBoard } from './actionCreators/clickActio
 import { incrementTime, setMinesDisplay } from './actionCreators/formActionCreators';
 import Form from './components/Form';
 import Display from './components/Display';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { useMutation } from 'react-query';
 import HighScores from './components/HighScores';
-import { setStats } from './actionCreators/statsActionCreators';
-import { IStatsObject } from './interfaces/interfaces';
+import queryClient from './features/queryClient';
 
-const queryClient = new QueryClient();
 const PORT = 3001;
 export const URI = `http://localhost:${PORT}`;
 
@@ -33,44 +31,31 @@ function App(props: { test: boolean }) {
 
   const boardColor = win ? 'green'
     : loss ? 'red'
-      : paused ? 'blue'
-        : 'white';
-
+    : paused ? 'blue'
+    : 'white';
   const className = 'app minesweeper'.concat(boardColor);
+  const date = new Date();
+  const fetchOpts = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, difficulty, seconds, date }),
+  };
+  const mutateOpts = {
+    enabled: win,
+    onSuccess: () => (queryClient.invalidateQueries())
+  };
+  const fetcher = () => (fetch(URI.concat('/completed'), fetchOpts));
+  const mutation = useMutation(fetcher, mutateOpts)
 
   useEffect(() => {
-    if (win) {
-      const options = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, difficulty, seconds, date: new Date() }),
-      };
-
-      /* istanbul ignore next */
-      fetch(URI.concat('/completed'), options)
-        .then((dbResponse) => dbResponse.json())
-        .then((json) => {
-          const statsObject: IStatsObject = {
-            bestBeginnerScore: json.best_beginner_score,
-            bestIntermediateScore: json.best_intermediate_score,
-            bestExpertScore: json.best_expert_score,
-            beginnerScores: json.beginner_scores,
-            intermediateScores: json.intermediate_scores,
-            expertScores: json.expert_scores,
-            totalGamesCompleted: json.total_games_completed,
-            username,
-          }
-          dispatch(setStats(statsObject));
-        })
-        .catch((err) => console.error(err));
-    }
-  }, [dispatch, difficulty, seconds, username, win]);
+    mutation.mutate();
+  }, [win]);
 
   useEffect(() => {
     dispatch(setMinesDisplay(mines));
   }, [dispatch, mines]);
 
-/* istanbul ignore next */
+  /* istanbul ignore next */
   useEffect(() => {
     if (!loss && !win && !paused) {
       const timeInterval = setInterval(() => {
@@ -89,23 +74,25 @@ function App(props: { test: boolean }) {
 
   return (
     <div className={className}>
-      <QueryClientProvider client={queryClient}>
-        <HelmetProvider>
-          <Display />
-          <Rows />
-          <HighScores />
-          <Form />
-          <Helmet>
-            <style type='text/css'>
-              {`
+
+      <HelmetProvider>
+        <Display />
+        <Rows />
+        <HighScores />
+        <Form />
+        <div className="mutation">
+          {'mutation: '.concat(JSON.stringify(mutation))}
+        </div>
+        <Helmet>
+          <style type='text/css'>
+            {`
             body {
               background-color : ${boardColor}
             }
             `}
-            </style>
-          </Helmet>
-        </HelmetProvider>
-      </QueryClientProvider>
+          </style>
+        </Helmet>
+      </HelmetProvider>
     </div>
   );
 }

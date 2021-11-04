@@ -144,3 +144,69 @@ but again, this doesn't work.  The only thing that I can think of that would wor
 Until I solve this problem, I'm going to type the actions as 'any' in the reducers.  There's also another any type in store.ts, but that's a problem for another day.
 
 Update: I ended up going with the 'add all properties to all actions' route in the fullstack branch.  I added a function that takes in an 'options' object that creates an action with all properties set to null, then updates the necessary properties of the action from the options object. I tried to create it in such a way that if I need to create a new action with a new payload property, I only need to change the interface and the 'baseActionCreator' function, but there may be other things I'd need to update.  If I find that this solutions isn't easily maintainable, I'll explore other patterns to refactor to.  It seems to work fine right now, time will tell.
+
+### React Query
+
+I've run into some trouble refactoring for the useMutation hook from React-Query.
+
+The app runs as expected in the browser, and even passes all tests but I get a long series of errors stating:
+
+    "Warning: An update to App ran an effect, but was not wrapped in act(...)..."
+
+The documentation is a little confusing on this topic.  It says:
+
+    If you're using React 16.8+ and .mount(), Enzyme will wrap apis including .simulate(), .setProps(), .setContext(), .invoke() with ReactTestUtils.act() so you don't need to manually wrap it.
+
+    A common pattern to trigger handlers with .act() and assert is:
+
+    const wrapper = mount(<SomeComponent />);
+    act(() => wrapper.prop('handler')());
+    wrapper.update();
+    expect(/* ... */);
+
+    We cannot wrap the result of .prop() (or .props()) with .act() in Enzyme internally since it will break the equality of the returned value. However, you could use .invoke() to simplify the code: ...
+
+My understanding of how this is supposed to work is not what is happening.
+
+I'm using React 17.0.2 and mount.  The only invoking I'm doing is with .simulate so I shouldn't need to wrap anything in act.  But I'm still getting the errors.
+
+I tried narrowing down the problem by disabling all tests that cause this error, then enabling only one simple test.  I pared it down to the basics:
+
+    describe('Renders App and does a simple test', () => {
+      let store= createStore(rootReducer, initialTestState);
+      let wrapper: ReactWrapper;
+      beforeEach(() => {
+        store = createStore(rootReducer, initialTestState);
+        wrapper = mount(
+          <QueryClientProvider client={queryClient}>
+          <Provider store={store}>
+            <React.StrictMode>
+              <App test={false} />
+            </React.StrictMode>
+          </Provider>
+          </QueryClientProvider>
+      )});
+
+    it('should be true', () => {
+      expect(true).toBe(true);
+    })});
+
+This still returns an error each time useEffect is triggered.
+
+I wrapped the mount call:
+
+    wrapper = act(() => {
+      mount(
+        <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <React.StrictMode>
+            <App test={true} />
+          </React.StrictMode>
+        </Provider>
+        </QueryClientProvider>
+      );
+    })
+
+Same errors.
+
+Since the app works as intended, and the tests pass, I'm going to ignore the errors for now.  This problem may be related to the issues I was having with React17 and Enzyme.
