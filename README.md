@@ -210,3 +210,9 @@ I wrapped the mount call:
 Same errors.
 
 Since the app works as intended, and the tests pass, I'm going to ignore the errors for now.  This problem may be related to the issues I was having with React17 and Enzyme.
+
+### More questionable decisions catching up with me
+
+When I initially create a users high scores, I decided to not set the values as null as it might cause errors so I set the seconds property as positive infinity so that when the user completes their first board, the db method will check that the score is less than infinity and set that as its new high score.  The problem with that is that GraphQL doesn't recognize Infinity as an Int type.  There is a way to create custom scalar types and there is also a pretty comprehensive type library (graphql-scalars), but a simpler solution would be to set the initial value of seconds as a number higher than a real score could be or even simpler, not add a score to the new users mongo document.  For now I'm just going to change it to a high number.  Later, I'll remove the default scores and refactor wherever I run into problems with that.
+
+One more minor issue with this, GraphQL doesn't have a Date type so I've set it as a String.  I'm not sure if this will cause problems on the client yet.
