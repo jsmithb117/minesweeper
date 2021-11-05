@@ -4,17 +4,17 @@ const newUserCreator = ({ username, password }) => {
     plainTextPassword: password,
     best_beginner_score: {
       username,
-      seconds: Number.POSITIVE_INFINITY,
+      seconds: 100000,
       date: new Date(),
     },
     best_intermediate_score: {
       username,
-      seconds: Number.POSITIVE_INFINITY,
+      seconds: 100000,
       date: new Date(),
     },
     best_expert_score: {
       username,
-      seconds: Number.POSITIVE_INFINITY,
+      seconds: 100000,
       date: new Date(),
     },
     beginner_scores: [],
