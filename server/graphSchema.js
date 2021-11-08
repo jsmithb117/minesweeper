@@ -4,7 +4,7 @@ import { getUserData } from '../db/db.js';
 export const schema = buildSchema(`
   type Query {
     hello: String
-    users: UserSchema
+    users(username: String): UserSchema
   }
   type UserSchema {
     best_beginner_score: Score
@@ -24,8 +24,8 @@ export const schema = buildSchema(`
 
 export const rootValue = {
   hello: () => 'Hello world!',
-  users: () => {
-    return getUserData({ username: "user1" })
+  users: (username) => {
+    return getUserData(username)
       .then((response) => {
         return response;
       })
