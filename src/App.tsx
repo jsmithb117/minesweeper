@@ -80,9 +80,6 @@ function App(props: { test: boolean }) {
         <Rows />
         <HighScores />
         <Form />
-        <div className="mutation">
-          {'mutation: '.concat(JSON.stringify(mutation))}
-        </div>
         <Helmet>
           <style type='text/css'>
             {`
