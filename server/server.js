@@ -13,7 +13,6 @@ import {
 } from '../db/db.js';
 import cors from 'cors';
 import { graphqlHTTP } from 'express-graphql';
-import { buildSchema } from 'graphql';
 import { schema, rootValue } from './graphSchema.js';
 
 const app = express();
