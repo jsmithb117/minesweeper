@@ -1,5 +1,5 @@
 import { buildSchema } from 'graphql';
-import { getUserData } from '../db/db.js';
+import { getUserData, postCompletedBoard } from '../db/db.js';
 
 export const schema = buildSchema(`
   type Query {
@@ -20,6 +20,15 @@ export const schema = buildSchema(`
     seconds: Int
     date: String
   }
+  type Input {
+    username: String
+    seconds: Int
+    date: String
+    difficulty: String
+  }
+  type Mutation {
+    completed(username: String, difficulty: String, seconds: Int, date: String): UserSchema
+  }
   `);
 
 export const rootValue = {
@@ -29,5 +38,17 @@ export const rootValue = {
       .then((response) => {
         return response;
       })
+      .catch((err) => {
+        throw new Error('Error in rootValue.users');
+      });
   },
+  completed: (score) => {
+    return postCompletedBoard(score)
+      .then((dbResponse) => {
+        return dbResponse;
+      })
+      .catch((err) => {
+        throw new Error('Error in rootValue.completed');
+      });
+  }
 };
