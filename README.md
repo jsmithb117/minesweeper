@@ -35,6 +35,8 @@ query - Uses React Query for fetching data from server
 
 graphql - Refactor server and client to use GraphQL for queries
 
+Refactor actions so that each action only contains its required properties but are typed as 'AnyAction' imported from redux
+
 ### Todo:
 
 * ~~More Testing~~ Always more testing.
@@ -144,6 +146,8 @@ but again, this doesn't work.  The only thing that I can think of that would wor
 Until I solve this problem, I'm going to type the actions as 'any' in the reducers.  There's also another any type in store.ts, but that's a problem for another day.
 
 Update: I ended up going with the 'add all properties to all actions' route in the fullstack branch.  I added a function that takes in an 'options' object that creates an action with all properties set to null, then updates the necessary properties of the action from the options object. I tried to create it in such a way that if I need to create a new action with a new payload property, I only need to change the interface and the 'baseActionCreator' function, but there may be other things I'd need to update.  If I find that this solutions isn't easily maintainable, I'll explore other patterns to refactor to.  It seems to work fine right now, time will tell.
+
+Update 2: My solution works, but I've found a way better solution (the 'right' answer).  The redux package has an 'AnyAction' type that you can import and use instead of my janky solution.
 
 ### React Query
 
