@@ -2,7 +2,7 @@ import './App.css';
 import Rows from './components/Rows';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useAppSelector, useAppDispatch } from './features/hooks';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { newBoardAction, updateOriginalBoard } from './actionCreators/clickActionCreators';
 import { incrementTime, setMinesDisplay } from './actionCreators/formActionCreators';
 import Form from './components/Form';
@@ -26,6 +26,8 @@ function App(props: { test: boolean }) {
   const username = useAppSelector((state: any) => state.stats.username);
   const difficulty = useAppSelector((state: any) => state.form.difficulty);
   const seconds = useAppSelector((state: any) => state.form.time)
+
+  const [mutated, setMutated] = useState(false);
 
   const dispatch = useAppDispatch();
   const boardColor = win ? 'green'
@@ -97,13 +99,13 @@ function App(props: { test: boolean }) {
     }
     return responseJSON;
   }, mutateOpts);
-  let mutated = false;
+
   useEffect(() => {
     if (win && !mutated) {
-      mutated = true;
+      setMutated(false);
       mutation.mutate();
     }
-  }, [win]);
+  }, [win, mutated, mutation]);
 
   useEffect(() => {
     dispatch(setMinesDisplay(mines));
