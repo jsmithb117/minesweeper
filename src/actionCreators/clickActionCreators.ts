@@ -32,6 +32,7 @@ const click = (piece: IPiece, isLeftClick: boolean) => {
   if (requisites) {
     return baseActionCreator(RIGHTCLICK, { piece });
   }
+      /* istanbul ignore next */
   return baseActionCreator('', null);
 }
 

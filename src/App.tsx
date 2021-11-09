@@ -36,11 +36,12 @@ function App(props: { test: boolean }) {
     : 'white';
   const className = 'app minesweeper'.concat(boardColor);
   const date = new Date();
-
+  /* istanbul ignore next */
   const mutateOpts = {
     enabled: win,
     onSuccess: () => (queryClient.invalidateQueries())
   };
+      /* istanbul ignore next */
   const mutation = useMutation(async () => {
     const graphOpts: any = {
       method: 'POST',
