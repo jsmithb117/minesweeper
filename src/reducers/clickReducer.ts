@@ -9,11 +9,12 @@ import {
 } from '../actionCreators/clickActionCreators';
 import zeroFinder from '../features/zeroFinder';
 import checkWin from '../features/checkWin';
-import { IAction, IClickState } from '../interfaces/interfaces'
+import { IClickState } from '../interfaces/interfaces'
 import boardCreator from '../features/boardCreator';
 import { TESTBOARD } from '../actionCreators/clickActionCreators';
+import { AnyAction } from 'redux';
 
-const clickReducer = (state: IClickState | null = null, action: IAction) => {
+const clickReducer = (state: IClickState | null = null, action: AnyAction) => {
   if (action?.type?.slice(0,7) === '@@redux') {
     return state;
   }

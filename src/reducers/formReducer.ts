@@ -1,4 +1,5 @@
 import produce, { Draft } from 'immer';
+import { AnyAction } from 'redux';
 import {
   RESETTIME,
   INCREMENTTIME,
@@ -11,9 +12,9 @@ import {
   PAUSE,
   DIFFICULTY
 } from '../actionCreators/formActionCreators';
-import { IAction, IFormState } from '../interfaces/interfaces';
+import { IFormState } from '../interfaces/interfaces';
 
-const formReducer = (state: IFormState | null = null, action: IAction) => {
+const formReducer = (state: IFormState | null = null, action: AnyAction) => {
   if (action.type === DIFFICULTY) {
     return produce(state, (draft: Draft<{ difficulty: string }>) => {
       draft.difficulty = action.payload.difficulty || '';

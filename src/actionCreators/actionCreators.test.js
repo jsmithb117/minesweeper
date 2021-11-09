@@ -86,10 +86,8 @@ describe('clickActionCreators', () => {
   it('should create a LEFTCLICK action in the proper format', () => {
     const left = leftClick(piece);
     expect(left).toEqual({
-      ...baseAction,
       type: LEFTCLICK,
       payload: {
-        ...baseAction.payload,
         piece,
       },
     });
@@ -97,10 +95,8 @@ describe('clickActionCreators', () => {
   it('should create a RIGHTCLICK action in the proper format', () => {
     const right = rightClick(piece);
     expect(right).toEqual({
-      ...baseAction,
       type: RIGHTCLICK,
       payload: {
-        ...baseAction.payload,
         piece,
       },
     });
@@ -108,10 +104,8 @@ describe('clickActionCreators', () => {
   it('should create a NEWBOARD action in the proper format', () => {
     const action = newBoardAction(10, 10, 10);
     expect(action).toEqual({
-      ...baseAction,
       type: NEWBOARD,
       payload: {
-        ...baseAction.payload,
         length: 10,
         width: 10,
         mines: 10,
@@ -124,17 +118,14 @@ describe('formActionCreators', () => {
   it('should create a resetTime action in the proper format', () => {
     const action = resetTime();
     expect(action).toEqual({
-      ...baseAction,
       type: RESETTIME,
     });
   });
   it('should create a SETLENGTH action in the proper format', () => {
     const action = setLength(11);
     expect(action).toEqual({
-      ...baseAction,
       type: SETLENGTH,
       payload: {
-        ...baseAction.payload,
         length: 11,
       },
     });
@@ -142,10 +133,8 @@ describe('formActionCreators', () => {
   it('should create a SETWIDTH action in the proper format', () => {
     const action = setWidth(12);
     expect(action).toEqual({
-      ...baseAction,
       type: SETWIDTH,
       payload: {
-        ...baseAction.payload,
         width: 12,
       },
     });
@@ -153,18 +142,16 @@ describe('formActionCreators', () => {
   it('should create a SETMINES action in the proper format', () => {
     const action = setMines(13);
     expect(action).toEqual({
-      ...baseAction,
       type: SETMINES,
       payload: {
-        ...baseAction.payload,
         mines: 13,
       },
     });
   });
   it('should create a INCREMENTTIME action in the proper format', () => {
     const action = incrementTime();
+    console.log('incrementTime action: ', action);
     expect(action).toEqual({
-      ...baseAction,
       type: INCREMENTTIME,
     });
   });
@@ -178,10 +165,8 @@ describe('statsActionCreators', () => {
     const date = new Date();
     const action = setBestBeginnerScore({ username, seconds, date });
     expect(action).toEqual({
-      ...baseAction,
       type: SETBESTBEGINNERSCORE,
       payload: {
-        ...baseAction.payload,
         bestBeginnerScore: { username, seconds, date },
       },
     })
@@ -190,10 +175,8 @@ describe('statsActionCreators', () => {
     const date = new Date();
     const action = setBestIntermediateScore({ username, seconds, date });
     expect(action).toEqual({
-      ...baseAction,
       type: SETBESTINTERMEDIATESCORE,
       payload: {
-        ...baseAction.payload,
         bestIntermediateScore: { username, seconds, date },
       },
     })
@@ -201,10 +184,8 @@ describe('statsActionCreators', () => {
   it('should create a setBestExpertScore action in the proper format', () => {
     const action = setBestExpertScore({ username, seconds, date });
     expect(action).toEqual({
-      ...baseAction,
       type: SETBESTEXPERTSCORE,
       payload: {
-        ...baseAction.payload,
         bestExpertScore: { username, seconds, date },
       },
     })
@@ -213,10 +194,8 @@ describe('statsActionCreators', () => {
     const beginnerScores = [{ username, seconds, date }]
     const action = setBeginnerScores(beginnerScores);
     expect(action).toEqual({
-      ...baseAction,
       type: SETBEGINNERSCORES,
       payload: {
-        ...baseAction.payload,
         beginnerScores
       },
     });
@@ -225,10 +204,8 @@ describe('statsActionCreators', () => {
     const intermediateScores = [{ username, seconds, date }]
     const action = setIntermediateScores(intermediateScores);
     expect(action).toEqual({
-      ...baseAction,
       type: SETINTERMEDIATESCORES,
       payload: {
-        ...baseAction.payload,
         intermediateScores
       },
     });
@@ -237,10 +214,8 @@ describe('statsActionCreators', () => {
     const expertScores = [{ username, seconds, date }]
     const action = setExpertScores(expertScores);
     expect(action).toEqual({
-      ...baseAction,
       type: SETEXPERTSCORES,
       payload: {
-        ...baseAction.payload,
         expertScores
       },
     });
@@ -249,10 +224,8 @@ describe('statsActionCreators', () => {
     const totalGamesCompleted = 47;
     const action = setTotalGamesCompleted(totalGamesCompleted);
     expect(action).toEqual({
-      ...baseAction,
       type: SETTOTALGAMESCOMPLETED,
       payload: {
-        ...baseAction.payload,
         totalGamesCompleted,
       },
     });
