@@ -28,27 +28,81 @@ function App(props: { test: boolean }) {
   const seconds = useAppSelector((state: any) => state.form.time)
 
   const dispatch = useAppDispatch();
-
   const boardColor = win ? 'green'
     : loss ? 'red'
     : paused ? 'blue'
     : 'white';
   const className = 'app minesweeper'.concat(boardColor);
   const date = new Date();
-  const fetchOpts = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, difficulty, seconds, date }),
-  };
+
   const mutateOpts = {
     enabled: win,
     onSuccess: () => (queryClient.invalidateQueries())
   };
-  const fetcher = () => (fetch(URI.concat('/completed'), fetchOpts));
-  const mutation = useMutation(fetcher, mutateOpts)
+  const mutation = useMutation(async () => {
+    const graphOpts: any = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        query: '\n' +
+          '  mutation {\n' +
+          `    completed(username: "${username}", seconds: ${seconds}, date: "${date}", difficulty: "${difficulty}") {\n` +
+          '      best_beginner_score{\n' +
+          '        username\n' +
+          '        seconds\n' +
+          '        date\n' +
+          '      }\n' +
+          '      best_intermediate_score{\n' +
+          '        username\n' +
+          '        seconds\n' +
+          '        date\n' +
+          '      }\n' +
+          '      best_expert_score{\n' +
+          '        username\n' +
+          '        seconds\n' +
+          '        date\n' +
+          '      }\n' +
+          '      beginner_scores{\n' +
+          '        username\n' +
+          '        seconds\n' +
+          '        date\n' +
+          '      }\n' +
+          '      intermediate_scores{\n' +
+          '        username\n' +
+          '        seconds\n' +
+          '        date\n' +
+          '      }\n' +
+          '      expert_scores{\n' +
+          '        username\n' +
+          '        seconds\n' +
+          '        date\n' +
+          '      }\n' +
+          '      total_games_completed\n' +
+          '    }\n' +
+          '  }  \n' +
+          '\n' +
+          '\n' +
+          '\n',
+        variables: null
+      }),
+    }
 
+    const response = await fetch(URI.concat('/graphql'), graphOpts);
+    const responseJSON = response.json();
+    if (!response.ok) {
+      throw new Error('Error posting a new score')
+    }
+    return responseJSON;
+  }, mutateOpts);
+  let mutated = false;
   useEffect(() => {
-    mutation.mutate();
+    if (win && !mutated) {
+      mutated = true;
+      mutation.mutate();
+    }
   }, [win]);
 
   useEffect(() => {
@@ -74,7 +128,6 @@ function App(props: { test: boolean }) {
 
   return (
     <div className={className}>
-
       <HelmetProvider>
         <Display />
         <Rows />
