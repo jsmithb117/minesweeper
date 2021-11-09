@@ -1,10 +1,11 @@
 import { buildSchema } from 'graphql';
-import { getUserData, postCompletedBoard } from '../db/db.js';
+import { getUserData, postCompletedBoard, getHighScores } from '../db/db.js';
 
 export const schema = buildSchema(`
   type Query {
     hello: String
     users(username: String): UserSchema
+    highscores: HighScoresSchema
   }
   type UserSchema {
     best_beginner_score: Score
@@ -29,6 +30,11 @@ export const schema = buildSchema(`
   type Mutation {
     completed(username: String, difficulty: String, seconds: Int, date: String): UserSchema
   }
+  type HighScoresSchema {
+    beginner: [Score]
+    intermediate: [Score]
+    expert: [Score]
+  }
   `);
 
 export const rootValue = {
@@ -50,5 +56,8 @@ export const rootValue = {
       .catch((err) => {
         throw new Error('Error in rootValue.completed');
       });
-  }
+  },
+  highscores: () => {
+    return getHighScores();
+  },
 };

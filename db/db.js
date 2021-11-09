@@ -40,6 +40,23 @@ export const getExpertHighScores = () => {
   })
 };
 
+export const getHighScores = () => {
+  const beginner = getBeginnerHighScores();
+  const intermediate = getIntermediateHighScores();
+  const expert = getExpertHighScores();
+  return Promise.all([beginner, intermediate, expert])
+    .then(([beginner, intermediate, expert]) => {
+      return {
+        beginner,
+        intermediate,
+        expert,
+      };
+    })
+    .catch((err) => {
+      throw new Error('Error in rootValue.highscores');
+    });
+}
+
 export const getUserData = ({ username }) => {
   return new Promise((resolve, reject) => {
     Users.findOne({ username })
