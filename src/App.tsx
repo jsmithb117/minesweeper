@@ -2,7 +2,7 @@ import './App.css';
 import Rows from './components/Rows';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useAppSelector, useAppDispatch } from './features/hooks';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { newBoardAction, updateOriginalBoard } from './actionCreators/clickActionCreators';
 import { incrementTime, setMinesDisplay } from './actionCreators/formActionCreators';
 import Form from './components/Form';
@@ -27,29 +27,86 @@ function App(props: { test: boolean }) {
   const difficulty = useAppSelector((state: any) => state.form.difficulty);
   const seconds = useAppSelector((state: any) => state.form.time)
 
-  const dispatch = useAppDispatch();
+  const [mutated, setMutated] = useState(false);
 
+  const dispatch = useAppDispatch();
   const boardColor = win ? 'green'
     : loss ? 'red'
     : paused ? 'blue'
     : 'white';
   const className = 'app minesweeper'.concat(boardColor);
   const date = new Date();
-  const fetchOpts = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, difficulty, seconds, date }),
-  };
+  /* istanbul ignore next */
   const mutateOpts = {
     enabled: win,
     onSuccess: () => (queryClient.invalidateQueries())
   };
-  const fetcher = () => (fetch(URI.concat('/completed'), fetchOpts));
-  const mutation = useMutation(fetcher, mutateOpts)
+      /* istanbul ignore next */
+  const mutation = useMutation(async () => {
+    const graphOpts: any = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        query: '\n' +
+          '  mutation {\n' +
+          `    completed(username: "${username}", seconds: ${seconds}, date: "${date}", difficulty: "${difficulty}") {\n` +
+          '      best_beginner_score{\n' +
+          '        username\n' +
+          '        seconds\n' +
+          '        date\n' +
+          '      }\n' +
+          '      best_intermediate_score{\n' +
+          '        username\n' +
+          '        seconds\n' +
+          '        date\n' +
+          '      }\n' +
+          '      best_expert_score{\n' +
+          '        username\n' +
+          '        seconds\n' +
+          '        date\n' +
+          '      }\n' +
+          '      beginner_scores{\n' +
+          '        username\n' +
+          '        seconds\n' +
+          '        date\n' +
+          '      }\n' +
+          '      intermediate_scores{\n' +
+          '        username\n' +
+          '        seconds\n' +
+          '        date\n' +
+          '      }\n' +
+          '      expert_scores{\n' +
+          '        username\n' +
+          '        seconds\n' +
+          '        date\n' +
+          '      }\n' +
+          '      total_games_completed\n' +
+          '    }\n' +
+          '  }  \n' +
+          '\n' +
+          '\n' +
+          '\n',
+        variables: null
+      }),
+    }
+
+    const response = await fetch(URI.concat('/graphql'), graphOpts);
+    const responseJSON = response.json();
+    if (!response.ok) {
+      throw new Error('Error posting a new score')
+    }
+    return responseJSON;
+  }, mutateOpts);
 
   useEffect(() => {
-    mutation.mutate();
-  }, [win]);
+    if (win && !mutated) {
+      setMutated(false);
+      mutation.mutate();
+    }
+  }, [win, mutated, mutation]);
 
   useEffect(() => {
     dispatch(setMinesDisplay(mines));
@@ -74,15 +131,11 @@ function App(props: { test: boolean }) {
 
   return (
     <div className={className}>
-
       <HelmetProvider>
         <Display />
         <Rows />
         <HighScores />
         <Form />
-        <div className="mutation">
-          {'mutation: '.concat(JSON.stringify(mutation))}
-        </div>
         <Helmet>
           <style type='text/css'>
             {`

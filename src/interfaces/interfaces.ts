@@ -1,14 +1,6 @@
 import { BaseSyntheticEvent } from 'react';
 import store from '../features/store';
 
-export interface IActionNoPayload {
-  type: string,
-};
-
-export interface IActionNumberPayload extends IActionNoPayload {
-  payload: number,
-};
-
 export interface IPiece {
   val: number,
   isMine: boolean,
@@ -20,34 +12,6 @@ export interface IPiece {
 };
 export interface IRow extends Array<IPiece>{};
 export interface Board extends Array<IRow>{};
-
-export interface IActionPiecePayload extends IActionNoPayload {
-  payload: IPiece,
-};
-
-export interface IActionLengthPayload extends IActionNoPayload {
-  payload: {
-    length: number,
-  },
-};
-
-export interface IActionWidthPayload extends IActionNoPayload {
-  payload: {
-    width: number,
-  },
-};
-
-export interface IActionMinesPayload extends IActionNoPayload {
-  payload: {
-    mines: number,
-  },
-};
-
-export interface IActionMinesDisplay extends IActionNoPayload {
-  payload: {
-    minesDisplay: number,
-  },
-};
 
 export interface DisplayState {
   form: IFormState,
@@ -96,41 +60,6 @@ export interface IScore {
 
 export interface IPostScore extends IScore {
   difficulty: string,
-};
-
-export interface IAction {
-  type: String,
-  payload: {
-    val: Number | null,
-    isMine: Boolean | null,
-    uncovered: Boolean | null,
-    markedAsMine: Boolean | null,
-    loser: Boolean | null,
-    row: number | null,
-    col: Number | null,
-    piece: {
-      val: Number | null,
-      isMine: Boolean | null,
-      uncovered: Boolean | null,
-      markedAsMine: Boolean | null,
-      loser: Boolean | null,
-      row: number | null,
-      col: number | null,
-    },
-    length: number | null,
-    width: number | null,
-    mines: number | null,
-    minesDisplay: number | null,
-    bestBeginnerScore: IScore | null,
-    bestIntermediateScore: IScore | null,
-    bestExpertScore: IScore | null,
-    beginnerScores: IScore[] | null,
-    intermediateScores: IScore[] | null,
-    expertScores: IScore[] | null,
-    totalGamesCompleted: number | null,
-    username: string | null,
-    difficulty: string | null,
-  }
 };
 
 export interface IStatsUpdate {

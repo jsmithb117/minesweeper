@@ -12,6 +12,8 @@ import {
   getUserData,
 } from '../db/db.js';
 import cors from 'cors';
+import { graphqlHTTP } from 'express-graphql';
+import { schema, rootValue } from './graphSchema.js';
 
 const app = express();
 export const port = 3001;
@@ -19,6 +21,12 @@ export const port = 3001;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
+app.use('/graphql', graphqlHTTP({
+  schema,
+  rootValue,
+  graphiql: true, //disable for production
+}));
+
 app.get('/beginner', (req, res) => {
   getBeginnerHighScores()
     .then((dbResponse) => {

@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { IAction, IStatsState } from '../interfaces/interfaces';
+import { IStatsState } from '../interfaces/interfaces';
 import {
   SETBEGINNERSCORES,
   SETBESTBEGINNERSCORE,
@@ -11,8 +11,9 @@ import {
   SETTOTALGAMESCOMPLETED,
 } from '../actionCreators/statsActionCreators';
 import { IStatsDraft } from '../interfaces/interfaces';
+import { AnyAction } from 'redux';
 
-const statsReducer = (state: IStatsState | null = null, action: IAction) => {
+const statsReducer = (state: IStatsState | null = null, action: AnyAction) => {
   if (action.type.slice(0,7) === '@@redux') {
     return state;
   }

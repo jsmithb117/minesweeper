@@ -35,6 +35,8 @@ query - Uses React Query for fetching data from server
 
 graphql - Refactor server and client to use GraphQL for queries
 
+Refactor actions so that each action only contains its required properties but are typed as 'AnyAction' imported from redux
+
 ### Todo:
 
 * ~~More Testing~~ Always more testing.
@@ -145,6 +147,8 @@ Until I solve this problem, I'm going to type the actions as 'any' in the reduce
 
 Update: I ended up going with the 'add all properties to all actions' route in the fullstack branch.  I added a function that takes in an 'options' object that creates an action with all properties set to null, then updates the necessary properties of the action from the options object. I tried to create it in such a way that if I need to create a new action with a new payload property, I only need to change the interface and the 'baseActionCreator' function, but there may be other things I'd need to update.  If I find that this solutions isn't easily maintainable, I'll explore other patterns to refactor to.  It seems to work fine right now, time will tell.
 
+Update 2: My solution works, but I've found a way better solution (the 'right' answer).  The redux package has an 'AnyAction' type that you can import and use instead of my janky solution.
+
 ### React Query
 
 I've run into some trouble refactoring for the useMutation hook from React-Query.
@@ -210,3 +214,9 @@ I wrapped the mount call:
 Same errors.
 
 Since the app works as intended, and the tests pass, I'm going to ignore the errors for now.  This problem may be related to the issues I was having with React17 and Enzyme.
+
+### More questionable decisions catching up with me
+
+When I initially create a users high scores, I decided to not set the values as null as it might cause errors so I set the seconds property as positive infinity so that when the user completes their first board, the db method will check that the score is less than infinity and set that as its new high score.  The problem with that is that GraphQL doesn't recognize Infinity as an Int type.  There is a way to create custom scalar types and there is also a pretty comprehensive type library (graphql-scalars), but a simpler solution would be to set the initial value of seconds as a number higher than a real score could be or even simpler, not add a score to the new users mongo document.  For now I'm just going to change it to a high number.  Later, I'll remove the default scores and refactor wherever I run into problems with that.
+
+One more minor issue with this, GraphQL doesn't have a Date type so I've set it as a String.  I'm not sure if this will cause problems on the client yet.
