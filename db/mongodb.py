@@ -1,14 +1,18 @@
 from pymongo import MongoClient
-
+import datetime
+from datetime import date
+from flask import Flask
+import flask
+from flask.wrappers import Response
+from markupsafe import escape
+from bson.json_util import dumps
+from dateutil.parser import *
 client = MongoClient(port=27017)
 db = client.minesweeper
 
 def getBeginnerHighScores():
-  return db.highscores.find({ id: 1 })
-# # Read
-# fivestar = db.reviews.find_one({'cuisine': 'Bar Food'})
-# print(fivestar)
-#   # Returns:
-#   # {'_id': ObjectId('619d550ec0288e0092d8beb2'), 'name': 'State Lazy Inc', 'rating': 5, 'cuisine': 'Bar Food'}
-
-# # /Read
+  dbResponse = db.highscores.find_one({ "id": 1 })
+  for score in dbResponse["beginner"]:
+    score["_id"] = str(score["_id"])
+    score["date"] = score["date"].isoformat()[:-3] + "Z"
+  return Response(dumps(dbResponse["beginner"]), mimetype='application/json')
