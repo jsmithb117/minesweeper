@@ -18,3 +18,10 @@ def getIntermediateHighScores():
     score["_id"] = str(score["_id"])
     score["date"] = score["date"].isoformat()[:-3] + "Z"
   return Response(dumps(dbResponse["intermediate"]), mimetype='application/json')
+
+def getExpertHighScores():
+  dbResponse = db.highscores.find_one({ "id": 1 })
+  for score in dbResponse["expert"]:
+    score["_id"] = str(score["_id"])
+    score["date"] = score["date"].isoformat()[:-3] + "Z"
+  return Response(dumps(dbResponse["expert"]), mimetype='application/json')

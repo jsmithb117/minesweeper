@@ -29,9 +29,6 @@ function App(props: { test: boolean }) {
   const difficulty = useAppSelector((state: any) => state.form.difficulty);
   const seconds = useAppSelector((state: any) => state.form.time)
 
-
-console.log('App rendering')
-
   const dispatch = useAppDispatch();
   const boardColor = win ? 'green'
     : loss ? 'red'
