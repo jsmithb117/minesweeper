@@ -3,6 +3,7 @@ from dateutil.parser import *
 from db import (getBeginnerHighScores,
   getIntermediateHighScores,
   getExpertHighScores,
+  getHighScores,
   )
 
 app = Flask(__name__)
@@ -22,3 +23,7 @@ def sendIntermediateScores():
 @app.route("/expert")
 def sendExpertScores():
   return getExpertHighScores()
+
+@app.route("/highscores")
+def sendHighScores():
+  return getHighScores()
