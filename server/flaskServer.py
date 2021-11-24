@@ -1,9 +1,11 @@
 from flask import Flask
+from flask import request
 from dateutil.parser import *
 from db import (getBeginnerHighScores,
   getIntermediateHighScores,
   getExpertHighScores,
   getHighScores,
+  getUser,
   )
 
 app = Flask(__name__)
@@ -27,3 +29,7 @@ def sendExpertScores():
 @app.route("/highscores")
 def sendHighScores():
   return getHighScores()
+
+@app.route("/user")
+def sendUser():
+  return getUser(request.json)
