@@ -10,6 +10,8 @@ import Display from './components/Display';
 import { useMutation } from 'react-query';
 import HighScores from './components/HighScores';
 import queryClient from './features/queryClient';
+import { setStats } from './actionCreators/statsActionCreators';
+import { IScore } from './interfaces/interfaces';
 
 const PORT = 3001;
 export const URI = `http://localhost:${PORT}`;
@@ -27,7 +29,8 @@ function App(props: { test: boolean }) {
   const difficulty = useAppSelector((state: any) => state.form.difficulty);
   const seconds = useAppSelector((state: any) => state.form.time)
 
-  const [mutated, setMutated] = useState(false);
+
+console.log('App rendering')
 
   const dispatch = useAppDispatch();
   const boardColor = win ? 'green'
@@ -35,84 +38,40 @@ function App(props: { test: boolean }) {
     : paused ? 'blue'
     : 'white';
   const className = 'app minesweeper'.concat(boardColor);
-  const date = new Date();
-  /* istanbul ignore next */
-  const mutateOpts = {
-    enabled: win,
-    onSuccess: () => (queryClient.invalidateQueries())
-  };
-      /* istanbul ignore next */
-  const mutation = useMutation(async () => {
-    const graphOpts: any = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        query: '\n' +
-          '  mutation {\n' +
-          `    completed(username: "${username}", seconds: ${seconds}, date: "${date}", difficulty: "${difficulty}") {\n` +
-          '      best_beginner_score{\n' +
-          '        username\n' +
-          '        seconds\n' +
-          '        date\n' +
-          '      }\n' +
-          '      best_intermediate_score{\n' +
-          '        username\n' +
-          '        seconds\n' +
-          '        date\n' +
-          '      }\n' +
-          '      best_expert_score{\n' +
-          '        username\n' +
-          '        seconds\n' +
-          '        date\n' +
-          '      }\n' +
-          '      beginner_scores{\n' +
-          '        username\n' +
-          '        seconds\n' +
-          '        date\n' +
-          '      }\n' +
-          '      intermediate_scores{\n' +
-          '        username\n' +
-          '        seconds\n' +
-          '        date\n' +
-          '      }\n' +
-          '      expert_scores{\n' +
-          '        username\n' +
-          '        seconds\n' +
-          '        date\n' +
-          '      }\n' +
-          '      total_games_completed\n' +
-          '    }\n' +
-          '  }  \n' +
-          '\n' +
-          '\n' +
-          '\n',
-        variables: null
-      }),
-    }
-
-    const response = await fetch(URI.concat('/graphql'), graphOpts);
-    const responseJSON = response.json();
-    if (!response.ok) {
-      throw new Error('Error posting a new score')
-    }
-    return responseJSON;
-  }, mutateOpts);
 
   useEffect(() => {
-    if (win && !mutated) {
-      setMutated(false);
-      mutation.mutate();
+    if (win) {
+      const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, difficulty, seconds, date: new Date() }),
+      };
+
+      fetch(URI.concat('/completed'), options)
+        .then((dbResponse) => dbResponse.json())
+        .then((json) => {
+          const statsObject = {
+            bestBeginnerScore: json.best_beginner_score,
+            bestIntermediateScore: json.best_intermediate_score,
+            bestExpertScore: json.best_expert_score,
+            beginnerScores: json.beginner_scores,
+            intermediateScores: json.intermediate_scores,
+            expertScores: json.expert_scores,
+            totalGamesCompleted: json.total_games_completed,
+            username,
+          }
+          console.log('setting statsObject')
+          console.log(statsObject);
+          dispatch(setStats(statsObject));
+        })
+        .catch((err) => console.error(err));
     }
-  }, [win, mutated, mutation]);
+  }, [dispatch, URI, difficulty, seconds, username, win]);
 
   useEffect(() => {
     dispatch(setMinesDisplay(mines));
   }, [dispatch, mines]);
 
-  /* istanbul ignore next */
   useEffect(() => {
     if (!loss && !win && !paused) {
       const timeInterval = setInterval(() => {
@@ -128,6 +87,33 @@ function App(props: { test: boolean }) {
       dispatch(updateOriginalBoard());
     };
   }, [dispatch, props.test, length, width, mines]);
+
+  useEffect(() => {
+    (async function (username = 'user1', password = 'insecurePassword') {
+      const highScoreData = await fetch(URI.concat('/highscores'))
+        .then((highScoreResponse) => highScoreResponse.json())
+        .catch((err) => console.error(err));
+      const userOpts = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      };
+      let userData = await fetch(URI.concat('/user'), userOpts)
+        .then((serverResponse) => serverResponse.json())
+        .catch(err => console.error(err));
+      const statsUpdate = {
+        bestBeginnerScore: userData.bestBeginnerScore,
+        bestIntermediateScore: userData.bestIntermediateScore,
+        bestExpertScore: userData.bestExpertScore,
+        beginnerScores: highScoreData.beginner.sort((a: IScore, b: IScore) => a.seconds - b.seconds),
+        intermediateScores: highScoreData.intermediate.sort((a: IScore, b: IScore) => a.seconds - b.seconds),
+        expertScores: highScoreData.expert.sort((a: IScore, b: IScore) => a.seconds - b.seconds),
+        totalGamesCompleted: userData.totalGamesCompleted,
+      }
+      dispatch(setStats(statsUpdate))
+    })();
+    //should be a form to enter username/password with changeHandlers for local state and onSubmit for dispatch(action) FIXME
+  }, [URI, dispatch]);
 
   return (
     <div className={className}>
