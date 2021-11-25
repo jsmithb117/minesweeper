@@ -6,6 +6,7 @@ from db import (getBeginnerHighScores,
   getExpertHighScores,
   getHighScores,
   getUser,
+  setCompleted,
   )
 
 app = Flask(__name__)
@@ -30,6 +31,11 @@ def sendExpertScores():
 def sendHighScores():
   return getHighScores()
 
-@app.route("/user")
+# This should be a GET request, but was a POST in Express.  FIXME
+@app.route("/user", methods=["POST"])
 def sendUser():
   return getUser(request.json)
+
+@app.route("/completed", methods=["POST"])
+def setAndGetCompleted():
+  return setCompleted(request.json)
