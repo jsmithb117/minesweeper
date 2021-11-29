@@ -38,7 +38,7 @@ python - Flask server that can optionally replace the Express server (in ./mines
 
 ### Next up / Work In Progress
 
-
+dbRefactor - Refactor db schema to simplify data handling by server.
 
 ### Todo:
 
