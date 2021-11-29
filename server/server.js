@@ -1,7 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import {
-  postLogin,
   createLogin,
   getBeginnerHighScores,
   getIntermediateHighScores,
@@ -104,9 +103,8 @@ app.post('/user', (req, res) => {
     });
 });
 
-app.post('/insecurelogin', (req, res) => {
-  //as the name implies, this is in no way secure or desired behavior for production, but it works for now FIXME
-  postLogin(req.body)
+app.post('/createuser', (req, res) => {
+  getUserData(req.body)
     .then((dbResponse) => {
       if (!dbResponse) {
         createLogin(req.body)
@@ -114,19 +112,16 @@ app.post('/insecurelogin', (req, res) => {
             res.status(201).send(newUserResponse);
           })
           .catch((err) => {
-            console.error('Error in /insecurelogin: ', err);
+            console.error('Error in /createuser: ', err);
             res.status(400).send(err);
           });
       }
-      if (dbResponse && req.body.password === dbResponse.plainTextPassword) {
+      if (dbResponse) {
         res.send(dbResponse);
-      }
-      if (dbResponse && req.body.password !== dbResponse.plainTextPassword) {
-        res.sendStatus(401);
       }
     })
     .catch((err) => {
-      console.error('Error in /insecurelogin: ', err);
+      console.error('Error in /createuser: ', err);
       res.status(400).send(err);
     });
 });

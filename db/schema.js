@@ -3,21 +3,21 @@ import mongoose from 'mongoose';
 export const usersSchema = new mongoose.Schema({
   username: String,
   plainTextPassword: String,
-  best_beginner_score: {
+  best_beginner_score: [{
     username: String,
     seconds: Number,
     date: Date,
-  },
-  best_intermediate_score: {
+  }],
+  best_intermediate_score: [{
     username: String,
     seconds: Number,
     date: Date,
-  },
-  best_expert_score: {
+  }],
+  best_expert_score: [{
     username: String,
     seconds: Number,
     date: Date,
-  },
+  }],
   beginner_scores: [{
     username: String,
     seconds: Number,

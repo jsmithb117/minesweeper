@@ -1,22 +1,21 @@
-const newUserCreator = ({ username, password }) => {
+const newUserCreator = ({ username }) => {
   const newUser = {
     username,
-    plainTextPassword: password,
-    best_beginner_score: {
+    best_beginner_score: [{
       username,
       seconds: 100000,
       date: new Date(),
-    },
-    best_intermediate_score: {
+    }],
+    best_intermediate_score: [{
+        username,
+        seconds: 100000,
+        date: new Date(),
+    }],
+    best_expert_score: [{
       username,
       seconds: 100000,
       date: new Date(),
-    },
-    best_expert_score: {
-      username,
-      seconds: 100000,
-      date: new Date(),
-    },
+    }],
     beginner_scores: [],
     intermediate_scores: [],
     expert_scores: [],
