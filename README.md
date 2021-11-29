@@ -225,3 +225,15 @@ Since the app works as intended, and the tests pass, I'm going to ignore the err
 When I initially create a users high scores, I decided to not set the values as null as it might cause errors so I set the seconds property as positive infinity so that when the user completes their first board, the db method will check that the score is less than infinity and set that as its new high score.  The problem with that is that GraphQL doesn't recognize Infinity as an Int type.  There is a way to create custom scalar types and there is also a pretty comprehensive type library (graphql-scalars), but a simpler solution would be to set the initial value of seconds as a number higher than a real score could be or even simpler, not add a score to the new users mongo document.  For now I'm just going to change it to a high number.  Later, I'll remove the default scores and refactor wherever I run into problems with that.
 
 One more minor issue with this, GraphQL doesn't have a Date type so I've set it as a String.  I'm not sure if this will cause problems on the client yet.
+
+### Python
+
+The Flask server in this project is my first Python code written.  Including about 4 hours I took to familiarize myself with Python syntax, it took me about 10 hours of coding and research to complete the server.
+
+### Database schema
+
+Normally, I plan out what data my client needs and shape the database to match that.  It makes it easier to write the server logic, especially for GET endpoints.  I didn't do that in this case, mostly because I wasn't sure all of the data that the client required.
+
+I've updated the database schema to more closely resemble the data my client needs.  This simplifies data handling on the server and makes the code easier to read.
+
+Lesson learned: If I matched the client data requirements in the database schema as I went, I wouldn't have needed to refactor.
