@@ -8,13 +8,13 @@ export const schema = buildSchema(`
     highscores: HighScoresSchema
   }
   type UserSchema {
-    best_beginner_score: Score
-    best_intermediate_score: Score
-    best_expert_score: Score
-    beginner_scores: [Score]
-    intermediate_scores: [Score]
-    expert_scores: [Score]
-    total_games_completed: Int
+    bestBeginnerScore: Score
+    bestIntermediateScore: Score
+    bestExpertScore: Score
+    beginnerScores: [Score]
+    intermediateScores: [Score]
+    expertScores: [Score]
+    totalGamesCompleted: Int
   }
   type Score {
     username: String
