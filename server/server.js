@@ -72,7 +72,7 @@ app.get('/highscores', (req, res) => {
     })
 });
 
-app.post('/user/', (req, res) => {
+app.post('/user', (req, res) => {
   getUserData(req.body)
     .then(({
       beginner_scores,
