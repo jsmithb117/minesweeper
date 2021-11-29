@@ -89,11 +89,12 @@ function App(props: { test: boolean }) {
       const userOpts = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username }),
+        body: JSON.stringify({ username, difficulty, seconds, date: new Date() }),
       };
       let userData = await fetch(URI.concat('/user'), userOpts)
         .then((serverResponse) => serverResponse.json())
         .catch(err => console.error(err));
+      console.log('userData: ', userData);
       const statsUpdate = {
         bestBeginnerScore: userData.bestBeginnerScore,
         bestIntermediateScore: userData.bestIntermediateScore,
@@ -103,9 +104,10 @@ function App(props: { test: boolean }) {
         expertScores: highScoreData.expert.sort((a: IScore, b: IScore) => a.seconds - b.seconds),
         totalGamesCompleted: userData.totalGamesCompleted,
       }
+      console.log('statsUpdate: ', statsUpdate)
       dispatch(setStats(statsUpdate))
     })();
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className={className}>
