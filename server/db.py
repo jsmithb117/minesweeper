@@ -46,13 +46,13 @@ def getHighScores():
 def getUser(body):
   dbResponse = users.find_one({ "username": body["username"] })
   strippedResponse = {
-    "bestBeginnerScore": formatIdAndDate(dbResponse["best_beginner_score"]),
-    "bestIntermediateScore": formatIdAndDate(dbResponse["best_intermediate_score"]),
-    "bestExpertScore": formatIdAndDate(dbResponse["best_expert_score"]),
-    "beginnerScores": formatIdAndDateList(dbResponse["beginner_scores"]),
-    "intermediateScores": formatIdAndDateList(dbResponse["intermediate_scores"]),
-    "expertScores": formatIdAndDateList(dbResponse["expert_scores"]),
-    "totalGamesCompleted": dbResponse["total_games_completed"],
+    "bestBeginnerScore": formatIdAndDate(dbResponse["bestBeginnerScore"]),
+    "bestIntermediateScore": formatIdAndDate(dbResponse["bestIntermediateScore"]),
+    "bestExpertScore": formatIdAndDate(dbResponse["bestExpertScore"]),
+    "beginnerScores": formatIdAndDateList(dbResponse["beginnerScores"]),
+    "intermediateScores": formatIdAndDateList(dbResponse["intermediateScores"]),
+    "expertScores": formatIdAndDateList(dbResponse["expertScores"]),
+    "totalGamesCompleted": dbResponse["totalGamesCompleted"],
   }
   return Response(dumps(strippedResponse), mimetype='application/json')
 
@@ -64,7 +64,7 @@ def setCompleted(body):
   isDefaultDifficulty = beginnerDif or intermediateDif or expertDif
   userUpdateObject = {
     "$inc": {
-      "total_games_completed": 1
+      "totalGamesCompleted": 1
     }
   }
   currentUser = getUser({"username": "user1", "password": "insecurePassword"})

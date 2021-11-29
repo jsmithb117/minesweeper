@@ -150,7 +150,6 @@ describe('formActionCreators', () => {
   });
   it('should create a INCREMENTTIME action in the proper format', () => {
     const action = incrementTime();
-    console.log('incrementTime action: ', action);
     expect(action).toEqual({
       type: INCREMENTTIME,
     });

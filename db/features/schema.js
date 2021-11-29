@@ -3,37 +3,37 @@ import mongoose from 'mongoose';
 export const usersSchema = new mongoose.Schema({
   username: String,
   plainTextPassword: String,
-  best_beginner_score: [{
+  bestBeginnerScore: [{
     username: String,
     seconds: Number,
     date: Date,
   }],
-  best_intermediate_score: [{
+  bestIntermediateScore: [{
     username: String,
     seconds: Number,
     date: Date,
   }],
-  best_expert_score: [{
+  bestExpertScore: [{
     username: String,
     seconds: Number,
     date: Date,
   }],
-  beginner_scores: [{
+  beginnerScores: [{
     username: String,
     seconds: Number,
     date: Date,
   }],
-  intermediate_scores: [{
+  intermediateScores: [{
     username: String,
     seconds: Number,
     date: Date,
   }],
-  expert_scores: [{
+  expertScores: [{
     username: String,
     seconds: Number,
     date: Date,
   }],
-  total_games_completed: Number,
+  totalGamesCompleted: Number,
 }, { retainKeyOrder: true });
 
 export const highScoresSchema = new mongoose.Schema({

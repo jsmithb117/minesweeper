@@ -2,14 +2,12 @@ import './App.css';
 import Rows from './components/Rows';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useAppSelector, useAppDispatch } from './features/hooks';
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import { newBoardAction, updateOriginalBoard } from './actionCreators/clickActionCreators';
 import { incrementTime, setMinesDisplay } from './actionCreators/formActionCreators';
 import Form from './components/Form';
 import Display from './components/Display';
-import { useMutation } from 'react-query';
 import HighScores from './components/HighScores';
-import queryClient from './features/queryClient';
 import { setStats } from './actionCreators/statsActionCreators';
 import { IScore } from './interfaces/interfaces';
 
@@ -48,22 +46,20 @@ function App(props: { test: boolean }) {
         .then((dbResponse) => dbResponse.json())
         .then((json) => {
           const statsObject = {
-            bestBeginnerScore: json.best_beginner_score,
-            bestIntermediateScore: json.best_intermediate_score,
-            bestExpertScore: json.best_expert_score,
-            beginnerScores: json.beginner_scores,
-            intermediateScores: json.intermediate_scores,
-            expertScores: json.expert_scores,
-            totalGamesCompleted: json.total_games_completed,
+            bestBeginnerScore: json.bestBeginnerScore,
+            bestIntermediateScore: json.bestIntermediateScore,
+            bestExpertScore: json.bestExpertScore,
+            beginnerScores: json.beginnerScores,
+            intermediateScores: json.intermediateScores,
+            expertScores: json.expertScores,
+            totalGamesCompleted: json.totalGamesCompleted,
             username,
           }
-          console.log('setting statsObject')
-          console.log(statsObject);
           dispatch(setStats(statsObject));
         })
         .catch((err) => console.error(err));
     }
-  }, [dispatch, URI, difficulty, seconds, username, win]);
+  }, [dispatch, difficulty, seconds, username, win]);
 
   useEffect(() => {
     dispatch(setMinesDisplay(mines));
@@ -86,14 +82,14 @@ function App(props: { test: boolean }) {
   }, [dispatch, props.test, length, width, mines]);
 
   useEffect(() => {
-    (async function (username = 'user1', password = 'insecurePassword') {
+    (async function (username = 'user1') {
       const highScoreData = await fetch(URI.concat('/highscores'))
         .then((highScoreResponse) => highScoreResponse.json())
         .catch((err) => console.error(err));
       const userOpts = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username }),
       };
       let userData = await fetch(URI.concat('/user'), userOpts)
         .then((serverResponse) => serverResponse.json())
@@ -109,8 +105,7 @@ function App(props: { test: boolean }) {
       }
       dispatch(setStats(statsUpdate))
     })();
-    //should be a form to enter username/password with changeHandlers for local state and onSubmit for dispatch(action) FIXME
-  }, [URI, dispatch]);
+  }, [dispatch]);
 
   return (
     <div className={className}>

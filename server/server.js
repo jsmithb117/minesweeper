@@ -74,24 +74,24 @@ app.get('/highscores', (req, res) => {
 app.post('/user', (req, res) => {
   getUserData(req.body)
     .then(({
-      beginner_scores,
-      intermediate_scores,
-      expert_scores,
-      best_beginner_score,
-      best_intermediate_score,
-      best_expert_score,
-      total_games_completed,
+      beginnerScores,
+      intermediateScores,
+      expertScores,
+      bestBeginnerScore,
+      bestIntermediateScore,
+      bestExpertScore,
+      totalGamesCompleted,
       plainTextPassword,
     }) => {
       if (plainTextPassword === req.body.password) { //insecure, FIXME
         res.send({
-          bestBeginnerScore: best_beginner_score,
-          bestIntermediateScore: best_intermediate_score,
-          bestExpertScore: best_expert_score,
-          beginnerScores: beginner_scores.sort((a, b) => a.seconds - b.seconds),
-          intermediateScores: intermediate_scores,
-          expertScores: expert_scores,
-          totalGamesCompleted: total_games_completed,
+          bestBeginnerScore,
+          bestIntermediateScore,
+          bestExpertScore,
+          beginnerScores: beginnerScores.sort((a, b) => a.seconds - b.seconds),
+          intermediateScores: intermediateScores.sort((a, b) => a.seconds - b.seconds),
+          expertScores: expertScores.sort((a, b) => a.seconds - b.seconds),
+          totalGamesCompleted,
         });
       } else {
         res.sendStatus(401);
