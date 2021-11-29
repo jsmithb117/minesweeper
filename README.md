@@ -31,11 +31,14 @@ fullstack - Stores each user score for each default board, top 10 global scores 
 
 query - Uses React Query for fetching data from server
 
-### Next up / Work In Progress
-
 graphql - Refactor server and client to use GraphQL for queries
 
-Refactor actions so that each action only contains its required properties but are typed as 'AnyAction' imported from redux
+python - Flask server that can optionally replace the Express server (in ./minesweeper/server do 'export FLASK_APP=flaskServer', then 'flask run')
+
+
+### Next up / Work In Progress
+
+
 
 ### Todo:
 
@@ -69,7 +72,9 @@ Refactor actions so that each action only contains its required properties but a
 
 * ~~Implement React Query where Redux uses server data~~ - Complete
 
-* GraphQL for queries
+* ~~GraphQL for queries~~
+
+* Flask server to optionally replace Express server
 
 * Server Side Rendering
 
