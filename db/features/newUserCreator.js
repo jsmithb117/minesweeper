@@ -2,9 +2,9 @@ const newUserCreator = ({ username }) => {
   const score = { username, seconds: 100000, date: new Date() }
   const newUser = {
     username,
-    bestBeginnerScore: [ ...score],
-    bestIntermediateScore: [ ...score],
-    bestExpertScore: [ ...score],
+    bestBeginnerScore: [ score],
+    bestIntermediateScore: [ score],
+    bestExpertScore: [ score],
     beginnerScores: [],
     intermediateScores: [],
     expertScores: [],
