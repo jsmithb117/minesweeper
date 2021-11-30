@@ -2,7 +2,7 @@ import './App.css';
 import Rows from './components/Rows';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useAppSelector, useAppDispatch } from './features/hooks';
-import { useEffect} from 'react';
+import { useEffect, useState } from 'react';
 import { newBoardAction, updateOriginalBoard } from './actionCreators/clickActionCreators';
 import { incrementTime, setMinesDisplay } from './actionCreators/formActionCreators';
 import Form from './components/Form';
@@ -26,6 +26,7 @@ function App(props: { test: boolean }) {
   const username = useAppSelector((state: any) => state.stats.username);
   const difficulty = useAppSelector((state: any) => state.form.difficulty);
   const seconds = useAppSelector((state: any) => state.form.time)
+  const [cheat, setCheat] = useState(false);
 
   const dispatch = useAppDispatch();
   const boardColor = win ? 'green'
@@ -109,11 +110,17 @@ function App(props: { test: boolean }) {
     })();
   }, []);
 
+  const cheater = () => {
+    setCheat(!cheat)
+  }
   return (
     <div className={className}>
       <HelmetProvider>
+        <button className="cheatbutton" onClick={cheater}>
+          Cheat Button
+        </button>
         <Display />
-        <Rows />
+        <Rows cheat={cheat} />
         <HighScores />
         <Form />
         <Helmet>

@@ -6,7 +6,7 @@ import pieceClass from '../features/pieceClass';
 import { useAppDispatch } from '../features/hooks';
 import { IProps, IState } from '../interfaces/interfaces';
 
-const Piece = ({ piece }: IProps) => {
+const Piece = ({ piece, cheat }: any) => {
   const dispatch = useAppDispatch();
   const width = useSelector((state: IState) => state.form.width);
   const length = useSelector((state: IState) => state.form.length);
@@ -45,7 +45,7 @@ const Piece = ({ piece }: IProps) => {
     </button>
     )
   }
-  if (piece.isMine && loss) {
+  if (piece.isMine && (loss || cheat)) {
     return (
       <button className={className} onClick={() => leftClickHandler()}
       onContextMenu={() => rightClickHandler()}>
