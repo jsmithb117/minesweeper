@@ -1,5 +1,5 @@
 import { IPiece } from '../interfaces/interfaces';
-import buttonColor from './buttonColor';
+import { buttonColorFunc } from './index';
 
 const pieceClass = (piece: IPiece, width: number, length: number) => {
   let className: string = `piece width${width} length${length}`;
@@ -14,7 +14,7 @@ const pieceClass = (piece: IPiece, width: number, length: number) => {
     className = className.concat(' loser');
   }
   if (piece.uncovered && !piece.markedAsMine) {
-    className = className.concat(` uncovered ${buttonColor(piece)}`);
+    className = className.concat(` uncovered ${buttonColorFunc(piece)}`);
   }
   return className;
 };

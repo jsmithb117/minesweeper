@@ -1,4 +1,4 @@
-import Row from './Row';
+import { Row } from './index';
 import { useAppSelector } from '../features/hooks';
 
 const Rows = ({ cheat }: any) => {

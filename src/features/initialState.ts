@@ -1,4 +1,4 @@
-import boardCreator from './boardCreator';
+import { boardCreator } from './index';
 import { IInitialState } from '../interfaces/interfaces';
 import { defaultVal } from '../components/Form';
 

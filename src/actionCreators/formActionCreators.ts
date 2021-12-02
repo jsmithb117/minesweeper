@@ -1,4 +1,4 @@
-import baseActionCreator from './baseActionCreator';
+import { baseActionCreator } from './index';
 
 export const RESETTIME: string = 'RESETTIME';
 export const SETLENGTH: string = 'SETLENGTH';

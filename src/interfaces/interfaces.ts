@@ -1,5 +1,5 @@
 import { BaseSyntheticEvent } from 'react';
-import store from '../features/store';
+import { store } from '../features';
 
 export interface IPiece {
   val: number,

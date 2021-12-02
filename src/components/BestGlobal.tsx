@@ -1,5 +1,5 @@
 import { IBestGlobalProps, IScore } from "../interfaces/interfaces";
-import BestGlobalScore from "./BestGlobalScore";
+import { BestGlobalScore } from "./index";
 
 const BestGlobal = ({ type, scores }: IBestGlobalProps) => {
   const displayType = type.charAt(0).toUpperCase().concat(type.slice(1));

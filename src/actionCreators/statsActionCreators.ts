@@ -1,5 +1,5 @@
 import { IStatsUpdate, IUserUpdate } from '../interfaces/interfaces';
-import baseActionCreator from './baseActionCreator';
+import { baseActionCreator } from './index';
 import { IScore } from '../interfaces/interfaces';
 
 export const SETBESTBEGINNERSCORE = 'SETBESTBEGINNERSCORE';

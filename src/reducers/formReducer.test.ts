@@ -1,6 +1,6 @@
 import { incrementTime, resetTime } from "../actionCreators/formActionCreators";
 import formReducer from "./formReducer";
-import initialStateCreator from '../features/initialState';
+import { initialStateCreator } from '../features';
 
 const initialState = initialStateCreator();
 

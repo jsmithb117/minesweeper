@@ -3,8 +3,7 @@ import { render, fireEvent, screen } from '@testing-library/react'
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import userEvent from '@testing-library/user-event';
-import { rootReducer } from '../features/store';
-import initialStateCreator from '../features/initialState';
+import { rootReducer, initialStateCreator } from '../features';
 import Form from './Form';
 
 const initialTestState: any = initialStateCreator(10, 10, 10, true);

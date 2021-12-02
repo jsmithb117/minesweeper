@@ -5,8 +5,6 @@ import {
   leftClick,
   rightClick,
   newBoardAction,
-} from './clickActionCreators';
-import {
   RESETTIME,
   SETLENGTH,
   SETWIDTH,
@@ -17,8 +15,6 @@ import {
   setWidth,
   setMines,
   incrementTime,
-} from './formActionCreators';
-import {
   SETBESTBEGINNERSCORE,
   SETBESTINTERMEDIATESCORE,
   SETBESTEXPERTSCORE,
@@ -37,7 +33,7 @@ import {
   setIntermediateScores,
   setExpertScores,
   setTotalGamesCompleted,
-} from './statsActionCreators';
+} from './index';
 
 const baseAction = {
   type: '',

@@ -2,10 +2,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import Enzyme, { mount, ReactWrapper } from 'enzyme';
 import { createStore } from 'redux';
-import { rootReducer } from '../features/store';
-import initialStateCreator from '../features/initialState';
+import { initialStateCreator, rootReducer } from '../features';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import BestGlobalScore from './BestGlobalScore';
+import { BestGlobalScore } from './index';
 
 const initialTestState: any = initialStateCreator(10,10,10,true);
 Enzyme.configure({ adapter: new Adapter() });

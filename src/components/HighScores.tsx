@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
-import BestIndividualScore from './BestIndividualScore';
+import { BestIndividualScore } from './index';
 import { IScore } from '../interfaces/interfaces';
-import BestGlobal from './BestGlobal';
+import { BestGlobal } from './index';
 
 const HighScores = () => {
   const bestBeginnerScore: IScore = useSelector((state: any) => state.stats.bestBeginnerScore[0]);

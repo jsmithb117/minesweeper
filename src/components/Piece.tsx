@@ -1,10 +1,8 @@
 import { useSelector } from 'react-redux';
-import { leftClick, rightClick } from '../actionCreators/clickActionCreators';
-import { incrementMinesDisplay, decrementMinesDisplay } from '../actionCreators/formActionCreators';
-import displayValue from '../features/displayValue';
-import pieceClass from '../features/pieceClass';
-import { useAppDispatch } from '../features/hooks';
-import { IProps, IState } from '../interfaces/interfaces';
+import { leftClick, rightClick, incrementMinesDisplay, decrementMinesDisplay } from '../actionCreators';
+import { displayValue, useAppDispatch } from '../features';
+import { pieceClass } from '../features/';
+import { IState } from '../interfaces/interfaces';
 
 const Piece = ({ piece, cheat }: any) => {
   const dispatch = useAppDispatch();

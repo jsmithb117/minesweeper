@@ -7,10 +7,8 @@ import {
   NEWBOARD,
   UPDATEORIGINALBOARD,
 } from '../actionCreators/clickActionCreators';
-import zeroFinder from '../features/zeroFinder';
-import checkWin from '../features/checkWin';
+import { checkWin, zeroFinder, boardCreator } from '../features';
 import { IClickState } from '../interfaces/interfaces'
-import boardCreator from '../features/boardCreator';
 import { TESTBOARD } from '../actionCreators/clickActionCreators';
 import { AnyAction } from 'redux';
 

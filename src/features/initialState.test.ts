@@ -1,4 +1,4 @@
-import initialStateCreator from './initialState';
+import { initialStateCreator } from './index';
 const test = true;
 const initialTestState = initialStateCreator(10, 10, 10, test);
 const initialProductionState = initialStateCreator();

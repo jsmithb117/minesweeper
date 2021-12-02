@@ -2,14 +2,11 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import Enzyme, { mount, ReactWrapper } from 'enzyme';
 import { createStore } from 'redux';
-
-import { rootReducer } from './features/store';
 import App from './App';
-import initialStateCreator from './features/initialState';
+import { initialStateCreator, rootReducer, queryClient } from './features';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Piece from './components/Piece';
 import { QueryClientProvider } from 'react-query';
-import queryClient from './features/queryClient';
 
 const initialTestState: any = initialStateCreator(10, 10, 10, true);
 Enzyme.configure({ adapter: new Adapter() });

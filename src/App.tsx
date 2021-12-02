@@ -5,9 +5,9 @@ import { useAppSelector, useAppDispatch } from './features/hooks';
 import { useEffect, useState } from 'react';
 import { newBoardAction, updateOriginalBoard } from './actionCreators/clickActionCreators';
 import { incrementTime, setMinesDisplay } from './actionCreators/formActionCreators';
-import Form from './components/Form';
-import Display from './components/Display';
-import HighScores from './components/HighScores';
+import { Form, Display, HighScores } from './components';
+
+
 import { setStats } from './actionCreators/statsActionCreators';
 import { IScore } from './interfaces/interfaces';
 

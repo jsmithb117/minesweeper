@@ -1,5 +1,4 @@
-import { IRowProps } from '../interfaces/interfaces';
-import Piece from './Piece';
+import { Piece } from './index';
 
 const Row = ({ row, win, loss, cheat }: any) => {
   const rowMap = row.map((piece: any) => {

@@ -1,5 +1,5 @@
 import { IPiece } from '../interfaces/interfaces';
-import baseActionCreator from './baseActionCreator';
+import { baseActionCreator } from './index';
 
 export const LEFTCLICK: string = 'LEFTCLICK';
 export const RIGHTCLICK: string = 'RIGHTCLICK';

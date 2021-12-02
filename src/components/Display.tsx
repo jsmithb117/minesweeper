@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { revertBoard, resetWinLoss, testBoard } from '../actionCreators/clickActionCreators';
-import { setMinesDisplay, pause } from '../actionCreators/formActionCreators';
+import { revertBoard,
+  resetWinLoss,
+  testBoard,
+  setMinesDisplay,
+  pause } from '../actionCreators';
 import { DisplayState } from '../interfaces/interfaces';
 
 const Display = () => {
