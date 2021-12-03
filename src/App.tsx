@@ -3,12 +3,11 @@ import Rows from './components/Rows';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useAppSelector, useAppDispatch } from './features/hooks';
 import { useEffect, useState } from 'react';
-import { newBoardAction, updateOriginalBoard } from './actionCreators/clickActionCreators';
-import { incrementTime, setMinesDisplay } from './actionCreators/formActionCreators';
+import { newBoardAction,
+  updateOriginalBoard,
+  setMinesDisplay,
+  setStats } from './actionCreators';
 import { Form, Display, HighScores } from './components';
-
-
-import { setStats } from './actionCreators/statsActionCreators';
 import { IScore } from './interfaces/interfaces';
 
 const PORT = 3001;
@@ -23,7 +22,6 @@ function App(props: { test: boolean }) {
   const width = useAppSelector((state: { form: { width: number } }) => state.form.width);
   const mines = useAppSelector((state: { form: { mines: number } }) => state.form.mines);
   const paused = useAppSelector((state: { form: { paused: boolean } }) => state.form.paused);
-  const username = useAppSelector((state: any) => state.stats.username);
   const difficulty = useAppSelector((state: any) => state.form.difficulty);
   const seconds = useAppSelector((state: any) => state.form.time)
   const [cheat, setCheat] = useState(false);
@@ -36,44 +34,8 @@ function App(props: { test: boolean }) {
   const className = 'app minesweeper'.concat(boardColor);
 
   useEffect(() => {
-    if (win) {
-      const options = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, difficulty, seconds, date: new Date() }),
-      };
-
-      fetch(URI.concat('/completed'), options)
-        .then((dbResponse) => dbResponse.json())
-        .then((json) => {
-          const statsObject = {
-            bestBeginnerScore: json.bestBeginnerScore,
-            bestIntermediateScore: json.bestIntermediateScore,
-            bestExpertScore: json.bestExpertScore,
-            beginnerScores: json.beginnerScores,
-            intermediateScores: json.intermediateScores,
-            expertScores: json.expertScores,
-            totalGamesCompleted: json.totalGamesCompleted,
-            username,
-          }
-          dispatch(setStats(statsObject));
-        })
-        .catch((err) => console.error(err));
-    }
-  }, [dispatch, difficulty, seconds, username, win]);
-
-  useEffect(() => {
     dispatch(setMinesDisplay(mines));
   }, [dispatch, mines]);
-
-  useEffect(() => {
-    if (!loss && !win && !paused) {
-      const timeInterval = setInterval(() => {
-        dispatch(incrementTime());
-      }, 1000);
-      return () => clearInterval(timeInterval);
-    }
-  });
 
   useEffect(() => {
     if (!props.test) {
@@ -95,7 +57,6 @@ function App(props: { test: boolean }) {
       let userData = await fetch(URI.concat('/user'), userOpts)
         .then((serverResponse) => serverResponse.json())
         .catch(err => console.error(err));
-      console.log('userData: ', userData);
       const statsUpdate = {
         bestBeginnerScore: userData.bestBeginnerScore,
         bestIntermediateScore: userData.bestIntermediateScore,
@@ -105,10 +66,9 @@ function App(props: { test: boolean }) {
         expertScores: highScoreData.expert.sort((a: IScore, b: IScore) => a.seconds - b.seconds),
         totalGamesCompleted: userData.totalGamesCompleted,
       }
-      console.log('statsUpdate: ', statsUpdate)
       dispatch(setStats(statsUpdate))
     })();
-  }, []);
+  }, [difficulty, dispatch, seconds]);
 
   const cheater = () => {
     setCheat(!cheat)

@@ -7,5 +7,6 @@ import HighScores from './HighScores';
 import Piece from './Piece';
 import Row from './Row';
 import Rows from './Rows';
+import Time from './Time';
 
-export { BestGlobal, BestGlobalScore, BestIndividualScore, Display, Form, HighScores, Piece, Row, Rows };
+export { BestGlobal, BestGlobalScore, BestIndividualScore, Display, Form, HighScores, Piece, Row, Rows, Time };
