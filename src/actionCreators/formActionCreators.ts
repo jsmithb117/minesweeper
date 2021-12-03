@@ -10,6 +10,7 @@ export const DECREMENTMINESDISPLAY: string = 'DECREMENTMINESDISPLAY';
 export const SETMINESDISPLAY: string =  'SETMINESDISPLAY';
 export const PAUSE = 'PAUSE';
 export const DIFFICULTY = 'DIFFICULTY';
+export const SETTIME = 'SETTIME';
 
 export const setDifficulty = (difficulty: string) => baseActionCreator(DIFFICULTY, { difficulty });
 export const resetTime = () => baseActionCreator(RESETTIME, null);
@@ -21,3 +22,4 @@ export const incrementMinesDisplay = () => baseActionCreator(INCREMENTMINESDISPL
 export const decrementMinesDisplay = () => baseActionCreator(DECREMENTMINESDISPLAY, null);
 export const setMinesDisplay = (minesDisplay: number = 0) => baseActionCreator(SETMINESDISPLAY, { minesDisplay });
 export const pause = () => baseActionCreator(PAUSE, null);
+export const setTime = (seconds: number) => baseActionCreator(SETTIME, { seconds });

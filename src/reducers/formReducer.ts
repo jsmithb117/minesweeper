@@ -9,6 +9,7 @@ import {
   INCREMENTMINESDISPLAY,
   DECREMENTMINESDISPLAY,
   SETMINESDISPLAY,
+  SETTIME,
   PAUSE,
   DIFFICULTY
 } from '../actionCreators/formActionCreators';
@@ -81,6 +82,12 @@ const formReducer = (state: IFormState | null = null, action: AnyAction) => {
       }
       return draft;
     });
+  }
+  if (action.type === SETTIME) {
+    return produce(state, (draft: { time: number}) => {
+      draft.time = action.payload.time || 0;
+      return draft;
+    })
   }
   return state;
 };

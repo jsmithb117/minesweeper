@@ -26,6 +26,7 @@ import {
   SETLENGTH,
   SETMINES,
   SETMINESDISPLAY,
+  SETTIME,
   SETWIDTH,
   decrementMinesDisplay,
   incrementMinesDisplay,
@@ -36,6 +37,7 @@ import {
   setLength,
   setMines,
   setMinesDisplay,
+  setTime,
   setWidth
 } from './formActionCreators'
 
@@ -84,6 +86,7 @@ export {
   SETSTATS,
   SETTOTALGAMESCOMPLETED,
   SETUSERNAME,
+  SETTIME,
   SETWIDTH,
   TESTBOARD,
   UPDATEORIGINALBOARD,
@@ -111,6 +114,7 @@ export {
   setStats,
   setTotalGamesCompleted,
   setUsername,
+  setTime,
   setWidth,
   testBoard,
   updateOriginalBoard,
