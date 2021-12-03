@@ -93,6 +93,7 @@ export const postCompletedBoard = (score) => {
     const highScoresUpdateObject = highScoresUpdateObjectCreator(score);
 
     HighScores.updateOne({ id: 1 }, highScoresUpdateObject)
+    .catch((err) => reject(err));
 
     Users.updateOne({ username: score.username }, userUpdateObject)
       .then(() => {
