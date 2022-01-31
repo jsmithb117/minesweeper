@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import { leftClick, rightClick } from '../actionCreators/clickActionCreators';
-import { incrementMinesDisplay, decrementMinesDisplay } from '../actionCreators/formActionCreators';
+import { leftClick, rightClick } from '../reducers/clickSlice';
+import { incrementMinesDisplay, decrementMinesDisplay } from '../reducers/formSlice';
 import displayValue from '../features/displayValue';
 import pieceClass from '../features/pieceClass';
 import { useAppDispatch } from '../features/hooks';
@@ -14,7 +14,7 @@ const Piece = ({ piece }: IProps) => {
   const paused = useSelector((state: IState) => state.form.paused);
 
   const leftClickHandler = () => {
-    dispatch(leftClick(piece));
+    dispatch(leftClick({ piece }));
   };
 
   const rightClickHandler = () => {
@@ -23,7 +23,7 @@ const Piece = ({ piece }: IProps) => {
     } else {
       dispatch(decrementMinesDisplay());
     }
-    dispatch(rightClick(piece));
+    dispatch(rightClick({ piece }));
   };
 
   const className = pieceClass(piece, width, length);

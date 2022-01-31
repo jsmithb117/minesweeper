@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { revertBoard, resetWinLoss, testBoard } from '../actionCreators/clickActionCreators';
-import { setMinesDisplay, pause } from '../actionCreators/formActionCreators';
+import { revertBoard, resetWinLoss, testBoard } from '../reducers/clickSlice';
+import { setMinesDisplay, togglePause } from '../reducers/formSlice';
 import { DisplayState } from '../interfaces/interfaces';
 
 const Display = () => {
@@ -10,16 +10,24 @@ const Display = () => {
   const dispatch = useDispatch();
 
   const resetButtonHandler = () => {
+    const setMinesPayload = {
+      minesDisplay: mines,
+    }
     dispatch(revertBoard());
     dispatch(resetWinLoss());
-    dispatch(setMinesDisplay(mines));
+    dispatch(setMinesDisplay(setMinesPayload));
   };
 
   const testBoardHandler = () => {
-    dispatch(testBoard());
+    const testBoardPayload = {
+      length: 10,
+      width: 10,
+      mines: 10,
+    }
+    dispatch(testBoard(testBoardPayload));
   };
   const pauseHandler = () => {
-    dispatch(pause());
+    dispatch(togglePause());
   };
 
   return (

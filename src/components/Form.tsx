@@ -5,7 +5,7 @@ import {
   setWidth,
   setMines,
   setDifficulty,
-} from '../actionCreators/formActionCreators';
+} from '../reducers/formSlice';
 import { event, TEvent } from '../interfaces/interfaces';
 
 export const defaultVal = 'Default';

@@ -3,7 +3,7 @@ import Rows from './components/Rows';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useAppSelector, useAppDispatch } from './features/hooks';
 import { useEffect} from 'react';
-import { newBoardAction, updateOriginalBoard } from './actionCreators/clickActionCreators';
+import { newBoard, updateOriginalBoard } from './reducers/clickSlice';
 import { incrementTime, setMinesDisplay } from './actionCreators/formActionCreators';
 import Form from './components/Form';
 import Display from './components/Display';
@@ -39,7 +39,7 @@ function App(props: { test: boolean }) {
       const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, difficulty, seconds, date: new Date() }),
+        body: JSON.stringify({ username, difficulty, seconds, date: new Date().toISOString() }),
       };
 
       fetch(URI.concat('/completed'), options)
@@ -76,7 +76,7 @@ function App(props: { test: boolean }) {
 
   useEffect(() => {
     if (!props.test) {
-      dispatch(newBoardAction(length, width, mines));
+      dispatch(newBoard({length, width, mines}));
       dispatch(updateOriginalBoard());
     };
   }, [dispatch, props.test, length, width, mines]);
