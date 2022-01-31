@@ -1,10 +1,15 @@
-import clickReducer from '../reducers/clickReducer';
-import formReducer from '../reducers/formReducer';
-import { createStore, combineReducers } from 'redux';
-import initialStateCreator from './initialState';
-import statsReducer from '../reducers/statsReducer';
+import { configureStore } from '@reduxjs/toolkit';
 
-export const rootReducer = combineReducers({ click: clickReducer, form: formReducer, stats: statsReducer });
-const initialState: any = initialStateCreator();
-const store = createStore(rootReducer, initialState);
+import clickReducer from '../reducers/clickSlice';
+import formReducer from '../reducers/formSlice';
+import statsReducer from '../reducers/statsSlice';
+
+const store = configureStore({
+  reducer: {
+    click: clickReducer,
+    form: formReducer,
+    stats: statsReducer,
+  },
+});
+
 export default store;
