@@ -35,6 +35,7 @@ graphql - Refactor server and client to use GraphQL for queries
 
 flask-server - Flask server that can optionally replace the Express server (in ./minesweeper/server do 'export FLASK_APP=flaskServer', then 'flask run')
 
+redux-toolkit - Refactors to use redux-toolkit
 
 ### Next up / Work In Progress
 
