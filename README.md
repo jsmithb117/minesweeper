@@ -238,3 +238,9 @@ Normally, I plan out what data my client needs and shape the database to match t
 I've updated the database schema to more closely resemble the data my client needs.  This simplifies data handling on the server and makes the code easier to read.
 
 Lesson learned: If I matched the client data requirements in the database schema as I went, I wouldn't have needed to refactor.
+
+### Redux-toolkit
+
+When I set out on my Redux journey, the goal was to learn the major functionality of Redux up to and including redux-toolkit.  I broke it up and learned Hooks, then the Connect API, then... I just stopped.  I got side-tracked by all the neat and shiny things (Typescript, GraphQL, Python...).  This branch puts this repo back on the right track as far as Redux goes.
+
+When I first started with Redux, the redux-toolkit approach was a little too complicated.  Not because redux-toolkit is complicated, but because it abstracts away a lot of Redux.  I had a hard time understanding what was going on in the background.  I'm glad I took a step back in time and learned the 'old' ways to Redux, but I allowed myself to get distracted by other things.  Lesson learned: I should have kept pushing with Redux and only moved on when I was happy with where I was at with it.
