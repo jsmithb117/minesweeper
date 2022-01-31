@@ -159,9 +159,9 @@ describe('formActionCreators', () => {
 describe('statsActionCreators', () => {
   const username = 'user1';
   const seconds = 35;
-  const date = new Date();
+  const date = new Date().toISOString();
   it('should create a setBestBeginnerScore action in the proper format', () => {
-    const date = new Date();
+    const date = new Date().toISOString();
     const action = setBestBeginnerScore({ username, seconds, date });
     expect(action).toEqual({
       type: SETBESTBEGINNERSCORE,
@@ -171,7 +171,7 @@ describe('statsActionCreators', () => {
     })
   });
   it('should create a setBestIntermediateScore action in the proper format', () => {
-    const date = new Date();
+    const date = new Date().toISOString();
     const action = setBestIntermediateScore({ username, seconds, date });
     expect(action).toEqual({
       type: SETBESTINTERMEDIATESCORE,

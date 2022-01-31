@@ -17,7 +17,7 @@ describe('BestGlobalScore', () => {
     _id: '618172424cc87daf91d0bad0',
     username: 'user1',
     seconds: 47,
-    date: new Date(),
+    date: new Date().toISOString(),
   };
   beforeEach(() => {
     store = createStore(rootReducer, initialTestState);

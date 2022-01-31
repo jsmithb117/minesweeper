@@ -5,7 +5,7 @@ import { setBeginnerScores, setBestBeginnerScore, setBestExpertScore, setBestInt
 const initialState = initialStateCreator();
 const username = 'user1';
 const seconds = 26;
-const date = new Date();
+const date = new Date().toISOString();
 const _id = '618172424cc87daf91d0bad0';
 const score = { _id, username, seconds, date };
 

@@ -55,7 +55,7 @@ export interface IInitialState {
 export interface IScore {
   username: string,
   seconds: number,
-  date: Date,
+  date: string,
 };
 
 export interface IPostScore extends IScore {
@@ -150,7 +150,7 @@ export type TDispatch = typeof store.dispatch;
 export interface IScore {
   username: string,
   seconds: number,
-  date: Date,
+  date: string,
   _id: string
 }
 export interface IStatsObject {
