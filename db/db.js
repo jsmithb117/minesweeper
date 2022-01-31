@@ -27,9 +27,7 @@ export const getBeginnerHighScores = () => {
   return new Promise((resolve, reject) => {
     HighScores.findOne({ id: 1 })
       .then((dbResponse) => resolve(dbResponse.beginner))
-      .catch((err) =>
-        reject(new Error(new Error("Error finding Beginner high scores")))
-      );
+      .catch((err) => reject(err));
   });
 };
 
@@ -37,9 +35,7 @@ export const getIntermediateHighScores = () => {
   return new Promise((resolve, reject) => {
     HighScores.findOne({ id: 1 })
       .then((dbResponse) => resolve(dbResponse.intermediate))
-      .catch((err) =>
-        reject(new Error(new Error("Error finding Intermediate high scores")))
-      );
+      .catch((err) => reject(err));
   });
 };
 
@@ -47,9 +43,7 @@ export const getExpertHighScores = () => {
   return new Promise((resolve, reject) => {
     HighScores.findOne({ id: 1 })
       .then((dbResponse) => resolve(dbResponse.expert))
-      .catch((err) =>
-        reject(new Error(new Error("Error finding Expert high scores")))
-      );
+      .catch((err) => reject(err));
   });
 };
 
@@ -66,7 +60,7 @@ export const getHighScores = () => {
       };
     })
     .catch((err) => {
-      throw new Error("Error in rootValue.highscores");
+      throw new Error("Error in rootValue.highscores: ", err);
     });
 };
 
@@ -83,7 +77,7 @@ export const createLogin = (user) => {
     const newUser = newUserCreator(user);
     Users.create(newUser)
       .then((dbResponse) => resolve(dbResponse))
-      .catch((err) => reject(new Error("Error creating new user")));
+      .catch((err) => reject(err));
   });
 };
 
@@ -92,7 +86,7 @@ export const postCompletedBoard = (score) => {
     const userUpdateObject = userUpdateObjectCreator(score);
     const highScoresUpdateObject = highScoresUpdateObjectCreator(score);
 
-    HighScores.updateOne({ id: 1 }, highScoresUpdateObject)
+    HighScores.updateOne({ id: 1 }, highScoresUpdateObject);
 
     Users.updateOne({ username: score.username }, userUpdateObject)
       .then(() => {
