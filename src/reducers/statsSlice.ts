@@ -1,9 +1,9 @@
 import { createSlice} from '@reduxjs/toolkit';
-import { state } from '../features/initialState';
+import { defaultState } from '../features/initialState';
 
 export const statsSlice = createSlice({
   name: 'stats',
-  initialState: state.stats,
+  initialState: defaultState.stats,
   reducers: {
     setStats: (state, action) => {
       const {

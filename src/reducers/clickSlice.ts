@@ -1,12 +1,12 @@
 import { createSlice} from '@reduxjs/toolkit';
-import { state } from '../features/initialState';
+import { defaultState } from '../features/initialState';
 import zeroFinder from '../features/zeroFinder';
 import checkWin from '../features/checkWin';
 import boardCreator from "../features/boardCreator";
 
 export const clickSlice = createSlice({
   name: 'click',
-  initialState: state.click,
+  initialState: defaultState.click,
   reducers: {
     updateOriginalBoard: (state) => {
       state.originalBoard = state.board;

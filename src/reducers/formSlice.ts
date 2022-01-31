@@ -1,9 +1,80 @@
 import { createSlice} from '@reduxjs/toolkit';
-import { state } from '../features/initialState';
+// import { defaultState } from '../features/initialState';
+import { IInitialState, IPiece } from '../interfaces/interfaces';
+// import { defaultVal } from '../components/Form';
+
+const backupPiece: IPiece = {
+  val: 0,
+  isMine: false,
+  uncovered: false,
+  markedAsMine: false,
+  loser: false,
+  row: 0,
+  col: 0,
+};
+
+const defaultState: IInitialState = {
+  click: {
+    piecesMarkedAsMine: 0,
+    board: [[backupPiece]],
+    originalBoard: [[backupPiece]],
+    win: false,
+    loss: false,
+  },
+  form: {
+    minesDisplay: 0,
+    time: 0,
+    length: 10,
+    width: 10,
+    mines: 10,
+    paused: false,
+    difficulty: 'Default',
+  },
+  stats: {
+    bestBeginnerScore: {
+      _id: '',
+      username: '',
+      seconds: Number.NEGATIVE_INFINITY,
+      date: new Date().toISOString(),
+    },
+    bestIntermediateScore: {
+      _id: '',
+      username: '',
+      seconds: Number.NEGATIVE_INFINITY,
+      date: new Date().toISOString(),
+    },
+    bestExpertScore: {
+      _id: '',
+      username: '',
+      seconds: Number.NEGATIVE_INFINITY,
+      date: new Date().toISOString(),
+    },
+    beginnerScores: [{
+      _id: '',
+      username: '',
+      seconds: Number.NEGATIVE_INFINITY,
+      date: new Date().toISOString(),
+    }],
+    intermediateScores: [{
+      _id: '',
+      username: '',
+      seconds: Number.NEGATIVE_INFINITY,
+      date: new Date().toISOString(),
+    }],
+    expertScores: [{
+      _id: '',
+      username: '',
+      seconds: Number.NEGATIVE_INFINITY,
+      date: new Date().toISOString(),
+    }],
+    totalGamesCompleted: 0,
+    username: 'user1',
+  },
+};
 
 export const formSlice = createSlice({
   name: 'form',
-  initialState: state.form,
+  initialState: defaultState.form,
   reducers: {
     setDifficulty: (state, action) => {
       state.difficulty = action.payload.difficulty || '';
